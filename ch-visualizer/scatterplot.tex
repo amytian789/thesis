@@ -24,12 +24,14 @@ Restricting the plot to a unit box allows analyst's visual systems to focus on l
 	\end{center}
 \end{figure}
 
-\subsection{Ordering}
-\label{sec:visualizer:scatterplot:ordering}
+\subsection{Feature extraction from plot}
+\label{sec:visualizer:features}
 
-As people interact with graphs, they maintain a ``mental map'' of the graph. Federico and Miksch note that the importance of the mental map depends on various factors such as the user preferences and tasks that they must complete~\cite{federico2016}. By ``mental map,'' Federico and Miksch mean that when users label a new graph, they remember the previous plots that they labeled~\cite{federico2016}. Supposing that the graphs that a program wants to show the user are already decided. Given a gradation of graphs (showing graphs that are most alike one after the other), users are less able to distinguish between differences than if they are shown graphs from different ends of the spectrum at different times~\cite{federico2016}. While their work primarily concerns itself with ordering graphs for interpretability, their results can be applied to scatter plots. To put it concisely, the scatter plot display itself is not the only thing that matter. The ordering of the display matters, as well, and it is best to show the plots in an order that allows users to distinguish the differences among graphs that they have already seen. By improving their understanding of the plots, careful display ordering advances the accuracy of user responses. User responses can be thought of as observations of the user’s true preferences, and the ordering of plots as a way to future tune the precision of the decision tree (Section~\ref{sec:visualizer:al}). 
+\subsubsection{Numerical features}
 
-\subsection{Conditional scatter plots}
-\label{sec:visualizer:scatterplot:conditional}
+((Our goal is to quantify various features of a scatter plot. One category of features are numerical features. These include Pearson correlation, tests of independence, mutual information criterion, etc))
 
-((There are many ways to produce this scatter plot. One way is to marginally plot one explanatory variable against the response variable. We experiment with another way where, similar to regression, we control for the behavior of all the other explanatory variables while making this scatter plot. ))
+\subsubsection{Visual features}
+
+((The other category of feature are visual. How many points are near the center of the plot? How many points lie above the linear regression line? ))
+

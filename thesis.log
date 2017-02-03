@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  3 FEB 2017 15:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  3 FEB 2017 17:07
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -382,22 +382,22 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 
-{C:/Users/amyti/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}])
+{C:/Users/amyti/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2])
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
- [2] (thesis.lot)
+ [3] (thesis.lot)
 \tf@lot=\write5
 \openout5 = `thesis.lot'.
 
- [3
+ [4
 
 
 ] (thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [4
+ [5
 
 
 ]
@@ -406,121 +406,90 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 (ch-intro/chapter-intro.tex
 Chapter 1.
-(ch-intro/problemstatement.tex) (ch-intro/motivation.tex [1
+(ch-intro/problem.tex [1
 
 
 
 
-])
-(ch-intro/solution.tex [2] [3]) (ch-intro/me1.tex [4]
-<ch-intro/figures/me1plot.jpg, id=302, 212.59425pt x 194.52675pt>
+]) (ch-intro/me1.tex [2]
+<ch-intro/figures/me1plot.jpg, id=344, 212.59425pt x 194.52675pt>
 File: ch-intro/figures/me1plot.jpg Graphic file (type jpg)
 
 <use ch-intro/figures/me1plot.jpg>
 Package pdftex.def Info: ch-intro/figures/me1plot.jpg used on input line 12.
 (pdftex.def)             Requested size: 216.81pt x 198.39684pt.
-) (ch-intro/me2.tex [5 <./ch-intro/figures/me1plot.jpg>] <ch-intro/figures/me2p
-lot.jpg, id=310, 221.02576pt x 210.18526pt>
+) (ch-intro/me2.tex [3] [4 <./ch-intro/figures/me1plot.jpg>]
+<ch-intro/figures/me2plot.jpg, id=356, 221.02576pt x 210.18526pt>
 File: ch-intro/figures/me2plot.jpg Graphic file (type jpg)
 
 <use ch-intro/figures/me2plot.jpg>
 Package pdftex.def Info: ch-intro/figures/me2plot.jpg used on input line 10.
 (pdftex.def)             Requested size: 216.81pt x 206.18219pt.
-) (ch-intro/numerical.tex [6] [7 <./ch-intro/figures/me2plot.jpg>]
+) (ch-intro/solution.tex [5 <./ch-intro/figures/me2plot.jpg>] [6]) (ch-intro/co
+rrelation.tex
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ú in font cmr10!
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ù in font cmr10!
- [8]
-Underfull \hbox (badness 10000) in paragraph at lines 22--23
+
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
+[7]
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ú in font cmr10!
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ù in font cmr10!
-[9]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 34.
- ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 34.
- [10]
-[11]
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ì in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ú in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ù in font cmr10!
-)) [12]
+) (ch-intro/finance.tex [8] [9])) [10]
 \openout2 = `ch-visualizer/chapter-visualizer.aux'.
 
  (ch-visualizer/chapter-visualizer.tex
 Chapter 2.
+
+LaTeX Warning: Reference `sec:visualizer:al:lineup' on page 11 undefined on inp
+ut line 5.
+
 (ch-visualizer/scatterplot.tex
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
+ [11
 
-<ch-visualizer/figures/cdf.jpg, id=355, 489.62926pt x 247.52475pt>
+
+
+]
+<ch-visualizer/figures/cdf.jpg, id=406, 489.62926pt x 247.52475pt>
 File: ch-visualizer/figures/cdf.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/cdf.jpg>
 Package pdftex.def Info: ch-visualizer/figures/cdf.jpg used on input line 11.
 (pdftex.def)             Requested size: 325.215pt x 164.40549pt.
 
-<ch-visualizer/figures/hofertoldford.jpg, id=360, 501.67426pt x 237.88875pt>
+<ch-visualizer/figures/hofertoldford.jpg, id=411, 501.67426pt x 237.88875pt>
 File: ch-visualizer/figures/hofertoldford.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/hofertoldford.jpg>
 Package pdftex.def Info: ch-visualizer/figures/hofertoldford.jpg used on input 
 line 21.
 (pdftex.def)             Requested size: 325.215pt x 154.21567pt.
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ô in font cmr10!
- [13
+) (ch-visualizer/al.tex
 
+LaTeX Warning: Reference `sec:visualizer:al:lineup' on page 12 undefined on inp
+ut line 7.
 
-
-] [14 <./ch-visualizer/figures/cdf.jpg> <./ch-visualizer/figures/hofertoldford.
-jpg>])
-(ch-visualizer/features.tex) (ch-visualizer/al.tex
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
- [15]
+[12 <./ch-visualizer/figures/cdf.jpg>] [13 <./ch-visualizer/figures/hofertoldfo
+rd.jpg>]
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
- [16]
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ô in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ì in font cmr10!
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ô in font cmr10!
- [17]
-<ch-visualizer/figures/lineup.jpg, id=398, 698.00775pt x 143.93774pt>
-File: ch-visualizer/figures/lineup.jpg Graphic file (type jpg)
-
-<use ch-visualizer/figures/lineup.jpg>
-Package pdftex.def Info: ch-visualizer/figures/lineup.jpg used on input line 28
-.
-(pdftex.def)             Requested size: 433.62pt x 89.41837pt.
 ) (ch-visualizer/plotgeneration.tex
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
@@ -528,33 +497,34 @@ Missing character: There is no ô in font cmr10!
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
-)
-(ch-visualizer/summary.tex [18 <./ch-visualizer/figures/lineup.jpg>])) [19]
+) (ch-visualizer/focus.tex))
+[14] [15]
 \openout2 = `ch-al/chapter-al.aux'.
 
-
-(ch-al/chapter-al.tex
+ (ch-al/chapter-al.tex
 Chapter 3.
-) [20
+(ch-al/litreview.tex) (ch-al/methods.tex) (ch-al/simulations.tex)) [16
 
 
 
 ]
 \openout2 = `ch-gc/chapter-gc.aux'.
 
- (ch-gc/chapter-gc.tex
+
+(ch-gc/chapter-gc.tex
 Chapter 4.
-) [21
+(ch-gc/litreview.tex) (ch-gc/methods.tex) (ch-gc/examples.tex)) [17
 
 
 
 ]
 \openout2 = `ch-usage/chapter-usage.aux'.
 
- (ch-usage/chapter-usage.tex
+
+(ch-usage/chapter-usage.tex
 Chapter 5.
-(ch-usage/newanalysis.tex) (ch-usage/results.tex) (ch-usage/implications.tex))
-[22
+(ch-usage/newanalysis.tex) (ch-usage/stockselection.tex) (ch-usage/data.tex)
+(ch-usage/results.tex)) [18
 
 
 
@@ -567,7 +537,7 @@ Chapter 6.
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ô in font cmr10!
- [23
+ [19
 
 
 
@@ -575,7 +545,45 @@ Missing character: There is no ô in font cmr10!
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ì in font cmr10!
-)) [24]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 17.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 17.
+
+
+LaTeX Warning: Reference `sec:visualizer:scatterplot:conditional' on page 20 un
+defined on input line 20.
+
+[20] [21]
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ì in font cmr10!
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+ [22]
+<ch-visualizer/figures/lineup.jpg, id=478, 698.00775pt x 143.93774pt>
+File: ch-visualizer/figures/lineup.jpg Graphic file (type jpg)
+
+<use ch-visualizer/figures/lineup.jpg>
+Package pdftex.def Info: ch-visualizer/figures/lineup.jpg used on input line 38
+.
+(pdftex.def)             Requested size: 433.62pt x 89.41837pt.
+Missing character: There is no ‚ in font cmr10!
+Missing character: There is no Ä in font cmr10!
+Missing character: There is no ô in font cmr10!
+
+
+LaTeX Warning: Reference `***EARLIER SECTION***' on page 23 undefined on input 
+line 49.
+
+)) [23 <./ch-visualizer/figures/lineup.jpg>] [24]
 \openout2 = `ch-appendicies/implementation.aux'.
 
 
@@ -600,7 +608,11 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 262.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 262.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 262.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 614F5520500796FEA8838E9CC8346573;3294.
+(rerunfilecheck)             Checksum: 71D0166A7832D1E4DD367A83627EA063;4102.
+
+
+LaTeX Warning: There were undefined references.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 262.
  )
 (\end occurred inside a group at level 1)
@@ -608,13 +620,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 262.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 7931 strings out of 493334
- 119911 string characters out of 3136672
- 311859 words of memory out of 3000000
- 11088 multiletter control sequences out of 15000+200000
+ 7972 strings out of 493334
+ 120398 string characters out of 3136672
+ 311914 words of memory out of 3000000
+ 11102 multiletter control sequences out of 15000+200000
  9623 words of font info for 34 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,7n,32p,1957b,6610s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,7n,32p,1957b,6613s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/
 cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
@@ -625,9 +637,9 @@ b><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/
 Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Pr
 ogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on thesis.pdf (32 pages, 544011 bytes).
+Output written on thesis.pdf (33 pages, 550776 bytes).
 PDF statistics:
- 625 PDF objects out of 1000 (max. 8388607)
- 187 named destinations out of 1000 (max. 500000)
- 394 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 676 PDF objects out of 1000 (max. 8388607)
+ 198 named destinations out of 1000 (max. 500000)
+ 474 words of extra memory for PDF output out of 10000 (max. 10000000)
 
