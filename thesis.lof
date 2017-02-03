@@ -2,10 +2,11 @@
 \contentsline {figure}{\numberline {1.1}{\ignorespaces A plot of data that exhibits a strong quadratic trend but fails common tests of dependence.}}{5}{figure.1.1}
 \contentsline {figure}{\numberline {1.2}{\ignorespaces A plot of data that exhibits a negative linear trend but fails the Pearson correlation test.}}{7}{figure.1.2}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces A plot of $y$ against $x$ after the CDF is applied in both directions.}}{14}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Scatterplots of independent $U(0,1)$ random variables and the pseudo-observation pairs $(U_{t,j},U_{t,j+1}),j\in \{1,2,3\}$.}}{14}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces A line-up test for $n = 5$. }}{18}{figure.2.3}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces A plot of $y$ against $x$ after the CDF is applied in both directions.}}{15}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Scatterplots of independent $U(0,1)$ random variables and the pseudo-observation pairs $(U_{t,j},U_{t,j+1}),j\in \{1,2,3\}$.}}{15}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces A line-up test for $n = 5$. }}{19}{figure.3.3}
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
