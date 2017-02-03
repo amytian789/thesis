@@ -1,0 +1,57 @@
+\begin{thebibliography}{1}
+
+\bibitem{dasgupta2011}
+{Dasgupta, S.}
+\newblock {Two faces of active learning}.
+\newblock \url{http://cseweb.ucsd.edu/~dasgupta/papers/twoface.pdf}, 2011.
+
+\bibitem{efron1986}
+B.~Efron.
+\newblock {Why Isn't' Everyone a Bayesian?}
+\newblock {\em The American Statistician}, pages 1--5, February 1986.
+
+\bibitem{federico2016}
+P.~Federico and W.~Oldford.
+\newblock {Evaluation of two interaction techniques for visualization of
+  dynamic graphs}.
+\newblock {\em arXiv preprint arXiv:1608.08936}, pages 1--15, August 2016.
+
+\bibitem{hofert2016}
+M.~Hofert and W.~Oldford.
+\newblock {Visualizing Dependence in High-Dimensional Data: An Application to
+  S\&P 500 Constituent Data}.
+\newblock {\em arXiv preprint arXiv:1609.09429}, pages 1--33, September 2016.
+
+\bibitem{little2013}
+R.~J. Little.
+\newblock {In Praise of Simplicity not Mathematistry! Ten Simple Powerful Ideas
+  for the Statistical Scientist}.
+\newblock {\em Journal of the American Statistical Association}, pages
+  359--369, July 2013.
+
+\bibitem{liuh2016}
+H.~Liu, J.~Mulvey, and T.~Zhao.
+\newblock {A semiparametric graphical modelling approach for large-scale equity
+  selection}.
+\newblock {\em Quantitative Finance}, pages 1053--1067, 2016.
+
+\bibitem{lius2016}
+S.~Liu, D.~Maljovec, B.~Wang, P.~T. Bremer, and V.~Pascucci.
+\newblock {Visualizing high-dimensional data: Advances in the past decade}.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics}, pages
+  1249--1268, December 2016.
+
+\bibitem{tao2014}
+{Tao, T.}
+\newblock {When is correlation transitive?}
+\newblock
+  \url{https://terrytao.wordpress.com/2014/06/05/when-is-correlation-transitive/},
+  2014.
+
+\bibitem{wickham2010}
+H.~Wickham, D.~Cook, H.~Hofmann, and A.~Buja.
+\newblock {Graphical inference for infovis}.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics}, pages
+  973--979, December 2010.
+
+\end{thebibliography}
