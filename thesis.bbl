@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{dasgupta2011}
 {Dasgupta, S.}
@@ -40,6 +40,12 @@ S.~Liu, D.~Maljovec, B.~Wang, P.~T. Bremer, and V.~Pascucci.
 \newblock {Visualizing high-dimensional data: Advances in the past decade}.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics}, pages
   1249--1268, December 2016.
+
+\bibitem{santos2013}
+S.~Santos, D.~Y. Takahashi, A.~Nakata, and A.~Fujita.
+\newblock {A comparative study of statistical methods used to identify
+  dependencies between gene expression signals}.
+\newblock {\em Briefings in Bioinformatics}, pages 1--13, August 2013.
 
 \bibitem{tao2014}
 {Tao, T.}
