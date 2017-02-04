@@ -1,41 +1,92 @@
 \section{Correlation graphs}
 \label{sec:intro:correlation}
 
-Correlation graphs are one way to discover the dependency structure among different stocks whose returns may be represented as random variables following some distribution. Let $G=(V,E)$ be an undirected graph with vertices $V_{1},...,V_{d}$ (a $d$-dimensional distribution) and edges $E_{i,j}\in\{0,1\}$. We set $E_{i,j}=1$ when there is an edge between $V_i$ and $V_j$, and 0 otherwise. An edge is drawn between $V_i$ and $V_j$ iff the two random variables are correlated. This graph can be drawn from a correlation matrix $\sum$ where $\sum_{i,j}=corr(V_1,V_2)$ with the following heuristic:\\
+Correlation graphs are one way to discover the dependency structure among
+different stocks whose returns may be represented as random variables following
+some distribution. Let $G=(V,E)$ be an undirected graph with vertices
+$V_{1},...,V_{d}$ (a $d$-dimensional distribution) and edges
+$E_{i,j}\in\{0,1\}$. We set $E_{i,j}=1$ when there is an edge between $V_i$ and
+$V_j$, and 0 otherwise. An edge is drawn between $V_i$ and $V_j$ iff the two
+random variables are correlated. This graph can be drawn from a correlation
+matrix $\sum$ where $\sum_{i,j}=corr(V_1,V_2)$ with the following heuristic:\\
 
 \begin{algorithm}
-	If $\sum_{i,j}>p$, draw edge $E_{i,j}$ where $p$ is the $p$-value for the desired confidence level
+	If $\sum_{i,j}>p$, draw edge $E_{i,j}$ where $p$ is the $p$-value for the
+	desired confidence level
 \end{algorithm}
 
-We differentiate between ``visual correlation'' (which can be thought more of as ``pairs of variables that marginally appear dependent'') and the more common mathematical interpretation of ``correlation''. More specifically, we would like to visually understand what a correlation graph looks like and compare it to correlation graphs constructed with the traditional interpretation of correlation. What follows is an overview of common numerical methods to estimate the correlation between two random variables.
+We differentiate between ``visual correlation'' (which can be thought more of as
+``pairs of variables that marginally appear dependent'') and the more common
+mathematical interpretation of ``correlation''. More specifically, we would like
+to visually understand what a correlation graph looks like and compare it to
+correlation graphs constructed with the traditional interpretation of
+correlation. What follows is an overview of common numerical methods to estimate
+the correlation between two random variables.
 
 \subsection{Pearson's correlation}
 
-Pearson's correlation measures the linear dependence among two random variables $X$ and $Y$. In a population, the correlation is given by
-$$\rho_{X,Y}=\frac{\Cov(X,Y)}{\sigma_X \sigma_Y} = \frac{\E(XY)-\E(X)\E(Y)}{\sqrt{\E(X^2)-\E(X)^2} \sqrt{\E(Y^2)-\E(Y)^2}}$$ 
+Pearson's correlation measures the linear dependence among two random variables
+$X$ and $Y$. In a population, the correlation is given by
+$$\rho_{X,Y}=\frac{\Cov(X,Y)}{\sigma_X \sigma_Y} =
+\frac{\E(XY)-\E(X)\E(Y)}{\sqrt{\E(X^2)-\E(X)^2} \sqrt{\E(Y^2)-\E(Y)^2}}$$ 
 
-The formulation above is not as useful in practice as datasets are regarded as samples of a population. Given $n$ observations, the sample expectation is given by the formula  $\bar{x}=\frac{1}{n}\sum\limits_{i=1}^{n}x_i$. By substituting into the above and multiplying by $n^2/n^2$, we can estimate the Pearson's correlation with the following:
+The formulation above is not as useful in practice as datasets are regarded as
+samples of a population. Given $n$ observations, the sample expectation is given
+by the formula  $\bar{x}=\frac{1}{n}\sum\limits_{i=1}^{n}x_i$. By substituting
+into the above and multiplying by $n^2/n^2$, we can estimate the Pearson's
+correlation with the following:
 $$\rho_{x,y}=
-\frac{n \sum\limits_{i=1}^{n} x_i y_i - \sum\limits_{i=1}^{n} x_i \sum\limits_{i=1}^{n} y_i}
+\frac{n \sum\limits_{i=1}^{n} x_i y_i - \sum\limits_{i=1}^{n} x_i
+	\sum\limits_{i=1}^{n} y_i}
 {\sqrt{n\sum\limits_{i=1}^{n} x_i^2-\left(\sum\limits_{i=1}^{n} x_i\right)^2} 
-\sqrt{n\sum\limits_{i=1}^{n} y_i^2-\left(\sum\limits_{i=1}^{n} y_i\right)^2}}$$ 
+	\sqrt{n\sum\limits_{i=1}^{n} y_i^2-\left(\sum\limits_{i=1}^{n} y_i\right)^2}}$$ 
 
-With perfect positive and negative linear dependence respectively, $\rho=\pm1$. It is important to note that $\rho=0$ does not necessarily indicate independence, though it is an indication of \textbf{linear} independence.
+With perfect positive and negative linear dependence respectively, $\rho=\pm1$.
+It is important to note that $\rho=0$ does not necessarily indicate
+independence, though it is an indication of \textbf{linear} independence.
 
 \subsection{Spearman's correlation}
 
-Spearman's correlation is more broad than Pearson's; it measures monotonic dependence among two random variables $X$ and $Y$. Monotonic functions are either strictly increasing or decreasing; while linear functions are monotonic, monotonic functions are not necessarily linear. Subsequently, Spearman's correlations may also capture non-linear dependencies. Spearman's correlation is computed by computing the Pearson's correlation among ``ranked variables''. Each sample observation $x_i$ of $X$ is ranked from 1 to $n$ based on its position relative to $x_j, j\in\{1,...,n\}\backslash{i}$. The ranking is also computed for all observations of $Y$. We then define the difference of a sample $(x_i,y_i)$ as $d_i=x_i-y_i$ and compute Spearman's correlation as
+Spearman's correlation is more broad than Pearson's; it measures monotonic
+dependence among two random variables $X$ and $Y$. Monotonic functions are
+either strictly increasing or decreasing; while linear functions are monotonic,
+monotonic functions are not necessarily linear. Subsequently, Spearman's
+correlations may also capture non-linear dependencies. Spearman's correlation is
+computed by computing the Pearson's correlation among ``ranked variables''. Each
+sample observation $x_i$ of $X$ is ranked from 1 to $n$ based on its position
+relative to $x_j, j\in\{1,...,n\}\backslash{i}$. The ranking is also computed
+for all observations of $Y$. We then define the difference of a sample
+$(x_i,y_i)$ as $d_i=x_i-y_i$ and compute Spearman's correlation as
 $$\rho_{x,y}=1-\frac{6 \sum\limits_{i=1}^{n}d_i^2}{n(n^2-1)}$$
 
-With perfect increasing and decreasing monotonic dependence respectively, $\rho=\pm1$. Again, it is important to note that $\rho=0$ does not necessarily indicate independence, though it is an indication of \textbf{monotonic} independence.
+With perfect increasing and decreasing monotonic dependence respectively,
+$\rho=\pm1$. Again, it is important to note that $\rho=0$ does not necessarily
+indicate independence, though it is an indication of \textbf{monotonic}
+independence.
 
 \subsection{Kendall's tau}
 
-Similar to Spearman's correlation, Kendall's tau is another method of identifying monotonic dependence among two random $X$ and $Y$ as it also computes correlation among ranked variables. However, it does not utilize the difference among a single sample. Instead, it compares pairs of samples among each other. For $i\not=j$, $(x_i,y_i)$ and $(x_j,y_j)$ are defined as ``concordant'' if the ranks of both elements agree i.e. $x_i > x_j$ and $y_i > y_j$ or $x_i < x_j$ and $y_i < y_j$. Pairs are defined as ``discordant'' if the ranks of both elements disagree i.e. $x_i > x_j$ and $y_i < y_j$ or $x_i < x_j$ and $y_i > y_j$. In the case where ranks of either element are equal, the pair is ignored. Let $c=$ the number of concordant pairs and $d=$ the number of discordant pairs. Then Kendall's tau is computed as 
+Similar to Spearman's correlation, Kendall's tau is another method of
+identifying monotonic dependence among two random $X$ and $Y$ as it also
+computes correlation among ranked variables. However, it does not utilize the
+difference among a single sample. Instead, it compares pairs of samples among
+each other. For $i\not=j$, $(x_i,y_i)$ and $(x_j,y_j)$ are defined as
+``concordant'' if the ranks of both elements agree i.e. $x_i > x_j$ and $y_i >
+y_j$ or $x_i < x_j$ and $y_i < y_j$. Pairs are defined as ``discordant'' if the
+ranks of both elements disagree i.e. $x_i > x_j$ and $y_i < y_j$ or $x_i < x_j$
+and $y_i > y_j$. In the case where ranks of either element are equal, the pair
+is ignored. Let $c=$ the number of concordant pairs and $d=$ the number of
+discordant pairs. Then Kendall's tau is computed as 
 $$\tau_{x,y}=\frac{c-d}{n(n-1)/2}$$
 
-Kendall's tau is less sensitive to errors in the data as its correlation is based on sample pairs rather than deviations within an observation, though the resulting values tend to result in the same interpretations. As with Spearman's correlation, $\tau=\pm1$ with perfect increasing and decreasing monotonic dependence respectively. Furthermore, $\tau=0$ does not necessarily indicate independence, though it is an indication of \textbf{monotonic} independence.
+Kendall's tau is less sensitive to errors in the data as its correlation is
+based on sample pairs rather than deviations within an observation, though the
+resulting values tend to result in the same interpretations. As with Spearman's
+correlation, $\tau=\pm1$ with perfect increasing and decreasing monotonic
+dependence respectively. Furthermore, $\tau=0$ does not necessarily indicate
+independence, though it is an indication of \textbf{monotonic} independence.
 
 \subsection{Distance correlation}
 
-The aforementioned correlation metrics are well-known even in fields outside of statistics, but they are constrained to monotonic functions. 
+The aforementioned correlation metrics are well-known even in fields outside of
+statistics, but they are constrained to monotonic functions. 
