@@ -32,21 +32,14 @@ x <- x[idx]; y <- y[idx]
 fitlm <- lm(y ~ x)
 anova(fitlm)
 
-## fit constant regression
-fitconst <- lm(y ~ 1)
-anova(fitlm, fitconst)
-
 ## see if any coefficients are significant
 summary(fitlm)
 
 ## see if residuals are normally-distributed
 shapiro.test(fitlm$residuals)
 
-## various correlation tests
-cor(x, fitlm$residuals)
-cor(x, y, method = "pearson")
-cor(x, y, method = "kendall")
-cor(x, y, method = "spearman")
+## correlation is not significantly different from zero
+cor.test(x, y)
 
 ####################
 #visual feedback
@@ -59,7 +52,7 @@ plot(x, y, pch = 16, cex = 2)
 \label{sec:appendicies:me2plot}
 {\setstretch{1.0}
 \begin{lstlisting}
-## generate the dataset
+## generate a reproducible dataset
 set.seed(10)
 n <- 50
 x <- sort(rnorm(n))
@@ -73,21 +66,22 @@ y[c(n-10, n-5, n)] <- max(y)
 #####################
 #numerical feedback
 
-## testing if regression is significantly different from fitting a constant regression
+## fit linear regression
 fitlm <- lm(y ~ x)
-summary(fitlm)
 anova(fitlm)
 
-## test if residuals look like they came from a gaussian
+## see if any coefficients are significant
+summary(fitlm)
+
+## see if residuals are normally-distributed
 shapiro.test(fitlm$residuals) 
 
 ## correlation is not significantly different from zero
-cor(x,y)
-cor.test(x,y)
+cor.test(x, y)
 
 ####################
 #visual feedback
-plot(x,y, pch = 16, cex = 3)
+plot(x,y, pch = 16, cex = 2)
 \end{lstlisting}
 }
 

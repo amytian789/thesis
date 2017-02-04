@@ -1,11 +1,82 @@
 \section{Problem statement}
 \label{sec:intro:problem}
 
-Often in modern multivariate analyses, data analysts rely solely on statistical estimators to explore the data. However, since each estimator inherently performs well or poorly under different settings, data analysts are unable to differentiate between the properties intrinsic to the dataset and the spurious properties the estimators added. Furthermore, the rapid increase in computing resources has led to the proliferation of high-dimensional datasets, which are more tedious to properly visualize. The problem is to find a way to visualize data to improve decision making and verify numerical models. To solve this, we develop a system that allow future analysts to visually confirm models determined through numerical methods. This enables data analysts to gain intuition on patterns in the data and recognize problems with various estimators. Furthermore, this tool increases standardization, and subsequently accountability, within data analysis. Our primary application focus is on graphical models and their financial applications. However, the visualization framework discussed in this work can be applied to any data analysis.
+More than 2.5 quintillion bytes of data are produced daily as the field of data analysis continues to grow. ``Statistical thinking and methodology'' has become the framework for disciplines such as education, agriculture, economics, biology, medicine, astronomy, geology, and physics~\cite{efron1986}, but there is still a lack of accountability and consistency in the field. What is striking in the current practice of data analysis is the lack of progress on this particular subject beyond the development of numerical methods. The rapid increase in computing resources has led to the proliferation of high-dimensional datasets, which are more tedious to efficiently understand patterns in the data and verify numerical estimators. In fact, the ``physical limitations of display devices and our [human's] visual system prevent the direct display and instantaneous recognition of structures with higher dimensions than \textbf{two or three}''~\cite{lius2016} (emphasis mine). One solution is to manually plot each explanatory variable against the response variable, but this becomes computationally tedious and unfeasible to sort through when there are even a few hundred variables. This problem gets even more complicated when considering interaction terms (various transformations or combinations of explanatory variables). Although methods for dimension reduction have been developed~\cite{lius2016}, it is still unclear how the analyst can easily check the resulting model to ensure that the variables which were culled in the dimension reduction process are actually undesirable. Thus, the problem with current high-dimensional visual analysis is two-fold: (1) there are too many potential plots to sort through manually, and (2) it is tedious to verify numerical results with visual results and vice versa. 
 
-\subsection{Motivation}
-\label{sec:intro:problem:motivation}
+In computer science, a framework for ``clean code'' has been extensively documented and is the accepted industry standard for writing, interacting with, and thinking about code. But in empirical data analysis with large datasets, analysts blindly depend on estimators and hypothesis tests to explore the data and have no justification of their analyses aside from asymptotic, mathematical guarantees. Furthermore, since each estimator inherently performs well or poorly under different settings, data analysts are unable to differentiate between the properties intrinsic to the dataset and the spurious properties the estimators added. Little, a Professor of Biostatics at the University of Michigan, notes that ``developing good statistical solutions to real applied problems, based on good science rather than `cookbookery,' is far from easy''~\cite{little2013}. This lack of agreement and ``cookbook'' mentality of data analyses has far-reaching consequences. It is simple to run the data through a list of many estimators and cherry-pick the most ``interesting'' result. Similarly, an analyst can remove undesirable data points without justification or unknowingly fit egregiously incorrect models. Regardless of whether all these situations are performed maliciously or with good intentions, the art of data analysis is unclear without standards. The lack of clear-cut guidelines makes it difficult for analysts to discern the ``truth'' from the data and avoid the aforementioned pitfalls while simultaneously making it difficult for consumers of the resulting analyses to evaluate how trustworthy it is. This mentality arises due to the difficulty in visualizing high-dimensional data; plotting is one of the most consistent and universally interpretable ``sanity checks'' for numerical results.
 
-Despite the fact that more than 2.5 quintillion bytes of data is produced daily to be analyzed, there is still a lack of accountability and consistency in modern data analyses. ``Statistical thinking and methodology'' has become the framework for disciplines such as education, agriculture, economics, biology, medicine, astronomy, geology, and physics~\cite{efron1986}, but it is unclear if data analysts agree on the procedures to analyze data. Little, a Professor of Biostatics at the University of Michigan, notes that ``developing good statistical solutions to real applied problems, based on good science rather than `cookbookery,' is far from easy''~\cite{little2013}. This lack of agreement and ``cookbook'' mentality of data analyses has far-reaching consequences. It is simple to run the data through a list of many estimators and cherry-pick the most ``interesting'' result. Similarly, an analyst can remove undesirable data points without justification or unknowingly fit egregiously incorrect models. Regardless of whether all these situations are performed maliciously or with good intentions, the art of data analysis is unclear without standards. The lack of clear-cut guidelines makes it difficult for analysts to discern the ``truth'' from the data and avoid the aforementioned pitfalls while simultaneously making it difficult for consumers of the resulting analyses to evaluate how trustworthy it is. 
+Consider the following scenario with two different univariate datasets (Appendix~\ref{sec:appendicies:me1plot} and~\ref{sec:appendicies:me2plot}). The problem is if $x$ contains explanatory power of $y$. Common numerical analysis techniques yield the results summarized in Table~\ref{tab:intro:me}.
 
-What is striking here is the lack of progress on this particular subject beyond the development of numerical methods. In computer science, a framework for ``clean code'' has been extensively documented and is the accepted industry standard for writing, interacting with, and thinking about code. But currently, in data analysis, analysts blindly depend on estimators and hypothesis tests to explore the data and have no justification of their analyses aside from asymptotic, mathematical guarantees. Hence, no such standards of ``clean analysis'' currently exist in data science despite the role its importance in financial decisions, judicial evidence, government policy, and scientific discovery. In this work, we tackle the problem by providing data analysts with a sophisticated visualization system to explore the data and numerical model in a different way. This way, future analysts can combine visual feedback with the numerical feedback from estimators to make better decisions during data analysis and provide clear justification of their decisions.
+\tablespacing
+% tablespacing is defined by the class to set single spacing for the long table when in doublespacing mode. If the singlespace option is set, this command has no effect.
+
+\begin{longtable}{p{0.3\linewidth} p{0.3\linewidth} p{0.3\linewidth}}
+	
+	% First page heading
+	\caption[Numerical analysis in the univariate case.]{Numerical analysis in the univariate case. The results suggest that the data are uncorrelated. For Dataset 1, refer to Appendix ~\ref{sec:appendicies:me1plot}. For Dataset 2, refer to Appendix ~\ref{sec:appendicies:me2plot}} \label{tab:intro:me}\\
+	\toprule
+	\textbf{Dependency test} & \textbf{Dataset 1} & \textbf{Dataset 2} \\
+	\midrule
+	\endfirsthead
+	
+	% Future page heading
+	\caption[]{(continued)}\\
+	\toprule
+	\textbf{Dependency tests} & \textbf{Dataset 1} & \textbf{Dataset 2} \\
+	\midrule
+	\endhead
+	
+	% Page footer
+	\midrule
+	\multicolumn{3}{r}{(Continued on next page)}\\
+	\endfoot
+	
+	% Last page footer
+	\bottomrule
+	\endlastfoot
+	
+	Linear regression & $y=0.461+0.008x$ & $y=-0.131 - 0.2699x$
+	\\
+	$p$-values & \hspace{0.7cm}(2e-16) (0.911) & \hspace{0.85cm} (0.488) (0.190)
+	\\
+	Conclusion & Insignificant & Insignificant
+	\\
+	\cmidrule[0.1pt](l{0.5em}r{0.5em}){1-3}	
+	
+	ANOVA $p$-value & 0.9109 & 0.1896
+	\\
+	Conclusion & Insignificant & Insignificant
+	\\
+	\cmidrule[0.1pt](l{0.5em}r{0.5em}){1-3}
+	
+	Shapiro $p$-value & 0.5795 & 0.1632
+	\\
+	Conclusion & Normally-distributed residuals & Normally-distributed residuals
+	\\
+	\cmidrule[0.1pt](l{0.5em}r{0.5em}){1-3}
+	
+	Pearson correlation & -0.1886 & 0.0113
+	\\
+	$p$-values & 0.1896 & 0.9109
+	\\
+	Conclusion & Uncorrelated & Uncorrelated
+	\\
+	
+	% the cmidrule here spans both columns but is indented slightly on the left and right. 
+	%\cmidrule[0.1pt](l{0.5em}r{0.5em}){1-3}
+	
+\end{longtable}
+\bodyspacing
+% bodyspacing restores double spacing or single spacing after the table
+
+Supposing that an analyst must rely on numerical tests alone, the reasonable conclusion to reach would be that $x$ and $y$ are uncorrelated. Given the power to plot quickly and efficiently, however, an analyst would quickly discover that the data exhibits a strong dependency (Figure~\ref{fig:intro:meplot}). There are certainly many more ways to numerically analyze the data, and in retrospect, it can be argued that an analyst might have tried an estimator that captured the dependency properly. Even then, without the ability to plot, the previous numerical results (which were strongly uncorrelated) cast doubt on the sole correlated estimator.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth]{ch-intro/figures/me}
+		\caption[Visual analysis in the univariate case.]{Visual analysis in the univariate case. The data exhibits a strong visual dependency but fails common numerical tests of dependence (Table~\ref{tab:intro:me}). \textit{Left}: Dataset 1 (Appendix~\ref{sec:appendicies:me1plot}), \textit{Right}: Dataset 2 (Appendix~\ref{sec:appendicies:me2plot})}
+		\label{fig:intro:meplot}
+	\end{center}
+\end{figure}
+
+It is interesting to note that Dataset 2 (Figure~\ref{fig:intro:meplot}, right) is clearly linear yet common tests of linear correlation (linear regression, Pearson correlation coefficient) are not significantly different from 0 (Table~\ref{tab:intro:me}). Indeed, the data used in these examples was purposefully constructed to be dependent but bypass common tests for dependency. However, if it is possible to construct datasets in one-dimension that evade commonly-used numerical methods, it is believable that it is even easier to construct analogous datasets in higher dimensions. Hence, no such standards of ``clean analysis'' currently exist in data science despite its importance in financial decisions, judicial evidence, government policy, and scientific discovery. Verification of numerical methods is especially important in finance as equity markets are large and involve billions of dollars; portfolio selection often involves determining the relationship among as many stocks as possible in order to be thorough and achieve the best possible portfolio. 
