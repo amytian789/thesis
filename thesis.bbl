@@ -47,6 +47,11 @@ S.~Santos, D.~Y. Takahashi, A.~Nakata, and A.~Fujita.
   dependencies between gene expression signals}.
 \newblock {\em Briefings in Bioinformatics}, pages 1--13, August 2013.
 
+\bibitem{szekely2007}
+G.~Szekely, M.~Rizzo, and N.~Bakirov.
+\newblock {Measuring and testing independence by correlation of distances.}
+\newblock {\em The Annals of Statistics}, pages 2769--2794, March 2007.
+
 \bibitem{tao2014}
 {Tao, T.}
 \newblock {When is correlation transitive?}

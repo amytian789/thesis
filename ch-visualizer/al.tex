@@ -4,9 +4,37 @@
 \subsection{Decision tree classification of user interests}
 \label{sec:visualizer:al:tree}
 
-A decision tree is a method of classifying and labeling plots. An ``active learner'' adapts as the process moves forward, choosing its points of query intelligently. Active learning increases efficiency when searching through the hypothesis space, which is any fitted tree that agrees with the labeled data as much as possible~\cite{dasgupta2011}. Every time new data (a new label) is received, the hypothesis space shrinks as the label removes certain classifiers from the running~\cite{dasgupta2011}. An active learner queries from ambiguous parts of the current hypothesis space so as to shrink it as quickly as possible. It is problematic to start from scratch, however; how does the system determine the best first point of ambiguity when it knows nothing (the hypothesis space is everything)? While this problem is difficult, we can exploit the fact that the user is already providing a numerical model that they believe to be a good representation of the data which they would like the visualization system to check visually. Given this data, the system builds a decision tree that utilizes the various properties of the plots to determine whether one is interesting or uninteresting. Doing so greatly narrows the hypothesis space and makes it easier to determine points of ambiguity. However, to reconcile with the fact that the user wishes to check the numerical model and may not necessarily believe it is a good representation of fit, the learner must then perform several line-up tests (Section ~\ref{sec:visualizer:al:lineup}) to check whether the initial decision tree is a proper fit. As the user then proceeds to label various conditional plots as ``interesting'' or ``not interesting,'' the classifier learns the user’s interest and continues to evolve. This models plot characteristics that the user found interesting to study.
+A decision tree is a method of classifying and labeling plots. An ``active
+learner'' adapts as the process moves forward, choosing its points of query
+intelligently. Active learning increases efficiency when searching through the
+hypothesis space, which is any fitted tree that agrees with the labeled data as
+much as possible~\cite{dasgupta2011}. Every time new data (a new label) is
+received, the hypothesis space shrinks as the label removes certain classifiers
+from the running~\cite{dasgupta2011}. An active learner queries from ambiguous
+parts of the current hypothesis space so as to shrink it as quickly as possible.
+It is problematic to start from scratch, however; how does the system determine
+the best first point of ambiguity when it knows nothing (the hypothesis space is
+everything)? While this problem is difficult, we can exploit the fact that the
+user is already providing a numerical model that they believe to be a good
+representation of the data which they would like the visualization system to
+check visually. Given this data, the system builds a decision tree that utilizes
+the various properties of the plots to determine whether one is interesting or
+uninteresting. Doing so greatly narrows the hypothesis space and makes it easier
+to determine points of ambiguity. However, to reconcile with the fact that the
+user wishes to check the numerical model and may not necessarily believe it is a
+good representation of fit, the learner must then perform several line-up tests
+(Section ~\ref{sec:visualizer:al:lineup}) to check whether the initial decision
+tree is a proper fit. As the user then proceeds to label various conditional
+plots as ``interesting'' or ``not interesting,'' the classifier learns the
+user’s interest and continues to evolve. This models plot characteristics that
+the user found interesting to study.
 
 \subsection{Selective plot generation}
 \label{sec:visualizer:al:alplotgeneration}
 
-((To build a better classifier, we want to have the user label plots that the system (at the time) is uncertain about. This is where active learning comes in since we want to build our system to cleverly give users vital plots to label so the system can best learn the user’s interests. The system will have to determine which features it is uncertain about classifying and return a plot matching those characteristics to the user. ))
+((To build a better classifier, we want to have the user label plots that the
+system (at the time) is uncertain about. This is where active learning comes in
+since we want to build our system to cleverly give users vital plots to label so
+the system can best learn the user’s interests. The system will have to
+determine which features it is uncertain about classifying and return a plot
+matching those characteristics to the user. ))

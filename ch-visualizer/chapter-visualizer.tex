@@ -1,10 +1,35 @@
 \chapter{Visualization System \label{ch:visualizer}}
 
-It is extremely important to consider the way in which the system presents plots to the user as that can change the way the user perceives the data. Furthermore, user interactivity is a critical component of high dimensional analysis as noted earlier~\cite{lius2016}. (see paragrapah below)
+It is extremely important to consider the way in which the system presents plots
+to the user as that can change the way the user perceives the data. Furthermore,
+user interactivity is a critical component of high dimensional analysis as noted
+earlier~\cite{lius2016}. (see paragrapah below)
 
-Regardless of whether high dimensional data visualization methods are computationally heavy or interaction heavy, user interactivity is still a vital component for processing high dimensions for visualization; it is simply a question of what degree~\cite{lius2016}. We develop a system that first learns what visual patterns the data analyst finds promising, querying the user where the decision tree is ambiguous. It then automatically iterates through thousands of possible plots. Finally, it suggests relationships to exclude or include, which it believes to match the data analyst's interests, and their corresponding plots. This allows users to compare and contrast visual feedback with numerical algorithms for improved model selection.
+Regardless of whether high dimensional data visualization methods are
+computationally heavy or interaction heavy, user interactivity is still a vital
+component for processing high dimensions for visualization; it is simply a
+question of what degree~\cite{lius2016}. We develop a system that first learns
+what visual patterns the data analyst finds promising, querying the user where
+the decision tree is ambiguous. It then automatically iterates through thousands
+of possible plots. Finally, it suggests relationships to exclude or include,
+which it believes to match the data analyst's interests, and their corresponding
+plots. This allows users to compare and contrast visual feedback with numerical
+algorithms for improved model selection.
 
-User provides numerical graphical model and data that they wish to analyze/confirm visually $\rightarrow$ program analyzes the plots among edges that do exist in the graphical model and extract relevant features (\ref{sec:visualizer:features}) $\rightarrow$ initialize the decision tree given the resulting data (\ref{sec:visualizer:al:tree}) $\rightarrow$ perform a line-up test to determine how accurate the initialized tree is $\rightarrow$  selectively pick plots corresponding to ambiguous parts of the tree (\ref{sec:visualizer:al:alplotgeneration}) $\rightarrow$ periodically generate line-up tests from ambiguous parts of the tree to confirm the current iteration of the decision tree is ``correct'' (\ref{sec:visualizer:al:lineup}) $\rightarrow$  if the user passes a number of line-up tests, display the final classifier and heat map (\ref{sec:visualizer:plotgeneration:user}) $\rightarrow$ allow user to tweak if desired $\rightarrow$ output (\ref{sec:visualizer:plotgeneration:feedback})
+User provides numerical graphical model and data that they wish to
+analyze/confirm visually $\rightarrow$ program analyzes the plots among edges
+that do exist in the graphical model and extract relevant features
+(\ref{sec:visualizer:features}) $\rightarrow$ initialize the decision tree given
+the resulting data (\ref{sec:visualizer:al:tree}) $\rightarrow$ perform a
+line-up test to determine how accurate the initialized tree is $\rightarrow$ 
+selectively pick plots corresponding to ambiguous parts of the tree
+(\ref{sec:visualizer:al:alplotgeneration}) $\rightarrow$ periodically generate
+line-up tests from ambiguous parts of the tree to confirm the current iteration
+of the decision tree is ``correct'' (\ref{sec:visualizer:al:lineup})
+$\rightarrow$  if the user passes a number of line-up tests, display the final
+classifier and heat map (\ref{sec:visualizer:plotgeneration:user}) $\rightarrow$
+allow user to tweak if desired $\rightarrow$ output
+(\ref{sec:visualizer:plotgeneration:feedback})
 
 \input{ch-visualizer/scatterplot}
 \input{ch-visualizer/al}

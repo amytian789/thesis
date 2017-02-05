@@ -41,7 +41,9 @@ $$\rho_{x,y}=
 {\sqrt{n\sum\limits_{i=1}^{n} x_i^2-\left(\sum\limits_{i=1}^{n} x_i\right)^2} 
 	\sqrt{n\sum\limits_{i=1}^{n} y_i^2-\left(\sum\limits_{i=1}^{n} y_i\right)^2}}$$ 
 
-With perfect positive and negative linear dependence respectively, $\rho=\pm1$.
+\noindent such that $-1 \leq \rho \leq 1$. With perfect positive and negative 
+linear 
+dependence respectively, $\rho=\pm1$.
 It is important to note that $\rho=0$ does not necessarily indicate
 independence, though it is an indication of \textbf{linear} independence.
 
@@ -59,7 +61,9 @@ for all observations of $Y$. We then define the difference of a sample
 $(x_i,y_i)$ as $d_i=x_i-y_i$ and compute Spearman's correlation as
 $$\rho_{x,y}=1-\frac{6 \sum\limits_{i=1}^{n}d_i^2}{n(n^2-1)}$$
 
-With perfect increasing and decreasing monotonic dependence respectively,
+\noindent such that $-1 \leq \rho \leq 1$. With perfect increasing and 
+decreasing 
+monotonic dependence respectively,
 $\rho=\pm1$. Again, it is important to note that $\rho=0$ does not necessarily
 indicate independence, though it is an indication of \textbf{monotonic}
 independence.
@@ -79,7 +83,9 @@ is ignored. Let $c=$ the number of concordant pairs and $d=$ the number of
 discordant pairs. Then Kendall's tau is computed as 
 $$\tau_{x,y}=\frac{c-d}{n(n-1)/2}$$
 
-Kendall's tau is less sensitive to errors in the data as its correlation is
+\noindent such that $-1 \leq \tau \leq 1$. Kendall's tau is less sensitive to 
+errors in 
+the data as its correlation is
 based on sample pairs rather than deviations within an observation, though the
 resulting values tend to result in the same interpretations. As with Spearman's
 correlation, $\tau=\pm1$ with perfect increasing and decreasing monotonic
@@ -88,5 +94,44 @@ independence, though it is an indication of \textbf{monotonic} independence.
 
 \subsection{Distance correlation}
 
-The aforementioned correlation metrics are well-known even in fields outside of
-statistics, but they are constrained to monotonic functions. 
+While the aforementioned correlation metrics are well-known and commonly used, 
+they are constrained to monotonic functions. Distance correlation was first 
+proposed in 2007 as a way to further test for non-monotone dependence between 
+$X$ and $Y$~\cite{szekely2007}. The distance correlation is a function of the 
+distance covariance and distance variance of $X$ and $Y$. We define the 
+$n\times n$ matrices $a$ and $b$ as the distance matrices of $X$ and $Y$ 
+respectively. The elements $a_{k,l}$ and $b_{k,l}$ are respectively defined as 
+$||X_k-X_l||$ and $||Y_k-Y_l||$ for all $k,l=1,2,...,n$ where $||z||$ is the 
+Euclidean norm $\sqrt{z_1^2+...+z_n^2}$. Then we define the distance covariance 
+and distance variance as 
+
+\tablespacing
+\begin{itemize}
+	\item $\mathrm{dCov}(X,Y) = \sqrt{\frac{1}{n^2} \sum\limits_{k=1}^{n} 
+	\sum\limits_{l=1}^{n} A_{k,l} B_{k,l}}$
+	\item $\mathrm{dVar}(X) = \mathrm{dCov}(X,Y)$
+	\item $\mathrm{dVar}(Y) = \mathrm{dCov}(Y,Y)$
+\end{itemize}
+\bodyspacing
+
+\noindent where $A_{k,l}=a_{k,l}-\bar{a}_{k,}-\bar{a}_{,l}+\bar{a}$ and 
+$\bar{a}_{k,}$ is the $k$th row mean of $a$, $\bar{a}_{,l}$ is the $l$th column 
+mean of $a$, and $\bar{a}$ is grand mean of $a$. 
+Similarly, $B_{k,l}=b_{k,l}-\bar{b}_{k,}-\bar{b}_{,l}+\bar{b}$ and 
+$\bar{b}_{k,}$ is the $k$th row mean of $b$, $\bar{b}_{,l}$ is the $l$th column 
+mean of $b$, and $\bar{b}$ is grand mean of $b$. The distance correlation is 
+then defined as
+$$\mathcal{R}_{X,Y}=\frac{\mathrm{dCov}(X,Y)}
+{\sqrt{\mathrm{dVar}(X)\mathrm{dVar}(Y)}}$$
+
+\noindent such that $0 \leq \mathcal{R} \leq 1$. As before, $\mathcal{R}=1$ 
+indicates perfect dependence. However, the interpretation of $\mathcal{R}=0$ is 
+different, which is one of its two important properties~\cite{szekely2007}: 
+
+\tablespacing
+\begin{enumerate}
+	\item $X$ and $Y$ may be of different dimensions.
+	\item $\mathcal{R}=0$ if and only if $X$ and $Y$ are independent.
+\end{enumerate}
+\bodyspacing
+
