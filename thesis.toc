@@ -23,35 +23,39 @@
 \contentsline {subsection}{\numberline {2.3.2}Plot generation and feedback}{16}{subsection.2.3.2}
 \contentsline {section}{\numberline {2.4}Specific focus: AL and GC}{17}{section.2.4}
 \contentsline {chapter}{\numberline {3}Active learning }{18}{chapter.3}
-\contentsline {section}{\numberline {3.1}Literature review}{18}{section.3.1}
-\contentsline {section}{\numberline {3.2}Overview of AL methods}{18}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Uncertainty sampling}{18}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Query by bagging/committee}{18}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Clustering partitioning}{18}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Simulatiiions}{18}{section.3.3}
-\contentsline {chapter}{\numberline {4}Graph comparison }{19}{chapter.4}
-\contentsline {section}{\numberline {4.1}Literature review}{19}{section.4.1}
-\contentsline {section}{\numberline {4.2}Overview of methods}{19}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Histogram of edge density}{19}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Shortest-path matrix}{19}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Graph distance kernel}{19}{subsection.4.2.3}
-\contentsline {section}{\numberline {4.3}Examples}{19}{section.4.3}
-\contentsline {chapter}{\numberline {5}Application and results }{20}{chapter.5}
-\contentsline {section}{\numberline {5.1}Application of the visualizer system}{20}{section.5.1}
-\contentsline {section}{\numberline {5.2}Stock selection methodology}{20}{section.5.2}
-\contentsline {section}{\numberline {5.3}Healthcare stock data}{21}{section.5.3}
-\contentsline {section}{\numberline {5.4}Results}{21}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusion}{22}{chapter.6}
-\contentsline {section}{\numberline {6.1}Further extensions}{23}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Estimator selection}{23}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Outlier removal}{23}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Edge-weighted graphs}{23}{subsection.6.1.3}
-\contentsline {subsection}{\numberline {6.1.4}Regression and graphical models}{23}{subsection.6.1.4}
-\contentsline {subsection}{\numberline {6.1.5}Ordering}{27}{subsection.6.1.5}
-\contentsline {subsection}{\numberline {6.1.6}Line-up tests}{28}{subsection.6.1.6}
-\contentsline {subsection}{\numberline {6.1.7}Rejection classification}{28}{subsection.6.1.7}
-\contentsline {chapter}{\numberline {A}Implementation Details}{30}{appendix.A}
-\contentsline {section}{\numberline {A.1}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, left}{30}{section.A.1}
-\contentsline {section}{\numberline {A.2}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, right}{31}{section.A.2}
-\contentsline {section}{\numberline {A.3}Code for figure\nobreakspace {}\ref {fig:visualizer:cdf}}{32}{section.A.3}
-\contentsline {chapter}{Bibliography}{33}{section*.9}
+\contentsline {section}{\numberline {3.1}Literature review}{19}{section.3.1}
+\contentsline {section}{\numberline {3.2}Overview of active learning methods}{20}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Uncertainty sampling}{20}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Query by committee}{21}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Clustering partitioning}{24}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}Simulations}{24}{section.3.3}
+\contentsline {chapter}{\numberline {4}Graph comparison }{25}{chapter.4}
+\contentsline {section}{\numberline {4.1}Literature review}{25}{section.4.1}
+\contentsline {section}{\numberline {4.2}Overview of methods}{25}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Histogram of edge density}{25}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Shortest-path matrix}{25}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Graph distance kernel}{25}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Examples}{25}{section.4.3}
+\contentsline {chapter}{\numberline {5}Application and results }{26}{chapter.5}
+\contentsline {section}{\numberline {5.1}Application of the visualizer system}{26}{section.5.1}
+\contentsline {section}{\numberline {5.2}Stock selection methodology}{26}{section.5.2}
+\contentsline {section}{\numberline {5.3}Healthcare stock data}{27}{section.5.3}
+\contentsline {section}{\numberline {5.4}Results}{27}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusion}{28}{chapter.6}
+\contentsline {section}{\numberline {6.1}Further extensions}{29}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Estimator selection}{29}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Outlier removal}{29}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Edge-weighted graphs}{29}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Regression and graphical models}{29}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}Ordering}{33}{subsection.6.1.5}
+\contentsline {subsection}{\numberline {6.1.6}Line-up tests}{34}{subsection.6.1.6}
+\contentsline {subsection}{\numberline {6.1.7}Rejection classification}{34}{subsection.6.1.7}
+\contentsline {chapter}{\numberline {A}Implementation Details}{36}{appendix.A}
+\contentsline {section}{\numberline {A.1}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, left}{36}{section.A.1}
+\contentsline {section}{\numberline {A.2}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, right}{37}{section.A.2}
+\contentsline {section}{\numberline {A.3}Code for figure\nobreakspace {}\ref {fig:visualizer:cdf}}{38}{section.A.3}
+\contentsline {section}{\numberline {A.4}Uncertainty sampling implementation}{38}{section.A.4}
+\contentsline {section}{\numberline {A.5}Query by committee implementation}{38}{section.A.5}
+\contentsline {section}{\numberline {A.6}Query by committee disagreement implementation}{38}{section.A.6}
+\contentsline {section}{\numberline {A.7}Clustering partitioning implementation}{38}{section.A.7}
+\contentsline {chapter}{Bibliography}{39}{section*.9}

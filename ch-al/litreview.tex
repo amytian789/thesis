@@ -1,4 +1,56 @@
 \section{Literature review}
 \label{sec:al:litreview}
 
-Dasgupta and Burr
+It is important to consider the situation in which the learning algorithm 
+receives the points in which it selects a query from. There are three different 
+scenarios in which the learner may request queries as described by 
+Settles~\cite{settles2010}:
+ 
+\tablespacing
+\begin{enumerate}
+	\item \textbf{Membership query synthesis}: The learner may select a query 
+	from an unlabeled samples in $X$.
+	\item \textbf{Stream-based selective sampling}: An unlabeled sample is 
+	randomly selected from $X$, and the learner decides whether to query or not.
+	\item \textbf{Pool-based sampling}: $k$ unlabeled samples are randomly 
+	selected from $X$, and the learner picks one to query.
+\end{enumerate}
+\bodyspacing
+
+\noindent While the methods above may apply to many different active learning 
+environments, the specific situation for the VS is pool-based selective 
+sampling. Because it is computationally expensive to extract features from 
+every single $d\choose2$ plot 
+(Section~\ref{sec:visualizer:scatterplot:features}), membership query synthesis 
+is not an option. While stream-based selective sampling may work, it has a 
+similar problem as membership query synthesis because there are no constrains
+on the number of samples that the algorithm may choose to discard. 
+
+The next problem, then, is to determine the informativeness of unlabeled 
+instances that are presented by the methodologies above. This is the crux of 
+active learning as it allows for intelligent selection of queries.
+Dasgupta identifies two different approaches to active learning that are 
+fundamental drivers to the process of query selection~\cite{dasgupta2011}: 
+
+\tablespacing
+\begin{enumerate}
+	\item \textbf{Efficient search through hypothesis space $\mathcal{H}$}: 
+	The idea is to select a query that shrinks $\mathcal{H}_t$, the set of all 
+	possible classifiers at time $t$ that explain the labeled data, as much as 
+	possible. 
+	\item \textbf{Exploiting cluster structure in data}: 
+	The idea is to cluster the data and select queries based on cluster 
+	structure (i.e. query from each cluster). While clusters may be split over 
+	time if they are discovered to be non-homogenous, a learner may leverage 
+	situations where clusters are fairly homogeneous in order to classify 
+	points by propagating the labels to its neighbors. 
+\end{enumerate}
+\bodyspacing
+
+\noindent Uncertainty sampling and query by committee are active learning 
+algorithms that are a form of the aforementioned efficient search through the 
+hypothesis space. These algorithms may be found in 
+Sections~\ref{sec:al:methods:uncertainty} and ~\ref{sec:al:methods:qbc} 
+respectively. We also present a clustering partitioning algorithm in 
+Section~\ref{sec:al:methods:clustering} that seeks to exploit the cluster 
+structure in the data.
