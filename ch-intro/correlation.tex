@@ -21,8 +21,16 @@ We differentiate between ``visual correlation'' (which can be thought more of as
 mathematical interpretation of ``correlation''. More specifically, we would like
 to visually understand what a correlation graph looks like and compare it to
 correlation graphs constructed with the traditional interpretation of
-correlation. What follows is an overview of common numerical methods to estimate
-the correlation between two random variables.
+correlation. Two variables that have a correlation coefficient near 0 may not
+necessarily be uncorrelated. A scatter plot can reveal this by showing
+outliers or patterns in the data that the analyst wasn't expecting; this was 
+seen in Figure~\ref{fig:intro:meplot} (right). But in order to confirm that the 
+coefficient used applies to each potential relationship, the analyst must plot 
+all possible sets of data, which we have already established as computationally 
+infeasible and tedious to sort through in high dimensions. We will present a 
+solution in Section~\ref{sec:intro:summary}. What follows is an overview of 
+common numerical methods to estimate the correlation between two random 
+variables.
 
 \subsection{Pearson's correlation}
 

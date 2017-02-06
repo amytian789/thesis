@@ -1,13 +1,14 @@
-\contentsline {section}{List of Tables}{iv}{section*.3}
-\contentsline {section}{List of Figures}{v}{section*.5}
+\contentsline {section}{Abstract}{iii}{Doc-Start}
+\contentsline {section}{List of Tables}{vii}{section*.3}
+\contentsline {section}{List of Figures}{viii}{section*.5}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Problem statement}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Correlation graphs}{5}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Pearson's correlation}{5}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.1}Pearson's correlation}{6}{subsection.1.2.1}
 \contentsline {subsection}{\numberline {1.2.2}Spearman's correlation}{6}{subsection.1.2.2}
 \contentsline {subsection}{\numberline {1.2.3}Kendall's tau}{7}{subsection.1.2.3}
-\contentsline {subsection}{\numberline {1.2.4}Distance correlation}{7}{subsection.1.2.4}
-\contentsline {section}{\numberline {1.3}Portfolio management}{8}{section.1.3}
+\contentsline {subsection}{\numberline {1.2.4}Distance correlation}{8}{subsection.1.2.4}
+\contentsline {section}{\numberline {1.3}Portfolio management}{9}{section.1.3}
 \contentsline {section}{\numberline {1.4}Summary}{10}{section.1.4}
 \contentsline {chapter}{\numberline {2}Visualization System }{12}{chapter.2}
 \contentsline {section}{\numberline {2.1}Scatterplot characterization}{13}{section.2.1}
@@ -45,18 +46,18 @@
 \contentsline {chapter}{\numberline {6}Conclusion}{36}{chapter.6}
 \contentsline {section}{\numberline {6.1}Further extensions}{37}{section.6.1}
 \contentsline {subsection}{\numberline {6.1.1}Estimator selection}{37}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Outlier removal}{37}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Edge-weighted graphs}{37}{subsection.6.1.3}
-\contentsline {subsection}{\numberline {6.1.4}Regression and graphical models}{38}{subsection.6.1.4}
-\contentsline {subsection}{\numberline {6.1.5}Ordering}{41}{subsection.6.1.5}
-\contentsline {subsection}{\numberline {6.1.6}Line-up tests}{42}{subsection.6.1.6}
+\contentsline {subsection}{\numberline {6.1.2}Outlier removal}{38}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Graphical models and improved stock selection}{38}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Ordering of queried plots}{40}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}Line-up tests}{40}{subsection.6.1.5}
+\contentsline {subsection}{\numberline {6.1.6}Edge-weighted graphs}{41}{subsection.6.1.6}
 \contentsline {subsection}{\numberline {6.1.7}Rejection classification}{42}{subsection.6.1.7}
-\contentsline {chapter}{\numberline {A}Implementation Details}{45}{appendix.A}
-\contentsline {section}{\numberline {A.1}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, left}{45}{section.A.1}
-\contentsline {section}{\numberline {A.2}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, right}{46}{section.A.2}
-\contentsline {section}{\numberline {A.3}Code for figure\nobreakspace {}\ref {fig:visualizer:cdf}}{47}{section.A.3}
-\contentsline {section}{\numberline {A.4}Uncertainty sampling implementation}{47}{section.A.4}
-\contentsline {section}{\numberline {A.5}Query by committee implementation}{47}{section.A.5}
-\contentsline {section}{\numberline {A.6}Query by committee disagreement implementation}{47}{section.A.6}
-\contentsline {section}{\numberline {A.7}Clustering partitioning implementation}{47}{section.A.7}
-\contentsline {chapter}{Bibliography}{48}{section*.9}
+\contentsline {chapter}{\numberline {A}Implementation Details}{43}{appendix.A}
+\contentsline {section}{\numberline {A.1}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, left}{43}{section.A.1}
+\contentsline {section}{\numberline {A.2}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, right}{44}{section.A.2}
+\contentsline {section}{\numberline {A.3}Code for figure\nobreakspace {}\ref {fig:visualizer:cdf}}{45}{section.A.3}
+\contentsline {section}{\numberline {A.4}Uncertainty sampling implementation}{45}{section.A.4}
+\contentsline {section}{\numberline {A.5}Query by committee implementation}{45}{section.A.5}
+\contentsline {section}{\numberline {A.6}Query by committee disagreement implementation}{45}{section.A.6}
+\contentsline {section}{\numberline {A.7}Clustering partitioning implementation}{45}{section.A.7}
+\contentsline {chapter}{Bibliography}{46}{section*.9}

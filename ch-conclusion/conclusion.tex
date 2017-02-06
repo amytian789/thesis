@@ -1,26 +1,52 @@
 %The importance of visualization.
 
-Although this paper has focused on its financial applications, visualization
-systems nevertheless enable better decisions during any sort of data analysis.
-In the univariate case (Section \ref{sec:intro:me1}, \ref{sec:intro:me2}), it is
-clear that plotting has augmented the data analysis process by allowing the user
-to double-check their fitted models. In higher dimensions with more complex data
-sets and an inability to plot everything, it is even more believable that
-numerical methods cannot completely replace the valuable information obtained
-from visual methods. The visualization system developed in this text provides a
-way to safeguard data analysts against their own biases.
+The proliferation of high-dimensional datasets has led analysts to rely on 
+unverifiable numerical estimators. We are interested in visualizing 
+high-dimensional correlation 
+graphs as a way to verify numerical tests of dependence. This is important in 
+asset management as it is desirable to select a portfolio of stocks that are as 
+independent as possible. High-dimensional visualization is problematic because 
+(1) there are too many potential plots to sort through manually (To be 
+specific, there are $d\choose 2$  plots where $d$ is the number of variables 
+e.g. stocks that we are interested in), which also means that (2) it is tedious 
+to verify numerical results with visual results and vice versa 
+(Section~\ref{sec:intro:problem}). In this work, we 
+presented a visualization tool that actively learns user preferences, applies 
+the fitted classifier to unlabeled data, provides visualization tools for the 
+active learning output (a visual graph $G=(V,E)$), and outputs the difference 
+among the numerical graph $G^{\text{num}}=(V,E)$ and $G$ 
+(Chapter~\ref{ch:visualizer}).
 
-This visualization tool is one important step in streamlining the future of
-clean analysis. It provides a systematic way for confirming and suggesting
-dependencies among variables that match the analyst's concepts of a dependent
-(or ``interesting'' plot) and produces an explicit decision tree that allow
-others to understand and replicate the data analysis process. This removes the
-tediousness associated with high-dimensional data and allows the user to quickly
-see ways in which the numerical model may have fallen short of the ``true''
-relationship between variables. In other words, it systematically provides the
-user a way to validate their methodology and model selection. Furthermore, it
-improves accountability in the analysis as it allows the decision-making process
-(in the form of a decision tree) to be clearer to those reviewing the results.
-Nevertheless, the graphical model that we develop is not fool proof, and further
-work can be done to refine the model and improve our concept of ``clean
-analysis.''
+As a specific response to the two aforementioned problems, we focused on the 
+active learning and graph comparison components of the visualizer systems. We 
+discussed two main approaches to active learning and provided algorithms for 
+different active learning methods (Chapter~\ref{ch:al}). A simulation study 
+indicated that $----$ would be the best learning algorithm for the 
+financial application of the VS system. Similarly, we discussed various 
+measures of graph distance and performed a simulation study to determine which 
+methodology to implement in the VS system for the financial application 
+(Chapter~\ref{ch:gc}). 
+
+We then ran the VS system with $----$ in stage 1 and 
+used $----$ to compute the graph comparison of the output $G$ with 
+$G_i^{\text{num}}$ for all $i \in \{1,...,4\}$, the correlation graphs for 
+Pearson, Spearman's, Kendall's, and distance correlation coefficient 
+respectively. $----$ most closely matched the visual graph. We then utilized 
+the stock selection methodology described in 
+Section~\ref{sec:usage:stockselection} to select a portfolio of $k = 10$ stocks 
+$P_i$ for all $i \in \{1,...,4\}$ based on $G_i^{\text{num}}$ based on data 
+from year 1. Yearly returns were computed with the remainder of the 
+observations in a simulation of the ``buy and hold'' strategy. As expected, the 
+portfolio corresponding the correlation graph selected with the aid of the VS 
+was one of the top performers (??).
+
+The visualization tool presented in this work is an important step in 
+streamlining the future of clean analysis. It provides a systematic way for 
+confirming and/or suggesting dependencies among variables that match our visual 
+concept of a dependence and produces an explicit decision tree that allow 
+others to understand and replicate the data analysis process. This alleviates 
+the problems associated with high-dimensional datasets and allows the 
+user to quickly see ways in which the numerical model may have fallen short of 
+the ``true'' relationship between variables. Nevertheless, there are several 
+places to develop further work in order to refine the system and improve our 
+concept of ``clean analysis.''
