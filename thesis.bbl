@@ -1,5 +1,13 @@
 \begin{thebibliography}{10}
 
+\bibitem{buja2016}
+A.~Buja, A.~Krieger, and E.~George.
+\newblock {A Visualization Tool for Mining Large Correlation Tables: The
+  Association Navigator}.
+\newblock
+  \url{http://stat.wharton.upenn.edu/~buja/PAPERS/Buja-et-al-Association-Navigator.pdf},
+  2016.
+
 \bibitem{dagan1995}
 I.~Dagan and S.~Engelson.
 \newblock {Committee-based sampling for training probabilistic classifiers}.

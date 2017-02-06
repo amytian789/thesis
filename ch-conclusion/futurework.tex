@@ -1,4 +1,5 @@
 \section{Further extensions}
+\label{sec:futurework}
 
 \subsection{Estimator selection}
 
@@ -14,10 +15,13 @@ can the system remove outliers? What criteria should it use? ))
 
 \subsection{Edge-weighted graphs}
 
-(( This is more of an extension on graphical models, but it is still related to
-estimator selection. In an edge-weighted graph, edges can be weighted depending
-on the type of conditional dependence – negative or positive, assign 1 or -1. 0
-(no edge) still implies conditional independence ))
+In an edge-weighted graph, edges can be weighted depending
+on the type of conditional dependence or correlation. Negative or positive 
+values are assigned 1 or -1, respectively. A value of 0 (no edge) still implies 
+conditional independence or uncorrelated variables. This problem is more 
+difficult as the number of classification labels changes from two to three. 
+Active learning methods may need to be more generalized as in the case of 
+uncertainty sampling (Section~\ref{sec:al:methods:uncertainty}). 
 
 \subsection{Regression and graphical models}
 
@@ -154,6 +158,7 @@ true preferences, and the ordering of plots as a way to future tune the
 precision of the decision tree (Section~\ref{sec:visualizer:al}). 
 
 \subsection{Line-up tests}
+\label{sec:futurework:lineup}
 
 One of the pitfalls of data visualization is ``apophenia,'' a phenomenon where
 the user sees patterns in random noise. Part of the reason for this is due to

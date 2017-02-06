@@ -1,7 +1,7 @@
 \section{Stock selection methodology}
 \label{sec:usage:stockselection}
 
-Given a correlation graph $G(V,E)$, we wish to select $k$ stocks (represented 
+Given a correlation graph $G=(V,E)$, we wish to select $k$ stocks (represented 
 as vertices) such that each stock is as independent as possible of the other 
 stocks. Two random variables $X$ and $Y$ are independent if and only if their 
 joint cumulative distribution function may be written as 
@@ -9,7 +9,7 @@ $F_{X,Y}(x,y)=F_X(x)F_Y(y)$. With this formal definition, Santos \textit{et
 al.} notes that ``we say two random variables X and Y are dependent if they
 are not independent'' so the problem then becomes one of ``how to measure and 
 detect dependence from the observation of the two random 
-variables''\cite{santos2013}. With the correlation graph $G(V,E)$, we now have 
+variables''\cite{santos2013}. With the correlation graph $G$, we now have 
 a measure of dependence. However, it was made clear that, in general, 
 it is incorrect to say that ``uncorrelated'' equates ``independence''. 
 Regardless, non-correlation is still a useful tool to inform stock selection 
@@ -25,7 +25,7 @@ we might consider the following stock selection strategy:
 	\caption{Naive stock selection strategy}\label{euclid}
 	\begin{algorithmic}[1]
 		\Procedure{}{$k$ is the number of stocks to select and 
-			$A$ is the adjacency matrix of $G(V,E)$}
+			$A$ is the adjacency matrix of $G=(V,E)$}
 		\State $d \gets \text{len}(A)$
 		\State $z \gets$ Perm($d,k$)*
 		\State $min = \infty$
@@ -64,7 +64,7 @@ $k<d<2k$ to reduce the computational burden. The selection strategy then becomes
 	\caption{Pruned stock selection strategy}\label{euclid}
 	\begin{algorithmic}[1]
 		\Procedure{}{$k$ is the number of stocks to select and 
-			$A$ is the adjacency matrix of $G(V,E)$. Let $D$ be the vector of 
+			$A$ is the adjacency matrix of $G=(V,E)$. Let $D$ be the vector of 
 			sample average returns and $V$ be the vector of sample standard 
 			deviation.}
 		

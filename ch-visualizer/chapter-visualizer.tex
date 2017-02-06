@@ -1,35 +1,43 @@
 \chapter{Visualization System \label{ch:visualizer}}
 
-It is extremely important to consider the way in which the system presents plots
-to the user as that can change the way the user perceives the data. Furthermore,
-user interactivity is a critical component of high dimensional analysis as noted
-earlier~\cite{lius2016}. (see paragrapah below)
-
 Regardless of whether high dimensional data visualization methods are
-computationally heavy or interaction heavy, user interactivity is still a vital
-component for processing high dimensions for visualization; it is simply a
-question of what degree~\cite{lius2016}. We develop a system that first learns
-what visual patterns the data analyst finds promising, querying the user where
-the decision tree is ambiguous. It then automatically iterates through thousands
-of possible plots. Finally, it suggests relationships to exclude or include,
-which it believes to match the data analyst's interests, and their corresponding
-plots. This allows users to compare and contrast visual feedback with numerical
-algorithms for improved model selection.
+computationally heavy or interaction heavy, user interactivity is a critical
+component of high dimensional visualization analysis; it is simply a
+question of what degree~\cite{lius2016}. It is not enough to simply have user 
+interaction, however. Given $d$ variables, there are a total of $d\choose 2$ 
+possible scatter plots of the data. This blows up almost quadratically as $d$ 
+increases, which is infeasible for the analyst to sort through in any 
+reasonable amount of time. Subsequently, automation is another necessary 
+element in the task of visualizing high dimensional datasets.
 
-User provides numerical graphical model and data that they wish to
-analyze/confirm visually $\rightarrow$ program analyzes the plots among edges
-that do exist in the graphical model and extract relevant features
-(\ref{sec:visualizer:features}) $\rightarrow$ initialize the decision tree given
-the resulting data (\ref{sec:visualizer:al:tree}) $\rightarrow$ perform a
-line-up test to determine how accurate the initialized tree is $\rightarrow$ 
-selectively pick plots corresponding to ambiguous parts of the tree
-(\ref{sec:visualizer:al:alplotgeneration}) $\rightarrow$ periodically generate
-line-up tests from ambiguous parts of the tree to confirm the current iteration
-of the decision tree is ``correct'' (\ref{sec:visualizer:al:lineup})
-$\rightarrow$  if the user passes a number of line-up tests, display the final
-classifier and heat map (\ref{sec:visualizer:plotgeneration:user}) $\rightarrow$
-allow user to tweak if desired $\rightarrow$ output
-(\ref{sec:visualizer:plotgeneration:feedback})
+We develop a system that first learns what visual patterns the data analyst 
+finds promising, querying the user where the decision tree is ambiguous. It 
+then automatically iterates through thousands
+of possible plots and returns an adjacency matrix that captures the 
+classifications of variable pairs. The VS may then return several plots for the 
+user, perform line-up tests to refine the tree~\ref{sec:futurework:lineup}, or 
+compare the visual graph with a numerical graph of the user's choice. This 
+allows users to compare and contrast visual feedback with numerical
+algorithms for improved model selection. Figure~\ref{fig:visualizer:vs} 
+is a visual summarization of the system.
+       
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth]{ch-visualizer/figures/vs}
+		\caption[Broad overview of the visualization system.]{Broad overview of 
+		the visualization system.}
+		\label{fig:visualizer:vs}
+	\end{center}
+\end{figure}
+
+Section~\ref{sec:visualizer:scatterplot} describes characteristics of an 
+interesting plot; mindfulness and incorporation of these ideas in the VS 
+facilitates improves user accuracy in stage 1 . 
+Sections~\ref{sec:visualizer:al} and ~\ref{sec:visualizer:plotgeneration} 
+provide a brief overview of stage 1 and stage 2 respectively (see 
+Figure~\ref{fig:visualizer:vs}) while 
+Section~\ref{sec:visualizer:focus} describes the focus of the rest of the work 
+which respond to the problems posed in Section~\ref{sec:intro:problem}.
 
 \input{ch-visualizer/scatterplot}
 \input{ch-visualizer/al}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  5 FEB 2017 21:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  6 FEB 2017 01:10
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -458,35 +458,35 @@ Chapter 1.
 
 
 ] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 112--112
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
 []|\OT1/cmr/m/n/12 Normally-distributed
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 112--114
+Underfull \hbox (badness 10000) in paragraph at lines 111--113
 []|\OT1/cmr/m/n/12 Normally-distributed
  []
 
-<ch-intro/figures/me.jpeg, id=371, 795.97375pt x 401.5pt>
+<ch-intro/figures/me.jpeg, id=382, 795.97375pt x 401.5pt>
 File: ch-intro/figures/me.jpeg Graphic file (type jpg)
 
 <use ch-intro/figures/me.jpeg>
-Package pdftex.def Info: ch-intro/figures/me.jpeg used on input line 144.
+Package pdftex.def Info: ch-intro/figures/me.jpeg used on input line 143.
 (pdftex.def)             Requested size: 433.62pt x 218.72432pt.
 ) (ch-intro/correlation.tex [3]
-Underfull \hbox (badness 10000) in paragraph at lines 4--12
+Underfull \hbox (badness 10000) in paragraph at lines 4--13
 
  []
 
 [4 <./ch-intro/figures/me.jpeg>] [5] [6] [7]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 110.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 111.
 
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 110.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 111.
 )
 (ch-intro/finance.tex [8]) (ch-intro/summary.tex [9])) [10] [11]
 \openout2 = `ch-visualizer/chapter-visualizer.aux'.
@@ -495,122 +495,110 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (ch-visualizer/chapter-visualizer.tex
 Chapter 2.
 
-LaTeX Warning: Reference `sec:visualizer:features' on page 12 undefined on inpu
-t line 22.
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 7.
 
+<ch-visualizer/figures/vs.jpg, id=456, 698.00775pt x 143.93774pt>
+File: ch-visualizer/figures/vs.jpg Graphic file (type jpg)
 
-LaTeX Warning: Reference `sec:visualizer:al:lineup' on page 12 undefined on inp
-ut line 28.
-
-[12
+<use ch-visualizer/figures/vs.jpg>
+Package pdftex.def Info: ch-visualizer/figures/vs.jpg used on input line 26.
+(pdftex.def)             Requested size: 433.62pt x 89.41837pt.
+ [12
 
 
 
 ] (ch-visualizer/scatterplot.tex
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ô in font cmr12!
-
-<ch-visualizer/figures/cdf.jpg, id=453, 489.62926pt x 247.52475pt>
+<ch-visualizer/figures/cdf.jpg, id=468, 489.62926pt x 247.52475pt>
 File: ch-visualizer/figures/cdf.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/cdf.jpg>
-Package pdftex.def Info: ch-visualizer/figures/cdf.jpg used on input line 21.
+Package pdftex.def Info: ch-visualizer/figures/cdf.jpg used on input line 20.
 (pdftex.def)             Requested size: 325.215pt x 164.40549pt.
 
-<ch-visualizer/figures/hofertoldford.jpg, id=458, 501.67426pt x 237.88875pt>
+<ch-visualizer/figures/hofertoldford.jpg, id=473, 501.67426pt x 164.41425pt>
 File: ch-visualizer/figures/hofertoldford.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/hofertoldford.jpg>
 Package pdftex.def Info: ch-visualizer/figures/hofertoldford.jpg used on input 
-line 40.
-(pdftex.def)             Requested size: 325.215pt x 154.21567pt.
- [13]) (ch-visualizer/al.tex
-[14 <./ch-visualizer/figures/cdf.jpg> <./ch-visualizer/figures/hofertoldford.jp
-g>]
+line 39.
+(pdftex.def)             Requested size: 433.62pt x 142.1135pt.
+ [13 <./ch-visualizer/figures/vs.jpg>] [14 <./ch-visualizer/figures/cdf.jpg> <.
+/ch-visualizer/figures/hofertoldford.jpg>]) (ch-visualizer/al.tex [15]
+<ch-visualizer/figures/tree.jpg, id=500, 370.88255pt x 137.00264pt>
+File: ch-visualizer/figures/tree.jpg Graphic file (type jpg)
 
-LaTeX Warning: Reference `sec:visualizer:al:lineup' on page 15 undefined on inp
-ut line 26.
+<use ch-visualizer/figures/tree.jpg>
+Package pdftex.def Info: ch-visualizer/figures/tree.jpg used on input line 45.
+(pdftex.def)             Requested size: 325.215pt x 120.13412pt.
+ [16]
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ô in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ô in font cmr12!
+ [17 <./ch-visualizer/figures/tree.jpg>]) (ch-visualizer/plotgeneration.tex [18
+]
+File: ch-visualizer/figures/vs.jpg Graphic file (type jpg)
+ <use ch-visualizer/figures/vs.jpg>
+Package pdftex.def Info: ch-visualizer/figures/vs.jpg used on input line 47.
+(pdftex.def)             Requested size: 433.62pt x 89.41837pt.
 
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ô in font cmr12!
-[15]
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ô in font cmr12!
-) (ch-visualizer/plotgeneration.tex
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ô in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ô in font cmr12!
-) (ch-visualizer/focus.tex [16]))
-[17]
+[19]) (ch-visualizer/focus.tex [20])) [21]
 \openout2 = `ch-al/chapter-al.aux'.
 
  (ch-al/chapter-al.tex
 Chapter 3.
-(ch-al/litreview.tex [18
+(ch-al/litreview.tex [22
 
 
 
-]
-
-Package amsmath Warning: Foreign command \atopwithdelims;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 23.
-
-) (ch-al/methods.tex [19]
+]) (ch-al/methods.tex [23]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 33.
- [20] [21] [22]
+ [24] [25] [26]
 Underfull \hbox (badness 1490) in paragraph at lines 190--198
 \OT1/cmr/m/n/12 Since $\OML/cmm/m/it/12 C$ \OT1/cmr/m/n/12 was de-fined as the 
 com-mit-tee, we can in-ter-pret $[][](\OML/cmm/m/it/12 y[]\OMS/cmsy/m/n/12 j\OM
 L/cmm/m/it/12 x\OT1/cmr/m/n/12 ) =
  []
 
-[23]) (ch-al/simulations.tex)) [24]
+[27]) (ch-al/simulations.tex)) [28]
 \openout2 = `ch-gc/chapter-gc.aux'.
 
  (ch-gc/chapter-gc.tex
 Chapter 4.
-(ch-gc/litreview.tex) (ch-gc/methods.tex) (ch-gc/examples.tex)) [25
+(ch-gc/litreview.tex) (ch-gc/methods.tex) (ch-gc/examples.tex)) [29
 
 
 
-]
+] [30]
 \openout2 = `ch-usage/chapter-usage.aux'.
 
 
 (ch-usage/chapter-usage.tex
 Chapter 5.
-(ch-usage/newanalysis.tex
-Underfull \hbox (badness 1142) in paragraph at lines 26--34
-[]\OT1/cmr/m/n/12 Utilize the graph com-par-i-son al-go-rithm se-lected in Chap
--ter []4[] for each
- []
-
-) (ch-usage/stockselection.tex [26
+(ch-usage/newanalysis.tex) (ch-usage/stockselection.tex [31
 
 
 
-] [27]) (ch-usage/data.tex [28] [29])
-(ch-usage/results.tex)) [30]
+] [32])
+(ch-usage/data.tex [33] [34]) (ch-usage/results.tex)) [35]
 \openout2 = `ch-conclusion/chapter-conclusion.aux'.
 
- (ch-conclusion/chapter-conclusion.tex
+
+(ch-conclusion/chapter-conclusion.tex
 Chapter 6.
 (ch-conclusion/conclusion.tex
 
-LaTeX Warning: Reference `sec:intro:me1' on page 31 undefined on input line 5.
+LaTeX Warning: Reference `sec:intro:me1' on page 36 undefined on input line 5.
 
 
-LaTeX Warning: Reference `sec:intro:me2' on page 31 undefined on input line 5.
+LaTeX Warning: Reference `sec:intro:me2' on page 36 undefined on input line 5.
 
-) (ch-conclusion/futurework.tex [31
+) (ch-conclusion/futurework.tex [36
 
 
 
@@ -620,35 +608,32 @@ Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
-Missing character: There is no ì in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+ [37]
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ú in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
- [32]
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ú in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ù in font cmr12!
 
 
-LaTeX Warning: Reference `sec:intro:me2' on page 33 undefined on input line 48.
+LaTeX Warning: Reference `sec:intro:me2' on page 38 undefined on input line 52.
 
 
-[33]
+[38] [39]
 
-LaTeX Warning: Reference `sec:visualizer:scatterplot:conditional' on page 34 un
-defined on input line 90.
+LaTeX Warning: Reference `sec:visualizer:scatterplot:conditional' on page 40 un
+defined on input line 94.
 
-[34] [35]
+[40]
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
- [36]
+ [41]
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ì in font cmr12!
@@ -656,38 +641,39 @@ Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
 
-<ch-visualizer/figures/lineup.jpg, id=643, 698.00775pt x 143.93774pt>
+<ch-visualizer/figures/lineup.jpg, id=699, 698.00775pt x 143.93774pt>
 File: ch-visualizer/figures/lineup.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/lineup.jpg>
-Package pdftex.def Info: ch-visualizer/figures/lineup.jpg used on input line 17
-5.
+Package pdftex.def Info: ch-visualizer/figures/lineup.jpg used on input line 18
+0.
 (pdftex.def)             Requested size: 433.62pt x 89.41837pt.
- [37 <./ch-visualizer/figures/lineup.jpg>]
+ [42]
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
 
 
-LaTeX Warning: Reference `***EARLIER SECTION***' on page 38 undefined on input 
-line 216.
+LaTeX Warning: Reference `***EARLIER SECTION***' on page 43 undefined on input 
+line 221.
 
-)) [38]
+)) [43 <./ch-visualizer/figures/lineup.jpg>] [44]
 \openout2 = `ch-appendicies/implementation.aux'.
 
- (ch-appendicies/implementation.tex
+
+(ch-appendicies/implementation.tex
 Appendix A.
-[39
+[45
 
 
 
-] [40]) [41] (thesis.bbl [42
+] [46]) [47] (thesis.bbl [48
 
 
 
 ])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 272.
- [43]
+ [49]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 272.
  (thesis.aux (ch-intro/chapter-intro.aux) (ch-visualizer/chapter-visualizer.aux
 ) (ch-al/chapter-al.aux)
@@ -696,7 +682,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 272.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 272.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 272.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 30BECF20460AA8866F4CC319C2A87F64;4508.
+(rerunfilecheck)             Checksum: 1E243ACABB5FF0C63CB9CCA21FC2D48C;4576.
 
 
 LaTeX Warning: There were undefined references.
@@ -707,10 +693,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 272.
  ) 
 Here is how much of TeX's memory you used:
- 8271 strings out of 493334
- 121098 string characters out of 3136672
- 292043 words of memory out of 3000000
- 11345 multiletter control sequences out of 15000+200000
+ 8297 strings out of 493334
+ 121562 string characters out of 3136672
+ 292356 words of memory out of 3000000
+ 11358 multiletter control sequences out of 15000+200000
  10692 words of font info for 38 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,6n,35p,741b,1682s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -728,9 +714,9 @@ iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiK
 TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2
 .9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on thesis.pdf (48 pages, 685489 bytes).
+Output written on thesis.pdf (54 pages, 793336 bytes).
 PDF statistics:
- 864 PDF objects out of 1000 (max. 8388607)
- 233 named destinations out of 1000 (max. 500000)
- 501 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 928 PDF objects out of 1000 (max. 8388607)
+ 244 named destinations out of 1000 (max. 500000)
+ 519 words of extra memory for PDF output out of 10000 (max. 10000000)
 
