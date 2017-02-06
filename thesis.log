@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  5 FEB 2017 19:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  5 FEB 2017 21:45
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -353,8 +353,14 @@ LaTeX Warning: Label `euclid' multiply defined.
 
 LaTeX Warning: Label `euclid' multiply defined.
 
-) (ch-gc/chapter-gc.aux) (ch-usage/chapter-usage.aux)
-(ch-conclusion/chapter-conclusion.aux) (ch-appendicies/implementation.aux))
+) (ch-gc/chapter-gc.aux) (ch-usage/chapter-usage.aux
+
+LaTeX Warning: Label `euclid' multiply defined.
+
+
+LaTeX Warning: Label `euclid' multiply defined.
+
+) (ch-conclusion/chapter-conclusion.aux) (ch-appendicies/implementation.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 237.
@@ -581,73 +587,30 @@ Chapter 4.
 
 (ch-usage/chapter-usage.tex
 Chapter 5.
-(ch-usage/newanalysis.tex) (ch-usage/stockselection.tex
-Missing character: There is no √ in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no û in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no û in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no û in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no û in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no û in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no û in font cmr12!
-Missing character: There is no ¬ in font cmr12!
-Missing character: There is no º in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no û in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no û in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no û in font cmr12!
-Missing character: There is no ¬ in font cmr12!
-Missing character: There is no º in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no û in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no ∞ in font cmr12!
-Missing character: There is no √ in font cmr12!
-Missing character: There is no û in font cmr12!
-) (ch-usage/data.tex)
-(ch-usage/results.tex [26
+(ch-usage/newanalysis.tex
+Underfull \hbox (badness 1142) in paragraph at lines 26--34
+[]\OT1/cmr/m/n/12 Utilize the graph com-par-i-son al-go-rithm se-lected in Chap
+-ter []4[] for each
+ []
+
+) (ch-usage/stockselection.tex [26
 
 
 
-])) [27]
+] [27]) (ch-usage/data.tex [28] [29])
+(ch-usage/results.tex)) [30]
 \openout2 = `ch-conclusion/chapter-conclusion.aux'.
 
  (ch-conclusion/chapter-conclusion.tex
 Chapter 6.
 (ch-conclusion/conclusion.tex
 
-LaTeX Warning: Reference `sec:intro:me1' on page 28 undefined on input line 5.
+LaTeX Warning: Reference `sec:intro:me1' on page 31 undefined on input line 5.
 
 
-LaTeX Warning: Reference `sec:intro:me2' on page 28 undefined on input line 5.
+LaTeX Warning: Reference `sec:intro:me2' on page 31 undefined on input line 5.
 
-) (ch-conclusion/futurework.tex [28
+) (ch-conclusion/futurework.tex [31
 
 
 
@@ -664,7 +627,7 @@ Missing character: There is no ú in font cmr12!
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
- [29]
+ [32]
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ú in font cmr12!
@@ -673,19 +636,19 @@ Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
 
 
-LaTeX Warning: Reference `sec:intro:me2' on page 30 undefined on input line 48.
+LaTeX Warning: Reference `sec:intro:me2' on page 33 undefined on input line 48.
 
 
-[30]
+[33]
 
-LaTeX Warning: Reference `sec:visualizer:scatterplot:conditional' on page 31 un
+LaTeX Warning: Reference `sec:visualizer:scatterplot:conditional' on page 34 un
 defined on input line 90.
 
-[31] [32]
+[34] [35]
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
- [33]
+ [36]
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ì in font cmr12!
@@ -693,38 +656,38 @@ Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
 
-<ch-visualizer/figures/lineup.jpg, id=619, 698.00775pt x 143.93774pt>
+<ch-visualizer/figures/lineup.jpg, id=643, 698.00775pt x 143.93774pt>
 File: ch-visualizer/figures/lineup.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/lineup.jpg>
 Package pdftex.def Info: ch-visualizer/figures/lineup.jpg used on input line 17
 5.
 (pdftex.def)             Requested size: 433.62pt x 89.41837pt.
- [34 <./ch-visualizer/figures/lineup.jpg>]
+ [37 <./ch-visualizer/figures/lineup.jpg>]
 Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ô in font cmr12!
 
 
-LaTeX Warning: Reference `***EARLIER SECTION***' on page 35 undefined on input 
+LaTeX Warning: Reference `***EARLIER SECTION***' on page 38 undefined on input 
 line 216.
 
-)) [35]
+)) [38]
 \openout2 = `ch-appendicies/implementation.aux'.
 
  (ch-appendicies/implementation.tex
 Appendix A.
-[36
+[39
 
 
 
-] [37]) [38] (thesis.bbl [39
+] [40]) [41] (thesis.bbl [42
 
 
 
 ])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 272.
- [40]
+ [43]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 272.
  (thesis.aux (ch-intro/chapter-intro.aux) (ch-visualizer/chapter-visualizer.aux
 ) (ch-al/chapter-al.aux)
@@ -733,7 +696,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 272.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 272.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 272.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 862C45FCFD6FA940737EC18A52FCEC38;4505.
+(rerunfilecheck)             Checksum: 30BECF20460AA8866F4CC319C2A87F64;4508.
 
 
 LaTeX Warning: There were undefined references.
@@ -744,9 +707,9 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 272.
  ) 
 Here is how much of TeX's memory you used:
- 8263 strings out of 493334
- 121034 string characters out of 3136672
- 292028 words of memory out of 3000000
+ 8271 strings out of 493334
+ 121098 string characters out of 3136672
+ 292043 words of memory out of 3000000
  11345 multiletter control sequences out of 15000+200000
  10692 words of font info for 38 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -765,9 +728,9 @@ iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiK
 TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2
 .9/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on thesis.pdf (45 pages, 669888 bytes).
+Output written on thesis.pdf (48 pages, 685489 bytes).
 PDF statistics:
- 839 PDF objects out of 1000 (max. 8388607)
- 225 named destinations out of 1000 (max. 500000)
+ 864 PDF objects out of 1000 (max. 8388607)
+ 233 named destinations out of 1000 (max. 500000)
  501 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,8 +1,35 @@
-\section{Application of the visualizer system}
+\section{Application of the visualization system}
 \label{sec:usage:newanalysis}
 
-How we use the VS
+Let $X$ be a $n\times d$ data matrix where there are $n$ observations of $d$ 
+variables. The application of the visualization system is as follows:
 
-5 different numeric graphs
-1 visual graph (learned via AL)
-Use GC to select the "best" numerical graph
+\tablespacing
+\begin{enumerate}
+	\item Create four different numerical correlation graphs 
+	$G_i^{\text{num}}(V,E)$ for all $i\in \{1,...,4\}$, one for each 
+	correlation coefficient described in Section~\ref{sec:intro:correlation}.
+	\item Run the VS on the same dataset. Stage 1 of the system utilizes the 
+	active learning algorithm selected in Chapter~\ref{ch:al} to learn what is 
+	``correlated'' and ``not correlated.'' Stage 2 of the system then iterates 
+	through all possible unlabeled plot pairs and returns a graph $G(V,E)$ 
+	where 
+
+\begin{algorithm}
+	For $i,j\in \{1,...,d\}$, $E_{i,j}$ exists if the plot of $j$ against $i$ 
+	is ``correlated''
+\end{algorithm}
+
+	As a reminder, correlation is used loosely to refer to a visual 
+	interpretation of the mathematical term.
+
+	\item Utilize the graph comparison algorithm selected in 
+	Chapter~\ref{ch:gc} for each pair $(G,G_i^{\text{num}})$ for all $i \in 
+	\{1,...,4\}$. 
+	Select $N_i$ such that $GC(G,G_i^{\text{num}}) \leq GC(G,G_j^{\text{num}})$ 
+	for all $j\neq i$. The 
+	numerical correlation graph $G_i^{\text{num}}(V,E)$ is the graph which best 
+	matches the visual interpretation of the relationships among the dataset's 
+	variables.
+\end{enumerate}
+\bodyspacing
