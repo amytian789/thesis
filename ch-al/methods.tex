@@ -33,7 +33,7 @@ review (see Appendix~\ref{sec:appendicies:al:uncertainty} for code):
 	Settles~\cite{settles2010})}\label{euclid}
 	\begin{algorithmic}[1]
 		\Procedure{}{$x$ is a $n\times d$ matrix of $d$ observations of all $n$ 
-		variables, $y$ is a $d-$length vector of labels for each variable in 
+		variables, $y$ is an $n-$length vector of labels for each variable in 
 		$x$ ($y_i$=N/A when $x_{n,}$ has no label)}
 		\State $\textit{tout} \gets 
 		\text{train}(x^{labeled},y^{labeled},\text{classifier})$.
@@ -85,7 +85,7 @@ We may write the basic algorithm as follows:
 	Settles~\cite{settles2010})}\label{euclid}
 	\begin{algorithmic}[1]
 		\Procedure{}{$x$ is a $n\times d$ matrix of $d$ observations 
-		of all $n$ variables, $y$ is a $d-$length vector of labels for each 
+		of all $n$ variables, $y$ is an $n-$length vector of labels for each 
 		variable in $x$ ($y_i$=N/A when $x_{n,}$ has no label). Let $C$ be the 
 		vector of all committee members}
 		\State \textbf{loop from} $i=1$ \textbf{to} len($C$):
@@ -126,7 +126,7 @@ algorithm is as follows (see Appendix~\ref{sec:appendicies:al:qbc} for code):
 	\caption{Query by committee (revised framework)}\label{euclid}
 	\begin{algorithmic}[1]
 		\Procedure{}{$x$ is a $n\times d$ matrix of $d$ observations of all $n$ 
-		variables, $y$ is a $d-$length vector of labels for each variable in 
+		variables, $y$ is an $n-$length vector of labels for each variable in 
 		$x$ ($y_i$=N/A when $x_{n,}$ has no label). Let $C$ be the vector of 
 		all committee members, $E$ be the error ratio of the respective 
 		committee members (initialized to 0), $0<\epsilon<1$ be some threshold 
