@@ -1,4 +1,18 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{buja2016}
+A.~Buja, A.~Krieger, and E.~George.
+\newblock {A Visualization Tool for Mining Large Correlation Tables: The
+  Association Navigator}.
+\newblock
+  \url{http://stat.wharton.upenn.edu/~buja/PAPERS/Buja-et-al-Association-Navigator.pdf},
+  2016.
+
+\bibitem{dagan1995}
+I.~Dagan and S.~Engelson.
+\newblock {Committee-based sampling for training probabilistic classifiers}.
+\newblock {\em Proceedings of the International Conference on Machine
+  Learning}, pages 150--157, 1995.
 
 \bibitem{dasgupta2011}
 {Dasgupta, S.}
@@ -22,6 +36,12 @@ M.~Hofert and W.~Oldford.
   S\&P 500 Constituent Data}.
 \newblock {\em arXiv preprint arXiv:1609.09429}, pages 1--33, September 2016.
 
+\bibitem{lewis1994}
+D.~Lewis and W.~Gale.
+\newblock {A sequential algorithm for training text classifiers}.
+\newblock {\em Proceedings of the ACM SIGIR Conference on Research and
+  Development in Information Retrieval}, pages 3--12, 1994.
+
 \bibitem{little2013}
 R.~J. Little.
 \newblock {In Praise of Simplicity not Mathematistry! Ten Simple Powerful Ideas
@@ -40,6 +60,28 @@ S.~Liu, D.~Maljovec, B.~Wang, P.~T. Bremer, and V.~Pascucci.
 \newblock {Visualizing high-dimensional data: Advances in the past decade}.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics}, pages
   1249--1268, December 2016.
+
+\bibitem{mccallum1998}
+A.~McCallum and K.~Nigam.
+\newblock {Employing EM in pool-based active learning for text classification}.
+\newblock {\em Proceedings of the International Conference on Machine
+  Learning}, pages 359--367, 1998.
+
+\bibitem{santos2013}
+S.~Santos, D.~Y. Takahashi, A.~Nakata, and A.~Fujita.
+\newblock {A comparative study of statistical methods used to identify
+  dependencies between gene expression signals}.
+\newblock {\em Briefings in Bioinformatics}, pages 1--13, August 2013.
+
+\bibitem{settles2010}
+{Settles, B.}
+\newblock {Active Learning Literature Survey}.
+\newblock \url{http://burrsettles.com/pub/settles.activelearning.pdf}, 2010.
+
+\bibitem{szekely2007}
+G.~Szekely, M.~Rizzo, and N.~Bakirov.
+\newblock {Measuring and testing independence by correlation of distances}.
+\newblock {\em The Annals of Statistics}, pages 2769--2794, March 2007.
 
 \bibitem{tao2014}
 {Tao, T.}

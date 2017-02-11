@@ -1,0 +1,18 @@
+\section{Healthcare stock data}
+\label{sec:usage:data}
+
+We select 43 stocks from the healthcare industry to apply the system to. There 
+are 4113 observations of the stocks from 1998 to 2014. We have cleaned the data 
+to get rid of the dependency on time so that each observation of a stock may 
+better simulate an independent draw from some distribution. This is done by 
+fitting a regression to the values and using the residuals as the new dataset.
+
+
+For $i\in\{1,...,4\}$, 
+we employ a ``buy and hold'' tactic to compare the performance of each 
+portfolio $P_i$ selected utilizing the methodology described in 
+Section~\ref{sec:usage:stockselection}), which correspond to correlation graphs 
+$G_i^{\text{num}}=(V,E)$. While a rebalancing method performs better in 
+practice~\cite{liuh2016}, the ``buy and hold'' is better-suited for observing 
+the portfolio performances over time, providing a more concrete basis of 
+comparison for the selected correlation coefficient.

@@ -1,2 +1,24 @@
-
-Often in modern multivariate analyses, data analysts rely solely on statistical estimators to explore the data. However, since each estimator inherently performs well or poorly under different settings, data analysts are unable to differentiate between the properties intrinsic to the dataset (the “truth”) and the spurious properties the estimators add. Furthermore, the rapid increase in computing resources has led to the proliferation of high-dimensional datasets, which are tedious to visualize and analyze, making it difficult for analysts to check their numerical results. In this paper, we contribute towards the notion of “clean analysis” with the development of a visualization system for data analysts to use in order to retain visual feedback when interacting with data. A natural application of the system is in dependencies among financial equities, which are often large, multivariate datasets. We wish to check a Gaussian graphical model of 1000 historical observations of S\&P 500 stocks in order to find independent relationships, a critical condition for re-balancing portfolios. The visualization systems takes a numerical model and its associated data as inputs. It then proceeds to extract features from plots of the response against the explanatory variables and actively learns what visual patterns the analyst finds promising. Afterwards, it automatically iterates through and classifies thousands of possible plots. The system returns the plots it thinks matches the analyst’s interests along with the decision tree. With this system, analysts can combine visual feedback with numerical feedback from estimators to make a more informed decision to proceed, modify, or scrap their existing numerical model. Furthermore, the return of an explicit decision tree allows the analyst to provide clear justification of their decisions and allows for reproducible results, an important feature associated with increased accountability. The visualization tool provides a simple and intuitive way to improve predictive and portfolio management methods in the financial industry. Moreover (and arguably more importantly), it increases standardization in the data analysis process, thereby increasing accountability in an industry where ambiguity can mean a global financial crisis.
+Often in modern multivariate analyses, data analysts rely solely on statistical
+estimators to explore the data. We are interested in visualizing 
+high-dimensional correlation graphs as a way to verify numerical tests of 
+dependence, which have far-reaching financial implications. High-dimensional 
+visualization is problematic because (1) the number of plots to sort through 
+increases quadratically as the number of variables increase, (2) it is tedious 
+to verify numerical results with visual results and vice versa. We 
+present a visualization tool that actively learns user preferences, applies 
+the fitted classifier to unlabeled data, and outputs the difference among the 
+numerical graph $G^{\text{num}}=(V,E)$ and the visual graph $G=(V,E)$. 
+As a specific response to the aforementioned problems, we focus on the active 
+learning and graph comparison components of the visualizer system. Both employ 
+simulation studies in order to select the best procedure for use in the 
+selection of healthcare stocks for a portfolio. The data is run through the 
+visualization system, which utilizes the $----$ active learning 
+algorithm and $----$ graph comparison method to select the correlation graph 
+$G^{\text{num}}$ closest to the system's output $G$. The portfolios 
+are then put through a ``buy and hold'' strategy. Yearly returns are compiled, 
+and the portfolio corresponding the selected correlation graph $G^{\text{num}}$ 
+is one of the top performers (??). The visualization tool provides a simple and 
+intuitive way to improve predictive and portfolio management methods in the 
+financial industry. Moreover (and arguably more importantly), it increases 
+standardization in the data analysis process, thereby increasing accountability 
+in an industry where ambiguity can mean a global financial crisis.

@@ -19,6 +19,7 @@
 \newcommand*{\mainmatter}{\pagenumbering{arabic}}
 \newcommand*{\makelot}{}
 \newcommand*{\makelof}{}
+\newcommand*{\makeloa}{}
 \newcommand*{\makelos}{}
 \newcommand*{\maketoc}{
   % Add ToC to the pdfbookmarks as a section, but not to the ToC itself.
@@ -50,7 +51,7 @@
 \bodyspacing
 \frontmatter\maketitlepage\makecopyrightpage\makeabstract
 \makeacknowledgements\makededication\maketoc
-\makelot\clearpage\makelof\clearpage\makelos
+\makelot\clearpage\makelof\clearpage\makeloa\clearpage\makelos
 \clearpage\mainmatter
 }
 \def\@submitted{\@submittedmonth~\@submittedyear}

@@ -1,32 +1,98 @@
 \section{Active learning (Stage 1)}
 \label{sec:visualizer:al}
 
-\subsection{Decision tree classification of user interests}
-\label{sec:visualizer:al:tree}
+The main goal of stage 1 is to learn the user's interests. This requires the 
+system to select (``query'') data (which are $n$ characterizations of $d\choose 
+2$ plots in the case of the VS as described in 
+Section~\ref{sec:visualizer:scatterplot:features}) for the analyst (the 
+``oracle'') to label (classify). The learner may then utilize a classification 
+model (LDA, QDA, naive bayes, decision tree, random forest, logistic 
+regression, etc.) that trains on labeled data to ``learn'' user interests. The 
+user's interests are encoded in a classifier (some instance of the 
+classification model) that is applied to automatically label the rest of the 
+data (For more on the 
+semantic differences between ``classification model'' and ``classifier'', see 
+Figure~\ref{fig:visualizer:al:tree}). As such, it is important to make the 
+process as efficient as possible to avoid redundancy for the end user. There 
+are various methods that may be used for querying in stage 
+1~\cite{dasgupta2011}:
 
-A decision tree is a method of classifying and labeling plots. An ``active learner'' adapts as the process moves forward, choosing its points of query intelligently. Active learning increases efficiency when searching through the hypothesis space, which is any fitted tree that agrees with the labeled data as much as possible~\cite{dasgupta2011}. Every time new data (a new label) is received, the hypothesis space shrinks as the label removes certain classifiers from the running~\cite{dasgupta2011}. An active learner queries from ambiguous parts of the current hypothesis space so as to shrink it as quickly as possible. It is problematic to start from scratch, however; how does the system determine the best first point of ambiguity when it knows nothing (the hypothesis space is everything)? While this problem is difficult, we can exploit the fact that the user is already providing a numerical model that they believe to be a good representation of the data which they would like the visualization system to check visually. Given this data, the system builds a decision tree that utilizes the various properties of the plots to determine whether one is interesting or uninteresting. Doing so greatly narrows the hypothesis space and makes it easier to determine points of ambiguity. However, to reconcile with the fact that the user wishes to check the numerical model and may not necessarily believe it is a good representation of fit, the learner must then perform several line-up tests (Section ~\ref{sec:visualizer:al:lineup}) to check whether the initial decision tree is a proper fit. As the user then proceeds to label various conditional plots as ``interesting'' or ``not interesting,'' the classifier learns the user’s interest and continues to evolve. This models plot characteristics that the user found interesting to study.
+\tablespacing
+\begin{itemize}
+	\item \textbf{Supervised learner}: This learner queries a single, random 
+	subset of all unlabeled data. It ignores the rest of the data when refining 
+	the classifier
+	\item \textbf{Semisupervised learner}: Similar to a supervised learner, a 
+	semisupervised learner queries a single, random subset of all 
+	unlabeled data but proceeds to utilize the remaining unlabeled data to 
+	better inform the final classifier
+	\item \textbf{Active learner}: An active learner selects its queries in a 
+	non-random, intelligent manner to reduce the hypothesis space $\mathcal{H}$ 
+	of all possible classifiers that may explain the data.
+\end{itemize}
+\bodyspacing
 
-\subsection{Rejection classification}
-\label{sec:visualizer:al:rejection}
-
-So far, we have been discussing classification as black and white, interesting versus non-interesting. While interacting with the data visually, the user's concept of what's interesting in the specific dataset may evolve over time; at the beginning, they have no idea what the data looks like and where to set the bar for their own standards of dependence. There are several ways to take this into consideration. 
-
-First, the visualization system could assign a weight to the analyst's responses by trial number where the last few plots are more valuable than the first few. However, this may destabilize cases where the user's preferences don’t end up changing, and it is difficult for the classifier to continuously rebalance each round given the weights (which, when applied to 2 black and white non-numerical responses, may also be vague). Secondly, the system can include an alternative option that allows the user to refuse to label a plot when it's too close to their decision boundary. This is welcome for the user who is not forced into making a decision he/she is uncertain about, but it is problematic for the learner as it causes the hypothesis space to remain unchanged rather than shrink. The point of the active learning segment is to have the user indicate to the learner which plots are interesting or not in order to let the computer better understand their preferences. By allowing for this option, the active learner may run for too long or return a poorly-defined tree. Finally, there is a way to consolidate the considerations within each methodology. The system can contain a third option that permits the user to ``recycle'' the plot. This allows to user to return to the plot later when he/she has learned more about what the data looks like and understand their own preferences better, and it ensures that the active learner will eventually receive data on the ambiguous plots that it has given the user to label. The main concern is that this could potentially de-balance the ordering procedure (Section~\ref{sec:visualizer:scatterplot:ordering}), but the system can strategically insert the recycled plot between two plots it differs from with the constraint that the insertion location is after the current plot.
-
-\subsection{Selective plot generation}
-\label{sec:visualizer:al:alplotgeneration}
-
-((To build a better classifier, we want to have the user label plots that the system (at the time) is uncertain about. This is where active learning comes in since we want to build our system to cleverly give users vital plots to label so the system can best learn the user’s interests. The system will have to determine which features it is uncertain about classifying and return a plot matching those characteristics to the user. ))
-
-\subsection{Line-up tests}
-\label{sec:visualizer:al:lineup}
-
-One of the pitfalls of data visualization is ``apophenia,'' a phenomenon where the user sees patterns in random noise. Part of the reason for this is due to the vagueness of defining ``independence'' on a non-uniform domain and range (Section~\ref{sec:visualizer:scatterplot:goodplot}). Wickham et al. propose a line-up protocol that is similar to the Rorscach test where subjects are asked to interpret abstract blots of ink~\cite{wickham2010}. In the line-up test, users are asked to identify the real data from a set of n plots where n – 1 plots are synthetically generated (Figure\ref{fig:visualizer:lineup}). Analogously in the context of the classification problem, the learner generates 4 ``uninteresting'' plots (following the proposed decision tree) with 1 ``interesting'' plot and asks the user if he/she can identify the interesting plot. If the user is able to consistently identify the interesting plot, it is an indication that the current decision tree is a close fit of the user’s preferences.
+It has been 
+shown that when a learning algorithm is allowed to choose its next query, it 
+performs better with less training; as such, we choose to utilize active 
+learning to select the plots to be queried by the oracle in stage 
+1~\cite{settles2010}. Chapter~\ref{ch:al} goes into detail on different active 
+learning methodologies as this section is primarily focused on its role in the 
+system.
 
 \begin{figure}[htb]
 	\begin{center}
-		\includegraphics[width=1\linewidth]{ch-visualizer/figures/lineup}
-		\caption[A line-up test for $n = 5$. ]{A line-up test for $n = 5$. Consistently identifying the raw data against the synthetic data indicates that the fitted model may not be good enough. Images from Wickham et al. 2010~\cite{wickham2010}}
-		\label{fig:visualizer:lineup}
+		\includegraphics[width=0.75\linewidth]{ch-visualizer/figures/tree}
+		\caption[Classifiers and classification models]{Although both figures 
+		on the left and right are slightly different classifiers, they 
+		are both instances of (extremely simple) decision trees.}
+		\label{fig:visualizer:al:tree}
 	\end{center}
 \end{figure}
+
+\subsection{Initialization of active learner}
+\label{sec:visualizer:al:initialization}
+
+It is problematic to start from scratch; how does the system determine
+the best first point of ambiguity when it knows nothing (the hypothesis space is
+everything)? A classic method is to simply select $k$ random data instances for 
+the user to label. As initialization is not the focus of this work, the VS 
+currently utilizes this methodology.
+
+Alternatively, we can exploit the fact that the
+user is already providing a numerical model that they believe to be a good
+representation of the data which they would like the visualization system to
+check visually. Given this data, the system builds a decision tree that utilizes
+the various properties of the plots to determine whether one is interesting or
+uninteresting. Doing so greatly narrows the hypothesis space and makes it easier
+to determine points of ambiguity. However, to reconcile with the fact that the
+user wishes to check the numerical model and may not necessarily believe it is a
+good representation of fit, the learner must check whether the initial decision
+tree is a proper fit (This may be achieved with line-up tests, which are 
+described briefly in Section ~\ref{sec:futurework:lineup}). As the user then 
+proceeds to label various conditional
+plots as ``interesting'' or ``not interesting,'' the classifier learns the
+user’s interest and continues to evolve. This models plot characteristics that
+the user found interesting to study.
+
+\subsection{Decision tree classification of user interests}
+\label{sec:visualizer:al:tree}
+
+Post-initialization, the active learner cleverly queries vital plots so that 
+the system can best learn the user’s interests. The system first determines 
+which features it is uncertain about classifying and then returns a plot 
+matching those characteristics to the user. This allows the system to utilize 
+its classification model of choice to build a better classifier more 
+efficiently. It is important to distinguish between the active learner, which 
+selects the next queries from the pool of unlabeled data, and the
+classification model, which trains on labeled data to ``learn'' user interests 
+and classify (predict) the remaining unlabeled data. 
+
+A random forest is one model for classifying and labeling data (features of 
+plots, in the case of the visualization system). In a random forest, various 
+decision trees are constructed from random samples of the data. Each classifier 
+has a vote of weight one for each unlabeled data, and the forest is aggregated 
+by majority vote. It is easily presented to the 
+analyst in the form of a decision tree, which aids in user 
+interpretability of the system output. As such, the VS sets the choice of 
+classification model to random forest by default.

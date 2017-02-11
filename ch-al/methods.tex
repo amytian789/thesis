@@ -1,0 +1,216 @@
+\section{Overview of active learning methods}
+\label{sec:al:methods}
+
+\subsection{Uncertainty sampling}
+\label{sec:al:methods:uncertainty} 
+
+In uncertainty sampling, the active learner selects the query $q$ that it is 
+most uncertain on how to label; in other words, the algorithm queries the label 
+that has the highest posterior probability~\cite{lewis1994}. With binary 
+classification labels such as the VS system (either ``interesting'' or 
+``non-interesting''), this reduces to the case of querying the instance whose 
+posterior probability of being ``interesting'' is closest to 
+0.5~\cite{lewis1994}. While the algorithm presented later follows this 
+methodology and may subsequently only be used with classification models that 
+are able to encompass posterior probability computations, there has been much 
+work done to expand uncertainty sampling to non-probabilistic classifiers such 
+as decision trees and nearest-neighbor~\cite{settles2010}.
+
+Uncertainty sampling is simple but not without problem. Given that the 
+number of possible classification labels is $k > 2$, uncertainty sampling only 
+considers the information about the most probable label $i$ and ignores the 
+other possible labels $j \in \{1,...,k\}\backslash i$. ``Margin sampling'' and 
+``entropy'' are variants that try to solve for these problems, but 
+both reduce to the scheme above (selecting $q$ with a posterior probability 
+closest to 0.5) when $k=2$~\cite{settles2010}.
+
+We have developed an algorithm for uncertainty sampling based on the literature 
+review (see Appendix~\ref{sec:appendicies:al:uncertainty} for code):
+
+\tablespacing
+\begin{algorithm}[H]
+	\caption{Uncertainty sampling (as described by 
+	Settles~\cite{settles2010})}\label{euclid}
+	\begin{algorithmic}[1]
+		\Procedure{}{$x$ is a $n\times d$ matrix of $d$ observations of all $n$ 
+		variables, $y$ is an $n-$length vector of labels for each variable in 
+		$x$ ($y_i$=N/A when $x_{n,}$ has no label)}
+		\State $\textit{tout} \gets 
+		\text{train}(x^{labeled},y^{labeled},\text{classifier})$.
+		\State $p \gets 
+		\text{predict}(\textit{tout},x^{unlabeled},y^{unlabeled},
+		\text{posterior prob.})$
+		\State \textbf{loop from} $i=1$ \textbf{to} len($p$):
+		\State \indent $p_i \gets |p_i-0.5|$
+%		\If {$\textit{string}(i) = \textit{path}(j)$}
+%		\State $j \gets j-1$.
+%		\State $i \gets i-1$.
+%		\State \textbf{goto} \emph{loop}.
+%		\State \textbf{close};
+%		\EndIf
+		\State \textbf{return} where($p==\min{(p)}$)
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+\bodyspacing
+
+\noindent By searching for the most ``uncertain'' point, uncertainty sampling 
+is able to further refine the classifier as the oracle must label the point 
+either ``interesting'' or ``non-interesting''. This can be viewed as a search 
+within the hypothesis space $\mathcal{H}$ that contains multiple classifiers, 
+instances of a single classification model.
+
+
+
+
+
+\subsection{Query by committee}
+\label{sec:al:methods:qbc}
+
+Query by committee is a clearer case of efficient search through the hypothesis 
+space. In query by committee, a ``committee'' of classification models are 
+trained on the  current labeled instances.  Each model represents a competing 
+hypotheses, and its prediction for an unlabeled query candidate $q$ is a 
+``vote'' of weight one on $q$; the most disagreeable candidate is then 
+selected~\cite{settles2010}. Settles reviews various methods for committee 
+selection for both probabilistic and non-probabilistic models, though the 
+implementation of the algorithm (Appendix~\ref{sec:appendicies:al:qbc}) allows 
+the user to specify the committee members~\cite{settles2010}. 
+
+We may write the basic algorithm as follows:
+
+\tablespacing
+\begin{algorithm}[H]
+	\caption{Query by committee (as described by 
+	Settles~\cite{settles2010})}\label{euclid}
+	\begin{algorithmic}[1]
+		\Procedure{}{$x$ is a $n\times d$ matrix of $d$ observations 
+		of all $n$ variables, $y$ is an $n-$length vector of labels for each 
+		variable in $x$ ($y_i$=N/A when $x_{n,}$ has no label). Let $C$ be the 
+		vector of all committee members}
+		\State \textbf{loop from} $i=1$ \textbf{to} len($C$):
+		\State \indent $\textit{tout}_{i} \gets 
+		\text{train}(x^{labeled},y^{labeled},C_i)$.
+		\State \indent $p_{i,} \gets 
+		\text{predict}(\textit{tout}_i,x^{unlabeled},y^{unlabeled})$
+		\State $d \gets \text{disagreement}(p)$
+		\State \textbf{return} where($d==\max{(d)}$)
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+\bodyspacing
+
+\noindent While it is simpler to constantly maintain the same committee 
+throughout, it would be more informative to prune the committee as the 
+algorithm proceeds; it may simply be the case that a model is ill-suited for 
+the problem at hand and consistently returns predictions that skew the voting 
+procedure. Subsequently, a model is removed from the committee if it is 
+consistently out-of-line with whatever the ``true'' label of $q_t$ (the next 
+query point decided and then queried at time $t$) turns out to be. It is 
+important to note that the ``true'' label is not known until \textit{after} the 
+algorithm has return the index of $q_t$. Subsequently, the committee from $t$ 
+is pruned at time $t+1$ at the start of the algorithm using the retrieved 
+label from time $t$. 
+Furthermore, the query by committee methodology described by Settles is only 
+focused on selection of $q$ independent of the final classification model 
+once the rest of the training data is selected~\cite{settles2010}. However, 
+there is merit in maintaining the final pruned committee as its own 
+classification model after the querying is complete and the training data is 
+selected. This may be achieved by selecting labels on unlabeled instances via 
+majority vote. Further details on implementation and performance may be seen in 
+the simulation study (Section~\ref{sec:al:simulations}). The revised selection 
+algorithm is as follows (see Appendix~\ref{sec:appendicies:al:qbc} for code):
+
+\tablespacing
+\begin{algorithm}[H]
+	\caption{Query by committee (revised framework)}\label{euclid}
+	\begin{algorithmic}[1]
+		\Procedure{}{$x$ is a $n\times d$ matrix of $d$ observations of all $n$ 
+		variables, $y$ is an $n-$length vector of labels for each variable in 
+		$x$ ($y_i$=N/A when $x_{n,}$ has no label). Let $C$ be the vector of 
+		all committee members, $E$ be the error ratio of the respective 
+		committee members (initialized to 0), $0<\epsilon<1$ be some threshold 
+		for the error ratio, and $t$ be the current iteration of QBC starting 
+		at $t=1$}
+		
+		\Function{QBC}{}
+		\State \textbf{loop from} $i=1$ \textbf{to} len($C$):
+		\State \indent $\textit{tout}_i \gets 
+		\text{train}(x^{labeled},y^{labeled},C_i)$.
+		\State \indent $p_{i,} \gets 
+		\text{predict}(\textit{tout}_i,x^{unlabeled},y^{unlabeled})$
+		\State $d \gets \text{disagreement}(p)$
+		\State \textbf{return} $j =$ where($d==\max{(d)}$)
+		\EndFunction
+		
+		\Function{Oracle}{}
+		\State \textbf{return} $l$, the label of $x_j$
+		\EndFunction
+		
+		\State $y_j \gets l$
+		
+		\Function{Prune}{}	
+		\State $prune = [\ ]$ (empty vector)	
+		\State \textbf{loop from} $i=1$ \textbf{to} len($C$):
+		\State \indent \textbf{If} $p_{i,j}=y_j$ \textbf{then} $iv = 0$ 
+		\textbf{Else} $iv = 1$
+		\State \indent $E_i = E_i + \frac{iv - E_i}{t}$
+		\State \indent \textbf{If} $E_i>\epsilon$ \textbf{then} 
+		$prune.\text{append}(i)$. 
+		\State $t++$
+		\State \textbf{return} $prune$
+		\EndFunction
+		
+		\State \textbf{loop from} $i=1$ \textbf{to} len($prune$):
+		\State \indent Delete $E_{prune_i}$, $C_{prune_i}$, $p_{prune_i,}$, 
+		and $\textit{tout}_{prune_i}$
+		
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+\bodyspacing
+
+The algorithm contains a generic disagreement function, so it is important to 
+note that there are different measures of disagreement among the committee 
+members. There are two main methods of disagreement 
+measurement described by Settles~\cite{settles2010}:
+
+\tablespacing
+\begin{enumerate}
+	\item \textbf{Vote entropy}: The disagreement for variable $d$ is computed  
+	$$x^*_{VE}=\arg\max_x{-\sum\limits_{j \in \text{all possible labels}} 
+	\frac{V(y_j)}{\text{len}(C)} \log \frac{V(y_j)}{\text{len}(C)}}$$
+	\noindent where $V(y_j)$ is the number of votes each possible label $y_i$ 
+	for $d$ received. The interested reader may refer to ~\cite{dagan1995} 
+	for further details on this methodology.
+	\item \textbf{Kullback-Leibler divergence}: The disagreement is computed
+	$$x^*_{KL}=\arg\max_x{\frac{1}{\text{len}(C)} \sum\limits_{i \in 
+	1}^{\text{len}(C)} \sum\limits_{j \in \text{all possible labels}} 
+	\text{P}_{C_i}(y_j|x) \log \frac{\text{P}_{C_i}(y_j|x)}
+	{\text{P}_{C}(y_j|x)}}$$
+	\noindent Since	$C$ was defined as the committee, we can interpret 
+	$\text{P}_{C}(y_j|x) = \frac{1}{\text{len}(C)} 
+	\sum\limits_{k=1}^{\text{len}(C)} \text{P}_{C_k}(y_j|x)$ as the probability 
+	that the label with the most votes will be $y_j$ where 
+	$\text{P}_{C_k}(y_j|x)$ is the probability that committee member $k$ votes 
+	$y_j$ for variable $d$.The interested reader may refer to 
+	~\cite{mccallum1998} for further details on this methodology.
+\end{enumerate}
+\bodyspacing
+
+\noindent These two disagreement measures have have been implemented in 
+Appendix~\ref{sec:appendicies:al:qbcdisagree} along with a variety of other 
+disagreement measures .
+
+
+
+
+
+
+
+
+\subsection{Clustering partitioning}
+\label{sec:al:methods:clustering}
+
+Thus, the algorithm is as follows (see 
+Appendix~\ref{sec:appendicies:al:clustering} for code):

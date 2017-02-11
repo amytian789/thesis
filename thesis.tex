@@ -3,6 +3,11 @@
 % Adapted from: http://www.math.princeton.edu/graduate/tex/puthesis.html
 % ****************************************************************************************** %
 
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+
 
 %%% For print copies
 %% set 'singlespace' option to set entire thesis to single space, and define "\printmode" to remove all hyperlinks for printed copies of the thesis. Delete all output files before changing this mode -- it will turn hyperref package on and off
@@ -10,7 +15,7 @@
 %\newcommand{\printmode}{}
 
 %%% For the electronic copy, use doublespacing, define "\proquestmode" to use outlined links, instead of colored links. 
-\documentclass[11pt,lot, lof]{puthesis}
+\documentclass[12pt,lot, lof]{puthesis}
 \newcommand{\proquestmode}{}
 % I prefer proquestmode to be off for electronic copies for normal use, since the colored links are less distracting. However when printed in black and white, the colored links are difficult to read. 
 
@@ -21,9 +26,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\
 %%%% Author & title page info
 
-\title{A Visualization Framework to Improve and Streamline Equities Analysis for Portfolios}
+\title{A High-Dimensional Visualization System with Applications in Portfolio 
+Management}
 
-\submitted{April 2017}  % degree conferral date (January, April, June, September, or November)
+\submitted{June 2017}  % degree conferral date (January, April, June, 
+%September, or November)
 \copyrightyear{2017}  % year in which the copyright is secured by publication of the dissertation.
 \author{Amy Tian}
 \adviser{Professor Han Liu}  %replace with the full name of your adviser
@@ -68,7 +75,11 @@
 %%% For code
 \usepackage{listings}
 \usepackage{setspace}
-\usepackage{algorithm2e}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{float}
+%\usepackage{algorithm2e}
 
 %%% for comments
 \usepackage{verbatim}
@@ -178,7 +189,7 @@
 %%%% Front-matter
 
 % For early drafts, you may want to disable some of the frontmatter. Simply change this to "\ifodd 1" to do so.
-\ifodd 1
+\ifodd 0
 % front-matter disabled while writing chapters
 \renewcommand{\maketitlepage}{}
 \renewcommand*{\makecopyrightpage}{}
@@ -234,8 +245,9 @@
 
 % \include lets us split up the document (and each include starts a new page):
 \include{ch-intro/chapter-intro}
-\include{ch-numerical/chapter-numerical}
 \include{ch-visualizer/chapter-visualizer}
+\include{ch-al/chapter-al}
+\include{ch-gc/chapter-gc}
 \include{ch-usage/chapter-usage}
 \include{ch-conclusion/chapter-conclusion}
 \appendix % all chapters following will be labeled as appendices

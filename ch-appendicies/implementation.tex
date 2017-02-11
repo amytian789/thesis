@@ -3,7 +3,7 @@
 \lstset{basicstyle=\ttfamily,xleftmargin=0.5cm,breaklines=true}
 
 
-\section{Code for figure~\ref{fig:intro:me1plot}}
+\section{Code for figure~\ref{fig:intro:meplot}, left}
 \label{sec:appendicies:me1plot}
 {\setstretch{1.0}
 \begin{lstlisting}
@@ -32,21 +32,14 @@ x <- x[idx]; y <- y[idx]
 fitlm <- lm(y ~ x)
 anova(fitlm)
 
-## fit constant regression
-fitconst <- lm(y ~ 1)
-anova(fitlm, fitconst)
-
 ## see if any coefficients are significant
 summary(fitlm)
 
 ## see if residuals are normally-distributed
 shapiro.test(fitlm$residuals)
 
-## various correlation tests
-cor(x, fitlm$residuals)
-cor(x, y, method = "pearson")
-cor(x, y, method = "kendall")
-cor(x, y, method = "spearman")
+## correlation is not significantly different from zero
+cor.test(x, y)
 
 ####################
 #visual feedback
@@ -55,11 +48,11 @@ plot(x, y, pch = 16, cex = 2)
 }
 
 
-\section{Code for figure~\ref{fig:intro:me2plot}}
+\section{Code for figure~\ref{fig:intro:meplot}, right}
 \label{sec:appendicies:me2plot}
 {\setstretch{1.0}
 \begin{lstlisting}
-## generate the dataset
+## generate a reproducible dataset
 set.seed(10)
 n <- 50
 x <- sort(rnorm(n))
@@ -73,21 +66,22 @@ y[c(n-10, n-5, n)] <- max(y)
 #####################
 #numerical feedback
 
-## testing if regression is significantly different from fitting a constant regression
+## fit linear regression
 fitlm <- lm(y ~ x)
-summary(fitlm)
 anova(fitlm)
 
-## test if residuals look like they came from a gaussian
+## see if any coefficients are significant
+summary(fitlm)
+
+## see if residuals are normally-distributed
 shapiro.test(fitlm$residuals) 
 
 ## correlation is not significantly different from zero
-cor(x,y)
-cor.test(x,y)
+cor.test(x, y)
 
 ####################
 #visual feedback
-plot(x,y, pch = 16, cex = 3)
+plot(x,y, pch = 16, cex = 2)
 \end{lstlisting}
 }
 
@@ -108,6 +102,18 @@ plot(x,y, pch = 16, cex = 2)
 plot(pnorm(x),pnorm(y),pch = 16, cex = 2)
 \end{lstlisting}
 }
+
+\section{Uncertainty sampling implementation}
+\label{sec:appendicies:al:uncertainty}
+
+\section{Query by committee implementation}
+\label{sec:appendicies:al:qbc}
+
+\section{Query by committee disagreement implementation}
+\label{sec:appendicies:al:qbcdisagree}
+
+\section{Clustering partitioning implementation}
+\label{sec:appendicies:al:clustering}
 
 %\section{Switching Formats}
 %When switching \texttt{printmode} on and off (see Section~\ref{sec:usage:options}), you may need to delete the output .aux files to get the document code to compile correctly. This is because the hyperref package is switched off for \texttt{printmode}, but this package inserts extra tags into the contents lines in the auxiliary files for PDF links, and these can cause errors when the package is not used.

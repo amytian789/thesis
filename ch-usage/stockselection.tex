@@ -1,0 +1,116 @@
+\section{Stock selection methodology}
+\label{sec:usage:stockselection}
+
+Given a correlation graph $G=(V,E)$, we wish to select $k$ stocks (represented 
+as vertices) such that each stock is as independent as possible of the other 
+stocks. Two random variables $X$ and $Y$ are independent if and only if their 
+joint cumulative distribution function may be written as 
+$F_{X,Y}(x,y)=F_X(x)F_Y(y)$. With this formal definition, Santos \textit{et 
+al.} notes that ``we say two random variables X and Y are dependent if they
+are not independent'' so the problem then becomes one of ``how to measure and 
+detect dependence from the observation of the two random 
+variables''\cite{santos2013}. With the correlation graph $G$, we now have 
+a measure of dependence. However, it was made clear that, in general, 
+it is incorrect to say that ``uncorrelated'' equates ``independence''. 
+Regardless, non-correlation is still a useful tool to inform stock selection 
+for portfolio management (Section~\ref{sec:intro:finance}). So, we select $k$ 
+stocks such that each stock is as \textit{uncorrelated} as possible with the 
+other stocks.
+
+As $V_i$ and $V_j$ have no edge when Corr($i,j$) is below some threshold $p$, 
+we might consider the following stock selection strategy:
+
+\tablespacing
+\begin{algorithm}[H]
+	\caption{Naive stock selection strategy}\label{euclid}
+	\begin{algorithmic}[1]
+		\Procedure{}{$k$ is the number of stocks to select and 
+			$A$ is the adjacency matrix of $G=(V,E)$}
+		\State $d \gets \text{len}(A)$
+		\State $z \gets$ Perm($d,k$)*
+		\State $min = \infty$
+		\State $index = 0$
+		\State \textbf{loop from} $i=1$ \textbf{to} $d \choose k$:
+		\State \indent $c = 0$
+		\State \indent \textbf{loop from} $j = 1$ \textbf{to} $k$:
+		\State \indent \indent \textbf{loop from} $l=1$ \textbf{to} $k$:
+		\State \indent \indent \indent $c \gets c+A_{z_{i,j},z_{i,l}}$
+		\State \indent \textbf{If} $c < min$ \textbf{then}
+		\State \indent \indent $min = c$
+		\State \indent \indent $index = i$
+		\State \textbf{return} $z_{index,}$
+		\EndProcedure
+	\end{algorithmic}
+	*Perm($d,k$) is a function that returns all possible permutations 
+	of $k$ values selected from $d$ i.e. $z_{1,}=<1,5,7>$ is a permutation for 
+	$d=10,k=3$.
+\end{algorithm}
+\bodyspacing
+
+\noindent This becomes computationally difficult as $d$ increases and does not 
+account for average stock returns; as discussed in 
+Section~\ref{sec:intro:finance}, 
+stocks with positive drift and high volatility are shown to improve the 
+performance of the portfolio over time in the ``buy and hold'' model, or 
+improve gains in the case of rebalancing. These two criteria may be used to 
+minimize the space of stocks to select from. Drift over time is simplified as 
+positive return averaged over time. We let $p_d$ and $p_v$ denote the threshold 
+values for drift and volatility respectively. These values will be dependent on 
+the size of the dataset as we wish to preselect $p_d$ and $p_v$ such that 
+$k<d<2k$ to reduce the computational burden. The selection strategy then becomes
+
+\tablespacing
+\begin{algorithm}[H]
+	\caption{Pruned stock selection strategy}\label{euclid}
+	\begin{algorithmic}[1]
+		\Procedure{}{$k$ is the number of stocks to select and 
+			$A$ is the adjacency matrix of $G=(V,E)$. Let $D$ be the vector of 
+			sample average returns and $V$ be the vector of sample standard 
+			deviation.}
+		
+		\Function{Drift}{}
+		\State $d \gets \text{len}(A)$
+		\State $prune = [\ ]$
+		\State \textbf{loop from} $i = 1$ to $d$:
+		\State \indent \textbf{If} $D_i \leq p_d$ \textbf{then} 
+		$prune$.append($i$)
+		\State \textbf{return} prune
+		\EndFunction
+		
+		\State \textbf{loop from} $i=1$ to len($prune$):
+		\State \indent Delete row $prune_i$ and column $prune_i$ from $A$
+		
+		\Function{Volatility}{}
+		\State $d \gets \text{len}(A)$
+		\State $prune = [\ ]$
+		\State \textbf{loop from} $i = 1$ to $d$:
+		\State \indent \textbf{If} $V_i \leq p_v$ \textbf{then} 
+		$prune$.append($i$)
+		\State \textbf{return} prune
+		\EndFunction
+		
+		\State \textbf{loop from} $i=1$ to len($prune$):
+		\State \indent Delete row $prune_i$ and column $prune_i$ from $A$
+		
+		\Function{Selection}{}
+		\State $d \gets \text{len}(A)$
+		\State $z \gets$ Perm($d,k$)*
+		\State $min = \infty$
+		\State $index = 0$
+		\State \textbf{loop from} $i=1$ \textbf{to} $d \choose k$:
+		\State \indent $c = 0$
+		\State \indent \textbf{loop from} $j = 1$ \textbf{to} $k$:
+		\State \indent \indent \textbf{loop from} $l=1$ \textbf{to} $k$:
+		\State \indent \indent \indent $c \gets c+A_{z_{i,j},z_{i,l}}$
+		\State \indent \textbf{If} $c < min$ \textbf{then}
+		\State \indent \indent $min = c$
+		\State \indent \indent $index = i$
+		\State \textbf{return} $z_{index,}$
+		\EndFunction
+		\EndProcedure
+	\end{algorithmic}
+	*Perm($d,k$) is a function that returns all possible permutations 
+	of $k$ values selected from $d$ i.e. $z_{1,}=<1,5,7>$ is a permutation for 
+	$d=10,k=3$.
+\end{algorithm}
+\bodyspacing
