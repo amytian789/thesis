@@ -18,46 +18,52 @@
 \contentsline {subsubsection}{Visual features}{15}{section*.8}
 \contentsline {section}{\numberline {2.2}Active learning (Stage 1)}{16}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Initialization of active learner}{17}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Decision tree classification of user interests}{18}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.2}Query selection}{18}{subsection.2.2.2}
 \contentsline {section}{\numberline {2.3}Automated plot generation (Stage 2)}{18}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}User interaction with active learning output}{18}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}System output}{20}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}Specific focus: AL and GC}{20}{section.2.4}
+\contentsline {subsection}{\numberline {2.3.1}Decision tree classification of user interests}{18}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}User interaction with active learning output}{19}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}System output}{20}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}Specific focus: AL and GC}{21}{section.2.4}
 \contentsline {chapter}{\numberline {3}Active learning }{22}{chapter.3}
 \contentsline {section}{\numberline {3.1}Literature review}{23}{section.3.1}
 \contentsline {section}{\numberline {3.2}Overview of active learning methods}{24}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Uncertainty sampling}{24}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Query by committee}{25}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Clustering partitioning}{28}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}Simulations}{28}{section.3.3}
-\contentsline {chapter}{\numberline {4}Graph comparison }{29}{chapter.4}
-\contentsline {section}{\numberline {4.1}Literature review}{29}{section.4.1}
-\contentsline {section}{\numberline {4.2}Overview of methods}{30}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Edge difference}{30}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Histogram of edge density}{30}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Shortest-path matrix}{30}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Graph distance kernel}{30}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}Examples}{30}{section.4.3}
-\contentsline {chapter}{\numberline {5}Application and results }{31}{chapter.5}
-\contentsline {section}{\numberline {5.1}Application of the visualization system}{31}{section.5.1}
-\contentsline {section}{\numberline {5.2}Stock selection methodology}{32}{section.5.2}
-\contentsline {section}{\numberline {5.3}Healthcare stock data}{34}{section.5.3}
-\contentsline {section}{\numberline {5.4}Results}{35}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusion}{36}{chapter.6}
-\contentsline {section}{\numberline {6.1}Further extensions}{37}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Estimator selection}{37}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Outlier removal}{38}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Graphical models and improved stock selection}{38}{subsection.6.1.3}
-\contentsline {subsection}{\numberline {6.1.4}Ordering of queried plots}{40}{subsection.6.1.4}
-\contentsline {subsection}{\numberline {6.1.5}Line-up tests}{40}{subsection.6.1.5}
-\contentsline {subsection}{\numberline {6.1.6}Edge-weighted graphs}{41}{subsection.6.1.6}
-\contentsline {subsection}{\numberline {6.1.7}Rejection classification}{42}{subsection.6.1.7}
-\contentsline {chapter}{\numberline {A}Implementation Details}{43}{appendix.A}
-\contentsline {section}{\numberline {A.1}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, left}{43}{section.A.1}
-\contentsline {section}{\numberline {A.2}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, right}{44}{section.A.2}
-\contentsline {section}{\numberline {A.3}Code for figure\nobreakspace {}\ref {fig:visualizer:cdf}}{45}{section.A.3}
-\contentsline {section}{\numberline {A.4}Uncertainty sampling implementation}{45}{section.A.4}
-\contentsline {section}{\numberline {A.5}Query by committee implementation}{45}{section.A.5}
-\contentsline {section}{\numberline {A.6}Query by committee disagreement implementation}{45}{section.A.6}
-\contentsline {section}{\numberline {A.7}Clustering partitioning implementation}{45}{section.A.7}
-\contentsline {chapter}{Bibliography}{46}{section*.9}
+\contentsline {subsection}{\numberline {3.2.3}Query by bagging}{28}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Min-max clustering}{29}{subsection.3.2.4}
+\contentsline {section}{\numberline {3.3}Simulations}{30}{section.3.3}
+\contentsline {chapter}{\numberline {4}Graph comparison }{31}{chapter.4}
+\contentsline {section}{\numberline {4.1}Literature review}{31}{section.4.1}
+\contentsline {section}{\numberline {4.2}Overview of methods}{32}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Edge difference}{32}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Histogram of edge density}{32}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Shortest-path matrix}{32}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Graph distance kernel}{32}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}Examples}{32}{section.4.3}
+\contentsline {chapter}{\numberline {5}Application and results }{33}{chapter.5}
+\contentsline {section}{\numberline {5.1}Application of the visualization system}{33}{section.5.1}
+\contentsline {section}{\numberline {5.2}Stock selection methodology}{34}{section.5.2}
+\contentsline {section}{\numberline {5.3}Healthcare stock data}{36}{section.5.3}
+\contentsline {section}{\numberline {5.4}Results}{37}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusion}{38}{chapter.6}
+\contentsline {section}{\numberline {6.1}Further extensions}{39}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Estimator selection}{39}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Outlier removal}{40}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Graphical models and improved stock selection}{40}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Ordering of queried plots}{42}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}Line-up tests}{42}{subsection.6.1.5}
+\contentsline {subsection}{\numberline {6.1.6}Edge-weighted graphs}{43}{subsection.6.1.6}
+\contentsline {subsection}{\numberline {6.1.7}Rejection classification}{44}{subsection.6.1.7}
+\contentsline {chapter}{\numberline {A}Implementation Details}{45}{appendix.A}
+\contentsline {section}{\numberline {A.1}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, left}{45}{section.A.1}
+\contentsline {section}{\numberline {A.2}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, right}{46}{section.A.2}
+\contentsline {section}{\numberline {A.3}Code for figure\nobreakspace {}\ref {fig:visualizer:cdf}}{46}{section.A.3}
+\contentsline {section}{\numberline {A.4}Uncertainty sampling (Section \ref {sec:al:methods:uncertainty}) implementation}{47}{section.A.4}
+\contentsline {section}{\numberline {A.5}Query by committee (Section \ref {sec:al:methods:qbc}) implementation}{48}{section.A.5}
+\contentsline {subsection}{\numberline {A.5.1}Query selection}{48}{subsection.A.5.1}
+\contentsline {subsection}{\numberline {A.5.2}Pruning}{49}{subsection.A.5.2}
+\contentsline {section}{\numberline {A.6}Vote entropy (Section \ref {sec:al:methods:qbc}) implementation}{50}{section.A.6}
+\contentsline {section}{\numberline {A.7}Query by bagging (Section \ref {sec:al:methods:bagging}) implementation}{50}{section.A.7}
+\contentsline {section}{\numberline {A.8}Min-max clustering (Section \ref {sec:al:methods:clustering}) implementation}{51}{section.A.8}
+\contentsline {section}{\numberline {A.9}Simulation (Section \ref {sec:al:simulations}) implementation}{52}{section.A.9}
+\contentsline {chapter}{Bibliography}{53}{section*.9}

@@ -1,7 +1,6 @@
 \chapter{Implementation Details\label{ch:implementation}}
 
-\lstset{basicstyle=\ttfamily,xleftmargin=0.5cm,breaklines=true}
-
+\lstset{basicstyle=\ttfamily\footnotesize,xleftmargin=0cm,breaklines=true,language=R}
 
 \section{Code for figure~\ref{fig:intro:meplot}, left}
 \label{sec:appendicies:me1plot}
@@ -19,7 +18,7 @@ y <- y[c(seq(1,99,length.out=50), seq(100,2,length.out=50))]
 
 #local swapping
 for(i in 4:96){
-y[(i-3):(i+3)] <- y[sample((i-3):(i+3))]
+	y[(i-3):(i+3)] <- y[sample((i-3):(i+3))]
 }
 
 idx <- sample(1:100)
@@ -103,50 +102,281 @@ plot(pnorm(x),pnorm(y),pch = 16, cex = 2)
 \end{lstlisting}
 }
 
-\section{Uncertainty sampling implementation}
+\section{Uncertainty sampling (Section \ref{sec:al:methods:uncertainty}) 
+implementation}
 \label{sec:appendicies:al:uncertainty}
+{\setstretch{1.0}
+\begin{lstlisting}
+#' Uncertainty Sampling with bivariate labels
+#'
+#' @param X the full data matrix, n x d, including all unlabeled data
+#' @param y a factor vector with 2 levels and NAs for unlabeled data
+#' @param unlabel_index_c is a vector of n pre-selected (pooled) indices
+#' method may choose from 
+#' @param classifier the classifier name
+#' @param ... additional parameters for the active learning method
+#'
+#' @return a vector of indices to query
+#' @export
 
-\section{Query by committee implementation}
+uncertainty_sample <- function(X, y, unlabel_index_c, classifier, ...){
+	if (length(classifier) > 1 || missing(classifier) || is.null(classifier) || 
+	is.na(classifier)) {
+		stop("A single classifier is required for uncertainty sampling")
+	}
+	
+	# Check that the classifier is compatible with uncertainty sampling
+	c <- try(caret::modelLookup(classifier))
+	if (!any(c$probModel)) {
+		stop(classifier," must return posterior probabilities")
+	}
+	
+	# Split x and y to retrieve labeled and unlabeled pairs
+	unlabel_index <- which(is.na(y))
+	x_lab <- X[-unlabel_index,]
+	y_lab <- y[-unlabel_index]
+	x_ulab <- X[unlabel_index_c,]
+	
+	tout <- caret::train(x_lab,y_lab,classifier)
+	p <- as.matrix(stats::predict(tout, newdata=x_ulab, type="prob"))
+	
+	# Return corresponding X index of posterior closest to 0.5
+	p <- apply(p, 1, function(x) abs(x[1]-0.5))
+	unlabel_index_c[which(p == min(p))]
+}
+\end{lstlisting}
+}
+
+\section{Query by committee (Section \ref{sec:al:methods:qbc}) implementation}
 \label{sec:appendicies:al:qbc}
+This implementation contains the functions for query selection and pruning. 
+These functions are called by the main simulation engine for the QBC method. 
+The main simulation engine acts as the entire algorithm in 
+Section~\ref{sec:al:methods:qbc}. The simulation engine code may be found in 
+Appendix~\ref{sec:appendicies:al:simulations}
+\subsection{Query selection}
+{\setstretch{1.0}
+\begin{lstlisting}
+#' Query by Committee
+#'
+#' @param X the full data matrix, n x d, including all unlabeled data
+#' @param y a factor vector with 2 levels and NAs for unlabeled data
+#' @param unlabel_index_c is a vector of n pre-selected (pooled) indices
+#' @param committee the list of committee classifiers
+#' @param dis is the disagreement measure between committee classifications
+#' @param ... additional parameters for the active learning method
+#'
+#' @return a vector of indices to query, the committee predictions of this round
+#' @export
 
-\section{Query by committee disagreement implementation}
-\label{sec:appendicies:al:qbcdisagree}
+qbc_sample <- function(X,y,unlabel_index_c,committee,dis = "vote_entropy",...){
+	if (missing(committee) || is.null(committee)) {
+		stop("A committee is required for QBC")
+	}
+	
+	unlabel_index <- which(is.na(y))
+	x_lab <- X[-unlabel_index,]
+	y_lab <- y[-unlabel_index]
+	x_ulab <- X[unlabel_index_c,]
+	
+	p <- vector("list",length(committee))
+	
+	for (i in 1:length(committee)) {
+		tout <- caret::train(x_lab,y_lab,committee[i])
+		p[[i]] <- predict(tout, newdata=x_ulab)
+	}
+	
+	# Compute disagreement (from activelearning package)
+	d <- switch(dis,
+		vote_entropy=vote_entropy(p),
+		post_entropy=post_entropy(p),
+		kullback=kullback(p)
+		)
+	
+	index <- unlabel_index_c[which(d == max(d))]
+	if (length(index) > 1) index <- sample(index,1)
+	
+	# Gather each committee's prediction
+	pre <- rep(0,length(committee))
+	for (i in 1:length(committee)) {
+		# Predict function returns a factor
+		pre[i] <-as.numeric(as.character(p[[i]][which(unlabel_index_c==index)]))
+	}
+	
+	list(index, pre)
+}
+\end{lstlisting}
+}
+\subsection{Pruning}
+{\setstretch{1.0}
+\begin{lstlisting}
+#' Query by Committee (Pruning function)
+#'
+#' @param X the full data matrix, n x d, including all unlabeled data
+#' @param y a factor vector with 2 levels and NAs for unlabeled data
+#' @param index is the classification of X[index,] which was queried
+#' @param committee_pred is the list of committee predictions for index
+#' @param k is the current iteration number that the AL_engine is on
+#' @param pt is the pruning threshold (any error value above it is pruned)
+#' @param err in (0 best,1 worst) is the committee's error-to-iteration ratio
+#' @param is_prune is TRUE when pruning is desired, FALSE when not
+#' @param ... additional parameters for the active learning method
+#'
+#' @return a list with updated error, indices to delete from the committee
+#' @export
+qbc_prune <- function(X, y, index, committee_pred, k, pt = 0.5, err, is_prune, 
+...){
+	if (missing(err) || is.null(err) || is.na(err)) {
+		stop("Committee error ratio is required for QBC pruning")
+	}
+	prune <- vector() # Do not know how long prune will be until the end
+	# Do not prune if committee size is 1 or it's the first round
+	if (length(committee_pred) == 1 | k == 1) {
+		list(err, prune)
+	} else {
+		# Update error value
+		for (i in 1:length(committee_pred)) {
+			if (committee_pred[i] == y[index]) iv <- 0 else iv <- 1
+			err[i] <- err[i] + (iv - err[i])/k
+			if (err[i] > pt & is_prune) {
+				prune <- c(prune,i)
+			}
+		}
+		list(err, prune)
+	}
+}
+\end{lstlisting}
+}
 
-\section{Clustering partitioning implementation}
+\section{Vote entropy (Section \ref{sec:al:methods:qbc}) implementation}
+\label{sec:appendicies:al:entropy}
+{\setstretch{1.0}
+	\begin{lstlisting}
+#' Disagreement method (From activelearning package)
+#' @importFrom itertools2 izip
+#' @importFrom entropy entropy
+
+vote_entropy <- function(x, type='class', entropy_method='ML'){
+	it <- do.call(itertools2::izip, x)
+	disagreement <- sapply(it, function(obs) {
+		entropy::entropy(table(unlist(obs)), method=entropy_method)
+	})
+	disagreement
+}
+\end{lstlisting}
+}
+
+
+
+\section{Query by bagging (Section \ref{sec:al:methods:bagging}) implementation}
+\label{sec:appendicies:al:bagging}
+{\setstretch{1.0}
+\begin{lstlisting}
+#' Query by Bagging
+#'
+#' @param X the full data matrix, n x d, including all unlabeled data
+#' @param y a factor vector with 2 levels and NAs for unlabeled data
+#' @param unlabel_index_c is a vector of n pre-selected (pooled) indices
+#' @param classifier the name of a classification model
+#' @param dis is the disagreement measure between committee classifications
+#' @param num_class is the number of desired committee members
+#' @param r in (0,1). r*(labeled set) = training set for each num_class round
+#' @param ... additional parameters for the active learning method
+#'
+#' @return an index to query
+#' @export
+
+qbb_sample <- function(X, y, unlabel_index_c, classifier, dis = "vote_entropy", 
+num_class, r, ...){
+	if(r<=0 || r>=1) stop("r must be in (0,1)")
+	
+	x_ulab <- X[unlabel_index_c,]
+	
+	# Randomly sample from the labeled set to create a classifier
+	label_index <- which(!is.na(y))
+	committee <- vector("list",num_class)
+	for (i in 1:num_class) {
+		idx <- sample(label_index,round(length(label_index)*r,0))
+		committee[[i]] <- caret::train(X[idx,],y[idx],classifier)
+	}
+	
+	# Utilize the resulting classifiers as a committee
+	p <- vector("list",length(committee))
+	for (i in 1:length(committee)) {
+		p[[i]] <- stats::predict(committee[[i]], x_ulab)
+	}
+	
+	# Compute disagreement (utilizing the functions from the activelearning 
+	package)
+	d <- switch(dis,
+		vote_entropy=vote_entropy(p),
+		post_entropy=post_entropy(p),
+		kullback=kullback(p)
+		)
+	
+	index <- unlabel_index_c[which(d == max(d))]
+	if (length(index) > 1) index <- sample(index,1)
+	index
+}
+\end{lstlisting}
+}
+
+\section{Min-max clustering (Section \ref{sec:al:methods:clustering}) 
+implementation}
 \label{sec:appendicies:al:clustering}
+{\setstretch{1.0}
+\begin{lstlisting}
+#' Query by Min-Max Clustering
+#'
+#' @param X the full data matrix, n x d, including all unlabeled data
+#' @param y a factor vector with 2 levels and NAs for unlabeled data
+#' @param unlabel_index_c is a vector of n pre-selected (pooled) indices
+#' @param dis is the distance measure between data
+#' @param ... additional parameters for the active learning method
+#'
+#' @return a vector of indices to query
+#' @export
+
+cluster_sample <- function(X, y, unlabel_index_c, dis = "euclidean", ...){
+	label_index <- which(!is.na(y))
+	x_lab <- X[label_index,]
+	y_lab <- y[label_index]
+	x_ulab <- X[unlabel_index_c,]
+	y_ulab <- y[unlabel_index_c]
+	
+	# Select the point furthest from points that are already labeled
+	q <- rep(0,length(y_ulab))
+	for (i in 1:length(y_ulab)) {
+		min <- Inf
+		for (j in 1:length(y_lab)) {
+			temp <- cs_distance(X[unlabel_index_c[i],],X[label_index[j],],dis)
+			if (min > temp) min <- temp
+		}
+		q[i] <- min
+	}
+	unlabel_index_c[which(q==max(q))]
+}
+
+# General Support Function for Distance Computation
+cs_distance <- function(a,b,dis = "euclidean"){
+	d <- switch(dis,
+		euclidean=cs_euclidean_distance(a,b)
+		)
+}
+
+# Euclidean Distance Computation
+cs_euclidean_distance <- function(a,b) {
+	sqrt( sum( mapply( function(x,y) (x-y)^2, a, b)))
+}
+\end{lstlisting}
+}
+
+\section{Simulation (Section \ref{sec:al:simulations}) implementation}
+\label{sec:appendicies:al:simulations}
 
 %\section{Switching Formats}
-%When switching \texttt{printmode} on and off (see Section~\ref{sec:usage:options}), you may need to delete the output .aux files to get the document code to compile correctly. This is because the hyperref package is switched off for \texttt{printmode}, but this package inserts extra tags into the contents lines in the auxiliary files for PDF links, and these can cause errors when the package is not used.
-%
-%\section{Long Tables}
-%
-%Long tables span multiple pages. By default they are treated like body text, but we want them to be single spaced all the time. The class therefore defines a new command, $\backslash tablespacing$, that is placed before a long table to switch to single spacing when the rest of the document is in double spacing mode. Another command, $\backslash bodyspacing$, is placed after the long table to switch back to double spacing. Normal tables using \texttt{tabular} automatically use single spacing and do not require the extra commands.
-%
-%When the documentclass is defined with the `singlespace' option, these commands are automatically adjusted to stay in single spacing after the long table.
-%
-%Make sure there is always at least one blank line after the $\backslash bodyspacing$ command before the end of the file.
-%
-%Some times long tables do not format correctly on the first pass. If the column widths are wrong, try running the \LaTeX compiler one or two extra times to allow it to better calculate the column widths.
-%
-%If you want your long table to break pages at a specific point, you can insert the command $\backslash pagebreak[4]$, to tell \LaTeX that it really should put a page break there. $\backslash pagebreak[2]$ gives it a hint that this is a good place for a page break, if needed. If there's a row that really should not be broken across a page, use $\backslash \backslash *$, which will usually prevent a pagebreak. 
-%
-%\section{Booktabs}
-%The booktabs package is included to print nicer tables. See the package documentation~\cite{fear2005booktabs} for more details and motivation. Generally, all vertical lines are removed from the tables for a better visual appearance (so don't put them in), and better spacing and line thicknesses are used for the horizontal rules. The rules are defined as $\backslash toprule$ at the top of the table, $\backslash midrule$ in between the heading and the body of the table (or between sections of the table), and $\backslash bottomrule$ at the end of the table. $\backslash cmidrule$ can be used with the appropriate options to have a rule that spans only certain columns of the table.
-%
-%\section{Bibliography and Footnotes}
-%
-%The bibliography and any footnotes can also be single spaced, even for the electronic copy. The template is already setup to do this.
-%
-%Bibliography entries go in the .bib file. As usual, be sure to compile the \LaTeX code, then run BibTeX, and then run \LaTeX again.
-%
-%To cite websites and other electronically accessed materials, you can use the `@electronic' type of BibTeX entry, and use the `howpublished' field to include the URL of the source material.
-%
-%The formatting of bibliography entries will be done automatically. Usually the titles are changed to have only the first word capitalized. If you'd prefer to have your original formatting preserved, place the title in an extra set of curly braces, i.e., ``title = \{\{My title has an AcroNyM that should stay unchanged\}\},''.
-%
-%\section{Figures and Tables}
-%The captions of figures and tables take an optional parameter in square brackets, specifying the caption text to be used in the Table of Contents. The regular caption in curly braces is used for the table itself.
-%
-%Generally captions for tables are placed above the table, while captions for figures are placed below the figure.
-%
-%
-%
+%When switching \texttt{printmode} on and off, you may need to delete the 
+%output .aux files to get the document code to compile correctly. This is 
+%because the hyperref package is switched off for \texttt{printmode}, but this 
+%package inserts extra tags into the contents lines in the auxiliary files for 
+%PDF links, and these can cause errors when the package is not used.

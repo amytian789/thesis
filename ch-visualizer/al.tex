@@ -5,17 +5,19 @@ The main goal of stage 1 is to learn the user's interests. This requires the
 system to select (``query'') data (which are $n$ characterizations of $d\choose 
 2$ plots in the case of the VS as described in 
 Section~\ref{sec:visualizer:scatterplot:features}) for the analyst (the 
-``oracle'') to label (classify). The learner may then utilize a classification 
-model (LDA, QDA, naive bayes, decision tree, random forest, logistic 
-regression, etc.) that trains on labeled data to ``learn'' user interests. The 
-user's interests are encoded in a classifier (some instance of the 
-classification model) that is applied to automatically label the rest of the 
-data (For more on the 
-semantic differences between ``classification model'' and ``classifier'', see 
-Figure~\ref{fig:visualizer:al:tree}). As such, it is important to make the 
-process as efficient as possible to avoid redundancy for the end user. There 
-are various methods that may be used for querying in stage 
-1~\cite{dasgupta2011}:
+``oracle'') to label (classify). This is \textbf{stage 1}. 
+The learner may then utilize 
+a classification model (discriminant analysis, naive bayes, decision tree(s), 
+logistic regression, etc.) that trains on labeled data to ``learn'' user 
+interests. The user's interests are encoded in a classifier (some instance of 
+the classification model) that is applied to automatically label the rest of 
+the data (For more on the 
+semantic differences between ``classification model'' and ``classifier'' in 
+this body of work, see Figure~\ref{fig:visualizer:al:tree}). This is 
+\textbf{stage 2} (Section~\ref{sec:visualizer:plotgeneration}). 
+As such, it is important to make the process as efficient as possible to avoid 
+redundancy for the end user. There are various methods that may be used for 
+querying in stage 1~\cite{dasgupta2011}:
 
 \tablespacing
 \begin{itemize}
@@ -45,7 +47,9 @@ system.
 		\includegraphics[width=0.75\linewidth]{ch-visualizer/figures/tree}
 		\caption[Classifiers and classification models]{Although both figures 
 		on the left and right are slightly different classifiers, they 
-		are both instances of (extremely simple) decision trees.}
+		are both instances of (extremely simple) decision trees, a type of 
+		classification model. Other models include discriminant analysis, naive 
+		bayes, random forest, logistic regression, etc.}
 		\label{fig:visualizer:al:tree}
 	\end{center}
 \end{figure}
@@ -75,7 +79,7 @@ plots as ``interesting'' or ``not interesting,'' the classifier learns the
 user’s interest and continues to evolve. This models plot characteristics that
 the user found interesting to study.
 
-\subsection{Decision tree classification of user interests}
+\subsection{Query selection}
 \label{sec:visualizer:al:tree}
 
 Post-initialization, the active learner cleverly queries vital plots so that 
@@ -83,16 +87,17 @@ the system can best learn the user’s interests. The system first determines
 which features it is uncertain about classifying and then returns a plot 
 matching those characteristics to the user. This allows the system to utilize 
 its classification model of choice to build a better classifier more 
-efficiently. It is important to distinguish between the active learner, which 
-selects the next queries from the pool of unlabeled data, and the
-classification model, which trains on labeled data to ``learn'' user interests 
-and classify (predict) the remaining unlabeled data. 
-
-A random forest is one model for classifying and labeling data (features of 
-plots, in the case of the visualization system). In a random forest, various 
-decision trees are constructed from random samples of the data. Each classifier 
-has a vote of weight one for each unlabeled data, and the forest is aggregated 
-by majority vote. It is easily presented to the 
-analyst in the form of a decision tree, which aids in user 
-interpretability of the system output. As such, the VS sets the choice of 
-classification model to random forest by default.
+efficiently. \textbf{
+	It is important to distinguish between the active learner, which 
+	selects the next queries from the pool of unlabeled data and \textit{may 
+		use 
+		its own classification model(s) to aid in query selection}, and the VS, 
+	which 
+	uses a \textit{single classification model} to fit both the initialization 
+	and actively selected queries in order to build a model to classify the 
+	user's 
+	interests and label the remaining plots in Stage 2 }
+(Section~\ref{sec:visualizer:plotgeneration}). 
+Various active learning (selection) algorithms include uncertainty sampling, 
+query by committee, query by bagging, and min-max clustering, all of which are 
+described more thoroughly in Chapter~\ref{ch:al}.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  10 FEB 2017 17:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  18 FEB 2017 14:19
 entering extended mode
 **./methods.tex
 (methods.tex
@@ -7100,7 +7100,7 @@ Overfull \hbox (10.86105pt too wide) in paragraph at lines 201--204
  []
 
 ! Undefined control sequence.
-l.212 \subsection
+l.216 \subsection
                  {Clustering partitioning}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -7131,7 +7131,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no g in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 212--214
+Overfull \hbox (20.0pt too wide) in paragraph at lines 216--218
 []
  []
 
@@ -7178,7 +7178,7 @@ Missing character: There is no x in font nullfont!
 ! Undefined control sequence.
 <write> ...dicies:al:clustering' on page \thepage 
                                                   \space undefined\on@line .
-l.216 Appendix~\ref{sec:appendicies:al:clustering}
+l.220 Appendix~\ref{sec:appendicies:al:clustering}
                                                    for code):
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -7188,7 +7188,7 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Reference `sec:appendicies:al:clustering' on page  undefined on 
-input line 216.
+input line 220.
 
 Missing character: There is no f in font nullfont!
 Missing character: There is no o in font nullfont!

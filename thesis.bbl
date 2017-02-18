@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{abe1998}
+N.~Abe and H.~Mamitsuka.
+\newblock {Query learning strategies using boosting and bagging}.
+\newblock {\em Proceedings of the International Conference on Machine Learning
+  (ICML)}, pages 1--9, 1998.
+
 \bibitem{buja2016}
 A.~Buja, A.~Krieger, and E.~George.
 \newblock {A Visualization Tool for Mining Large Correlation Tables: The
@@ -67,6 +73,12 @@ A.~McCallum and K.~Nigam.
 \newblock {\em Proceedings of the International Conference on Machine
   Learning}, pages 359--367, 1998.
 
+\bibitem{ramhiser2015}
+J.~Ramey.
+\newblock Active learning in r.
+\newblock \url{https://github.com/ramhiser/activelearning}, 2015.
+\newblock Github repository.
+
 \bibitem{santos2013}
 S.~Santos, D.~Y. Takahashi, A.~Nakata, and A.~Fujita.
 \newblock {A comparative study of statistical methods used to identify
@@ -89,6 +101,12 @@ G.~Szekely, M.~Rizzo, and N.~Bakirov.
 \newblock
   \url{https://terrytao.wordpress.com/2014/06/05/when-is-correlation-transitive/},
   2014.
+
+\bibitem{vu2010}
+V.~Vu, N.~Labroche, and B.~Bouchon-Meunier.
+\newblock {Active Learning for Semi-Supervised K-Means Clustering}.
+\newblock {\em Tools with Artificial Intelligence (ICTAI), 2010 22nd IEEE
+  International Conference on}, pages 12--15, October 2010.
 
 \bibitem{wickham2010}
 H.~Wickham, D.~Cook, H.~Hofmann, and A.~Buja.
