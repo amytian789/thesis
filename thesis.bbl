@@ -14,6 +14,11 @@ A.~Buja, A.~Krieger, and E.~George.
   \url{http://stat.wharton.upenn.edu/~buja/PAPERS/Buja-et-al-Association-Navigator.pdf},
   2016.
 
+\bibitem{cutler2010}
+A.~Cutler.
+\newblock Random forests for regression and classification.
+\newblock \url{http://www.math.usu.edu/adele/RandomForests/Ovronnaz.pdf}, 2010.
+
 \bibitem{dagan1995}
 I.~Dagan and S.~Engelson.
 \newblock {Committee-based sampling for training probabilistic classifiers}.
@@ -119,5 +124,10 @@ H.~Wickham, D.~Cook, H.~Hofmann, and A.~Buja.
 \newblock {Graphical inference for infovis}.
 \newblock {\em IEEE Transactions on Visualization and Computer Graphics}, pages
   973--979, December 2010.
+
+\bibitem{zhou2016}
+Y.~Zhou and G.~Hooker.
+\newblock {Interpreting Models via Single Tree Approximation}.
+\newblock {\em arXiv prepint arXiv:1610.09036v1}, pages 1--15, October 2016.
 
 \end{thebibliography}

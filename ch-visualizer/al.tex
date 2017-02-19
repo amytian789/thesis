@@ -49,7 +49,9 @@ system.
 		on the left and right are slightly different classifiers, they 
 		are both instances of (extremely simple) decision trees, a type of 
 		classification model. Other models include discriminant analysis, naive 
-		bayes, random forest, logistic regression, etc.}
+		bayes, random forest, logistic regression, etc. 
+		See Section~\ref{sec:visualizer:plotgeneration:tree} for more details 
+		on trees.}
 		\label{fig:visualizer:al:tree}
 	\end{center}
 \end{figure}
@@ -66,18 +68,17 @@ currently utilizes this methodology.
 Alternatively, we can exploit the fact that the
 user is already providing a numerical model that they believe to be a good
 representation of the data which they would like the visualization system to
-check visually. Given this data, the system builds a decision tree that utilizes
+check visually. Given this data, the system may build a classifier that utilizes
 the various properties of the plots to determine whether one is interesting or
 uninteresting. Doing so greatly narrows the hypothesis space and makes it easier
 to determine points of ambiguity. However, to reconcile with the fact that the
 user wishes to check the numerical model and may not necessarily believe it is a
-good representation of fit, the learner must check whether the initial decision
-tree is a proper fit (This may be achieved with line-up tests, which are 
+good representation of fit, the learner must check whether the initial 
+classifier is a proper fit (This may be achieved with line-up tests, which are 
 described briefly in Section ~\ref{sec:futurework:lineup}). As the user then 
-proceeds to label various conditional
-plots as ``interesting'' or ``not interesting,'' the classifier learns the
-user’s interest and continues to evolve. This models plot characteristics that
-the user found interesting to study.
+proceeds to label various conditional plots (queried by the active learner) as 
+``interesting'' or ``not interesting,'' the learner better understands the
+user’s interest, and the final classifier continues to evolve and improve.
 
 \subsection{Query selection}
 \label{sec:visualizer:al:tree}

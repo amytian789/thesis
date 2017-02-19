@@ -22,7 +22,7 @@ we might consider the following stock selection strategy:
 
 \tablespacing
 \begin{algorithm}[H]
-	\caption{Naive stock selection strategy}\label{euclid}
+	\caption{Naive stock selection strategy}\label{alg:usage:stockselection1}
 	\begin{algorithmic}[1]
 		\Procedure{}{$k$ is the number of stocks to select and 
 			$A$ is the adjacency matrix of $G=(V,E)$}
@@ -61,7 +61,7 @@ $k<d<2k$ to reduce the computational burden. The selection strategy then becomes
 
 \tablespacing
 \begin{algorithm}[H]
-	\caption{Pruned stock selection strategy}\label{euclid}
+	\caption{Adjusted stock selection strategy}\label{alg:usage:stockselection2}
 	\begin{algorithmic}[1]
 		\Procedure{}{$k$ is the number of stocks to select and 
 			$A$ is the adjacency matrix of $G=(V,E)$. Let $D$ be the vector of 
@@ -70,27 +70,27 @@ $k<d<2k$ to reduce the computational burden. The selection strategy then becomes
 		
 		\Function{Drift}{}
 		\State $d \gets \text{len}(A)$
-		\State $prune = [\ ]$
+		\State $rmv = [\ ]$
 		\State \textbf{loop from} $i = 1$ to $d$:
 		\State \indent \textbf{If} $D_i \leq p_d$ \textbf{then} 
-		$prune$.append($i$)
-		\State \textbf{return} prune
+		$rmv$.append($i$)
+		\State \textbf{return} rmv
 		\EndFunction
 		
-		\State \textbf{loop from} $i=1$ to len($prune$):
-		\State \indent Delete row $prune_i$ and column $prune_i$ from $A$
+		\State \textbf{loop from} $i=1$ to len($rmv$):
+		\State \indent Delete row $rmv_i$ and column $rmv_i$ from $A$
 		
 		\Function{Volatility}{}
 		\State $d \gets \text{len}(A)$
-		\State $prune = [\ ]$
+		\State $rmv = [\ ]$
 		\State \textbf{loop from} $i = 1$ to $d$:
 		\State \indent \textbf{If} $V_i \leq p_v$ \textbf{then} 
-		$prune$.append($i$)
-		\State \textbf{return} prune
+		$rmv$.append($i$)
+		\State \textbf{return} rmv
 		\EndFunction
 		
-		\State \textbf{loop from} $i=1$ to len($prune$):
-		\State \indent Delete row $prune_i$ and column $prune_i$ from $A$
+		\State \textbf{loop from} $i=1$ to len($rmv$):
+		\State \indent Delete row $rmv_i$ and column $rmv_i$ from $A$
 		
 		\Function{Selection}{}
 		\State $d \gets \text{len}(A)$

@@ -64,7 +64,7 @@
 \BOOKMARK [1][-]{section.A.4}{A.4 Uncertainty sampling \(Section 3.2.1\) implementation}{appendix.A}% 64
 \BOOKMARK [1][-]{section.A.5}{A.5 Query by committee implementation}{appendix.A}% 65
 \BOOKMARK [2][-]{subsection.A.5.1}{A.5.1 Query selection}{section.A.5}% 66
-\BOOKMARK [2][-]{subsection.A.5.2}{A.5.2 Pruning}{section.A.5}% 67
+\BOOKMARK [2][-]{subsection.A.5.2}{A.5.2 Committee pruning}{section.A.5}% 67
 \BOOKMARK [1][-]{section.A.6}{A.6 Vote entropy implementation}{appendix.A}% 68
 \BOOKMARK [1][-]{section.A.7}{A.7 Query by bagging implementation}{appendix.A}% 69
 \BOOKMARK [1][-]{section.A.8}{A.8 Min-max clustering implementation}{appendix.A}% 70

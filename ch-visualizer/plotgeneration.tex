@@ -6,20 +6,57 @@
 
 Given initialization and actively selected labeled data, what classification 
 models can the visualization system use to create a final fitted model of user 
-interests? A \textbf{random forest} is such one model for classifying and 
-labeling data 
-(features of plots, in the case of the VS). In a random forest, various 
-decision trees are constructed from random samples of the data. Each classifier 
-has a vote of weight one for each unlabeled data, and the forest is aggregated 
-by majority vote, which makes the resulting tree more accurate on average. The 
-result is easily presented to the analyst in the form of a decision tree, which 
-aids in user interpretability of the system output. A \textbf{decision tree} is 
-a visual 
-mapping of the sample space partitioning (decision boundaries). A simplistic 
-example may be found in Figure~\ref{fig:visualizer:al:tree}. As such, the VS 
-sets the choice of classification model to random forest by default but 
-allows the user to specify their preferred classification model if they wish to 
-do so.
+interests? A \textit{decision tree} is composed of nodes (which correspond to 
+classification labels) and branches (which correspond to decision boundaries). 
+A tree is constructed at each node by sampling all $M$ possible vertical and 
+horizontal splits in the sample space and selecting the split which minimizes 
+the \textit{Gini criterion}. A mapping of the sample space to a tree is shown 
+in Figure~\ref{fig:visualizer:plotgeneration:tree}. The Gini criterion measures 
+the homogeneity of the nodes in each side of the proposed split and is computed 
+as follows (for a vertical split)
+$$G = N_{left} \sum\limits_{k=1}^{K} p_{k,left}(1-p_{k,left}) + N_{right} 
+\sum\limits_{k=1}^{K}  p_{k,right}(1-p_{k,right})$$
+
+\noindent where $N_s$ is the number of nodes in side $s$ of a split ($s = 
+\{left,right\}$ in a vertical split, and $s = \{top,bottom\}$ in a horizontal 
+split) and $p_{k,s}$ is the fraction of class label $k$ on side $s$ of the 
+split. Decision trees are a more sophisticated classification method than 
+simple linear regression and retains interpretability. The root node is, 
+naturally, most important as it corresponds to a split that optimizes the Gini 
+criterion while the terminal nodes can be thought of as the data's homogeneous 
+clusters. However, decision trees are also unstable; perturbing a single 
+data point may change the entire tree. Furthermore, due to the nature of 
+vertical and horizontal splitting, 
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth]{ch-visualizer/figures/decisiontree}
+		\caption[Mapping the sample space to a decision tree.]{Mapping the 
+		sample space (left) to a decision tree (right). Images from 
+		Cutler~\cite{cutler2010}.}
+		\label{fig:visualizer:plotgeneration:tree}
+	\end{center}
+\end{figure}
+
+A \textit{random forest} provides solutions to the problems that a single 
+decision tree faces. In a random forest, a forest is composed of many trees 
+``grown'' from random partitions of the labeled set (the training set). 
+Furthermore, each decision tree is constructed by finding the best split among 
+$m \in M$ splits. This allows each tree to specialize on a subset of the data, 
+creating a more informative aggregate. A simplistic example of a forest with 2 
+trees may be found in Figure~\ref{fig:visualizer:al:tree}.
+Each tree in the forest has a vote of weight one for each unlabeled data, and 
+the forest is aggregated by majority vote, which makes the resulting decision 
+boundaries more stable (less variant) on average. On the other hand, a forest 
+with many trees is difficult to visualize. However, there are methods to 
+simplify a forest into a single tree for the purposes of visualization (rather 
+than for usage in classification, as the issue with stability would then 
+remain). One such method for single tree approximate is presented by Zhou and 
+Hooker~\cite{zhou2016}. Utilization of such a methodology aids in user 
+interpretability of the system output while maintaining the robustness of a 
+forest. As such, the VS sets the choice of classification model to random 
+forest by default but allows the user to specify their preferred classification 
+model if they wish to do so.
 
 \subsection{User interaction with active learning output}
 \label{sec:visualizer:plotgeneration:user}
@@ -36,8 +73,8 @@ may be built from these labels with the following heuristic where $i,j \in
 \end{algorithm}
 
 Furthermore, the VS may provide a visualization of the resulting classifier 
-itself such as the decision tree itself. The active learning output may be 
-visualized as a heat map. A 
+itself such as the decision tree itself (as discussed earlier). The active 
+learning output may also be visualized as a heat map. A 
 classic heat map represents each pair of variables as colors from a bivariate 
 spectrum. Heat maps are difficult to interpret as it is one-dimensional; each 
 end of the color spectrum represents minimum and maximum values respectively. 
