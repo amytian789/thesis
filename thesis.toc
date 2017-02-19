@@ -67,11 +67,11 @@
 \contentsline {subsection}{\numberline {A.5.1}Query selection}{54}{subsection.A.5.1}
 \contentsline {subsection}{\numberline {A.5.2}Committee pruning}{55}{subsection.A.5.2}
 \contentsline {section}{\numberline {A.6}Vote entropy implementation}{56}{section.A.6}
-\contentsline {section}{\numberline {A.7}Query by bagging implementation}{56}{section.A.7}
-\contentsline {section}{\numberline {A.8}Min-max clustering implementation}{57}{section.A.8}
-\contentsline {section}{\numberline {A.9}Simulation (Section \ref {sec:al:simulations}) implementation}{59}{section.A.9}
+\contentsline {section}{\numberline {A.7}Query by bagging implementation}{57}{section.A.7}
+\contentsline {section}{\numberline {A.8}Min-max clustering implementation}{58}{section.A.8}
+\contentsline {section}{\numberline {A.9}Simulation implementation}{59}{section.A.9}
 \contentsline {subsection}{\numberline {A.9.1}MNIST data}{59}{subsection.A.9.1}
-\contentsline {subsection}{\numberline {A.9.2}Simulation engine}{59}{subsection.A.9.2}
-\contentsline {subsection}{\numberline {A.9.3}AL algorithm engine}{59}{subsection.A.9.3}
-\contentsline {subsection}{\numberline {A.9.4}Simulator (Main)}{59}{subsection.A.9.4}
-\contentsline {chapter}{Bibliography}{60}{section*.9}
+\contentsline {subsection}{\numberline {A.9.2}Simulation engine}{60}{subsection.A.9.2}
+\contentsline {subsection}{\numberline {A.9.3}AL algorithm engine}{62}{subsection.A.9.3}
+\contentsline {subsection}{\numberline {A.9.4}Simulator (Main)}{62}{subsection.A.9.4}
+\contentsline {chapter}{Bibliography}{63}{section*.9}

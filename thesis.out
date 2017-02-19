@@ -68,7 +68,7 @@
 \BOOKMARK [1][-]{section.A.6}{A.6 Vote entropy implementation}{appendix.A}% 68
 \BOOKMARK [1][-]{section.A.7}{A.7 Query by bagging implementation}{appendix.A}% 69
 \BOOKMARK [1][-]{section.A.8}{A.8 Min-max clustering implementation}{appendix.A}% 70
-\BOOKMARK [1][-]{section.A.9}{A.9 Simulation \(Section 3.3\) implementation}{appendix.A}% 71
+\BOOKMARK [1][-]{section.A.9}{A.9 Simulation implementation}{appendix.A}% 71
 \BOOKMARK [2][-]{subsection.A.9.1}{A.9.1 MNIST data}{section.A.9}% 72
 \BOOKMARK [2][-]{subsection.A.9.2}{A.9.2 Simulation engine}{section.A.9}% 73
 \BOOKMARK [2][-]{subsection.A.9.3}{A.9.3 AL algorithm engine}{section.A.9}% 74

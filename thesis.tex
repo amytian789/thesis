@@ -103,6 +103,19 @@ Management}
 %%% Printed vs. online formatting
 \ifdefined\printmode
 
+
+%\section{Switching Formats}
+%When switching \texttt{printmode} on and off, you may need to delete the 
+%output .aux files to get the document code to compile correctly. This is 
+%because the hyperref package is switched off for \texttt{printmode}, but this 
+%package inserts extra tags into the contents lines in the auxiliary files for 
+%PDF links, and these can cause errors when the package is not used.
+
+
+
+
+
+
 % Printed copy
 % url package understands urls (with proper line-breaks) without hyperlinking them
 \usepackage{url}

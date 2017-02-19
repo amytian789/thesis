@@ -114,7 +114,6 @@ Refer to Algorithm \ref{alg:al:methods:uncertainty}.
 #' @param X the full data matrix, n x d, including all unlabeled data
 #' @param y a factor vector with 2 levels and NAs for unlabeled data
 #' @param unlabel_index_c is a vector of n pre-selected (pooled) indices
-#' method may choose from 
 #' @param classifier the classifier name
 #' @param ... additional parameters for the active learning method
 #'
@@ -168,29 +167,39 @@ Appendix~\ref{sec:appendicies:al:simulations}.
 #' @param unlabel_index_c is a vector of n pre-selected (pooled) indices
 #' @param committee the list of committee classifiers
 #' @param dis is the disagreement measure between committee classifications
+#' @param isMajority is if overall classifier Majority Vote or Random Forest
+#' @param tout is a list of trained classifiers from Majority Vote computation 
 #' @param ... additional parameters for the active learning method
 #'
-#' @return a vector of indices to query, the committee predictions of this round
+#' @return a vector of indices to query AND committee predictions
 #' @export
 
-qbc_sample <- function(X,y,unlabel_index_c,committee,dis = "vote_entropy",...){
-	if (missing(committee) || is.null(committee)) {
-		stop("A committee is required for QBC")
+qbc_sample <- function(X, y, unlabel_index_c, committee, dis = "vote_entropy", 
+isMajority = FALSE, tout = NULL, ...) {
+	if (missing(committee)||is.null(committee)) stop("A committee is required")
+	if (isMajority & is.null(test)) {
+		stop("Re-feed the majority vote return to the next QBC_sample call")
 	}
 	
 	unlabel_index <- which(is.na(y))
 	x_lab <- X[-unlabel_index,]
 	y_lab <- y[-unlabel_index]
 	x_ulab <- X[unlabel_index_c,]
-	
 	p <- vector("list",length(committee))
 	
-	for (i in 1:length(committee)) {
-		tout <- caret::train(x_lab,y_lab,committee[i])
-		p[[i]] <- predict(tout, newdata=x_ulab)
+	if (!isMajority) {
+		for (i in 1:length(committee)) {
+			tout <- caret::train(x_lab,y_lab,committee[i])
+			p[[i]] <- predict(tout, newdata=x_ulab)
+		}
+	} else {
+		# Reuse the trained classifiers from the majority vote call
+		for (i in 1:length(committee)) {
+			p[[i]] <- predict(tout[[i]], newdata=x_ulab)
+		}
 	}
-	
-	# Compute disagreement (from activelearning package)
+
+	# Compute disagreement (functions from the activelearning package)
 	d <- switch(dis,
 		vote_entropy=vote_entropy(p),
 		post_entropy=post_entropy(p),
@@ -199,18 +208,21 @@ qbc_sample <- function(X,y,unlabel_index_c,committee,dis = "vote_entropy",...){
 	
 	index <- unlabel_index_c[which(d == max(d))]
 	if (length(index) > 1) index <- sample(index,1)
-	
 	# Gather each committee's prediction
 	pre <- rep(0,length(committee))
 	for (i in 1:length(committee)) {
 		# Predict function returns a factor
-		pre[i] <-as.numeric(as.character(p[[i]][which(unlabel_index_c==index)]))
+		pre[i] <- 
+		as.numeric(as.character(p[[i]][which(unlabel_index_c==index)]))
 	}
 	
 	list(index, pre)
 }
 \end{lstlisting}
 }
+
+
+
 \subsection{Committee pruning}
 {\setstretch{1.0}
 \begin{lstlisting}
@@ -257,7 +269,7 @@ qbc_prune <- function(X, y, index, committee_pred, k, pt = 0.5, err, is_prune,
 
 Refer to Section \ref{sec:al:methods:qbc}.
 {\setstretch{1.0}
-	\begin{lstlisting}
+\begin{lstlisting}
 #' Disagreement method (From activelearning package)
 #' @importFrom itertools2 izip
 #' @importFrom entropy entropy
@@ -380,24 +392,186 @@ cs_euclidean_distance <- function(a,b) {
 \end{lstlisting}
 }
 
-\section{Simulation (Section \ref{sec:al:simulations}) implementation}
+\section{Simulation implementation}
 \label{sec:appendicies:al:simulations}
 
+Refer to Section \ref{sec:al:simulations}.
 \subsection{MNIST data}
 \label{sec:appendicies:al:simulations:data}
+{\setstretch{1.0}
+\begin{lstlisting}
+load_mnist <- function() {
+	load_image_file <- function(filename) {
+		ret = list()
+		f = file(filename,'rb')
+		readBin(f,'integer',n=1,size=4,endian='big')
+		ret$n = readBin(f,'integer',n=1,size=4,endian='big')
+		nrow = readBin(f,'integer',n=1,size=4,endian='big')
+		ncol = readBin(f,'integer',n=1,size=4,endian='big')
+		x = readBin(f,'integer',n=ret$n*nrow*ncol,size=1,signed=F)
+		ret$x = matrix(x, ncol=nrow*ncol, byrow=T)
+		close(f)
+		ret
+	}
+	load_label_file <- function(filename) {
+		f = file(filename,'rb')
+		readBin(f,'integer',n=1,size=4,endian='big')
+		n = readBin(f,'integer',n=1,size=4,endian='big')
+		y = readBin(f,'integer',n=n,size=1,signed=F)
+		close(f)
+		y
+	}
+	train <<- load_image_file('mnist/train-images-idx3-ubyte')	
+	train$y <<- load_label_file('mnist/train-labels-idx1-ubyte')
+}
+
+show_digitsmall <- function(arr196, col=gray(12:1/12), ...) {
+	image(matrix(arr196, nrow=14)[,14:1], col=col, ...)
+}
+
+compressImg <- function(full){
+	compressFour <- function(j){
+		pixelvec = rep(NA,4)
+		pixelvec[1] = full[2*j-1+floor((j-1)/14)*28];
+		pixelvec[2] = full[2*j+floor((j-1)/14)*28];
+		pixelvec[3] = full[2*j-1+28+floor((j-1)/14)*28];
+		pixelvec[4] = full[2*j+28+floor((j-1)/14)*28];
+		return(mean(pixelvec))
+	}
+	
+	compress = unlist(lapply(1:196,compressFour))
+	return(compress)
+}
+
+plotTable <- function(numRow,numCol,vec.labels,mat.images){
+	vec.uniq = unique(vec.labels)
+	par(mfrow=c(numRow,numCol),pty="s",mar = c(0.1,0.1,0.1,0.1))
+	for(i in 1:length(vec.uniq)){
+		tmpidx = which(vec.labels==vec.uniq[i])
+		for(j in 1:length(which(vec.labels==vec.uniq[i]))){
+			show_digitsmall(mat.images[tmpidx[j],],asp=TRUE)
+		}
+	}
+}
+\end{lstlisting}
+}
 
 \subsection{Simulation engine}
 \label{sec:appendicies:al:simulations:simengine}
+{\setstretch{1,0}
+\begin{lstlisting}
+AL_engine <- function(X, y, y_unlabeled, al_method,
+classifier_method, return_method, iter, n, ...) {
+	
+	stopifnot(nrow(X) == length(y), is.matrix(X), is.factor(y), 
+	length(levels(y)) == 2)
+	idx <- which(is.na(y_unlabeled))
+	stopifnot(length(idx) > 0, all(y[-idx] == y_unlabeled[-idx]), length(y) == 
+	length(y_unlabeled),
+	is.factor(y_unlabeled))
+	
+	res <- rep(0,iter)
+	
+	### SET THE COMMITTEE HERE
+	cm <- c("rf","nb","pls","svmRadialWeights")
+	err<- rep(0,length(cm))
+	
+	for(i in 1:iter){
+		# If QBC, the procedure is a little different....
+		if (al_method == "qbc") {
+			if (i != 1 & 
+			as.character(substitute(classifier_method))=="qbc_majority") {
+				# QBC Majority method re-trains committee after the oracle
+				# Save computation time by passing those results to QBC algo
+				next_sample <- active_learning(X=X, y=y_unlabeled, 
+				almethod=al_method, n=n, committee = cm, 
+				isMajority = TRUE, tout = tout, ...)
+			} else {
+			next_sample <- active_learning(X=X, y=y_unlabeled, 
+			almethod=al_method, n=n, committee = cm, ...)
+		}
+		y_unlabeled[next_sample[[1]]] <- y[next_sample[[1]]]
+		
+		# Update error and prune committee
+		### Comment out if no committee pruning is desired
+		if (i > iter/2) {
+			prune <- active_learning(X=X, y=y_unlabeled, almethod="qbc_prune", 
+			n = n, index=next_sample[[1]],
+			committee_pred=next_sample[[2]], k = i, err = err, is_prune = TRUE, 
+			...)
+			err <- prune[[1]]
+			# check if there's stuff to prune
+			if (length(prune[[2]] != 0)) {
+				cm <- cm[-unlist(prune[[2]])]
+				err <- err[-unlist(prune[[2]])]
+			}
+		}
+		else {
+			prune <- active_learning(X=X, y=y_unlabeled, almethod="qbc_prune", 
+			n = n, index=next_sample[[1]],
+			committee_pred=next_sample[[2]], k = i, err = err, is_prune = 
+			FALSE, ...)
+			err <- prune[[1]]
+		}
+		
+		# Compute residual error
+		idx <- which(!is.na(y_unlabeled))
+		tout <- classifier_method(X[idx,], y_unlabeled[idx], committee = cm)
+		res[i] <- return_method(tout, X, y, committee = cm)
+	}
+	# Everything else (not QBC)
+	else {
+		next_sample <- active_learning(X, y_unlabeled, al_method, n, ...)
+		y_unlabeled[next_sample] <- y[next_sample]
+		
+		# Compute residual error
+		idx <- which(!is.na(y_unlabeled))
+		tout <- classifier_method(X[idx,], y_unlabeled[idx])
+		res[i] <- return_method(tout, X, y)
+		}
+	}
+	res
+}
+\end{lstlisting}
+}
 
 \subsection{AL algorithm engine}
 \label{sec:appendicies:al:simulations:alengine}
+{\setstretch{1.0}
+\begin{lstlisting}
+#' Main active learning engine
+#'
+#' The missing labels in y are denoted by NA.
+#' This method takes X as a matrix of all the data
+#'
+#' @param X the full data matrix, n x d, including all unlabeled data
+#' @param y a factor vector with 2 levels and NAs for unlabeled data
+#' @param almethod the AL method name
+#' @param n is the number of unlabeled points to be "pooled"
+#' @param ... additional parameters for the active learning method
+#'
+#' @return an index corresponding to the row of X to learn the label of next
+#' @export
+
+active_learning <- function(X, y, almethod = "us", n, ...){
+	stopifnot(nrow(X) == length(y), is.matrix(X), any(is.na(y)),
+	is.factor(y), length(levels(y)) == 2)
+	
+	if (n == 0) {
+		unlabel_index_c <- which(is.na(y))
+	} else unlabel_index_c <- sample(which(is.na(y)), n)
+	
+	switch(almethod,
+		us=uncertainty_sample(X,y,unlabel_index_c, ...),
+		rs=random_sample(unlabel_index_c, ns = 1, ...),
+		qbc=qbc_sample(X,y,unlabel_index_c, ...),
+		qbb=qbb_sample(X,y,unlabel_index_c,...),
+		qbc_prune=qbc_prune(X=X, y=y, ...),
+		cluster=cluster_sample(X,y,unlabel_index_c, ...)
+		)
+}
+\end{lstlisting}
+}
 
 \subsection{Simulator (Main)}
 \label{sec:appendicies:al:simulations:results}
-
-%\section{Switching Formats}
-%When switching \texttt{printmode} on and off, you may need to delete the 
-%output .aux files to get the document code to compile correctly. This is 
-%because the hyperref package is switched off for \texttt{printmode}, but this 
-%package inserts extra tags into the contents lines in the auxiliary files for 
-%PDF links, and these can cause errors when the package is not used.
