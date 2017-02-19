@@ -38,16 +38,16 @@ review (see Appendix~\ref{sec:appendicies:al:uncertainty} for code):
 \tablespacing
 \begin{algorithm}[H]
 	\caption{Uncertainty sampling (as described by 
-	Settles~\cite{settles2010})}\label{euclid}
+	Settles~\cite{settles2010})}\label{alg:al:methods:uncertainty}
 	\begin{algorithmic}[1]
-		\Procedure{}{$x$ is a $n\times d$ matrix of $d$ observations of all $n$ 
+		\Procedure{}{$X$ is a $n\times d$ matrix of $d$ observations of all $n$ 
 		variables, $y$ is an $n$-length vector of labels for each variable in 
-		$x$ ($y_i$=N/A when $x_{i,}$ has no label)}
+		$X$ ($y_i$=N/A when $X_{i,}$ has no label)}
 		\State $\textit{tout} \gets 
-		\text{train}(x^{labeled},y^{labeled},\text{classifier})$
+		\text{train}(X^{labeled},y^{labeled},\text{classifier})$
 		\State $p \gets 
-		\text{predict}(\textit{tout},x^{unlabeled},y^{unlabeled},
-		\text{posterior prob.})$
+		\text{predict}(\textit{tout},X^{unlabeled},
+		\text{posterior prob.} = TRUE)$
 		\State \textbf{loop from} $i=1$ \textbf{to} len($p$):
 		\State \indent $p_i \gets |p_i-0.5|$
 %		\If {$\textit{string}(i) = \textit{path}(j)$}
@@ -93,17 +93,17 @@ We may write the basic algorithm as follows:
 \tablespacing
 \begin{algorithm}[H]
 	\caption{Query by committee (as described by 
-	Settles~\cite{settles2010})}\label{euclid}
+	Settles~\cite{settles2010})}\label{alg:al:methods:qbc1}
 	\begin{algorithmic}[1]
-		\Procedure{}{$x$ is a $n\times d$ matrix of $d$ observations 
+		\Procedure{}{$X$ is a $n\times d$ matrix of $d$ observations 
 		of all $n$ variables, $y$ is an $n$-length vector of labels for each 
-		variable in $x$ ($y_i$=N/A when $x_{i,}$ has no label). Let $C$ be the 
+		variable in $X$ ($y_i$=N/A when $X_{i,}$ has no label). Let $C$ be the 
 		vector of all committee members}
 		\State \textbf{loop from} $i=1$ \textbf{to} len($C$):
 		\State \indent $\textit{tout}_{i} \gets 
-		\text{train}(x^{labeled},y^{labeled},C_i)$
+		\text{train}(X^{labeled},y^{labeled},C_i)$
 		\State \indent $p_{i,} \gets 
-		\text{predict}(\textit{tout}_i,x^{unlabeled},y^{unlabeled})$
+		\text{predict}(\textit{tout}_i,X^{unlabeled})$
 		\State $d \gets \text{disagreement}(p)$
 		\State \textbf{return} where($d==\max{(d)}$)
 		\EndProcedure
@@ -138,11 +138,11 @@ algorithm is as follows (see Appendix~\ref{sec:appendicies:al:qbc} for code):
 
 \tablespacing
 \begin{algorithm}[H]
-	\caption{Query by committee (revised framework)}\label{euclid}
+	\caption{Query by committee (revised framework)}\label{alg:al:methods:qbc2}
 	\begin{algorithmic}[1]
-		\Procedure{}{$x$ is a $n\times d$ matrix of $d$ observations of all $n$ 
+		\Procedure{}{$X$ is a $n\times d$ matrix of $d$ observations of all $n$ 
 		variables, $y$ is an $n$-length vector of labels for each variable in 
-		$x$ ($y_i$=N/A when $x_{i,}$ has no label). Let $C$ be the vector of 
+		$X$ ($y_i$=N/A when $X_{i,}$ has no label). Let $C$ be the vector of 
 		all committee members, $E$ be the error ratio of the respective 
 		committee members (initialized to 0), $0<\epsilon<1$ be some threshold 
 		for the error ratio, and $t$ be the current iteration of QBC starting 
@@ -151,15 +151,15 @@ algorithm is as follows (see Appendix~\ref{sec:appendicies:al:qbc} for code):
 		\Function{QBC}{}
 		\State \textbf{loop from} $i=1$ \textbf{to} len($C$):
 		\State \indent $\textit{tout}_i \gets 
-		\text{train}(x^{labeled},y^{labeled},C_i)$
+		\text{train}(X^{labeled},y^{labeled},C_i)$
 		\State \indent $p_{i,} \gets 
-		\text{predict}(\textit{tout}_i,x^{unlabeled},y^{unlabeled})$
+		\text{predict}(\textit{tout}_i,X^{unlabeled})$
 		\State $d \gets \text{disagreement}(p)$
 		\State \textbf{return} $j =$ where($d==\max{(d)}$)
 		\EndFunction
 		
 		\Function{Oracle}{}
-		\State \textbf{return} $l$, the label of $x_{j,}$
+		\State \textbf{return} $l$, the label of $X_{j,}$
 		\EndFunction
 		
 		\State $y_j \gets l$
@@ -247,21 +247,21 @@ Appendix~\ref{sec:appendicies:al:bagging} for code):
 \tablespacing
 \begin{algorithm}[H]
 	\caption{Query by bagging (as described by Abe and Mimtsuka 
-	~\cite{abe1998})}\label{euclid}
+	~\cite{abe1998})}\label{alg:al:methods:bagging}
 	\begin{algorithmic}[1]
-		\Procedure{}{$x$ is a $n\times d$ matrix of $d$ observations 
+		\Procedure{}{$X$ is a $n\times d$ matrix of $d$ observations 
 			of all $n$ variables, $y$ is an $n$-length vector of labels for 
-			each variable in $x$ ($y_i$=N/A when $x_{i,}$ has no label). 
+			each variable in $X$ ($y_i$=N/A when $X_{i,}$ has no label). 
 			$num\_class$ is the desired number of committee members. Let 
-			$r \in (0,1)$ such that $r*\text{len}(x^{labeled})$ rounded is the 
+			$r \in (0,1)$ such that $r*\text{len}(X^{labeled})$ rounded is the 
 			number of points to randomly sample from the labeled set.}
 		\State \textbf{loop from} $i=1$ \textbf{to} $num\_class$:
 		\State \indent $idx \gets \text{unif\_sample}(labeled, 
-		r*\text{len}(x^{labeled}) )$
+		r*\text{len}(X^{labeled}) )$
 		\State \indent $\textit{tout}_{i} \gets 
-		\text{train}(x_{idx, },y_{idx},\text{classifier})$
+		\text{train}(X_{idx, },y_{idx},\text{classifier})$
 		\State \indent $p_{i,} \gets 
-		\text{predict}(\textit{tout}_i,x^{unlabeled},y^{unlabeled})$
+		\text{predict}(\textit{tout}_i,X^{unlabeled})$
 		\State $d \gets \text{disagreement}(p)$
 		\State \textbf{return} where($d==\max{(d)}$)
 		\EndProcedure
@@ -269,7 +269,8 @@ Appendix~\ref{sec:appendicies:al:bagging} for code):
 \end{algorithm}
 \bodyspacing
 
-Since each iteration of the active learner is a new process of random committee 
+\noindent Since each iteration of the active learner is a new process of random 
+committee 
 training and selection, there is no need to (1) maintain error ratios to prune 
 the starting committee or to (2) use majority vote for the final 
 fitted model over a random forest, which the VS utilizes for stage 
@@ -321,15 +322,15 @@ Appendix~\ref{sec:appendicies:al:clustering} for code):
 \tablespacing
 \begin{algorithm}[H]
 	\caption{Min-max clustering (as described by 
-		Vu \textit{et al.}~\cite{vu2010})}\label{euclid}
+		Vu \textit{et al.}~\cite{vu2010})}\label{alg:al:methods:clustering}
 	\begin{algorithmic}[1]
-		\Procedure{}{$x$ is a $n\times d$ matrix of $d$ observations of all $n$ 
+		\Procedure{}{$X$ is a $n\times d$ matrix of $d$ observations of all $n$ 
 			variables, $y$ is an $n$-length vector of labels for each variable 
-			in $x$ ($y_i$=N/A when $x_{i,}$ has no label)}
+			in $X$ ($y_i$=N/A when $X_{i,}$ has no label)}
 		\State \textbf{loop from} $i=1$ \textbf{to} len($y^{unlabeled}$):
 		\State \indent $\min \gets \infty$
 		\State \indent \textbf{loop from} $j=1$ \textbf{to} len($y^{labeled}$):
-		\State \indent \indent  $d \gets \text{distance}(x_{i,},x_{j,})$
+		\State \indent \indent  $d \gets \text{distance}(X_{i,},X_{j,})$
 		\State \indent \indent \textbf{If} $(\min >d): \min \gets d$
 		\State \indent $q_i \gets \text{min}$
 		\State \textbf{return} where($q==\max{(q)}$)

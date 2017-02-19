@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  18 FEB 2017 18:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  18 FEB 2017 20:36
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -346,23 +346,7 @@ Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 118.
 
 
 (thesis.aux (ch-intro/chapter-intro.aux) (ch-visualizer/chapter-visualizer.aux)
-(ch-al/chapter-al.aux
-
-LaTeX Warning: Label `euclid' multiply defined.
-
-
-LaTeX Warning: Label `euclid' multiply defined.
-
-
-LaTeX Warning: Label `euclid' multiply defined.
-
-
-LaTeX Warning: Label `euclid' multiply defined.
-
-) (ch-gc/chapter-gc.aux) (ch-usage/chapter-usage.aux
-
-LaTeX Warning: Label `euclid' multiply defined.
-
+(ch-al/chapter-al.aux) (ch-gc/chapter-gc.aux) (ch-usage/chapter-usage.aux
 
 LaTeX Warning: Label `euclid' multiply defined.
 
@@ -499,23 +483,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 240--240
 ] (thesis.toc [4
 
 
-] [5])
+] [5] [6])
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
- [6] (thesis.lot)
+ [7] (thesis.lot)
 \tf@lot=\write5
 \openout5 = `thesis.lot'.
 
- [7
+ [8
 
 
-] (thesis.lof)
+]
+(thesis.lof)
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
-
-[8
+ [9
 
 
 ]
@@ -539,7 +523,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 111--113
 []|\OT1/cmr/m/n/12 Normally-distributed
  []
 
-<ch-intro/figures/me.jpeg, id=435, 795.97375pt x 401.5pt>
+<ch-intro/figures/me.jpeg, id=479, 795.97375pt x 401.5pt>
 File: ch-intro/figures/me.jpeg Graphic file (type jpg)
 
 <use ch-intro/figures/me.jpeg>
@@ -571,7 +555,7 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 7.
 
-<ch-visualizer/figures/vs.jpg, id=514, 698.00775pt x 143.93774pt>
+<ch-visualizer/figures/vs.jpg, id=558, 698.00775pt x 143.93774pt>
 File: ch-visualizer/figures/vs.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/vs.jpg>
@@ -582,14 +566,14 @@ Package pdftex.def Info: ch-visualizer/figures/vs.jpg used on input line 26.
 
 
 ] (ch-visualizer/scatterplot.tex
-<ch-visualizer/figures/cdf.jpg, id=526, 489.62926pt x 247.52475pt>
+<ch-visualizer/figures/cdf.jpg, id=570, 489.62926pt x 247.52475pt>
 File: ch-visualizer/figures/cdf.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/cdf.jpg>
 Package pdftex.def Info: ch-visualizer/figures/cdf.jpg used on input line 20.
 (pdftex.def)             Requested size: 325.215pt x 164.40549pt.
 
-<ch-visualizer/figures/hofertoldford.jpg, id=531, 501.67426pt x 164.41425pt>
+<ch-visualizer/figures/hofertoldford.jpg, id=575, 501.67426pt x 164.41425pt>
 File: ch-visualizer/figures/hofertoldford.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/hofertoldford.jpg>
@@ -598,7 +582,7 @@ line 39.
 (pdftex.def)             Requested size: 433.62pt x 142.1135pt.
  [13 <./ch-visualizer/figures/vs.jpg>] [14 <./ch-visualizer/figures/cdf.jpg> <.
 /ch-visualizer/figures/hofertoldford.jpg>]) (ch-visualizer/al.tex [15]
-<ch-visualizer/figures/tree.jpg, id=558, 370.88255pt x 137.00264pt>
+<ch-visualizer/figures/tree.jpg, id=602, 370.88255pt x 137.00264pt>
 File: ch-visualizer/figures/tree.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/tree.jpg>
@@ -613,7 +597,7 @@ Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
 ) (ch-visualizer/plotgeneration.tex [18] [19]
-<ch-visualizer/figures/heatmap.jpg, id=587, 698.00775pt x 143.93774pt>
+<ch-visualizer/figures/heatmap.jpg, id=631, 698.00775pt x 143.93774pt>
 File: ch-visualizer/figures/heatmap.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/heatmap.jpg>
@@ -639,33 +623,50 @@ com-mit-tee, we can in-ter-pret $[][](\OML/cmm/m/it/12 y[]\OMS/cmsy/m/n/12 j\OM
 L/cmm/m/it/12 x\OT1/cmr/m/n/12 ) =
  []
 
-[28] [29]) (ch-al/simulations.tex)) [30]
+[28] [29]) (ch-al/simulations.tex [30]
+<ch-al/figures/data.pdf, id=763, 596.2275pt x 399.4925pt>
+File: ch-al/figures/data.pdf Graphic file (type pdf)
+
+<use ch-al/figures/data.pdf>
+Package pdftex.def Info: ch-al/figures/data.pdf used on input line 67.
+(pdftex.def)             Requested size: 433.62pt x 290.54205pt.
+ [31] [32 <./ch-al/figures/data.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 177--177
+[]|\OT1/cmr/m/n/12 Normally-distributed
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--179
+[]|\OT1/cmr/m/n/12 Normally-distributed
+ []
+
+[33])) [34]
 \openout2 = `ch-gc/chapter-gc.aux'.
 
  (ch-gc/chapter-gc.tex
 Chapter 4.
-(ch-gc/litreview.tex) (ch-gc/methods.tex) (ch-gc/examples.tex)) [31
+(ch-gc/litreview.tex) (ch-gc/methods.tex) (ch-gc/examples.tex)) [35
 
 
 
-] [32]
+] [36]
 \openout2 = `ch-usage/chapter-usage.aux'.
 
 
 (ch-usage/chapter-usage.tex
 Chapter 5.
-(ch-usage/newanalysis.tex) (ch-usage/stockselection.tex [33
+(ch-usage/newanalysis.tex) (ch-usage/stockselection.tex [37
 
 
 
-] [34])
-(ch-usage/data.tex [35] [36]) (ch-usage/results.tex)) [37]
+] [38])
+(ch-usage/data.tex [39] [40]) (ch-usage/results.tex)) [41]
 \openout2 = `ch-conclusion/chapter-conclusion.aux'.
 
 
 (ch-conclusion/chapter-conclusion.tex
 Chapter 6.
-(ch-conclusion/conclusion.tex [38
+(ch-conclusion/conclusion.tex [42
 
 
 
@@ -673,8 +674,8 @@ Chapter 6.
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
- [39] [40]
-[41]
+ [43] [44]
+[45]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
@@ -684,19 +685,19 @@ Missing character: There is no “ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
- [42]
-<ch-visualizer/figures/lineup.jpg, id=796, 698.00775pt x 143.93774pt>
+ [46]
+<ch-visualizer/figures/lineup.jpg, id=879, 698.00775pt x 143.93774pt>
 File: ch-visualizer/figures/lineup.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/lineup.jpg>
 Package pdftex.def Info: ch-visualizer/figures/lineup.jpg used on input line 13
 4.
 (pdftex.def)             Requested size: 433.62pt x 89.41837pt.
- [43 <./ch-visualizer/figures/lineup.jpg>]
+ [47 <./ch-visualizer/figures/lineup.jpg>]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-)) [44]
+)) [48]
 \openout2 = `ch-appendicies/implementation.aux'.
 
  (ch-appendicies/implementation.tex
@@ -712,24 +713,24 @@ File: lstlang3.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 10.
- [45
+ [49
 
 
 
 ]
-[46] [47] [48] [49] [50] [51]) [52] (thesis.bbl [53
+[50] [51] [52] [53] [54] [55]) [56] [57] (thesis.bbl [58
 
 
 
 ]
-Underfull \hbox (badness 4899) in paragraph at lines 77--81
+Underfull \hbox (badness 4899) in paragraph at lines 83--87
 []\OT1/cmr/m/n/12 J. Ramey.  Ac-tive learn-ing in r.  []$\OT1/cmtt/m/n/12 https
  : / / github . com / ramhiser /
  []
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 273.
- [54]
+ [59]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 273.
  (thesis.aux (ch-intro/chapter-intro.aux)
 (ch-visualizer/chapter-visualizer.aux) (ch-al/chapter-al.aux)
@@ -738,7 +739,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 273.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 273.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 273.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 562CA7C92BB50D38180885163A4B1B1C;5188.
+(rerunfilecheck)             Checksum: 579C98AC5A2FF78C57C9C9EA378A65D8;5699.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -746,11 +747,11 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 273.
  ) 
 Here is how much of TeX's memory you used:
- 9455 strings out of 493334
- 135733 string characters out of 3136672
- 403141 words of memory out of 3000000
- 12256 multiletter control sequences out of 15000+200000
- 11688 words of font info for 42 fonts, out of 3000000 for 9000
+ 9508 strings out of 493334
+ 136738 string characters out of 3136672
+ 406876 words of memory out of 3000000
+ 12288 multiletter control sequences out of 15000+200000
+ 12309 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,6n,42p,298b,2414s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
@@ -766,13 +767,14 @@ es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files
 (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x86
 )/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on thesis.pdf (62 pages, 922359 bytes).
+eX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on thesis.pdf (68 pages, 1182696 bytes).
 PDF statistics:
- 1342 PDF objects out of 1440 (max. 8388607)
- 488 named destinations out of 1000 (max. 500000)
- 580 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1439 PDF objects out of 1440 (max. 8388607)
+ 506 named destinations out of 1000 (max. 500000)
+ 649 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,4 +1,4 @@
-\chapter{Implementation Details\label{ch:implementation}}
+\chapter{Implementation\label{ch:implementation}}
 
 \lstset{basicstyle=\ttfamily\footnotesize,xleftmargin=0cm,breaklines=true,language=R}
 
@@ -105,6 +105,8 @@ plot(pnorm(x),pnorm(y),pch = 16, cex = 2)
 \section{Uncertainty sampling (Section \ref{sec:al:methods:uncertainty}) 
 implementation}
 \label{sec:appendicies:al:uncertainty}
+
+Refer to Algorithm \ref{alg:al:methods:uncertainty}. 
 {\setstretch{1.0}
 \begin{lstlisting}
 #' Uncertainty Sampling with bivariate labels
@@ -147,13 +149,15 @@ uncertainty_sample <- function(X, y, unlabel_index_c, classifier, ...){
 \end{lstlisting}
 }
 
-\section{Query by committee (Section \ref{sec:al:methods:qbc}) implementation}
+\section{Query by committee implementation}
 \label{sec:appendicies:al:qbc}
+
+Refer to Algorithm \ref{alg:al:methods:qbc2}. 
 This implementation contains the functions for query selection and pruning. 
 These functions are called by the main simulation engine for the QBC method. 
 The main simulation engine acts as the entire algorithm in 
 Section~\ref{sec:al:methods:qbc}. The simulation engine code may be found in 
-Appendix~\ref{sec:appendicies:al:simulations}
+Appendix~\ref{sec:appendicies:al:simulations}.
 \subsection{Query selection}
 {\setstretch{1.0}
 \begin{lstlisting}
@@ -248,8 +252,10 @@ qbc_prune <- function(X, y, index, committee_pred, k, pt = 0.5, err, is_prune,
 \end{lstlisting}
 }
 
-\section{Vote entropy (Section \ref{sec:al:methods:qbc}) implementation}
+\section{Vote entropy implementation}
 \label{sec:appendicies:al:entropy}
+
+Refer to Section \ref{sec:al:methods:qbc}.
 {\setstretch{1.0}
 	\begin{lstlisting}
 #' Disagreement method (From activelearning package)
@@ -268,8 +274,10 @@ vote_entropy <- function(x, type='class', entropy_method='ML'){
 
 
 
-\section{Query by bagging (Section \ref{sec:al:methods:bagging}) implementation}
+\section{Query by bagging implementation}
 \label{sec:appendicies:al:bagging}
+
+Refer to Algorithm \ref{alg:al:methods:bagging}. 
 {\setstretch{1.0}
 \begin{lstlisting}
 #' Query by Bagging
@@ -321,9 +329,10 @@ num_class, r, ...){
 \end{lstlisting}
 }
 
-\section{Min-max clustering (Section \ref{sec:al:methods:clustering}) 
-implementation}
+\section{Min-max clustering implementation}
 \label{sec:appendicies:al:clustering}
+
+Refer to Algorithm \ref{alg:al:methods:clustering}. 
 {\setstretch{1.0}
 \begin{lstlisting}
 #' Query by Min-Max Clustering
@@ -373,6 +382,18 @@ cs_euclidean_distance <- function(a,b) {
 
 \section{Simulation (Section \ref{sec:al:simulations}) implementation}
 \label{sec:appendicies:al:simulations}
+
+\subsection{MNIST data}
+\label{sec:appendicies:al:simulations:data}
+
+\subsection{Simulation engine}
+\label{sec:appendicies:al:simulations:simengine}
+
+\subsection{AL algorithm engine}
+\label{sec:appendicies:al:simulations:alengine}
+
+\subsection{Simulator (Main)}
+\label{sec:appendicies:al:simulations:results}
 
 %\section{Switching Formats}
 %When switching \texttt{printmode} on and off, you may need to delete the 
