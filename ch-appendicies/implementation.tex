@@ -6,17 +6,17 @@
 \label{sec:appendicies:me1plot}
 {\setstretch{1.0}
 \begin{lstlisting}
-#generate a reproducible dataset and scale to [0,1]
+# Generate a reproducible dataset and scale to [0,1]
 set.seed(10)
 x <- seq(0, 1, length.out = 100)
 y <- rnorm(100)
 y <- (y-min(y))/(max(y)-min(y))
 
-#sort the noise
+# Sort the noise
 y <- sort(y)
 y <- y[c(seq(1,99,length.out=50), seq(100,2,length.out=50))]
 
-#local swapping
+# Local swapping
 for(i in 4:96){
 	y[(i-3):(i+3)] <- y[sample((i-3):(i+3))]
 }
@@ -24,24 +24,22 @@ for(i in 4:96){
 idx <- sample(1:100)
 x <- x[idx]; y <- y[idx]
 
-#####################
-#numerical feedback
+##################### Numerical feedback
 
-## fit linear regression
+## Fit linear regression
 fitlm <- lm(y ~ x)
 anova(fitlm)
 
-## see if any coefficients are significant
+## See if any coefficients are significant
 summary(fitlm)
 
-## see if residuals are normally-distributed
+## See if residuals are normally-distributed
 shapiro.test(fitlm$residuals)
 
-## correlation is not significantly different from zero
+## Correlation is not significantly different from zero
 cor.test(x, y)
 
-####################
-#visual feedback
+#################### Visual feedback
 plot(x, y, pch = 16, cex = 2)
 \end{lstlisting}
 }
@@ -51,7 +49,7 @@ plot(x, y, pch = 16, cex = 2)
 \label{sec:appendicies:me2plot}
 {\setstretch{1.0}
 \begin{lstlisting}
-## generate a reproducible dataset
+## Generate a reproducible dataset
 set.seed(10)
 n <- 50
 x <- sort(rnorm(n))
@@ -62,24 +60,22 @@ y <- scale(y)
 y[c(1,5,10)] <- min(y)
 y[c(n-10, n-5, n)] <- max(y)
 
-#####################
-#numerical feedback
+##################### Numerical feedback
 
-## fit linear regression
+## Fit linear regression
 fitlm <- lm(y ~ x)
 anova(fitlm)
 
-## see if any coefficients are significant
+## See if any coefficients are significant
 summary(fitlm)
 
-## see if residuals are normally-distributed
+## See if residuals are normally-distributed
 shapiro.test(fitlm$residuals) 
 
-## correlation is not significantly different from zero
+## Correlation is not significantly different from zero
 cor.test(x, y)
 
-####################
-#visual feedback
+#################### Visual feedback
 plot(x,y, pch = 16, cex = 2)
 \end{lstlisting}
 }
@@ -89,21 +85,23 @@ plot(x,y, pch = 16, cex = 2)
 \label{sec:appendicies:cdf}
 {\setstretch{1.0}
 \begin{lstlisting}
-## generate the dataset
+# Generate the dataset
 set.seed(10)
 n <- 500
 x <- rnorm(n)
 y <- rnorm(n)
 
+# Plot data and apply CDF
 par(mfrow=c(1,2))
 plot(x,y, pch = 16, cex = 2)
-## apply the cdf
 plot(pnorm(x),pnorm(y),pch = 16, cex = 2)
 \end{lstlisting}
 }
 
-\section{Uncertainty sampling (Section \ref{sec:al:methods:uncertainty}) 
-implementation}
+
+
+
+\section{Uncertainty sampling implementation}
 \label{sec:appendicies:al:uncertainty}
 
 Refer to Algorithm \ref{alg:al:methods:uncertainty}. 
@@ -117,10 +115,11 @@ Refer to Algorithm \ref{alg:al:methods:uncertainty}.
 #' @param classifier the classifier name
 #' @param ... additional parameters for the active learning method
 #'
-#' @return a vector of indices to query
+#' @return an index to query
 #' @export
 
-uncertainty_sample <- function(X, y, unlabel_index_c, classifier, ...){
+uncertainty_sample <- function(X,y,unlabel_index_c,classifier,...){
+
 	if (length(classifier) > 1 || missing(classifier) || is.null(classifier) || 
 	is.na(classifier)) {
 		stop("A single classifier is required for uncertainty sampling")
@@ -132,7 +131,7 @@ uncertainty_sample <- function(X, y, unlabel_index_c, classifier, ...){
 		stop(classifier," must return posterior probabilities")
 	}
 	
-	# Split x and y to retrieve labeled and unlabeled pairs
+	# Split X and y to retrieve labeled and unlabeled pairs
 	unlabel_index <- which(is.na(y))
 	x_lab <- X[-unlabel_index,]
 	y_lab <- y[-unlabel_index]
@@ -153,10 +152,10 @@ uncertainty_sample <- function(X, y, unlabel_index_c, classifier, ...){
 
 Refer to Algorithm \ref{alg:al:methods:qbc2}. 
 This implementation contains the functions for query selection and pruning. 
-These functions are called by the main simulation engine for the QBC method. 
-The main simulation engine acts as the entire algorithm in 
-Section~\ref{sec:al:methods:qbc}. The simulation engine code may be found in 
-Appendix~\ref{sec:appendicies:al:simulations}.
+These functions are called by the main simulation engine (Appendix 
+~\ref{sec:appendicies:al:simulations:simengine}) for the QBC method. 
+The simulation engine is coded in such as way that it acts as the skeleton 
+of the entire algorithm in Section~\ref{sec:al:methods:qbc}.
 \subsection{Query selection}
 {\setstretch{1.0}
 \begin{lstlisting}
@@ -171,11 +170,12 @@ Appendix~\ref{sec:appendicies:al:simulations}.
 #' @param tout is a list of trained classifiers from Majority Vote computation 
 #' @param ... additional parameters for the active learning method
 #'
-#' @return a vector of indices to query AND committee predictions
+#' @return a list with: an index to query AND committee predictions
 #' @export
 
-qbc_sample <- function(X, y, unlabel_index_c, committee, dis = "vote_entropy", 
-isMajority = FALSE, tout = NULL, ...) {
+qbc_sample <- function(X, y, unlabel_index_c, committee,
+	dis = "vote_entropy", isMajority = FALSE, tout= NULL, ...){
+	
 	if (missing(committee)||is.null(committee)) stop("A committee is required")
 	if (isMajority & is.null(test)) {
 		stop("Re-feed the majority vote return to the next QBC_sample call")
@@ -226,7 +226,7 @@ isMajority = FALSE, tout = NULL, ...) {
 \subsection{Committee pruning}
 {\setstretch{1.0}
 \begin{lstlisting}
-#' Query by Committee (Pruning function)
+#' Query by Committee (committee pruning function)
 #'
 #' @param X the full data matrix, n x d, including all unlabeled data
 #' @param y a factor vector with 2 levels and NAs for unlabeled data
@@ -238,15 +238,16 @@ isMajority = FALSE, tout = NULL, ...) {
 #' @param is_prune is TRUE when pruning is desired, FALSE when not
 #' @param ... additional parameters for the active learning method
 #'
-#' @return a list with updated error, indices to delete from the committee
+#' @return a list with: updated error AND indices to delete from the committee
 #' @export
-qbc_prune <- function(X, y, index, committee_pred, k, pt = 0.5, err, is_prune, 
-...){
+
+qbc_prune <- function(X,y,index,committee_pred,k,pt = 0.5,err,is_prune,...){
+
 	if (missing(err) || is.null(err) || is.na(err)) {
 		stop("Committee error ratio is required for QBC pruning")
 	}
 	prune <- vector() # Do not know how long prune will be until the end
-	# Do not prune if committee size is 1 or it's the first round
+	# Do not prune if committee size is 1 or if it's the first round
 	if (length(committee_pred) == 1 | k == 1) {
 		list(err, prune)
 	} else {
@@ -270,11 +271,12 @@ qbc_prune <- function(X, y, index, committee_pred, k, pt = 0.5, err, is_prune,
 Refer to Section \ref{sec:al:methods:qbc}.
 {\setstretch{1.0}
 \begin{lstlisting}
-#' Disagreement method (From activelearning package)
+#' Disagreement method (from activelearning package)
 #' @importFrom itertools2 izip
 #' @importFrom entropy entropy
 
 vote_entropy <- function(x, type='class', entropy_method='ML'){
+
 	it <- do.call(itertools2::izip, x)
 	disagreement <- sapply(it, function(obs) {
 		entropy::entropy(table(unlist(obs)), method=entropy_method)
@@ -306,8 +308,9 @@ Refer to Algorithm \ref{alg:al:methods:bagging}.
 #' @return an index to query
 #' @export
 
-qbb_sample <- function(X, y, unlabel_index_c, classifier, dis = "vote_entropy", 
-num_class, r, ...){
+qbb_sample <- function(X, y, unlabel_index_c, classifier, 
+	dis = "vote_entropy", num_class, r, ...){
+
 	if(r<=0 || r>=1) stop("r must be in (0,1)")
 	
 	x_ulab <- X[unlabel_index_c,]
@@ -326,8 +329,7 @@ num_class, r, ...){
 		p[[i]] <- stats::predict(committee[[i]], x_ulab)
 	}
 	
-	# Compute disagreement (utilizing the functions from the activelearning 
-	package)
+	# Compute disagreement (functions from the activelearning package)
 	d <- switch(dis,
 		vote_entropy=vote_entropy(p),
 		post_entropy=post_entropy(p),
@@ -347,7 +349,7 @@ num_class, r, ...){
 Refer to Algorithm \ref{alg:al:methods:clustering}. 
 {\setstretch{1.0}
 \begin{lstlisting}
-#' Query by Min-Max Clustering
+#' Min-Max Clustering
 #'
 #' @param X the full data matrix, n x d, including all unlabeled data
 #' @param y a factor vector with 2 levels and NAs for unlabeled data
@@ -358,14 +360,15 @@ Refer to Algorithm \ref{alg:al:methods:clustering}.
 #' @return a vector of indices to query
 #' @export
 
-cluster_sample <- function(X, y, unlabel_index_c, dis = "euclidean", ...){
+cluster_sample <- function(X,y,unlabel_index_c,dis="euclidean",...){
+
 	label_index <- which(!is.na(y))
 	x_lab <- X[label_index,]
 	y_lab <- y[label_index]
 	x_ulab <- X[unlabel_index_c,]
 	y_ulab <- y[unlabel_index_c]
 	
-	# Select the point furthest from points that are already labeled
+	# Select the point furthest from the labeled set
 	q <- rep(0,length(y_ulab))
 	for (i in 1:length(y_ulab)) {
 		min <- Inf
@@ -378,14 +381,14 @@ cluster_sample <- function(X, y, unlabel_index_c, dis = "euclidean", ...){
 	unlabel_index_c[which(q==max(q))]
 }
 
-# General Support Function for Distance Computation
+# Main distance engine
 cs_distance <- function(a,b,dis = "euclidean"){
 	d <- switch(dis,
 		euclidean=cs_euclidean_distance(a,b)
 		)
 }
 
-# Euclidean Distance Computation
+# Euclidean Distance
 cs_euclidean_distance <- function(a,b) {
 	sqrt( sum( mapply( function(x,y) (x-y)^2, a, b)))
 }
@@ -400,6 +403,7 @@ Refer to Section \ref{sec:al:simulations}.
 \label{sec:appendicies:al:simulations:data}
 {\setstretch{1.0}
 \begin{lstlisting}
+# Load the MNIST dataset
 load_mnist <- function() {
 	load_image_file <- function(filename) {
 		ret = list()
@@ -425,10 +429,12 @@ load_mnist <- function() {
 	train$y <<- load_label_file('mnist/train-labels-idx1-ubyte')
 }
 
+# Plot a single digit
 show_digitsmall <- function(arr196, col=gray(12:1/12), ...) {
 	image(matrix(arr196, nrow=14)[,14:1], col=col, ...)
 }
 
+# Compress the MNIST dataset from 28x28 to 14x14
 compressImg <- function(full){
 	compressFour <- function(j){
 		pixelvec = rep(NA,4)
@@ -443,6 +449,7 @@ compressImg <- function(full){
 	return(compress)
 }
 
+# Plot a multitude of digits
 plotTable <- function(numRow,numCol,vec.labels,mat.images){
 	vec.uniq = unique(vec.labels)
 	par(mfrow=c(numRow,numCol),pty="s",mar = c(0.1,0.1,0.1,0.1))
@@ -461,7 +468,7 @@ plotTable <- function(numRow,numCol,vec.labels,mat.images){
 {\setstretch{1,0}
 \begin{lstlisting}
 AL_engine <- function(X, y, y_unlabeled, al_method,
-classifier_method, return_method, iter, n, ...) {
+classifier_method, return_method, iter, n, ...){
 	
 	stopifnot(nrow(X) == length(y), is.matrix(X), is.factor(y), 
 	length(levels(y)) == 2)
@@ -483,22 +490,28 @@ classifier_method, return_method, iter, n, ...) {
 			as.character(substitute(classifier_method))=="qbc_majority") {
 				# QBC Majority method re-trains committee after the oracle
 				# Save computation time by passing those results to QBC algo
-				next_sample <- active_learning(X=X, y=y_unlabeled, 
-				almethod=al_method, n=n, committee = cm, 
-				isMajority = TRUE, tout = tout, ...)
+				next_sample <- active_learning(X=X,
+					y=y_unlabeled,
+					almethod=al_method,n=n, 
+					committee = cm, 
+					isMajority = TRUE, 
+					tout = tout, ...)
 			} else {
-			next_sample <- active_learning(X=X, y=y_unlabeled, 
-			almethod=al_method, n=n, committee = cm, ...)
+			next_sample <- active_learning(X=X, 
+				y=y_unlabeled, almethod=al_method, 
+				n=n, committee = cm, ...)
 		}
 		y_unlabeled[next_sample[[1]]] <- y[next_sample[[1]]]
 		
 		# Update error and prune committee
-		### Comment out if no committee pruning is desired
+		### COMMENT OUT if no committee pruning is desired
 		if (i > iter/2) {
-			prune <- active_learning(X=X, y=y_unlabeled, almethod="qbc_prune", 
-			n = n, index=next_sample[[1]],
-			committee_pred=next_sample[[2]], k = i, err = err, is_prune = TRUE, 
-			...)
+			prune <- active_learning(X=X, y=y_unlabeled, 
+				almethod="qbc_prune", n = n, 
+				index=next_sample[[1]],
+				committee_pred=next_sample[[2]], 
+				k = i, err = err, is_prune = TRUE,
+				...)
 			err <- prune[[1]]
 			# check if there's stuff to prune
 			if (length(prune[[2]] != 0)) {
@@ -507,10 +520,12 @@ classifier_method, return_method, iter, n, ...) {
 			}
 		}
 		else {
-			prune <- active_learning(X=X, y=y_unlabeled, almethod="qbc_prune", 
-			n = n, index=next_sample[[1]],
-			committee_pred=next_sample[[2]], k = i, err = err, is_prune = 
-			FALSE, ...)
+			prune <- active_learning(X=X, y=y_unlabeled, 
+				almethod="qbc_prune", n = n, 
+				index=next_sample[[1]],
+				committee_pred=next_sample[[2]], 
+				k = i, err = err, is_prune = FALSE, 
+				...)
 			err <- prune[[1]]
 		}
 		
@@ -554,6 +569,7 @@ classifier_method, return_method, iter, n, ...) {
 #' @export
 
 active_learning <- function(X, y, almethod = "us", n, ...){
+
 	stopifnot(nrow(X) == length(y), is.matrix(X), any(is.na(y)),
 	is.factor(y), length(levels(y)) == 2)
 	

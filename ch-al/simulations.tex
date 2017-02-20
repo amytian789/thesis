@@ -247,10 +247,29 @@ bypassing checks and/or improperly calling functions.
 \subsection{Results}
 \label{sec:al:simulation:results}
 
-The full simulator which calls the aforementioned engines, runs the 25 
-simulations, and plots the results may be found in 
+The full simulator which loads the data (using functions in 
+Appendix~\ref{sec:appendicies:al:simulations:data}), calls the simulation 
+engine (Appendix~\ref{sec:appendicies:al:simulations:simengine}) 25 times for 
+each active learning method (the simulation engine calls the active learning 
+engine, Appendix~\ref{sec:appendicies:al:simulations:alengine}), and averages 
+then plots the results may be found in 
 Appendix~\ref{sec:appendicies:al:simulations:results}.
-The results are summarized in the line plot below.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth,page=1]{ch-al/figures/results.pdf}
+		\caption[x.]{aggregated results.}
+		\label{fig:al:simulations:results}
+	\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth,page=2]{ch-al/figures/results.pdf}
+		\caption[x.]{QBC results.}
+		\label{fig:al:simulations:resultsqbc}
+	\end{center}
+\end{figure}
 
 (Discuss how QBC actually spikes up when the pruning occurs, contrary to 
 intuition - perhaps there is room for a future extension there. Note that the 

@@ -288,14 +288,19 @@ fitted model over a random forest, which the VS utilizes for stage
 \subsection{Min-max clustering}
 \label{sec:al:methods:clustering}
 
-The main principle of the Min-Max Approach is to query points that are close to 
-the the current labeled set but far from each other~\cite{vu2010}. Given 
-natural clustering in the data, the active learned would be able to select a 
-healthy sample from each cluster with this methodology with the hope that each 
-cluster is fairly homogeneous (Section~\ref{sec:al:litreview}). As such, the 
-methodology is able to exploit the clustering structure of data but may perform 
-more poorly (converge more slowly i.e. require more queries to get to a 
-reasonable error level) in datasets that do not naturally form clusters. 
+The goal of the Min-Max Approach is to query points that are far from each 
+other~\cite{vu2010}. This can be done by selecting query that maximizes the 
+minimal distance of each unlabeled query from the labeled set~\cite{vu2010}. 
+In other words, 
+$$\max\limits_{q \in X^{unlabeled}} \bigg( \min\limits_{k \in X^{labeled}} 
+\bigg( \text{distance}(q,k) \bigg) \bigg)$$
+
+Given natural clustering in the data, the active learned would be able to 
+select a healthy sample from each cluster with this methodology with the hope 
+that each cluster is fairly homogeneous (Section~\ref{sec:al:litreview}). As 
+such, the methodology is able to exploit the clustering structure of data but 
+may perform more poorly (converge more slowly i.e. require more queries to get 
+to a reasonable error level) in datasets that do not naturally form clusters. 
 Naturally, there are two important considerations:
 
 \tablespacing
@@ -330,7 +335,8 @@ Appendix~\ref{sec:appendicies:al:clustering} for code):
 		\State \textbf{loop from} $i=1$ \textbf{to} len($y^{unlabeled}$):
 		\State \indent $\min \gets \infty$
 		\State \indent \textbf{loop from} $j=1$ \textbf{to} len($y^{labeled}$):
-		\State \indent \indent  $d \gets \text{distance}(X_{i,},X_{j,})$
+		\State \indent \indent  $d \gets \text{distance}(X_{i,}^{unlabeled}, 
+		X_{j,}^{labeled})$
 		\State \indent \indent \textbf{If} $(\min >d): \min \gets d$
 		\State \indent $q_i \gets \text{min}$
 		\State \textbf{return} where($q==\max{(q)}$)
