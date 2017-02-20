@@ -378,7 +378,9 @@ cluster_sample <- function(X,y,unlabel_index_c,dis="euclidean",...){
 		}
 		q[i] <- min
 	}
-	unlabel_index_c[which(q==max(q))]
+	index <- unlabel_index_c[which(q==max(q))]
+	if (length(index) > 1) index <- sample(index,1)
+	index
 }
 
 # Main distance engine
@@ -465,8 +467,15 @@ plotTable <- function(numRow,numCol,vec.labels,mat.images){
 
 \subsection{Simulation engine}
 \label{sec:appendicies:al:simulations:simengine}
+
+Although the function name is \texttt{AL\_engine}, this code corresponds to the 
+simulation engine (all the \texttt{main} simulation file names are preceded by 
+a \texttt{AL\_}). The actual active learning engine may be found in 
+Appendix~\ref{sec:appendicies:al:simulations:alengine}.
+
 {\setstretch{1,0}
 \begin{lstlisting}
+
 AL_engine <- function(X, y, y_unlabeled, al_method,
 classifier_method, return_method, iter, n, ...){
 	
@@ -507,7 +516,7 @@ classifier_method, return_method, iter, n, ...){
 		### COMMENT OUT if no committee pruning is desired
 		if (i > iter/2) {
 			prune <- active_learning(X=X, y=y_unlabeled, 
-				almethod="qbc_prune", n = n, 
+				almethod="qbc_prune", n = 0, 
 				index=next_sample[[1]],
 				committee_pred=next_sample[[2]], 
 				k = i, err = err, is_prune = TRUE,
@@ -521,7 +530,7 @@ classifier_method, return_method, iter, n, ...){
 		}
 		else {
 			prune <- active_learning(X=X, y=y_unlabeled, 
-				almethod="qbc_prune", n = n, 
+				almethod="qbc_prune", n = 0, 
 				index=next_sample[[1]],
 				committee_pred=next_sample[[2]], 
 				k = i, err = err, is_prune = FALSE, 

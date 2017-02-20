@@ -35,43 +35,43 @@
 \contentsline {subsection}{\numberline {3.3.1}Data}{32}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}Evaluation}{33}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}Summary of methods}{35}{subsection.3.3.3}
-\contentsline {subsection}{\numberline {3.3.4}Results}{36}{subsection.3.3.4}
-\contentsline {chapter}{\numberline {4}Graph comparison }{38}{chapter.4}
-\contentsline {section}{\numberline {4.1}Literature review}{38}{section.4.1}
-\contentsline {section}{\numberline {4.2}Overview of methods}{39}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Edge difference}{39}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Histogram of edge density}{39}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Shortest-path matrix}{39}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Graph distance kernel}{39}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}Examples}{39}{section.4.3}
-\contentsline {chapter}{\numberline {5}Application and results }{40}{chapter.5}
-\contentsline {section}{\numberline {5.1}Application of the visualization system}{40}{section.5.1}
-\contentsline {section}{\numberline {5.2}Stock selection methodology}{41}{section.5.2}
-\contentsline {section}{\numberline {5.3}Healthcare stock data}{43}{section.5.3}
-\contentsline {section}{\numberline {5.4}Results}{44}{section.5.4}
-\contentsline {chapter}{\numberline {6}Conclusion}{45}{chapter.6}
-\contentsline {section}{\numberline {6.1}Further extensions}{46}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Estimator selection}{46}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Outlier removal}{47}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Graphical models and improved stock selection}{47}{subsection.6.1.3}
-\contentsline {subsection}{\numberline {6.1.4}Ordering of queried plots}{49}{subsection.6.1.4}
-\contentsline {subsection}{\numberline {6.1.5}Line-up tests}{49}{subsection.6.1.5}
-\contentsline {subsection}{\numberline {6.1.6}Edge-weighted graphs}{50}{subsection.6.1.6}
-\contentsline {subsection}{\numberline {6.1.7}Rejection classification}{51}{subsection.6.1.7}
-\contentsline {chapter}{\numberline {A}Implementation}{52}{appendix.A}
-\contentsline {section}{\numberline {A.1}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, left}{52}{section.A.1}
-\contentsline {section}{\numberline {A.2}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, right}{53}{section.A.2}
-\contentsline {section}{\numberline {A.3}Code for figure\nobreakspace {}\ref {fig:visualizer:cdf}}{53}{section.A.3}
-\contentsline {section}{\numberline {A.4}Uncertainty sampling implementation}{54}{section.A.4}
-\contentsline {section}{\numberline {A.5}Query by committee implementation}{55}{section.A.5}
-\contentsline {subsection}{\numberline {A.5.1}Query selection}{55}{subsection.A.5.1}
-\contentsline {subsection}{\numberline {A.5.2}Committee pruning}{56}{subsection.A.5.2}
-\contentsline {section}{\numberline {A.6}Vote entropy implementation}{57}{section.A.6}
-\contentsline {section}{\numberline {A.7}Query by bagging implementation}{57}{section.A.7}
-\contentsline {section}{\numberline {A.8}Min-max clustering implementation}{59}{section.A.8}
-\contentsline {section}{\numberline {A.9}Simulation implementation}{60}{section.A.9}
-\contentsline {subsection}{\numberline {A.9.1}MNIST data}{60}{subsection.A.9.1}
-\contentsline {subsection}{\numberline {A.9.2}Simulation engine}{61}{subsection.A.9.2}
-\contentsline {subsection}{\numberline {A.9.3}AL algorithm engine}{62}{subsection.A.9.3}
-\contentsline {subsection}{\numberline {A.9.4}Simulator (Main)}{63}{subsection.A.9.4}
-\contentsline {chapter}{Bibliography}{64}{section*.9}
+\contentsline {subsection}{\numberline {3.3.4}Results and Extensions}{37}{subsection.3.3.4}
+\contentsline {chapter}{\numberline {4}Graph comparison }{39}{chapter.4}
+\contentsline {section}{\numberline {4.1}Literature review}{39}{section.4.1}
+\contentsline {section}{\numberline {4.2}Overview of methods}{40}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Edge difference}{40}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Histogram of edge density}{40}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Shortest-path matrix}{40}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Graph distance kernel}{40}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}Examples}{40}{section.4.3}
+\contentsline {chapter}{\numberline {5}Application and results }{41}{chapter.5}
+\contentsline {section}{\numberline {5.1}Application of the visualization system}{41}{section.5.1}
+\contentsline {section}{\numberline {5.2}Stock selection methodology}{42}{section.5.2}
+\contentsline {section}{\numberline {5.3}Healthcare stock data}{44}{section.5.3}
+\contentsline {section}{\numberline {5.4}Results}{45}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusion}{46}{chapter.6}
+\contentsline {section}{\numberline {6.1}Further extensions}{47}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Estimator selection}{47}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Outlier removal}{48}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Graphical models and improved stock selection}{48}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Ordering of queried plots}{50}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}Line-up tests}{50}{subsection.6.1.5}
+\contentsline {subsection}{\numberline {6.1.6}Edge-weighted graphs}{51}{subsection.6.1.6}
+\contentsline {subsection}{\numberline {6.1.7}Rejection classification}{52}{subsection.6.1.7}
+\contentsline {chapter}{\numberline {A}Implementation}{53}{appendix.A}
+\contentsline {section}{\numberline {A.1}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, left}{53}{section.A.1}
+\contentsline {section}{\numberline {A.2}Code for figure\nobreakspace {}\ref {fig:intro:meplot}, right}{54}{section.A.2}
+\contentsline {section}{\numberline {A.3}Code for figure\nobreakspace {}\ref {fig:visualizer:cdf}}{54}{section.A.3}
+\contentsline {section}{\numberline {A.4}Uncertainty sampling implementation}{55}{section.A.4}
+\contentsline {section}{\numberline {A.5}Query by committee implementation}{56}{section.A.5}
+\contentsline {subsection}{\numberline {A.5.1}Query selection}{56}{subsection.A.5.1}
+\contentsline {subsection}{\numberline {A.5.2}Committee pruning}{57}{subsection.A.5.2}
+\contentsline {section}{\numberline {A.6}Vote entropy implementation}{58}{section.A.6}
+\contentsline {section}{\numberline {A.7}Query by bagging implementation}{58}{section.A.7}
+\contentsline {section}{\numberline {A.8}Min-max clustering implementation}{60}{section.A.8}
+\contentsline {section}{\numberline {A.9}Simulation implementation}{61}{section.A.9}
+\contentsline {subsection}{\numberline {A.9.1}MNIST data}{61}{subsection.A.9.1}
+\contentsline {subsection}{\numberline {A.9.2}Simulation engine}{62}{subsection.A.9.2}
+\contentsline {subsection}{\numberline {A.9.3}AL algorithm engine}{64}{subsection.A.9.3}
+\contentsline {subsection}{\numberline {A.9.4}Simulator (Main)}{64}{subsection.A.9.4}
+\contentsline {chapter}{Bibliography}{65}{section*.9}

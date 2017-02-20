@@ -45,30 +45,33 @@ given a budget of 50 queries (50 progressive iterations of a single trial).
 The data is taken from the MNIST database of handwritten digits 
 (\url{http://yann.lecun.com/exdb/mnist/}). The digits $(0,1,...,9)$ have 
 already been classified and may be visualized in the form of a $28\times 28$ 
-pixel array; the darkness of each pixel is represented by a value from 0 
-(light) to around 300 (dark). Each image has been transformed into a single 
+pixel array; the hue of each pixel is represented by a value from 0 
+(light, white space) to 255 (dark, pure black). 
+Each image has been transformed into a single 
 784-length vector by ``unfurling'' each row and adding it to the last column of 
 the row above it. For ease of use and computation efficiency, the data has been 
 further compressed to a 196-length vector ($14\times 14$ pixel image). In order 
 to maintain the condition of bivariate classification, two out of ten digits 
-were selected. The digits 7 and 9 were selected as they are rather similar, 
+were selected. The digits 7 and 9 were selected as they are similar visually, 
 making it more difficult for an active learning algorithm to correctly parse 
 the data with few queries (As opposed to 1 and 0, which are very different on 
 the visual plane). The MNIST training set contains 60,000 total data points 
-while the testing set contains 10,000 total data points. This was far too many, 
-so the simulator selects 250 random samples (125 of each digit) from the 
-training set to make up the final data. The final dataset may be visualized in 
-Figure~\ref{fig:al:simulations:data}. The functions for working with the MNIST 
-data were adapted from file \texttt{gist:39760}~\cite{oconnor2008} and may be 
-found in Appendix~\ref{sec:appendicies:al:simulations:data}.
+while the testing set contains 10,000 total data points. For the sake of 
+computational efficiency, the simulator selects 250 random samples (125 of each 
+digit) from the training set to make up the final data. 
+The final dataset may be visualized in Figure~\ref{fig:al:simulations:data}. 
+The functions for working with the MNIST data were adapted from file 
+\texttt{gist:39760}~\cite{oconnor2008} and may be found in 
+Appendix~\ref{sec:appendicies:al:simulations:data}.
 
 \begin{figure}[htb]
 	\begin{center}
 		\includegraphics[width=1\linewidth]{ch-al/figures/data.pdf}
 		\caption[MNIST data used in the simulations.]{MNIST data used in the 
-		simulations. The digits 7 and 9 are relatively similar visually, making 
-		the simulations more realistic as it is harder for the classificaiton 
-		models to tell the difference.}
+		simulations. The digits 7 and 9 are similar visually, making 
+		the simulations more realistic as it is harder for the classification 
+		model to achieve a ``perfect fit'' (given only the initial labeled) 
+		without the use of querying.}
 		\label{fig:al:simulations:data}
 	\end{center}
 \end{figure}
@@ -128,8 +131,11 @@ Appendix~\ref{sec:appendicies:al:simulations:simengine}):
 \subsection{Summary of methods}
 \label{sec:al:simulation:methods}
 
-What follows is a summary of the active learning methods used in the simulation 
-with details such tuning parameter values.
+Table~\ref{tab:al:simulations} contains a summary of the active learning 
+methods used in the simulation with details such tuning parameter values. 
+Random sampling is used as the active learning method's control as a point of 
+comparison; it is the most simplistic base case in which active learning is not 
+present.
 
 \tablespacing
 \begin{longtable}{p{0.15\linewidth} p{0.21\linewidth} p{0.18\linewidth} 
@@ -193,7 +199,7 @@ p{0.4\linewidth}}
 	\textit{Disagreement}: Vote entropy, \newline 
 	\textit{C\_Pruning}: T, $\epsilon$: 0.5 \\ & \\
 	
-	& & Random forest &	
+	(QBC \newline CONTROL) & & Random forest &	
 	\textit{Committee}: RF, NB, SVM, PLS, \newline 
 	\textit{Disagreement}: Vote entropy, \newline 
 	\textit{C\_Pruning}: F, $\epsilon$: N/A \\ & \\
@@ -221,7 +227,23 @@ p{0.4\linewidth}}
 \end{longtable}
 \bodyspacing
 
-A summary of each classification model used in the stating committee for QBC 
+\noindent QBC was tested with different parameters for the overall/main 
+classification model (random forest vs majority committee vote) and committee 
+pruning (yes or no). This was done in order to see the effectiveness of the 
+proposed addendums to the QBC method (Section~\ref{sec:al:methods:qbc}) and, 
+ultimately, select the best QBC method in terms of \textit{algorithm structure} 
+for comparison with the other methods. Naturally, the control for comparing the 
+QBC methods is the method with a random forest classification model and no 
+committee pruning (This turns into the naive QBC methodology as detailed in 
+Algorithm~\ref{alg:al:methods:qbc1}). A general committee was randomly selected 
+which worked with the data. For example, any form of discriminant analysis, 
+which utilizes matrix inversion, does not work without data cleaning. The 
+nature of the MNIST data is that many columns are 0 (white space). This is 
+evident from the plots in Figure~\ref{fig:al:simulations:data}. These columns 
+of 0 makes the matrix degenerate, so discriminant analysis cannot function. 
+To avoid further tampering with the dataset (as the data has already been 
+compressed), LDA, DDA, FDA, etc. were not included in the starting committee. 
+A summary of each classification model used in the starting committee for QBC 
 implementation is as follows:
 
 \tablespacing
@@ -244,7 +266,7 @@ bypassing checks and/or improperly calling functions.
 
 
 
-\subsection{Results}
+\subsection{Results and Extensions}
 \label{sec:al:simulation:results}
 
 The full simulator which loads the data (using functions in 
@@ -257,25 +279,39 @@ Appendix~\ref{sec:appendicies:al:simulations:results}.
 
 \begin{figure}[htb]
 	\begin{center}
-		\includegraphics[width=1\linewidth,page=1]{ch-al/figures/results.pdf}
-		\caption[x.]{aggregated results.}
-		\label{fig:al:simulations:results}
-	\end{center}
-\end{figure}
-
-\begin{figure}[htb]
-	\begin{center}
 		\includegraphics[width=1\linewidth,page=2]{ch-al/figures/results.pdf}
-		\caption[x.]{QBC results.}
+		\caption[Active learning simulation results for Query by Committee with 
+		varying parameters.]{Active learning simulation results for Query by 
+			Committee with varying parameters.}
 		\label{fig:al:simulations:resultsqbc}
 	\end{center}
 \end{figure}
 
 (Discuss how QBC actually spikes up when the pruning occurs, contrary to 
-intuition - perhaps there is room for a future extension there. Note that the 
-simulations are in no way completely comprehensive/exhaustive, and there is 
-further work 
-to be done ... For example, trying other classification models within the 
-active learning algorithms - who knows, maybe that would've been better! Or 
-trying different QBC committees, different tuning parameters i.e. pruning 
-factor is 0.75 instead of 0.5, or you prune later/earlier)
+intuition - perhaps there is room for a future extension there. 
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth,page=1]{ch-al/figures/results.pdf}
+		\caption[Aggregated active learning simulation results.]{ 
+		Aggregated active learning simulation results.}
+		\label{fig:al:simulations:results}
+	\end{center}
+\end{figure}
+
+Naturally, there are many other parameters that could have been tested, which 
+were not tested in this simulator in the interest of time. For 
+example, the classification model in the active learning method (not the 
+overall method) to aid in query selection does not have to be a random forest 
+(This applies to US and QBB); perhaps another would have worked better despite 
+the intuition that, if the active learning methods optimizes over the same 
+classification model that the main program will use, the learner will perform 
+better. Furthermore, there are other disagreement methods 
+that could be implemented aside from vote entropy, one of which was described 
+earlier in Section~\ref{sec:al:methods:qbc} (This applies to QBC and QBB). The 
+tuning parameters of $\epsilon$ and $r$ in the query by committee/bagging 
+methods could also be perturbed to see the effect on error ratio. Finally, 
+different committees could be fed into the QBC method, and different starting 
+points for pruning (i.e. $iter/3$ or $iter/4$ instead of $iter/2$) could also 
+be tested. The reader is invited to pursue these as further extensions of this 
+work should they wish to.
