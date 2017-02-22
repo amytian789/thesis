@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  20 FEB 2017 16:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  22 FEB 2017 00:32
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -794,7 +794,8 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 
 
 ]
-[54] [55] [56] [57] [58] [59] [60] [61] [62] [63]) [64] (thesis.bbl [65
+[54] [55] [56] [57] [58] [59] [60] [61] [62] [63] [64] [65] [66]) [67]
+(thesis.bbl [68
 
 
 
@@ -806,7 +807,7 @@ Underfull \hbox (badness 4899) in paragraph at lines 88--92
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 286.
- [66]
+ [69]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 286.
  (thesis.aux (ch-intro/chapter-intro.aux)
 (ch-visualizer/chapter-visualizer.aux) (ch-al/chapter-al.aux)
@@ -819,10 +820,10 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 286.
  ) 
 Here is how much of TeX's memory you used:
- 9771 strings out of 493334
- 140855 string characters out of 3136672
- 399391 words of memory out of 3000000
- 12352 multiletter control sequences out of 15000+200000
+ 9875 strings out of 493334
+ 142431 string characters out of 3136672
+ 411390 words of memory out of 3000000
+ 12357 multiletter control sequences out of 15000+200000
  12309 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,6n,42p,298b,2414s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -844,9 +845,9 @@ eX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on thesis.pdf (75 pages, 1338052 bytes).
+Output written on thesis.pdf (78 pages, 1358210 bytes).
 PDF statistics:
- 1731 PDF objects out of 2073 (max. 8388607)
- 703 named destinations out of 1000 (max. 500000)
+ 1860 PDF objects out of 2073 (max. 8388607)
+ 802 named destinations out of 1000 (max. 500000)
  664 words of extra memory for PDF output out of 10000 (max. 10000000)
 
