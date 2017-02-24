@@ -16,7 +16,7 @@ should be (and are) captured in the simulations:
 	\item \textbf{Pool-based sampling (Section ~\ref{sec:al:litreview}):} After 
 	initialization, $k$ unlabeled samples are randomly selected from $X$, and 
 	the active learner picks one to query. Each simulation iteration (of the AL 
-	algorithm) is presented 15 unlabeled points to query from.
+	algorithm) is presented $k=15$ unlabeled points to query from.
 	\item \textbf{Random forest 
 	(Section~\ref{sec:visualizer:plotgeneration:tree}):} The VS's overall 
 	classification model (for use when initialization and querying are 
@@ -174,21 +174,21 @@ p{0.4\linewidth}}
 	\endlastfoot
 	
 	Random \newline sampling \newline (CONTROL) & 
-	25 trials, 50 iterations (queries allowed) each & 
+	25 trials, 50 iterations, 15 ``pooled'' points each & 
 	Random forest & 
 	\textit{Classifier}: None \\
 	
 	\cmidrule[0.1pt](l{0.5em}r{0.5em}){1-4}	
 	
 	Uncertainty \newline sampling ~\ref{sec:al:methods:uncertainty} & 
-	25 trials, 50 iterations (queries allowed) each & 
+	25 trials, 50 iterations, 15 ``pooled'' points each & 
 	Random forest & 
 	\textit{Classifier}: Random forest \\
 
 	\cmidrule[0.1pt](l{0.5em}r{0.5em}){1-4}
 	
 	Query by \newline committee ~\ref{sec:al:methods:qbc} & 
-	25 trials, 50 iterations (queries allowed) each & 
+	25 trials, 50 iterations, 15 ``pooled'' points each & 
 	Random forest &	
 	\textit{Committee}: RF, NB, SVM, PLS, \newline 
 	\textit{Disagreement}: Vote entropy, \newline 
@@ -212,7 +212,7 @@ p{0.4\linewidth}}
 	\cmidrule[0.1pt](l{0.5em}r{0.5em}){1-4}	
 	
 	Query by \newline bagging ~\ref{sec:al:methods:bagging} & 
-	25 trials, 50 iterations (queries allowed) each & 
+	25 trials, 50 iterations, 15 ``pooled'' points each & 
 	Random forest &
 	\textit{Classifier}: Random forest, \newline \textit{Disagreement}: Vote 
 	entropy, \newline \textit{num\_class}: 5, \textit{r}: 0.75 \\
@@ -220,7 +220,7 @@ p{0.4\linewidth}}
 	\cmidrule[0.1pt](l{0.5em}r{0.5em}){1-4}	
 	
 	Min-max \newline clustering ~\ref{sec:al:methods:clustering} & 
-	25 trials, 50 iterations (queries allowed) each & 
+	25 trials, 50 iterations, 15 ``pooled'' points each & 
 	Random forest & 
 	\textit{Classifier}: None, \newline \textit{Distance}: Euclidean \\
 	
@@ -282,13 +282,42 @@ Appendix~\ref{sec:appendicies:al:simulations:results}.
 		\includegraphics[width=1\linewidth,page=2]{ch-al/figures/results.pdf}
 		\caption[Active learning simulation results for Query by Committee with 
 		varying parameters.]{Active learning simulation results for Query by 
-			Committee with varying parameters.}
+			Committee with varying parameters. Each of the 25 trials were 
+			consistently seeded with its own value, so the values before 
+			committee pruning would/would not have occurred (at $iter/2=25$) 
+			are the same. }
 		\label{fig:al:simulations:resultsqbc}
 	\end{center}
 \end{figure}
 
-(Discuss how QBC actually spikes up when the pruning occurs, contrary to 
-intuition - perhaps there is room for a future extension there. 
+Figure~\ref{fig:al:simulations:resultsqbc} is a summarization of the 
+performance of query by committee given different parameters. With query by 
+committee, majority committee vote outperforms random forest on 
+average in the first half (25 iterations) as the main classification model. 
+What is interesting to note in iteration 25 onwards is that the error ratio for 
+both majority committee vote spikes up \textit{after pruning has occurred}. 
+This is interesting since the idea was to prune committee who performed poorly; 
+this indicates that the insight of \textit{all} committee members, 
+despite performance (or with more room for error than 0.5), are valuable. 
+Naturally, this phenomenon cannot be observed in the random forest results 
+because the classification model is a random forest; since committee members 
+are not weighing in on the predicted labels, the members themselves hold 
+less weight. Although majority committee voting with no pruning 
+continues to maintain its lead past 25 iterations, the error ratios converge as 
+the number of iterations gets closer to 50. In fact, near iteration 50, it 
+appears that both random forest methods start converging faster and just barely 
+overtake majority committee vote at the end. In other words, QBC with majority 
+voting starts off better but improves more slowly while QBC with random foresst 
+starts off worse but improves more rapidly.
+Each method has its own trade-offs, and it becomes all the more important to 
+keep the end goal, the visualization system, in mind. Recall that an important 
+criterion for active learning performance is performance given {less query
+points}. The user should not have to label more than fifty plots in order for 
+the system to learn his/her interests; not only is it tedious for the user, but 
+this tedium may cause the user to perform the tasks with less seriousness or 
+cause the user's concentration to slip. Subsequently, we select \textbf{QBC 
+with majority committee vote and no committee pruning} for comparison with the 
+other algorithm types.
 
 \begin{figure}[htb]
 	\begin{center}
@@ -299,6 +328,63 @@ intuition - perhaps there is room for a future extension there.
 	\end{center}
 \end{figure}
 
+Figure~\ref{fig:al:simulations:results} summarizes the performance of the 
+``best'' QBC method against the other active learning methods along with random 
+sampling as a control (a baseline for comparisons). Random sampling actually 
+performs better than one might expect, though it is the first to fall off 
+(converge more slowly). This may be, in part, due to the constraints of 
+pool-based sampling. In each iteration, random sampling was also constrained to 
+15 random points each to query from. Thus, each active learning method cannot 
+optimize over the entire sample space.
+
+What is especially interesting is that random 
+sampling performs better than min-max clustering for the longest time (but 
+min-max clustering converges more rapidly and eventually overtakes random 
+sampling). This may be attributed to the nature of the active learner's 
+initialization. With clustering algorithms, initialization is extremely 
+important; by starting with points within clusters, the min-max methodology 
+allows the learner to further query within clusters (to sample more labels) 
+without having to start by searching through the entire space for the clusters. 
+In the simulator, recall that each active learning method is initialized 
+randomly with the same set of data and starting points. We suspect that if we 
+had initialized the min-max clustering method with the $k$-nearest neighbors 
+graph as suggested by Vu \textit{et al.}  ~\cite{vu2010}, the min-max 
+clustering algorithm would have begun with better performance. 
+
+Query by bagging, overall, performs worse than query by committee. In fact, it 
+performs similarly to QBC with a main random forest classification model, whose 
+performance can be seen in Figure~\ref{fig:al:simulations:resultsqbc}. 
+This isn't surprising because the bagging algorithm itself uses a committee of 
+five random forest classifiers (these parameters are summarized in 
+Table~\ref{tab:al:simulations}) and also uses a random forest 
+for the main classification model. 
+
+There appears to be another ``tie'' for query by committee and uncertainty 
+sampling. QBC starts off better, but the faster convergence in uncertainty 
+sampling eventually outperforms QBC. Unlike the case of QBC with a random 
+forest versus majority committee vote classification model 
+(Figure~\ref{fig:al:simulations:resultsqbc}), uncertaintly sampling overtakes 
+QBC much earlier. To be more specific, QBC is overtaken near the tenth 
+iteration. Thus, out of all methods described in 
+Table~\ref{tab:al:simulations}, \textbf{uncertainty sampling} most closely 
+embodies the qualities that characterize a strong active learner: intelligent 
+selection of queries that allow the main classifier to learn interests more 
+quickly.
+
+Figure~\ref{fig:al:simulations:resultsci}, which shows performance plots with 
+confidence intervals for each active learrning method, may also be of interest 
+to the reader.
+
+%\textsc{\begin{figure}[htb]
+%	\begin{center}
+%		\includegraphics[width=1\linewidth,page=3]{ch-al/figures/results.pdf}
+%		\caption[Active learning simulation results with confidence 
+%		intervals.]{Active learning simulation results with confidence 
+%		intervals.}
+%		\label{fig:al:simulations:resultsci}
+%	\end{center}
+%\end{figure}}
+
 \subsubsection{Extensions}
 
 Naturally, there are many other parameters that could have been tested, which 
@@ -308,12 +394,15 @@ overall method) to aid in query selection does not have to be a random forest
 (This applies to US and QBB); perhaps another would have worked better despite 
 the intuition that, if the active learning methods optimizes over the same 
 classification model that the main program will use, the learner will perform 
-better. Furthermore, there are other disagreement methods 
+better. As noted earlier, initialization is important for min-max clustering, 
+and the performance of the learner may be tested with different initialization 
+schemes. Furthermore, there are other disagreement methods 
 that could be implemented aside from vote entropy, one of which was described 
 earlier in Section~\ref{sec:al:methods:qbc} (This applies to QBC and QBB). The 
 tuning parameters of $\epsilon$ and $r$ in the query by committee/bagging 
 methods could also be perturbed to see the effect on error ratio. Finally, 
 different committees could be fed into the QBC method, and different starting 
 points for pruning (i.e. $iter/3$ or $iter/4$ instead of $iter/2$) could also 
-be tested. The reader is invited to pursue these as further extensions of this 
-work should they wish to.
+be tested. It may also be of interest to dig into why the active learner 
+suddenly does worse the moment a committee is pruned. The reader is invited to 
+pursue these as further extensions of this work should they wish to.

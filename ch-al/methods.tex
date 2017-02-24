@@ -122,10 +122,11 @@ important to note that the ``true'' label is not known until \textit{after} the
 algorithm has return the index of $q_t$. Subsequently, the committee from $t$ 
 is pruned at time $t+1$ at the start of the algorithm using the retrieved 
 label from time $t$. It should be noted that the pruning function should only 
-be run after a good number of iterations have passed to allow the error ratios 
-to converge (Otherwise, there is no room for learning). In our implementation, 
-we implement the pruning algorithm after $iter/2$ queries where $iter$ is the 
-maximum number of queries allowed.
+be run after a good number of iterations (where each iteration results in a 
+query) have passed to allow the error ratios to converge (Otherwise, there is 
+no room for learning). In our implementation, we implement the pruning 
+algorithm after $iter/2$ queries where $iter$ is the maximum number of queries 
+allowed.
 Furthermore, the query by committee methodology described by Settles is only 
 focused on selection of $q$ independent of the final classification model 
 once the rest of the training data is selected~\cite{settles2010}. However, 

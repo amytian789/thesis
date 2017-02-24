@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  22 FEB 2017 16:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  23 FEB 2017 19:44
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -622,7 +622,7 @@ Chapter 3.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 41.
  [26] [27] [28]
-Underfull \hbox (badness 1490) in paragraph at lines 207--215
+Underfull \hbox (badness 1490) in paragraph at lines 208--216
 \OT1/cmr/m/n/12 Since $\OML/cmm/m/it/12 C$ \OT1/cmr/m/n/12 was de-fined as the 
 com-mit-tee, we can in-ter-pret $[][](\OML/cmm/m/it/12 y[]\OMS/cmsy/m/n/12 j\OM
 L/cmm/m/it/12 x\OT1/cmr/m/n/12 ) =
@@ -707,42 +707,46 @@ File: ch-al/figures/results.pdf Graphic file (type pdf)
 Package pdftex.def Info: ch-al/figures/results.pdf, page2 used on input line 28
 2.
 (pdftex.def)             Requested size: 433.62pt x 260.17401pt.
-
-<ch-al/figures/results.pdf, id=829, page=1, 722.7pt x 433.62pt>
+ [37 <./ch-al/figures/results.pdf>]
+<ch-al/figures/results.pdf, id=840, page=1, 722.7pt x 433.62pt>
 File: ch-al/figures/results.pdf Graphic file (type pdf)
 
 <use ch-al/figures/results.pdf, page 1>
-Package pdftex.def Info: ch-al/figures/results.pdf, page1 used on input line 29
-5.
+Package pdftex.def Info: ch-al/figures/results.pdf, page1 used on input line 32
+4.
 (pdftex.def)             Requested size: 433.62pt x 260.17401pt.
-) [37 <./ch-al/figures/results.pdf>])
-[38 <./ch-al/figures/results.pdf>] [39]
+ [38] [39 <./ch-al/figures/results.pdf>]
+
+LaTeX Warning: Reference `fig:al:simulations:resultsci' on page 40 undefined on
+ input line 374.
+
+) [40]) [41]
 \openout2 = `ch-gc/chapter-gc.aux'.
 
  (ch-gc/chapter-gc.tex
 Chapter 4.
-(ch-gc/litreview.tex) (ch-gc/methods.tex) (ch-gc/examples.tex)) [40
+(ch-gc/litreview.tex) (ch-gc/methods.tex) (ch-gc/examples.tex)) [42
 
 
 
-] [41]
+] [43]
 \openout2 = `ch-usage/chapter-usage.aux'.
 
 
 (ch-usage/chapter-usage.tex
 Chapter 5.
-(ch-usage/newanalysis.tex) (ch-usage/stockselection.tex [42
+(ch-usage/newanalysis.tex) (ch-usage/stockselection.tex [44
 
 
 
-] [43])
-(ch-usage/data.tex [44] [45]) (ch-usage/results.tex)) [46]
+] [45])
+(ch-usage/data.tex [46] [47]) (ch-usage/results.tex)) [48]
 \openout2 = `ch-conclusion/chapter-conclusion.aux'.
 
 
 (ch-conclusion/chapter-conclusion.tex
 Chapter 6.
-(ch-conclusion/conclusion.tex [47
+(ch-conclusion/conclusion.tex [49
 
 
 
@@ -750,8 +754,8 @@ Chapter 6.
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
- [48] [49]
-[50]
+ [50] [51]
+[52]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
@@ -761,19 +765,19 @@ Missing character: There is no “ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
- [51]
-<ch-conclusion/figures/lineup.jpg, id=936, 698.00775pt x 143.93774pt>
+ [53]
+<ch-conclusion/figures/lineup.jpg, id=958, 698.00775pt x 143.93774pt>
 File: ch-conclusion/figures/lineup.jpg Graphic file (type jpg)
 
 <use ch-conclusion/figures/lineup.jpg>
 Package pdftex.def Info: ch-conclusion/figures/lineup.jpg used on input line 13
 4.
 (pdftex.def)             Requested size: 433.62pt x 89.41837pt.
- [52 <./ch-conclusion/figures/lineup.jpg>]
+ [54 <./ch-conclusion/figures/lineup.jpg>]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-)) [53]
+)) [55]
 \openout2 = `ch-appendicies/implementation.aux'.
 
  (ch-appendicies/implementation.tex
@@ -789,13 +793,13 @@ File: lstlang3.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 10.
- [54
+ [56
 
 
 
 ]
-[55] [56] [57] [58] [59] [60] [61] [62] [63] [64] [65] [66] [67]) [68]
-(thesis.bbl [69
+[57] [58] [59] [60] [61] [62] [63] [64] [65] [66] [67] [68] [69] [70] [71]
+[72] [73] [74] [75] [76]) [77] (thesis.bbl [78
 
 
 
@@ -807,7 +811,7 @@ Underfull \hbox (badness 4899) in paragraph at lines 88--92
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 286.
- [70]
+ [79]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 286.
  (thesis.aux (ch-intro/chapter-intro.aux)
 (ch-visualizer/chapter-visualizer.aux) (ch-al/chapter-al.aux)
@@ -817,13 +821,17 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 286.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 286.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: BEB385C26538948B45B15B66E5542490;5676.
+
+
+LaTeX Warning: There were undefined references.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 286.
  ) 
 Here is how much of TeX's memory you used:
- 9877 strings out of 493334
- 142450 string characters out of 3136672
- 411375 words of memory out of 3000000
- 12357 multiletter control sequences out of 15000+200000
+ 10244 strings out of 493334
+ 148355 string characters out of 3136672
+ 438413 words of memory out of 3000000
+ 12378 multiletter control sequences out of 15000+200000
  12309 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,6n,42p,298b,2414s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -845,9 +853,9 @@ eX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on thesis.pdf (79 pages, 1359517 bytes).
+Output written on thesis.pdf (88 pages, 1431221 bytes).
 PDF statistics:
- 1866 PDF objects out of 2073 (max. 8388607)
- 804 named destinations out of 1000 (max. 500000)
+ 2322 PDF objects out of 2487 (max. 8388607)
+ 1150 named destinations out of 1200 (max. 500000)
  664 words of extra memory for PDF output out of 10000 (max. 10000000)
 
