@@ -3,12 +3,20 @@
 Graph comparison may be reduced to a problem of measuring the difference 
 between two graphs. 
 A primary goal of the visualization system is to allow the user to better 
-verify their numerical results with visual intuition. As such, the graph 
-comparison measure is an important output of the VS that allows the user to 
-quantify the difference between the methods, prompting the user to rethink 
-their methods as needed. Furthermore, graph comparison may be directly used to 
-compare visual and numeric correlation graphs, which we utilize to select 
-stocks for a portfolio in Chapter~\ref{ch:usage}.
+verify their numerical results with visual intuition. As such, there are two 
+main goals for graph comparison output: (1) allow the user to gain some 
+intuition about the qualities of the visual graph in order to better understand 
+their perceptions of a ``visual trend'' in the data, and (2) provide a metric 
+that quantifies the difference between the visual graph and numeric graph 
+(supplied by the user). With the knowledge of both in hand, the user may 
+reevaluate their numeric methods and utilize the results in alternate 
+applications (For example, the second metric is utilized to select stocks for a 
+portfolio in Chapter~\ref{ch:usage}). It should be noted that we operate under 
+the assumption that the graphs are labeled. This avoids the sticky issue of 
+isomorphism and more naturally lends itself to the visualization system's 
+goals. As the VS is concerned with practical application in data 
+analytics, each variable in a dataset should already correspond to some label 
+(e.g. various stocks).
 
 \input{ch-gc/litreview}
 \input{ch-gc/methods}
