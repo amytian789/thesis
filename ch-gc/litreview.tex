@@ -1,21 +1,21 @@
 \section{(not actually a) Literature review}
 \label{sec:gc:litreview}
 
-There are two ways of thinking about graph comparison. Let $\hat{G_1}, 
-\hat{G_2}$ each be some labeled graph. 
+There are two ways of thinking about graph comparison. Let $\hat{G^1}(V_1,E_1), 
+\hat{G^2}(V_2,E_2)$ each be some labeled graph. 
 
 \tablespacing
 \begin{enumerate}
 	\item \textbf{Graph summarization:} Compute some vector 
-	$\overrightarrow{v_1}$ on $\hat{G_1}$ 1 that ``summarizes'' some property 
-	it has. Similarly, compute $\overrightarrow{v_2}$ on $\hat{G_2}$ to capture 
+	$\overrightarrow{v_1}$ on $\hat{G^1}$ 1 that ``summarizes'' some property 
+	it has. Similarly, compute $\overrightarrow{v_2}$ on $\hat{G^2}$ to capture 
 	the same property that $\overrightarrow{v_1}$ does. Finally, compute 
 	$f(\overrightarrow{v_1},\overrightarrow{v_2})$ where $f$ is some distance 
 	function (e.g. Euclidean distance).
 	\item \textbf{Graph distance:} Create a valid distance function $f$ on the 
-	graphs $\hat{G_1}, \hat{G_2}$ directly rather than a vector of metrics 
+	graphs $\hat{G^1}, \hat{G^2}$ directly rather than a vector of metrics 
 	($\overrightarrow{v_1},\overrightarrow{v_2}$). 
-	Compute $f(\hat{G_1},\hat{G_2})$.
+	Compute $f(\hat{G^1},\hat{G^2})$.
 \end{enumerate}
 \bodyspacing
 
@@ -53,7 +53,7 @@ Figure~\ref{fig:gc:arr_density}).
 		\caption[Difficulties with graph visualization.]{
 		Suppose we have a cluster graph $G(V = 18,E)$ with clusters $C_1,C_2$. 
 		Let $C_1$ be composed of nodes $(V_1,...,V_6)$, and $C_2$ be composed 
-		of nodes $(V_7,...,V_18)$. 
+		of nodes $(V_7,...,V_{18})$. 
 		\textit{Left:} $C_1$, the smaller cluster, has been placed inside 
 		$C_2$, the larger cluster. It is difficult to discern any meaningful 
 		patterns; each node appears to be connected to every other node as the 

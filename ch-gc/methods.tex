@@ -1,14 +1,128 @@
 \section{Overview of graph summarization methods}
 \label{sec:gc:methods}
 
+All methods listed below are implemented in the \texttt{igraph} package in 
+\texttt{R}. As such, we do not implement the methods ourselves as in 
+Chapter~\ref{ch:al}.
+
 \subsection{Centrality}
 
-\subsection{Community}
+The centrality of a graph $\hat{G^1}$ is given by $\overrightarrow{v^{1,c}}$,  
+a vector of length $V_1$ where each element 
+$\overrightarrow{v^{1,c}_i}$ is the ``importance'' of node $i$. The 
+``importance'' of the node may be measured by utilizing metrics such as 
 
-\subsection{Distance matrix}
+\tablespacing
+\begin{itemize}
+	\item \textbf{Degree:} The degree of a node is the number of edges the node 
+	is part of. The higher the degree, the more important the node is.	
+	This metric of centrality is called with the 	
+	\texttt{degree} function from the \texttt{igraph} package.
+	\item \textbf{Closeness:} The closeness of a node is the average 
+	shortest path length (the path which traverses the smallest number of 
+	nodes) between the node and all other nodes. The higher the centrality, 
+	the closer the node is to all other nodes (in terms of path length), the 
+	more important the node is.	
+	This metric of centrality is called with the 
+	\texttt{closeness} function from the \texttt{igraph} package.
+	\item \textbf{Betweenness:} The betweenness of a node is the number of 
+	times the node is part of the shortest path between two other nodes. Paths 
+	from the node itself to another node are excluded. The higher the 
+	betweenness, the more important the node is as it provides a critical 
+	cost-saving link (path length) for the path between many other nodes. 
+	This metric of centrality is called with the 
+	\texttt{betweenness} function from the \texttt{igraph} package.
+\end{itemize}
+\bodyspacing
+
+It may further be interesting to aggregate various importance metrics and take 
+an average to get the average importance of a single node. To do so, however, 
+it will be important to normalize the centrality metrics. For instance, each 
+metric may be recomputed as a fraction e.g. the ``degree'' metric could return 
+$\frac{Deg(V_i)}{\max_k Deg(V_k)}$ while the ``betweenness'' metric could 
+return $\frac{Bet(V_i)}{n^{sp}}$ where $n^{sp}$ is the total number of shortest 
+paths computed. The centrality of a graph may also be returned as a scalar by 
+computing an average over all nodes.
 
 \subsection{Assortativity}
 
-\subsection{Edge density}
+Assortativity measures the level of resemblance among the connected nodes of a 
+graph based on some metric such as the degree. For 
+an edge $E_{i,j}$, the degree of nodes $V_i$ and $V_j$ are collected in two 
+distinct vectors $\overrightarrow{v_1}, \overrightarrow{v_2}$. Then the 
+assortativity metric of a graph $\hat{G^1}$ is $\mathcal{A}^1 = 
+\text{Corr}(\overrightarrow{v_1},\overrightarrow{v_2}$). 
+We have already discussed different methods that may be used to compute 
+the correlation of a sample in Section~\ref{sec:intro:correlation}. As such, 
+the assortativity of $\hat{G^1}$ is summarized in a single value 
+$\mathcal{A}^1$ where $\mathcal{A}^1=1$ when nodes with high/low degrees in 
+$\hat{G^1}$ are mostly connected to other nodes with high/low degrees in 
+$\hat{G^1}$, respectively. In other words, if $\mathcal{A}^1$ is large, then 
+connected vertices tend to have the same qualities (e.g. degree).
+Assortativity is called with the \texttt{assortativity} function from the 
+\texttt{igraph} package.
+
+\subsection{Community}
+
+The community of a graph $\hat{G^1}$ is given by $\mathcal{S}^1$, a set of its 
+dense subgraphs. Subgraphs may be detected with any of the following algorithms:
+
+\tablespacing
+\begin{itemize}
+	\item \textbf{Infomap:} 
+	This approach to building a community is called with the 
+	\texttt{cluster\_infomap} function from the \texttt{igraph} package.
+	\item \textbf{Random walks:} By implementing a random walk within a graph 
+	to determine the various subgraphs, the random walk procedure takes 
+	advantage of the natural idea that random walks within a graph will tend to 
+	stay in the same subgraph. This is because a subgraph is a dense part of 
+	the graph with few connections to other subgraphs, so there is an 
+	increased likelihood of proceeding via an edge that is within the same 
+	subgraph.
+	This approach to building a community is called with the 
+	\texttt{cluster\_walktrap} function from the \texttt{igraph} package.
+\end{itemize}
+\bodyspacing
+
+Because $\mathcal{S}^1$ is a set of subgraphs, comparison among 
+graphs $\hat{G^1}$ and $\hat{G^2}$ via the community graph summarization metric 
+must be done with a method such as the Jaccard index. 
+Consider the sets $\mathcal{S}^1=(1,1,2,2,3,3)$ and 
+$\mathcal{S}^2=(3,3,2,2,1,1)$. These are 
+the exact same sets, but they are numbered differently; it is clear, then, that 
+a traditional distance metric such as Euclidean distance will not capture the 
+relationship properly. The Jaccard index compares the actual sets rather than 
+their literal values.
+
+\subsection{Distance matrix}
+
+The distance matrix $M^1$ of a graph $\hat{G^1}$ is a square matrix that 
+contains the shortest path length 
+between all pairs of variables. Each element $M^1_{i,j}$ 
+contains the shortest path distance between node $i$ to node $j$. If no path 
+exists, it is conventional to set the value to infinity. However, the matrix 
+$M^1$ must somehow be compared to the matrix $M^2$ of $\hat{G^2}$; as such, 
+setting a value of infinity doesn't make sense. Alternatively, the value may be 
+set to some large number such as two times the length of the longest path. The 
+distance matrix method is called with the \texttt{distances} function from the 
+\texttt{igraph} package.
 
 \subsection{Edge connectivity}
+
+The edge connectivity of a graph $\hat{G^1}$ is given by $\mathcal{C}^1$, the 
+number of edges that need to be deleted in order to \textit{disconnect} 
+$\hat{G^1}$. More specifically, it is the number of edges that need to be 
+deleted so that $\hat{G^1}$ is partitioned into $k$ distinct subgraphs and is
+no longer ``strongly'' connected. The edge connectivity of a graph is computed 
+with the \texttt{adhesion} function from the \texttt{igraph} package.
+
+\subsection{Edge density histogram}
+
+Edge density captures the number of nodes in a graph that have a specified 
+number of degrees. Naturally, a larger number of high-degree nodes is a signal 
+for density while a larger number of low-degree nodes is a signal for sparsity.
+For a graph $\hat{G^1}$, the edge density is summarized in a 
+vector $v^1$ of length $b$, the number of desired ``bins'' (e.g. bin 1 is $1-5$ 
+degrees, bin 2 is $6-10$ degrees, etc.). Then the value $v^1_i$ is the number 
+of nodes which correspond to bin $i$.
+

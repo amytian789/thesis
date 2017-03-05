@@ -39,11 +39,11 @@
 \BOOKMARK [1][-]{section.4.1}{4.1 \(not actually a\) Literature review}{chapter.4}% 39
 \BOOKMARK [1][-]{section.4.2}{4.2 Overview of graph summarization methods}{chapter.4}% 40
 \BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Centrality}{section.4.2}% 41
-\BOOKMARK [2][-]{subsection.4.2.2}{4.2.2 Community}{section.4.2}% 42
-\BOOKMARK [2][-]{subsection.4.2.3}{4.2.3 Distance matrix}{section.4.2}% 43
-\BOOKMARK [2][-]{subsection.4.2.4}{4.2.4 Assortativity}{section.4.2}% 44
-\BOOKMARK [2][-]{subsection.4.2.5}{4.2.5 Edge density}{section.4.2}% 45
-\BOOKMARK [2][-]{subsection.4.2.6}{4.2.6 Edge connectivity}{section.4.2}% 46
+\BOOKMARK [2][-]{subsection.4.2.2}{4.2.2 Assortativity}{section.4.2}% 42
+\BOOKMARK [2][-]{subsection.4.2.3}{4.2.3 Community}{section.4.2}% 43
+\BOOKMARK [2][-]{subsection.4.2.4}{4.2.4 Distance matrix}{section.4.2}% 44
+\BOOKMARK [2][-]{subsection.4.2.5}{4.2.5 Edge connectivity}{section.4.2}% 45
+\BOOKMARK [2][-]{subsection.4.2.6}{4.2.6 Edge density histogram}{section.4.2}% 46
 \BOOKMARK [1][-]{section.4.3}{4.3 Examples}{chapter.4}% 47
 \BOOKMARK [0][-]{chapter.5}{5 Application and results }{}% 48
 \BOOKMARK [1][-]{section.5.1}{5.1 Application of the visualization system}{chapter.5}% 49
