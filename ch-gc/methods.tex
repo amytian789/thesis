@@ -1,8 +1,8 @@
 \section{Overview of graph summarization methods}
 \label{sec:gc:methods}
 
-All methods listed below are implemented in the \texttt{igraph} package in 
-\texttt{R}. As such, we do not implement the methods ourselves as in 
+Most methods listed below are implemented in the \texttt{igraph} package in 
+\texttt{R}. As such, we do not implement most methods ourselves as in 
 Chapter~\ref{ch:al}. However, we do need to normalize the returned 
 summarization metric in order to compare graphs properly.
 
@@ -47,7 +47,7 @@ $\overrightarrow{v^{1,c}_i}$ is the ``importance'' of node $i$. The
 It may further be interesting to aggregate various importance metrics and take 
 an average to get the average importance of a single node. This is useful when 
 the centrality metrics are normalized and allows the centrality metric to be 
-returned as a scalar.
+returned as a scalar. *implement closeness
 
 \subsection{Assortativity}
 
@@ -123,13 +123,16 @@ the \texttt{igraph} package.
 
 The edge connectivity of a graph $\hat{G}$ is given by $\mathcal{C}$, the 
 number of edges that need to be deleted in order to \textit{disconnect} 
-$\hat{G}$. More specifically, it is the number of edges that need to be 
-deleted so that $\hat{G}$ is partitioned into $k$ distinct subgraphs and is
-no longer ``strongly'' connected. The edge connectivity of a graph is computed 
-with the \texttt{adhesion} function from the \texttt{igraph} package. As the 
-metric is upper bounded by the minimum degree of any node within a graph, the 
-metric may be normalized by setting $\mathcal{C} = \frac{\mathcal{C}}{\min_i 
-V_i}$ for all possible nodes $i$.
+$\hat{G}$ such that there exists two node $V_i,V_j$ in $\hat{G}$ which do not 
+have a path between them.
+%More specifically, it is the number of edges that need to be 
+%deleted so that $\hat{G}$ is partitioned into $k$ distinct subgraphs and is
+%no longer ``strongly'' connected. 
+As the metric is upper bounded by the minimum 
+degree of any node within a graph, the metric may be normalized by setting 
+$\mathcal{C} = \frac{\mathcal{C}}{\min_i deg(V_i)}$ for all possible nodes $i$.
+The edge connectivity of a graph is computed 
+with the \texttt{adhesion} function from the \texttt{igraph} package. 
 
 \subsection{Edge density histogram}
 
