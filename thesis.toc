@@ -44,7 +44,7 @@
 \contentsline {subsection}{\numberline {4.2.2}Assortativity}{46}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Community}{46}{subsection.4.2.3}
 \contentsline {subsection}{\numberline {4.2.4}Distance matrix}{47}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}Edge connectivity}{47}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.5}Edge connectivity}{48}{subsection.4.2.5}
 \contentsline {subsection}{\numberline {4.2.6}Edge density histogram}{48}{subsection.4.2.6}
 \contentsline {section}{\numberline {4.3}Examples}{48}{section.4.3}
 \contentsline {chapter}{\numberline {5}Application and results }{49}{chapter.5}
