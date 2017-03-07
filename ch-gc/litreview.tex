@@ -1,20 +1,21 @@
 \section{(not actually a) Literature review}
 \label{sec:gc:litreview}
 
-There are two ways of thinking about graph comparison. Let $\hat{G^1}(V_1,E_1), 
-\hat{G^2}(V_2,E_2)$ each be some labeled graph. 
+There are two ways of thinking about graph comparison. Let $\hat{G^1}(V^1,E^1), 
+\hat{G^2}(V^2,E^2)$ each be some labeled graph. 
 
 \tablespacing
 \begin{enumerate}
 	\item \textbf{Graph summarization:} Compute some vector 
-	$\overrightarrow{v_1}$ on $\hat{G^1}$ 1 that ``summarizes'' some property 
-	it has. Similarly, compute $\overrightarrow{v_2}$ on $\hat{G^2}$ to capture 
-	the same property that $\overrightarrow{v_1}$ does. Finally, compute 
-	$f(\overrightarrow{v_1},\overrightarrow{v_2})$ where $f$ is some distance 
+	$\overrightarrow{v^1}$ on $\hat{G^1}$ 1 that ``summarizes'' some property 
+	it has. Similarly, compute $\overrightarrow{v^2}$ on $\hat{G^2}$ to capture 
+	the same property that $\overrightarrow{v^1}$ does. Finally, compute 
+	$f(\overrightarrow{v^1},\overrightarrow{v^2})$ where $f$ is some distance 
 	function (e.g. Euclidean distance).
+	
 	\item \textbf{Graph distance:} Create a valid distance function $f$ on the 
 	graphs $\hat{G^1}, \hat{G^2}$ directly rather than a vector of metrics 
-	($\overrightarrow{v_1},\overrightarrow{v_2}$). 
+	($\overrightarrow{v^1},\overrightarrow{v^2}$). 
 	Compute $f(\hat{G^1},\hat{G^2})$.
 \end{enumerate}
 \bodyspacing
@@ -37,6 +38,7 @@ Figure~\ref{fig:gc:arr_density}).
 	is unclear what the best arrangement might be at the start, and it is 
 	unfeasible for an analyst to simply try all possible arrangements 
 	especially as the number of variables increase.
+	
 	\item \textbf{Density:} The more nodes there are, the more edges there may 
 	be, and the more dense a graph may become, making it incredibly difficult 
 	to interpret. Furthermore, it makes it more difficult to find anomalies 
@@ -51,20 +53,20 @@ Figure~\ref{fig:gc:arr_density}).
 	\begin{center}
 		\includegraphics[width=1\linewidth]{ch-gc/figures/arr_density}
 		\caption[Difficulties with graph visualization.]{
-		Suppose we have a cluster graph $G(V = 18,E)$ with clusters $C_1,C_2$. 
-		Let $C_1$ be composed of nodes $(V_1,...,V_6)$, and $C_2$ be composed 
+		Suppose we have a cluster graph $G(V = 18,E)$ with clusters $C^1,C^2$. 
+		Let $C^1$ be composed of nodes $(V_1,...,V_6)$, and $C^2$ be composed 
 		of nodes $(V_7,...,V_{18})$. 
-		\textit{Left:} $C_1$, the smaller cluster, has been placed inside 
-		$C_2$, the larger cluster. It is difficult to discern any meaningful 
+		\textit{Left:} $C^1$, the smaller cluster, has been placed inside 
+		$C^2$, the larger cluster. It is difficult to discern any meaningful 
 		patterns; each node appears to be connected to every other node as the 
-		density of the cluster $C_2$ makes it almost impossible to see that of 
-		$C_1$.
+		density of the cluster $C^2$ makes it almost impossible to see that of 
+		$C^1$.
 		\textit{Right:} The nodes have been rearranged in a manner that clearly 
-		distinguishes between $C_1$ and $C_2$. At a glance, it is evident that 
-		$C_1$ is missing $E_{3,6}$. It is difficult to tell, however, that 
-		$C_2$ is even missing an edge in the first place! It just so happens 
+		distinguishes between $C^1$ and $C^2$. At a glance, it is evident that 
+		$C^1$ is missing $E_{3,6}$. It is difficult to tell, however, that 
+		$C^2$ is even missing an edge in the first place! It just so happens 
 		that $E_{13,17}$ is the missing edge.
-		$C_1$ is more sparse, which makes it easier to visually perceive 
+		$C^1$ is more sparse, which makes it easier to visually perceive 
 		anomalies in the data.}
 		\label{fig:gc:arr_density}
 	\end{center}
@@ -88,11 +90,10 @@ numerical methods to better understand the visual qualities of a graph.
 
 With an understanding of the properties of various graph summarization methods, 
 the graph summarization method results may be better interpreted. The method 
-must first compute a vector of metrics 
-$(\overrightarrow{v_1},\overrightarrow{v_2})$ for each graph in order to 
-provide a single, final metric that quantifies the difference between the two 
-graphs. As such, a natural byproduct of the computation is 
-$(\overrightarrow{v_1},\overrightarrow{v_2})$, which (armed with an 
-understanding of the values) provide insights on the qualities of the visual 
-graph and numeric graph \textit{on an individual level} and where exactly their 
-differences and similarities lie.
+computes a list of metrics $(l^1,l^2)$ for each graph in order to provide a 
+single vector $\overrightarrow{d^{1,2}}$ that quantifies the difference 
+between the two graphs with some function (e.g. Euclidean distance, L2, etc.). 
+As such, a natural byproduct of the computation is $(l^1,l^2)$, which (armed 
+with an understanding of the values) provide insights on the qualities of the 
+visual graph and numeric graph \textit{on an individual level} and where 
+exactly their differences and similarities lie.

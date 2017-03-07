@@ -44,7 +44,7 @@
 \BOOKMARK [2][-]{subsection.4.2.4}{4.2.4 Distance matrix}{section.4.2}% 44
 \BOOKMARK [2][-]{subsection.4.2.5}{4.2.5 Edge connectivity}{section.4.2}% 45
 \BOOKMARK [2][-]{subsection.4.2.6}{4.2.6 Edge density histogram}{section.4.2}% 46
-\BOOKMARK [1][-]{section.4.3}{4.3 Examples}{chapter.4}% 47
+\BOOKMARK [1][-]{section.4.3}{4.3 Similarity selection}{chapter.4}% 47
 \BOOKMARK [0][-]{chapter.5}{5 Application and results }{}% 48
 \BOOKMARK [1][-]{section.5.1}{5.1 Application of the visualization system}{chapter.5}% 49
 \BOOKMARK [1][-]{section.5.2}{5.2 Stock selection methodology}{chapter.5}% 50
@@ -75,4 +75,5 @@
 \BOOKMARK [2][-]{subsection.A.9.2}{A.9.2 Simulation engine}{section.A.9}% 75
 \BOOKMARK [2][-]{subsection.A.9.3}{A.9.3 AL algorithm engine}{section.A.9}% 76
 \BOOKMARK [2][-]{subsection.A.9.4}{A.9.4 Simulator \(Main\)}{section.A.9}% 77
-\BOOKMARK [0][-]{section*.10}{Bibliography}{}% 78
+\BOOKMARK [2][-]{subsection.A.9.5}{A.9.5 Graph summarization engine}{section.A.9}% 78
+\BOOKMARK [0][-]{section*.10}{Bibliography}{}% 79
