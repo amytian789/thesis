@@ -43,10 +43,10 @@
 \contentsline {subsection}{\numberline {4.2.1}Centrality}{47}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}Assortativity}{48}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Community}{48}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Distance matrix}{49}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.4}Distance matrix}{50}{subsection.4.2.4}
 \contentsline {subsection}{\numberline {4.2.5}Edge connectivity}{50}{subsection.4.2.5}
-\contentsline {subsection}{\numberline {4.2.6}Edge density histogram}{50}{subsection.4.2.6}
-\contentsline {section}{\numberline {4.3}Similarity selection}{50}{section.4.3}
+\contentsline {subsection}{\numberline {4.2.6}Edge density histogram}{51}{subsection.4.2.6}
+\contentsline {section}{\numberline {4.3}Similarity selection}{51}{section.4.3}
 \contentsline {chapter}{\numberline {5}Application and results }{52}{chapter.5}
 \contentsline {section}{\numberline {5.1}Application of the visualization system}{52}{section.5.1}
 \contentsline {section}{\numberline {5.2}Stock selection methodology}{53}{section.5.2}

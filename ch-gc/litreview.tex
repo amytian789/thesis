@@ -11,12 +11,14 @@ There are two ways of thinking about graph comparison. Let $\hat{G^1}(V^1,E^1),
 	it has. Similarly, compute $\overrightarrow{v^2}$ on $\hat{G^2}$ to capture 
 	the same property that $\overrightarrow{v^1}$ does. Finally, compute 
 	$f(\overrightarrow{v^1},\overrightarrow{v^2})$ where $f$ is some distance 
-	function (e.g. Euclidean distance).
+	function (e.g. Euclidean distance). A high value indicates strong 
+	dissimilarity while a low value indicates similarity. 
 	
 	\item \textbf{Graph distance:} Create a valid distance function $f$ on the 
 	graphs $\hat{G^1}, \hat{G^2}$ directly rather than a vector of metrics 
 	($\overrightarrow{v^1},\overrightarrow{v^2}$). 
-	Compute $f(\hat{G^1},\hat{G^2})$.
+	Compute $f(\hat{G^1},\hat{G^2})$. Again, a high value indicates strong 
+	dissimilarity while a low value indicates similarity. 
 \end{enumerate}
 \bodyspacing
 

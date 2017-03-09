@@ -95,32 +95,52 @@ dense subgraphs. Subgraphs may be detected with any of the following algorithms:
 
 \tablespacing
 \begin{itemize}
-	\item \textbf{Infomap:} 
+	\item \textbf{Random walks:} By implementing a random walk within a graph 
+	to determine the various subgraphs (or, in other words, to ``describe'' the 
+	community), the random walk procedure takes advantage of the natural idea 
+	that random walks within a graph will tend to stay in the same subgraph. 
+	This occurs because a subgraph is often densely connected within but 
+	sparsely connected to other subgraphs, so there is an increased probability 
+	of proceeding via an edge that is within the same subgraph.
+	This approach to building a community is called with the 
+	\texttt{cluster\_walktrap} function from the \texttt{igraph} package.	
+	
+	\item \textbf{Infomap:} An infomap utilizes random walks to build a 
+	community by minimizing the expected length that it takes a random walk 
+	to ``describe'' the community.
 	This approach to building a community is called with the 
 	\texttt{cluster\_infomap} function from the \texttt{igraph} package.
-	\item \textbf{Random walks:} By implementing a random walk within a graph 
-	to determine the various subgraphs, the random walk procedure takes 
-	advantage of the natural idea that random walks within a graph will tend to 
-	stay in the same subgraph. This is because a subgraph is a dense part of 
-	the graph with few connections to other subgraphs, so there is an 
-	increased likelihood of proceeding via an edge that is within the same 
-	subgraph.
+	
+	\item \textbf{Betweenness:} As described earlier, the betweenness of a node 
+	is the number of times the node is part of the shortest path between two 
+	other nodes (where direct paths are excluded). The algorithm sequentially 
+	removes the node with the highest betweenness and places it on a tree, 
+	recalculating betweenness of the existing graph every time a removal is 
+	performed. This algorithm once again takes advantage of the natural idea 
+	that subgraphs tend to be dense among themselves but with few edges between 
+	them. As such, edges which connect separate subgraphs should have high 
+	betweenness because all shortest paths from one subgraph to another must 
+	pass through them. 
 	This approach to building a community is called with the 
-	\texttt{cluster\_walktrap} function from the \texttt{igraph} package.
+	\texttt{cluster\_edge\_betweenness} function from the \texttt{igraph} 
+	package.
 \end{itemize}
 \bodyspacing
 
-There is no real way or need to normalize $\mathcal{S}$, the the returned set 
-of subgraphs. What is important to note, however, is that comparison among 
+There is no real way or need to normalize $\mathcal{S}$ as it is not a numeric 
+value. What is important to note, however, is that comparison among 
 graphs $\hat{G^1}(V^1,E^2)$ and $\hat{G^2}(V^2,E^2)$ via the community graph 
-summarization metric 
+summarization metric (which \textit{does} return a numeric value)
 must compare $\mathcal{S}^1$ and $\mathcal{S}^2$ with a method such as the 
-Jaccard index. Consider the sets $\mathcal{S}^1=(1,1,2,2,3,3)$ and 
-$\mathcal{S}^2=(3,3,2,2,1,1)$. These are 
-the exact same sets, but they are numbered differently; it is clear, then, that 
-a traditional distance metric such as Euclidean distance will not capture the 
-relationship properly. The Jaccard index compares the actual sets rather than 
-their literal values.
+Jaccard distance. Consider sets labeled $\mathcal{S}^1=(1,1,2,2,3,3)$ and 
+$\mathcal{S}^2=(4,4,5,5,6,6)$. These are the exact same set labellings, but 
+they are numbered differently; it is clear, then, that a traditional distance 
+metric such as Euclidean distance will not capture the relationship properly. 
+The Jaccard distance compares the actual sets rather than their literal values. 
+The metric is already normalized between 0 and 1.
+The Jaccard distance is obtained by subtracting the Jaccard similarity, which 
+is computed by the \texttt{cluster\_similarity} function in the 
+\texttt{clusteval} package, from 1.
 
 Drawbacks = ?
 

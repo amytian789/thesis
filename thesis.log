@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  8 MAR 2017 01:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  8 MAR 2017 22:02
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -735,19 +735,14 @@ Chapter 4.
 File: ch-gc/figures/arr_density.jpg Graphic file (type jpg)
 
 <use ch-gc/figures/arr_density.jpg>
-Package pdftex.def Info: ch-gc/figures/arr_density.jpg used on input line 54.
+Package pdftex.def Info: ch-gc/figures/arr_density.jpg used on input line 56.
 (pdftex.def)             Requested size: 433.62pt x 191.68253pt.
  [45 <./ch-gc/figures/arr_density.jpg>])
-(ch-gc/methods.tex [46] [47]
-Underfull \hbox (badness 1253) in paragraph at lines 98--101
-[]\OT1/cmr/bx/n/12 Infomap: \OT1/cmr/m/n/12 This ap-proach to build-ing a com-m
-u-nity is called with the
- []
-
-[48] [49]) (ch-gc/examples.tex [50])) [51]
+(ch-gc/methods.tex [46] [47] [48] [49] [50]) (ch-gc/examples.tex)) [51]
 \openout2 = `ch-usage/chapter-usage.aux'.
 
- (ch-usage/chapter-usage.tex
+
+(ch-usage/chapter-usage.tex
 Chapter 5.
 (ch-usage/newanalysis.tex) (ch-usage/stockselection.tex [52
 
@@ -867,7 +862,7 @@ eX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on thesis.pdf (96 pages, 1624955 bytes).
+Output written on thesis.pdf (96 pages, 1626174 bytes).
 PDF statistics:
  2397 PDF objects out of 2487 (max. 8388607)
  1165 named destinations out of 1200 (max. 500000)
