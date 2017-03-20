@@ -243,18 +243,36 @@ evident from the plots in Figure~\ref{fig:al:simulations:data}. These columns
 of 0 makes the matrix degenerate, so discriminant analysis cannot function. 
 To avoid further tampering with the dataset (as the data has already been 
 compressed), LDA, DDA, FDA, etc. were not included in the starting committee. 
-A summary of each classification model used in the starting committee for QBC 
-implementation is as follows:
+A brief overview of each classification model used in the starting committee 
+for QBC implementation is as follows:
 
 \tablespacing
 \begin{itemize}
-	\item \textbf{Random Forest:} A random forest is a collection of decision 
+	\item \textbf{Random forest:} A random forest is a collection of decision 
 	trees which are grown from independent draws of the training set. A more 
 	detailed description can be found in 
 	Section~\ref{sec:visualizer:plotgeneration:tree}.
-	\item \textbf{Naive Bayes:}
-	\item \textbf{SVM:}
-	\item \textbf{Partial Least Squares:}
+	\item \textbf{Naive bayes:} The naive bayes classification model uses 
+	Bayes' Theorem $\big(P(A|B) = \frac{P(B|A)P(A)}{P(B)}\big)$ in order to 
+	classify the data. It is important to note that the algorithm assumes 
+	independence among the features that characterize each label, which may not 
+	necessarily be the case.
+	\item \textbf{Support vector machine:} In SVM, each data point in $X$ is 
+	mapped to a space in $\mathbb{R}^2$, linearly demarcating each category 
+	with a line that is as distinct as possible (i.e. the two categories are as 
+	far apart as possible). As new labeled points are queried, the mapping 
+	updates. SVMs can also perform nonbinary and nonlinear classification 
+	through the usage of a kernel.
+	\item \textbf{Partial least squares:} In PLS, a \textit{principle component 
+	analysis} is first performed on the data $X$. Principle component analysis 
+	takes a $n$-length set of variables $X$ (which may or may not be 
+	correlated) and converts it into some set $X'$ of linearly uncorrelated 
+	``principle components''. Principle components are not necessarily 
+	individual variables; they may instead be a combination of variables (e.g. 
+	$X_iX_j$, $X^2_iX_j$, etc.), thereby accounting for potential dependence in 
+	the data. PLS then selects the principle components which best explain the 
+	observed response in $Y$ (the labels), performs a linear regression on the 
+	selected components, and uses the results in order to classify the data. 
 \end{itemize}
 \bodyspacing
 
@@ -375,15 +393,15 @@ Figure~\ref{fig:al:simulations:resultsci}, which shows performance plots with
 confidence intervals for each active learrning method, may also be of interest 
 to the reader.
 
-%\textsc{\begin{figure}[htb]
-%	\begin{center}
-%		\includegraphics[width=1\linewidth,page=3]{ch-al/figures/results.pdf}
-%		\caption[Active learning simulation results with confidence 
-%		intervals.]{Active learning simulation results with confidence 
-%		intervals.}
-%		\label{fig:al:simulations:resultsci}
-%	\end{center}
-%\end{figure}}
+\textsc{\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth,page=2]{ch-al/figures/results.pdf}
+		\caption[Active learning simulation results with confidence 
+		intervals.]{Active learning simulation results with confidence 
+		intervals.}
+		\label{fig:al:simulations:resultsci}
+	\end{center}
+\end{figure}}
 
 \subsubsection{Extensions}
 

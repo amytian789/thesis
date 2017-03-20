@@ -6,21 +6,22 @@ correlation coefficient cannot sufficiently capture all aspects of dependency
 on its own, there is no ``best'' summarization method that can summarize 
 every quality of a graph on its own. As such, this section discusses various 
 graph summarization methods, the qualities that they measure, and their 
-drawbacks. 
-In section~\ref{sec:gc:examples}, we propose a method to select graph 
-$\hat{G^i}, i \in \{1,...,k\}$ where $\hat{G^i}$ is most similar to the 
-``base'' graph $\hat{G}$. $\hat{G^i}$ is selected out of $k$ given graphs each 
-associated with a vector $\overrightarrow{d^{i,j}}$ where $i\neq j$ and $i,j 
-\in \{1,...,k\}$ of their differences with each difference 
-$\overrightarrow{d^{i,j}_m}$ for $m \in \{1,...,6\}$ corresponding to one of 
-the 6 summarization methods listed below.
+drawbacks. Furthermore, it is useful to normalize the returned 
+summarization difference in order to understand the value properly, so a 
+normalization method is proposed for each metric difference. 
+In section~\ref{sec:gc:simulations}, we propose a method to select the most 
+similar graph pair given a vector of differences where each difference 
+corresponding to one of the six summarization methods listed below.
 
 Most methods listed below are implemented in the \texttt{igraph} package in 
 \texttt{R}. As such, we do not implement most methods ourselves as in 
-Chapter~\ref{ch:al}. However, we do need to normalize the returned 
-summarization metric in order to compute the difference properly. The code for 
-all methods may be found in Appendix~\ref{sec:appendicies:gc:engine}.
-For all methods below, let $\hat{G}(V,E)$ be some labeled graph.
+Chapter~\ref{ch:al}. The code for 
+all methods may be found in Appendix~\ref{sec:appendicies:gc:engine}. It should 
+be noted that there are various distance functions that could be used. 
+Euclidean distance, L1, and L2 are currently implemented (The code for the 
+distance functions may also found in Appendix~\ref{sec:appendicies:gc:engine}). 
+
+For all methods below, let $\hat{G}=(V,E)$ be some labeled graph.
 
 \subsection{Centrality}
 
@@ -55,19 +56,33 @@ The importance of the node may be measured by utilizing metrics such as
 The normalized centrality of a graph $\hat{G}$ may be computed as 	
 $\frac{Cen(\hat{G})}{\max Cen(\hat{G})}$ where $\max Cen(\hat{G})$ is the 
 maximum centrality that graph $\hat{G}$ may have (for whatever metric is 
-specified). Degree centrality is implemented in \texttt{centr\_degree}, 
+specified). Taking the difference between two normalized scalars will also 
+yield a normalized scalar.
+Degree centrality is implemented in \texttt{centr\_degree}, 
 closeness centrality is implemented in \texttt{centr\_clo}, and betweenness 
 centrality is implemented in \texttt{centr\_betw} from the \texttt{igraph} 
 package. By default, each function normalizes $\mathcal{C}$.
 
-Drawbacks = ?
+Now consider a graph whose edges are rotated as in 
+Figure~\ref{fig:gc:drawbacks_rotation}; the centrality of the overall graph 
+will not change as the edges are in the same relative positions, but the graph 
+itself is clearly different. The computed centrality difference (with distance 
+function L2 and for all centrality types) between the graphs pictured in 
+Figure~\ref{fig:gc:drawbacks_rotation} is 0, which suggests they are exactly 
+same! This is due to the ``global'' nature of the centrality metric, which 
+ignores the individual label of the nodes. Thus, when edges are rotated and 
+nodes change, the graph ``looks'' exactly the same.
+Should centrality be examined at the level of a node and not a graph, 
+this issue would be accounted for (though normalization is not as trivial). It 
+is more difficult to parse a node-level metric especially given many variables, 
+so this paper does not delve into detail or implement this metric.
 
 \subsection{Assortativity}
 
 Assortativity measures the level of resemblance among the connected nodes of a 
 graph $\hat{G}$ based on vertex category labels. For graphs with uncategorized 
-nodes (as in the examples of Section~\ref{sec:gc:examples} and the application 
-in Chapter~\ref{ch:usage}), it is common to use $deg(V_i)-1$
+nodes (as in the examples of this chapter and the 
+application in Chapter~\ref{ch:usage}), it is common to use $deg(V_i)-1$
 as the category label for node $V_i$ instead. For 
 an edge $E_{i,j}$, the degree of nodes $V_i$ and $V_j$ are collected in two 
 distinct vectors $\overrightarrow{v^1}, \overrightarrow{v^2}$. Then the 
@@ -82,11 +97,65 @@ high/low degrees in $\hat{G}$, respectively. In other words, if
 $\mathcal{A}$ is large, then connected vertices tend to have the same 
 qualities, and when $\mathcal{A}$ is small, then connected vertices tend to 
 have opposite qualities. Since assortativity involves a correlation 
-computation, the result is already standardized.
+computation, the result is already standardized. Again, taking the difference 
+between two normalized scalars will also yield a normalized scalar.
 Assortativity is called with the \texttt{assortativity\_degree} function from 
 the \texttt{igraph} package.
 
-Drawbacks = ?
+Similarly, the assortativity difference metric is susceptible to rotated edges 
+as shown in Figure~\ref{fig:gc:drawbacks_rotation}. Assortativity is another 
+``global'' metric that measures the correlation among the degree of nodes but 
+does not care about the exact nodes themselves. As such, the metric can be 
+potentially misleading in situations where the actual nodes matter. In fact, 
+the computed difference (with distance function L2) between the graphs in 
+Figure~\ref{fig:gc:drawbacks_rotation} is 0.0032, which suggests the graphs are 
+very similar when they are (visually) different.
+
+
+
+
+
+
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth]{ch-gc/figures/drawbacks_rotation}
+		\caption[A graph pair with rotated edges.]{A graph pair with rotated 
+			edges. Graph summarization differences (L2 difference function): 
+			
+			\begin{tabular*}{.857 \textwidth}{ | c | c | c | }
+				\hline
+				Centrality (degree) & Centrality (closeness) & Centrality 
+				(betweenness) \\
+				\hline
+				0 & 0 & 0 \\
+				\hline
+			\end{tabular*}
+			\begin{tabular*}{0.984 \textwidth}{ | c | c | c | }
+				\hline
+				Community (random walk) & Community (infomap) & Community 
+				(betweenness) \\
+				\hline 
+				0.9677 & 0.9677 & 0.9677 \\
+				\hline
+			\end{tabular*}
+			\begin{tabular*}{0.947 \textwidth}{ | c | c | c | c | }
+				\hline
+				Assortativity & Distance matrix & Edge connectivity & Edge 
+				density 
+				histogram \\
+				\hline
+				0 & 0.3557 & 0 & 0 \\ 
+				\hline
+			\end{tabular*}
+		}
+		\label{fig:gc:drawbacks_rotation}
+	\end{center}
+\end{figure}
+
+
+
+
 
 \subsection{Community}
 
@@ -129,7 +198,7 @@ dense subgraphs. Subgraphs may be detected with any of the following algorithms:
 
 There is no real way or need to normalize $\mathcal{S}$ as it is not a numeric 
 value. What is important to note, however, is that comparison among 
-graphs $\hat{G^1}(V^1,E^2)$ and $\hat{G^2}(V^2,E^2)$ via the community graph 
+graphs $\hat{G^1}=(V^1,E^2)$ and $\hat{G^2}=(V^2,E^2)$ via the community graph 
 summarization metric (which \textit{does} return a numeric value)
 must compare $\mathcal{S}^1$ and $\mathcal{S}^2$ with a method such as the 
 Jaccard distance. Consider sets labeled $\mathcal{S}^1=(1,1,2,2,3,3)$ and 
@@ -142,7 +211,76 @@ The Jaccard distance is obtained by subtracting the Jaccard similarity, which
 is computed by the \texttt{cluster\_similarity} function in the 
 \texttt{clusteval} package, from 1.
 
-Drawbacks = ?
+Where community has trouble is when a graph pair has many sparse clusters. 
+Consider the simplified example found in Figure~\ref{fig:gc:drawbacks_comm}. 
+While one graph has two physical clusters and the other has three, they are not 
+all that visually different because only one edge has been removed. The 
+community difference values are 0, 0.2727, and 0.2727 for random walk, infomap, 
+and betweenness respectively. This increase is extremely significant when 
+considering that the ``best case'' scenario where the community 
+(6,7,8,9,10,11,12)  from Figure~\ref{fig:gc:drawbacks_comm} (left) is 
+completely split into (6,7,8,9) and (10,11,12) 
+Figure~\ref{fig:gc:drawbacks_comm} (right) yields a Jaccard difference of 
+0.3870968. Interestingly, the random walk community difference is 0; this is 
+likely because it is a \textit{single random walk} which leaves more room for 
+errors and may not fully explore the clustering structure especially if 
+clusters are completely isolated as is the case in both graphs of the set 
+illustrated in Figure~\ref{fig:gc:drawbacks_comm}.
+
+
+
+
+
+
+
+
+
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth]{ch-gc/figures/drawbacks_comm}
+		\caption[A graph pair with two and three clusters, respectively.]{A 
+			graph pair with two and three clusters, respectively. Only one edge 
+			has been removed, so the graphs do not appear that extremely 
+			different. Graph summarization differences (L2 difference function):
+			
+			\begin{tabular*}{.857 \textwidth}{ | c | c | c | }
+				\hline
+				Centrality (degree) & Centrality (closeness) & Centrality 
+				(betweenness) \\
+				\hline
+				0.0002 & 0.0002 & 0.0102 \\
+				\hline
+			\end{tabular*}
+			\begin{tabular*}{0.984 \textwidth}{ | c | c | c | }
+				\hline
+				Community (random walk) & Community (infomap) & Community 
+				(betweenness) \\
+				\hline 
+				0 & 0.2727 & 0.2727 \\
+				\hline
+			\end{tabular*}
+			\begin{tabular*}{0.947 \textwidth}{ | c | c | c | c | }
+				\hline
+				Assortativity & Distance matrix & Edge connectivity & Edge 
+				density 
+				histogram \\
+				\hline
+				0.0075 & 0.2233 & 0 & 0.0139 \\ 
+				\hline
+			\end{tabular*}
+		}
+		\label{fig:gc:drawbacks_comm}
+	\end{center}
+\end{figure}
+
+
+
+
+
+
+
+
 
 \subsection{Distance matrix}
 
@@ -151,22 +289,107 @@ contains the shortest path length
 between all pairs of variables. Each element $M_{i,j}$ 
 contains the shortest path distance between node $i$ to node $j$. If no path 
 exists, it is conventional to set the value to infinity. However, since the 
-main purpose is to compare two matrices, 
-setting a value of infinity doesn't make sense. Alternatively, the value may be 
-set to zero since we define the shortest path distance earlier to be 
-\textit{the path which traverses the smallest number of edges}, so a 
-\textit{direct path} between nodes has path length 1. Thus, the shortest path 
-length can never be 0, which allows the existence of a ``non-existent path'' to 
-be distinguished from the ``length of an existing path''. The metric may be 
-normalized by setting $M_{i,j} = \frac{\min len(V_i,V_j)}{V-1}$ for all node 
-pairs $(i,j)$ since the longest possible shortest path for any pair 
-$(V_i,V_j)$ must traverse all other nodes before arriving at $V_j$, thereby 
-bounding the value.
+main purpose is to compare two matrices, setting a value of infinity doesn't 
+make sense. Alternatively, the value may be set to zero since we define the 
+shortest path distance earlier to be \textit{the path which traverses the 
+smallest number of edges}, so a \textit{direct path} between nodes has path 
+length 1. Thus, the shortest path length can never be 0, which allows the 
+existence of a ``non-existent path'' to be distinguished from the ``length of 
+an existing path''. It is important to note that the matrix itself is repeated; 
+the upper and lower triangles are the same. Furthermore, the entries across the 
+diagonal must be 0. Thus, the matrix can be unfurled into a vector 
+$\overrightarrow{m}$ with the values of all $\binom{|V|}{2}$ unique pairs.
+It is less trivial to normalize the distance matrix difference metric. It would 
+be extremely incorrect, for instance, to normalize by dividing the raw distance 
+by $z = dist\big((|V|-1),0\big) * len(\overrightarrow{m})$ because it is 
+impossible for a graph to be constructed such that every node's 
+\textit{shortest path} to all other nodes is exactly length $|V|-1$ (the 
+maximum possible degree) or for a graph to be constructed such that the value 
+is even close to $z$. 
+The simplest method would be to treat the difference between an empty graph (a 
+graph with no edges) and a graph with a single Hamiltonian path (a path that 
+visits each vertex once) as the upper bound. This bound is actually slightly 
+above 1, but it is close enough for the purposes of interpretation. 
 The distance matrix method is called with the \texttt{distances} function from 
 the \texttt{igraph} package. \texttt{distances} returns infinity when a path 
 doesn't exist, so the output is adjusted accordingly.
 
-Drawbacks: add edge between 2 isolated clusters
+The distance-matrix is clearly node-specific as the metric relies on the 
+shortest paths between all unique pairs of nodes. As such, edge rotation is not 
+a problem, but clustering becomes an issue when there are few clusters. 
+Consider Figure~\ref{fig:gc:drawbacks_cluster}; one graph has two physical 
+clusters and the other doesn't (but appears to be clustered visually). 
+The removal of edge (4,5) forces the shortest path between node pairs involving 
+one from each cluster to drop to 0, having a strong effect on the distance 
+matrix distance since everything is now interconnected. 
+The actual distance matrix difference for the graph pair pictured in 
+Figure~\ref{fig:gc:drawbacks_cluster} is 0.7708, which suggests that the graphs 
+in the pair are very different when they are actually quite similar visually as 
+the mind perceives the same clustering structure. 
+Although Figure~\ref{fig:gc:drawbacks_comm} is similar to 
+Figure~\ref{fig:gc:drawbacks_cluster} in that both involve cluster 
+manipulation, the larger number of clusters in 
+Figure~\ref{fig:gc:drawbacks_comm} ensures that disconnecting two clusters will 
+not change the distance matrix difference as much; less of the graph is 
+interconnected, so fewer values will change to 0. In fact, the distance matrix 
+difference of Figure~\ref{fig:gc:drawbacks_comm} happens to be 0.2233, which is 
+much lower than the distance matrix difference of 
+Figure~\ref{fig:gc:drawbacks_cluster}. 
+
+
+
+
+
+
+
+
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth]{ch-gc/figures/drawbacks_cluster}
+		\caption[A graph pair with one (no) and two clusters, respectively.]{A 
+			graph pair with one (no) and two clusters, respectively. Only one 
+			edge has been removed, so the graphs do not appear that extremely 
+			different. Graph summarization differences (L2 difference function):
+			
+			\begin{tabular*}{.857 \textwidth}{ | c | c | c | }
+				\hline
+				Centrality (degree) & Centrality (closeness) & Centrality 
+				(betweenness) \\
+				\hline
+				0.0002 & 0.0899 & 0.1933 \\
+				\hline
+			\end{tabular*}
+			\begin{tabular*}{0.984 \textwidth}{ | c | c | c | }
+				\hline
+				Community (random walk) & Community (infomap) & Community 
+				(betweenness) \\
+				\hline 
+				0 & 0 & 0 \\
+				\hline
+			\end{tabular*}
+			\begin{tabular*}{0.947 \textwidth}{ | c | c | c | c | }
+				\hline
+				Assortativity & Distance matrix & Edge connectivity & Edge 
+				density 
+				histogram \\
+				\hline
+				0.0032 & 0.7708 & 0.25 & 0.0139 \\ 
+				\hline
+			\end{tabular*}
+		}
+		\label{fig:gc:drawbacks_cluster}
+	\end{center}
+\end{figure}
+
+
+
+
+
+
+
+
+
 
 \subsection{Edge connectivity}
 
@@ -179,11 +402,19 @@ have a path between them.
 %no longer ``strongly'' connected. 
 As the metric is upper bounded by the minimum 
 degree of any node within a graph, the metric may be normalized by computing 
-$\frac{\mathcal{E}}{\min_i deg(V_i)}$ for all possible nodes $i$.
+$\frac{\mathcal{E}}{\min_i deg(V_i)}$ for all possible nodes $i$. Then, the 
+difference normalization will naturally follow.
 The edge connectivity of a graph is computed 
 with the \texttt{edge\_connectivity} function from the \texttt{igraph} package. 
 
-Drawbacks: rotated edges within the graph
+It is natural to see where this metric could fall through the cracks as it also 
+is unaffected by the labels of each node. Consider 
+a graph whose edges are rotated as in Figure~\ref{fig:gc:drawbacks_rotation}; 
+the number of edges needed to disconnect the graph won't change as the edges 
+are in the same relative positions, but the graph itself is clearly different. 
+In fact, the computed edge connectivity difference (with distance function L2) 
+between the graphs pictured in Figure~\ref{fig:gc:drawbacks_rotation} is 0, 
+which suggests they are exactly same!
 
 \subsection{Edge density histogram}
 
@@ -195,7 +426,16 @@ vector $\overrightarrow{v}$ of length $b$, the number of desired ``bins''
 (e.g. bin 1 is $1-5$ degrees, bin 2 is $6-10$ degrees, etc.). Then the value 
 $\overrightarrow{v_i}$ is the number of nodes which correspond to bin $i$. This 
 metric may be normalized by computing $\frac{\overrightarrow{v_k}}{V}$ for 
-all $k \in \{1,...,b\}$ since there are a total of $V$ nodes. 
+all $k \in \{1,...,b\}$ since there are a total of $V$ nodes which also allows 
+the difference computation to be normalized. 
 This summarization method is not implemented in the \texttt{igraph} package. 
 
-Drawbacks: rotated edges within the graph
+The edge density histogram difference metric is also susceptible to rotated 
+edges as illustrated in Figure~\ref{fig:gc:drawbacks_rotation} because it 
+aggregates various metrics in bins, which discards more detailed information 
+about each individual node; the number of high and low-degree nodes 
+will not change even if the edges are rotated, but the graph is still clearly 
+different. In fact, the computed edge density histogram difference (with 
+distance function L2) between the exact graphs in 
+Figure~\ref{fig:gc:drawbacks_rotation} is 0, which suggests the graphs are the 
+exact same!

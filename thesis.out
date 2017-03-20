@@ -45,35 +45,39 @@
 \BOOKMARK [2][-]{subsection.4.2.5}{4.2.5 Edge connectivity}{section.4.2}% 45
 \BOOKMARK [2][-]{subsection.4.2.6}{4.2.6 Edge density histogram}{section.4.2}% 46
 \BOOKMARK [1][-]{section.4.3}{4.3 Similarity selection}{chapter.4}% 47
-\BOOKMARK [0][-]{chapter.5}{5 Application and results }{}% 48
-\BOOKMARK [1][-]{section.5.1}{5.1 Application of the visualization system}{chapter.5}% 49
-\BOOKMARK [1][-]{section.5.2}{5.2 Stock selection methodology}{chapter.5}% 50
-\BOOKMARK [1][-]{section.5.3}{5.3 Healthcare stock data}{chapter.5}% 51
-\BOOKMARK [1][-]{section.5.4}{5.4 Results}{chapter.5}% 52
-\BOOKMARK [0][-]{chapter.6}{6 Conclusion}{}% 53
-\BOOKMARK [1][-]{section.6.1}{6.1 Further extensions}{chapter.6}% 54
-\BOOKMARK [2][-]{subsection.6.1.1}{6.1.1 Estimator selection}{section.6.1}% 55
-\BOOKMARK [2][-]{subsection.6.1.2}{6.1.2 Outlier removal}{section.6.1}% 56
-\BOOKMARK [2][-]{subsection.6.1.3}{6.1.3 Graphical models and improved stock selection}{section.6.1}% 57
-\BOOKMARK [2][-]{subsection.6.1.4}{6.1.4 Ordering of queried plots}{section.6.1}% 58
-\BOOKMARK [2][-]{subsection.6.1.5}{6.1.5 Line-up tests}{section.6.1}% 59
-\BOOKMARK [2][-]{subsection.6.1.6}{6.1.6 Edge-weighted graphs}{section.6.1}% 60
-\BOOKMARK [2][-]{subsection.6.1.7}{6.1.7 Rejection classification}{section.6.1}% 61
-\BOOKMARK [0][-]{appendix.A}{A Implementation}{}% 62
-\BOOKMARK [1][-]{section.A.1}{A.1 Code for figure 1.1, left}{appendix.A}% 63
-\BOOKMARK [1][-]{section.A.2}{A.2 Code for figure 1.1, right}{appendix.A}% 64
-\BOOKMARK [1][-]{section.A.3}{A.3 Code for figure 2.2}{appendix.A}% 65
-\BOOKMARK [1][-]{section.A.4}{A.4 Uncertainty sampling implementation}{appendix.A}% 66
-\BOOKMARK [1][-]{section.A.5}{A.5 Query by committee implementation}{appendix.A}% 67
-\BOOKMARK [2][-]{subsection.A.5.1}{A.5.1 Query selection}{section.A.5}% 68
-\BOOKMARK [2][-]{subsection.A.5.2}{A.5.2 Committee pruning}{section.A.5}% 69
-\BOOKMARK [1][-]{section.A.6}{A.6 Vote entropy implementation}{appendix.A}% 70
-\BOOKMARK [1][-]{section.A.7}{A.7 Query by bagging implementation}{appendix.A}% 71
-\BOOKMARK [1][-]{section.A.8}{A.8 Min-max clustering implementation}{appendix.A}% 72
-\BOOKMARK [1][-]{section.A.9}{A.9 Simulation implementation}{appendix.A}% 73
-\BOOKMARK [2][-]{subsection.A.9.1}{A.9.1 MNIST data}{section.A.9}% 74
-\BOOKMARK [2][-]{subsection.A.9.2}{A.9.2 Simulation engine}{section.A.9}% 75
-\BOOKMARK [2][-]{subsection.A.9.3}{A.9.3 AL algorithm engine}{section.A.9}% 76
-\BOOKMARK [2][-]{subsection.A.9.4}{A.9.4 Simulator \(Main\)}{section.A.9}% 77
-\BOOKMARK [2][-]{subsection.A.9.5}{A.9.5 Graph summarization engine}{section.A.9}% 78
-\BOOKMARK [0][-]{section*.10}{Bibliography}{}% 79
+\BOOKMARK [2][-]{subsection.4.3.1}{4.3.1 Simulation study}{section.4.3}% 48
+\BOOKMARK [2][-]{subsection.4.3.2}{4.3.2 Results}{section.4.3}% 49
+\BOOKMARK [0][-]{chapter.5}{5 Application and results }{}% 50
+\BOOKMARK [1][-]{section.5.1}{5.1 Application of the visualization system}{chapter.5}% 51
+\BOOKMARK [1][-]{section.5.2}{5.2 Stock selection methodology}{chapter.5}% 52
+\BOOKMARK [1][-]{section.5.3}{5.3 Healthcare stock data}{chapter.5}% 53
+\BOOKMARK [1][-]{section.5.4}{5.4 Results}{chapter.5}% 54
+\BOOKMARK [0][-]{chapter.6}{6 Conclusion}{}% 55
+\BOOKMARK [1][-]{section.6.1}{6.1 Further extensions}{chapter.6}% 56
+\BOOKMARK [2][-]{subsection.6.1.1}{6.1.1 Estimator selection}{section.6.1}% 57
+\BOOKMARK [2][-]{subsection.6.1.2}{6.1.2 Outlier removal}{section.6.1}% 58
+\BOOKMARK [2][-]{subsection.6.1.3}{6.1.3 Graphical models and improved stock selection}{section.6.1}% 59
+\BOOKMARK [2][-]{subsection.6.1.4}{6.1.4 Ordering of queried plots}{section.6.1}% 60
+\BOOKMARK [2][-]{subsection.6.1.5}{6.1.5 Line-up tests}{section.6.1}% 61
+\BOOKMARK [2][-]{subsection.6.1.6}{6.1.6 Edge-weighted graphs}{section.6.1}% 62
+\BOOKMARK [2][-]{subsection.6.1.7}{6.1.7 Rejection classification}{section.6.1}% 63
+\BOOKMARK [0][-]{appendix.A}{A Implementation}{}% 64
+\BOOKMARK [1][-]{section.A.1}{A.1 Code for figure 1.1, left}{appendix.A}% 65
+\BOOKMARK [1][-]{section.A.2}{A.2 Code for figure 1.1, right}{appendix.A}% 66
+\BOOKMARK [1][-]{section.A.3}{A.3 Code for figure 2.2}{appendix.A}% 67
+\BOOKMARK [1][-]{section.A.4}{A.4 Uncertainty sampling implementation}{appendix.A}% 68
+\BOOKMARK [1][-]{section.A.5}{A.5 Query by committee implementation}{appendix.A}% 69
+\BOOKMARK [2][-]{subsection.A.5.1}{A.5.1 Query selection}{section.A.5}% 70
+\BOOKMARK [2][-]{subsection.A.5.2}{A.5.2 Committee pruning}{section.A.5}% 71
+\BOOKMARK [1][-]{section.A.6}{A.6 Vote entropy implementation}{appendix.A}% 72
+\BOOKMARK [1][-]{section.A.7}{A.7 Query by bagging implementation}{appendix.A}% 73
+\BOOKMARK [1][-]{section.A.8}{A.8 Min-max clustering implementation}{appendix.A}% 74
+\BOOKMARK [1][-]{section.A.9}{A.9 Simulation implementation}{appendix.A}% 75
+\BOOKMARK [2][-]{subsection.A.9.1}{A.9.1 MNIST data}{section.A.9}% 76
+\BOOKMARK [2][-]{subsection.A.9.2}{A.9.2 Simulation engine}{section.A.9}% 77
+\BOOKMARK [2][-]{subsection.A.9.3}{A.9.3 AL algorithm engine}{section.A.9}% 78
+\BOOKMARK [2][-]{subsection.A.9.4}{A.9.4 Simulator \(Main\)}{section.A.9}% 79
+\BOOKMARK [2][-]{subsection.A.9.5}{A.9.5 Graph summarization engine}{section.A.9}% 80
+\BOOKMARK [2][-]{subsection.A.9.6}{A.9.6 Similarity selection}{section.A.9}% 81
+\BOOKMARK [2][-]{subsection.A.9.7}{A.9.7 Simulation study}{section.A.9}% 82
+\BOOKMARK [0][-]{section*.11}{Bibliography}{}% 83

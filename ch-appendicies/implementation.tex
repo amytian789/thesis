@@ -1063,12 +1063,355 @@ save.image(file = paste0("results/results_", date, ".RData"))
 \subsection{Graph summarization engine}
 \label{sec:appendicies:gc:engine}
 
-Given graphs $\hat{G^1}(V^1,E^1)$ and $\hat{G^2}(V^2,E^2)$, the graph 
+Given graphs $\hat{G^1}=(V^1,E^1)$ and $\hat{G^2}=(V^2,E^2)$, the graph 
 summarization engine computes the vector $\overrightarrow{d^{1,2}}$ which 
 contains the difference between $\hat{G^1}$ and $\hat{G^2}$ with the various 
-summarization metrics described in Section~\ref{sec:gc:methods}.
+summarization metrics described in Section~\ref{sec:gc:methods}. After the 
+graph summarization engine code, the distance engine function is also included. 
+The distance engine is called by the graph comparison engine in order to 
+compute the distance between the two results (one from each graph) foro a 
+summarization method. Distance methods available are Euclidean distance, L1, 
+L2, and Jaccard distance (for use with community only).
 
 {\setstretch{1.0}
 \begin{lstlisting}
+# g1 and g2 are igraphs
+# gSumm is a vector of strings corresponding to graph summarization methods
+	### cen_deg = Centrality (degree)
+	### cen_clo = Centrality (closeness)
+	### cen_bet = Centrality (betweenness)
+	### ast = Assortativity
+	### com_rw = Community (random walk)
+	### com_im = Community (infomap)
+	### com_bet = Community (betweenness)
+	### dis = distance matrix
+	### eco = Edge connectivity
+	### edh = Edge density histogram
+# distf is the desired difference function
+
+GC_engine <- function(g1, g2, gSumm, distf = "euclidean", ...){
+
+	stopifnot(igraph::is_igraph(g1), igraph::is_igraph(g2), 
+		igraph::gorder(g1) == igraph::gorder(g2),
+		!is.null(gSumm))
+	
+	diff <- rep(0,length(gSumm))
+	names(diff) <- rep("",length(gSumm))
+	i <- 1
+	
+	# Centrality (degree)
+	if ("cen_deg" %in% gSumm){
+		a <- igraph::centr_degree(g1)$centralization
+		b <- igraph::centr_degree(g2)$centralization
+		
+		diff[i] <- dist_engine(a,b,distf)
+		names(diff)[i] <- "cen_deg"
+		i <- i + 1
+	}
+	
+	# Centrality (closeness)
+	if ("cen_clo" %in% gSumm){
+		a <- igraph::centr_clo(g1)$centralization
+		b <- igraph::centr_clo(g2)$centralization
+		
+		diff[i] <- dist_engine(a,b,distf)
+		names(diff)[i] <- "cen_clo"
+		i <- i + 1
+	}
+	
+	# Centrality (betweenness)
+	if ("cen_bet" %in% gSumm){
+		a <- igraph::centr_betw(g1)$centralization
+		b <- igraph::centr_betw(g2)$centralization
+		
+		diff[i] <- dist_engine(a,b,distf)
+		names(diff)[i] <- "cen_bet"
+		i <- i + 1
+	}
+	
+	# Assortativity
+	if ("ast" %in% gSumm){
+		a <- igraph::assortativity_degree(g1)
+		b <- igraph::assortativity_degree(g2)
+		
+		if (is.nan(a)) a <- 0
+		if (is.nan(b)) b <- 0
+		
+		diff[i] <- dist_engine(a,b,distf)
+		names(diff)[i] <- "ast"
+		i <- i + 1
+	}
+	
+	# Community (random walk)
+	if ("com_rw" %in% gSumm){
+		a <- igraph::membership(igraph::cluster_walktrap(
+			g1,steps=igraph::gorder(g1)/2))
+		b <- igraph::membership(igraph::cluster_walktrap(
+			g2,steps=igraph::gorder(g2)/2))
+		
+		diff[i] <- dist_engine(a,b,dist="jaccard")
+		names(diff)[i] <- "com_rw"
+		i <- i + 1
+	}
+	
+	# Community (infomap)
+	if ("com_im" %in% gSumm){
+		a <- igraph::membership(igraph::cluster_infomap(g1))
+		b <- igraph::membership(igraph::cluster_infomap(g2))
+		
+		diff[i] <- dist_engine(a,b,dist="jaccard")
+		names(diff)[i] <- "com_im"
+		i <- i + 1
+	}
+	
+	# Community (betweenness)
+	if ("com_bet" %in% gSumm){
+		a <- igraph::membership(igraph::cluster_edge_betweenness(g1))
+		b <- igraph::membership(igraph::cluster_edge_betweenness(g2))
+		
+		diff[i] <- dist_engine(a,b,dist="jaccard")
+		names(diff)[i] <- "com_bet"
+		i <- i + 1
+	}
+	
+	# Distance matrix 
+	if ("dis" %in% gSumm){
+	    a <- distances(g1)
+	    b <- distances(g2)
+	    
+	    # change from matrix -> vector for distance computation (by column)
+	    # keep only 1 side of the matrix (both sides are the same)
+	    # don't keep the values in the middle (since it's the same node)
+	    a[a == Inf] <- 0
+	    a <- a[upper.tri(a)]
+	    b[b == Inf] <- 0
+	    b <- b[upper.tri(b)]
+	    
+	    diff[i] <- dist_engine(a,b,distf) / (dist_engine(
+		    0,igraph::gorder(g1)-1,distf) * length(a))
+	    names(diff)[i] <- "dis"
+	    i <- i + 1
+	}
+	
+	# Edge connectivity 
+	if ("eco" %in% gSumm){
+		if (min(igraph::degree(g1)) != 0){
+		a <- igraph::edge_connectivity(g1) / min(igraph::degree(g1))
+		} else a <- 0
+		if (min(igraph::degree(g2)) != 0){
+		b <- igraph::edge_connectivity(g2) / min(igraph::degree(g2))
+		} else b <- 0
+		
+		diff[i] <- dist_engine(a,b,distf)
+		names(diff)[i] <- "eco"
+		i <- i + 1
+	}
+	
+	# Edge density histogram
+	if ("edh" %in% gSumm){
+		# histograms should be on the same scale. 
+		# Use Freedman-Diaconis rule to determine bin width
+		dd <- max(igraph::degree(g1),igraph::degree(g2))
+		bw <- 2 * stats::IQR(igraph::degree(g1)) / igraph::gorder(g1)^(1/3)
+		a <- graphics::hist(igraph::degree(g1),plot=FALSE,
+			breaks=seq(0,dd+bw,by=bw))$counts / igraph::gorder(g1)
+		b <- graphics::hist(igraph::degree(g2),plot=FALSE,
+			breaks=seq(0,dd+bw,by=bw))$counts / igraph::gorder(g2)
+		
+		diff[i] <- dist_engine(a,b,distf)
+		names(diff)[i] <- "edh"
+		i <- i + 1
+	}
+	
+	diff
+}
+
+######## Engine to call various distance computation methods
+dist_engine <- function(a,b,dist = "euclidean", ...){
+	switch(dist,
+	euclidean=dist_euc(a,b),
+	l1=dist_l1(a,b),
+	l2=dist_l2(a,b),
+	jaccard=dist_jac(a,b)
+	)
+}
+
+# Euclidean distance
+dist_euc <- function(a,b){
+	sqrt( sum( mapply( function(x,y) (x-y)^2, a, b)))
+}
+
+# L1: Sum of absolute differences
+dist_l1 <- function(a,b){
+	sum ( mapply ( function(x,y) abs(x-y), a, b))
+}
+
+# L2: Sum of squared differences
+dist_l2 <- function(a,b){
+	sum ( mapply ( function(x,y) (x-y)^2, a, b))
+}
+
+# Jaccard distance
+dist_jac <- function(a,b){
+	1-clusteval::cluster_similarity(a,b,similarity="jaccard")
+}
+\end{lstlisting}
+
+}
+
+
+\subsection{Similarity selection}
+\label{sec:appendicies:gc:similarity}
+
+Given a set $\mathcal{S}$ of various graph pairs, the similarity selection 
+method selects the most similar pair $(G^i,G^j) \in \mathcal{S}$. The method is 
+described in Section~\ref{sec:gc:simulations}.
+
+{\setstretch{1.0}
+\begin{lstlisting}
+# Search for the "most similar" graph pair
+# (characterized by having the lowest differences across the board)
+#
+# gc is a list of the differences among various graph pairs
+# base is the index with which to start the search
+
+GC_selection <- function(gc, base = 1){
+	
+	stopifnot(!is.null(gc))
+	
+	idx <- base
+	old_idx <- 0
+	while (old_idx != idx){
+		old_idx <- idx
+		idx <- best_c(gc,idx)
+		#print(paste(old_idx,idx))
+	}
+	idx
+}
+
+# Select the next idx candidate given current best candidate
+best_c <- function(gc, cand){
+
+	for (i in 1:length(gc)){
+		if (i != cand){
+			if (sum(gc[[cand]] < gc[[i]]) < sum(gc[[cand]] > gc[[i]])){
+				return( i )
+			} else if (sum(gc[[cand]] < gc[[i]]) > sum(gc[[cand]] > gc[[i]])){
+				# do nothing since the current candidate is better
+			} else{
+				return( sample(c(cand,i),1) )
+			}
+		}
+	}
+	return( cand )  
+}
+\end{lstlisting}
+}
+
+
+\subsection{Simulation study}
+\label{sec:appendicies:gc:simulations}
+
+The simulation study, which is used to demonstrate the viability of the 
+proposed similarity selection model, is described in 
+Section~\ref{sec:gc:simulations:algorithm}.
+
+{\setstretch{1.0}
+\begin{lstlisting}
+setwd("---simulation file path---")
+source("GC_engine.R")
+source("dist_engine.R")
+source("GC_selection.R")
+
+library(igraph)
+library(clusteval)
+
+################################## Random sample given PDF
+
+randomdraw <- function(n, prob){
+	if(round(sum(prob),1) != 1 | length(which(prob<0)) > 0) 
+	stop("Probability must be between 0 and 1")
+	
+	runningsum <- 0
+	s <- runif(n)
+		for (i in 1:n){
+			for (j in 1:length(prob)){
+				runningsum <- runningsum + prob[j]
+				if (s[i] < runningsum){
+				s[i] <- j
+				break
+			} 
+		}
+	}
+	s
+}
+
+################################## Run simulations
+
+# Create base graph
+set.seed(10)
+ss <- 50 # desired sample size (# of edges)
+bg <- igraph::sample_gnm(20, ss)
+bg_e <- igraph::as_edgelist(bg)
+
+# Setting parameters
+gSumm <- c("cen_deg","cen_clo","cen_bet","ast",
+	"com_rw","com_im","com_bet","dis","eco","edh")
+distf <- "l2"
+
+msg <- rep(0,1000)
+for (i in 1:1000) {
+	set.seed(i)
+	
+	# g1: randomly swap 20% edges. 
+	# Weight of each node is proportional to its degree
+	g1 <- bg
+	for (j in 1:(ss/5)) {
+		idx <- sample(igraph::as_edgelist(g1),1)
+		g1 <- igraph::delete_edges(g1,idx)
+		prob <- igraph::degree(g1) / sum(igraph::degree(g1))
+		nva <- sample(seq(1,length(prob),1),1)
+		nvb <- randomdraw(1, prob)
+		# make sure edges are not repeated
+		while (g1[nva,nvb] == 1 | nva == nvb) nvb <- randomdraw(1,prob)
+		g1 <- igraph::add_edges(g1, c(nva,nvb))
+	}
+	
+	# g2: randomly swap 100% edges. 
+	# Weight of each node is proportional to its degree
+	g2 <- bg
+	for (j in 1:ss) {
+		idx <- sample(igraph::as_edgelist(g2),1)
+		g2 <- igraph::delete_edges(g2,idx)
+		prob <- igraph::degree(g2) / sum(igraph::degree(g2))
+		nva <- sample(seq(1,length(prob),1),1)
+		nvb <- randomdraw(1, prob)
+		# make sure edges are not repeated
+		while (g2[nva,nvb] == 1 | nva == nvb) nvb <- randomdraw(1,prob)
+		g2 <- igraph::add_edges(g2, c(nva,nvb))
+	}
+	
+	# Compute difference between (bg,g1), (bg,g2)
+	gc <- vector("list",2)
+	gc[[1]] <- GC_engine(g1=bg,g2=g1,gSumm=gSumm,distf=distf)
+	gc[[2]] <- GC_engine(g1=bg,g2=g2,gSumm=gSumm,distf=distf)
+	
+	# Select the most similar graph pair
+	msg[i] <- GC_selection(gc = gc, base = 1)
+}
+p1 <- length(which(msg == 1)) / length(msg)
+p2 <- length(which(msg == 2)) / length(msg)
+cat("Prob. of selecting (bg,g1):",p1,"\nProb. of selecting (bg,g2):", p2)
+
+################################## Plot simulation graphs
+
+bg$layout <- layout_in_circle # base graph
+g1$layout <- layout_in_circle # from trial 1000 (seed = 1000)
+g2$layout <- layout_in_circle # from trial 1000 (seed = 1000)
+
+par(mfrow=c(1,3))
+plot(bg)
+plot(g1)
+plot(g2)
 \end{lstlisting}
 }
