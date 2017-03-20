@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  20 MAR 2017 00:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  20 MAR 2017 00:11
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -984,8 +984,8 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 287.
  ) 
 Here is how much of TeX's memory you used:
- 10780 strings out of 493334
- 156979 string characters out of 3136672
+ 10781 strings out of 493334
+ 156996 string characters out of 3136672
  440429 words of memory out of 3000000
  12535 multiletter control sequences out of 15000+200000
  13544 words of font info for 50 fonts, out of 3000000 for 9000
@@ -1011,9 +1011,9 @@ X 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2
 /fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (112 pages, 2454668 bytes).
+Output written on thesis.pdf (112 pages, 2454718 bytes).
 PDF statistics:
- 2931 PDF objects out of 2984 (max. 8388607)
- 1509 named destinations out of 1728 (max. 500000)
+ 2932 PDF objects out of 2984 (max. 8388607)
+ 1510 named destinations out of 1728 (max. 500000)
  750 words of extra memory for PDF output out of 10000 (max. 10000000)
 

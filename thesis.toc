@@ -82,5 +82,5 @@
 \contentsline {subsection}{\numberline {A.9.4}Simulator (Main)}{87}{subsection.A.9.4}
 \contentsline {subsection}{\numberline {A.9.5}Graph summarization engine}{94}{subsection.A.9.5}
 \contentsline {subsection}{\numberline {A.9.6}Similarity selection}{98}{subsection.A.9.6}
-\contentsline {subsection}{\numberline {A.9.7}Simulation study}{98}{subsection.A.9.7}
+\contentsline {subsection}{\numberline {A.9.7}Simulation study}{99}{subsection.A.9.7}
 \contentsline {chapter}{Bibliography}{101}{section*.11}
