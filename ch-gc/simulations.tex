@@ -183,18 +183,32 @@ simulation) are, expectedly, the same. It is $G^2$ that differs.
 \subsubsection{Extensions}
 
 Although the normalization methods proposed in Section~\ref{sec:gc:methods} 
-have bounded the graph summarization values between 0 and 1, it does not 
+have bounded the graph summarization metrics between 0 and 1, it does not 
 necessitate that the values are uniformly distributed between 0 and 1. An 
-alternative method of normalization leverages the XXXXXXXXXX to simulate a 
-uniform distribution. A further extension would be to implement such a 
-procedure, which is as follows:
+alternative method of normalization leverages the Erdos-Renyi random graph 
+generation model to normalizes the \textit{overall difference metric} between 
+two existing graphs $G^1=(V,E^1)$ and $G^2=(V,E^2)$. Let $\overrightarrow{d} = 
+\text{dist}(G^1,G^2)$. Then the procedure is as follows:
 
 \tablespacing
 \begin{itemize}
-	\item Simulate $n$ random graphs $G=(V,E)$. If implementing for the 
-	simulation above, all simulated graphs would have $|V|=20, |E|=50$.
-	\item Compute the difference between each pair of graph (or the base 
-	graph???????)
-	\item Find the $p$-value?????
+	\item For $i = 1$ to $n$ trials,
+	\item Generate a simulated Erdos-Renyi Graph $\hat{G^1}$ with $|V|$ nodes 
+	and $|E^1|$ edges.
+	\item Generate a simulated Erdos-Renyi Graph $\hat{G^2}$ with $|V|$ nodes 
+	and $|E^2|$ edges.
+	\item Let $\overrightarrow{t_i} = \text{dist}(\hat{G^1},\hat{G^2})$
+	\item Compare $\overrightarrow{d}$ to the empirical distribution 
+	$\{\overrightarrow{t_1},...,\overrightarrow{t_n}\}$ by computing a $p$-value
+	$$\frac{\#\{\overrightarrow{t_i} : \overrightarrow{t_i} \geq 
+	\overrightarrow{d} \}}{n}$$
+	for a right-tail distribution and 
+	$$\frac{\#\{\overrightarrow{t_i} : \overrightarrow{t_i} \leq 
+	\overrightarrow{d} \}}{n}$$
+	for a left-tail distirbution using the similarity selection methodology 
+	presented in Section~\ref{sec:gc:simulations}. Naturally, as a $p$-value 
+	would indicate, a lower number suggests that $\overrightarrow{d}$ is more 
+	significant because it indicates that $\overrightarrow{d}$ has a low 
+	probability of being an ``extreme'' event.
 \end{itemize}
 \bodyspacing
