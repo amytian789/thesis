@@ -2,11 +2,14 @@
 \label{sec:usage:data}
 
 We select 43 stocks from the healthcare industry to apply the system to. There 
-are 4113 observations of the stocks from 1998 to 2014. We have cleaned the data 
+are 4110 observations of the stocks from 1998 to 2014. We have cleaned the data 
 to get rid of the dependency on time so that each observation of a stock may 
 better simulate an independent draw from some distribution. This is done by 
 fitting a regression to the values and using the residuals as the new dataset.
 
+The data has been split into testing and training sets in the middle of 1998 
+and 2014 (As if we are standing there with historical data, uncertain of the 
+future)
 
 For $i\in\{1,...,4\}$, 
 we employ a ``buy and hold'' tactic to compare the performance of each 

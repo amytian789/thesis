@@ -26,38 +26,42 @@ we might consider the following stock selection strategy:
 	\begin{algorithmic}[1]
 		\Procedure{}{$k$ is the number of stocks to select and 
 			$A$ is the adjacency matrix of $G=(V,E)$}
-		\State $d \gets \text{len}(A)$
-		\State $z \gets$ Perm($d,k$)*
-		\State $min = \infty$
-		\State $index = 0$
-		\State \textbf{loop from} $i=1$ \textbf{to} $d \choose k$:
-		\State \indent $c = 0$
-		\State \indent \textbf{loop from} $j = 1$ \textbf{to} $k$:
-		\State \indent \indent \textbf{loop from} $l=1$ \textbf{to} $k$:
-		\State \indent \indent \indent $c \gets c+A_{z_{i,j},z_{i,l}}$
+		\State $z \gets$ Comb($|V|,k$)*
+		\State $min \gets \infty$
+		\State $index \gets 0$
+		\State \textbf{loop from} $i=1$ \textbf{to} $\text{len}(z) = 
+		{|V| \choose k}$:
+		\State \indent $c = 0$ (the number of connections)
+		\State \indent \textbf{loop from} $j = 1$ \textbf{to} $k-1$:
+		\State \indent \indent \textbf{loop from} $l=j+1$ \textbf{to} $k$:
+		\State \indent \indent \indent $c \gets c+A_{z_{j,i},z_{l,i}}$
 		\State \indent \textbf{If} $c < min$ \textbf{then}
-		\State \indent \indent $min = c$
-		\State \indent \indent $index = i$
-		\State \textbf{return} $z_{index,}$
+		\State \indent \indent $min \gets c$
+		\State \indent \indent $index \gets i$
+		\State \indent \textbf{Else If} $c = min$ \textbf{then}
+		\State \indent \indent Randomly determine if replacing $min$ and 
+		$index$ or not
+		\State \textbf{return} $z_{,index}$
 		\EndProcedure
 	\end{algorithmic}
-	*Perm($d,k$) is a function that returns all possible permutations 
-	of $k$ values selected from $d$ i.e. $z_{1,}=<1,5,7>$ is a permutation for 
-	$d=10,k=3$.
+	*Comb($|V|,k$) is a function that returns a matrix of all possible 
+	combinations of $k$ values selected from $|V|$ i.e. $z_{,i}=<z_{1,i} = 1, 
+	z_{2,i} = 5, z_{3,i} = 7>$ is a combination for $|V|=10,k=3$.
 \end{algorithm}
 \bodyspacing
 
-\noindent This becomes computationally difficult as $d$ increases and does not 
-account for average stock returns; as discussed in 
-Section~\ref{sec:intro:finance}, 
-stocks with positive drift and high volatility are shown to improve the 
-performance of the portfolio over time in the ``buy and hold'' model, or 
-improve gains in the case of rebalancing. These two criteria may be used to 
-minimize the space of stocks to select from. Drift over time is simplified as 
-positive return averaged over time. We let $p_d$ and $p_v$ denote the threshold 
-values for drift and volatility respectively. These values will be dependent on 
-the size of the dataset as we wish to preselect $p_d$ and $p_v$ such that 
-$k<d<2k$ to reduce the computational burden. The selection strategy then becomes
+\noindent This becomes computationally difficult as $|V|$ increases and does 
+not account for average stock returns; as discussed in 
+Section~\ref{sec:intro:finance}, stocks with positive drift and high volatility 
+are shown to improve the performance of the portfolio over time in the ``buy 
+and hold'' model, or improve gains in the case of rebalancing. These two 
+criteria may be used to minimize the space of stocks to select from. Drift over 
+time is simplified as the average price difference between any two consecutive 
+points in time. We let $p_d$ and $p_v$ denote the threshold 
+values (with respect to averages) for drift and volatility respectively. These 
+values will be dependent on the size of the dataset as we wish to preselect 
+$p_d$ and $p_v$ such that $k<d<2k$ to reduce the computational burden. The 
+selection strategy then becomes
 
 \tablespacing
 \begin{algorithm}[H]
@@ -65,52 +69,48 @@ $k<d<2k$ to reduce the computational burden. The selection strategy then becomes
 	\begin{algorithmic}[1]
 		\Procedure{}{$k$ is the number of stocks to select and 
 			$A$ is the adjacency matrix of $G=(V,E)$. Let $D$ be the vector of 
-			sample average returns and $V$ be the vector of sample standard 
-			deviation.}
+			sample average price differences over time for each stock in $A$. 
+			Let $V$ be the vector of sample average standard deviation for the 
+			price of each stock in $A$.}
 		
 		\Function{Drift}{}
-		\State $d \gets \text{len}(A)$
 		\State $rmv = [\ ]$
-		\State \textbf{loop from} $i = 1$ to $d$:
-		\State \indent \textbf{If} $D_i \leq p_d$ \textbf{then} 
+		\State \textbf{loop from} $i = 1$ to $\text{len}(A)$:
+		\State \indent \textbf{If} $D_i \leq \text{Avg}(D) + p_d$ \textbf{then} 
 		$rmv$.append($i$)
-		\State \textbf{return} rmv
+		\State Delete all values in $rmv$ from the rows and columns of $A$
 		\EndFunction
-		
-		\State \textbf{loop from} $i=1$ to len($rmv$):
-		\State \indent Delete row $rmv_i$ and column $rmv_i$ from $A$
 		
 		\Function{Volatility}{}
-		\State $d \gets \text{len}(A)$
 		\State $rmv = [\ ]$
-		\State \textbf{loop from} $i = 1$ to $d$:
-		\State \indent \textbf{If} $V_i \leq p_v$ \textbf{then} 
+		\State \textbf{loop from} $i = 1$ to $\text{len}(A)$:
+		\State \indent \textbf{If} $V_i \leq \text{Avg}(V) + p_v$ \textbf{then} 
 		$rmv$.append($i$)
-		\State \textbf{return} rmv
+		\State Delete all values in $rmv$ from the rows and columns of $A$
 		\EndFunction
-		
-		\State \textbf{loop from} $i=1$ to len($rmv$):
-		\State \indent Delete row $rmv_i$ and column $rmv_i$ from $A$
-		
+
 		\Function{Selection}{}
-		\State $d \gets \text{len}(A)$
-		\State $z \gets$ Perm($d,k$)*
-		\State $min = \infty$
-		\State $index = 0$
-		\State \textbf{loop from} $i=1$ \textbf{to} $d \choose k$:
-		\State \indent $c = 0$
-		\State \indent \textbf{loop from} $j = 1$ \textbf{to} $k$:
-		\State \indent \indent \textbf{loop from} $l=1$ \textbf{to} $k$:
-		\State \indent \indent \indent $c \gets c+A_{z_{i,j},z_{i,l}}$
+		\State $z \gets$ Comb($|V|,k$)*
+		\State $min \gets \infty$
+		\State $index \gets 0$
+		\State \textbf{loop from} $i=1$ \textbf{to} $\text{len}(z) = 
+		{|V| \choose k}$:
+		\State \indent $c = 0$ (the number of connections)
+		\State \indent \textbf{loop from} $j = 1$ \textbf{to} $k-1$:
+		\State \indent \indent \textbf{loop from} $l=j+1$ \textbf{to} $k$:
+		\State \indent \indent \indent $c \gets c+A_{z_{j,i},z_{l,i}}$
 		\State \indent \textbf{If} $c < min$ \textbf{then}
-		\State \indent \indent $min = c$
-		\State \indent \indent $index = i$
-		\State \textbf{return} $z_{index,}$
+		\State \indent \indent $min \gets c$
+		\State \indent \indent $index \gets i$
+		\State \indent \textbf{Else If} $c = min$ \textbf{then}
+		\State \indent \indent Randomly determine if replacing $min$ and 
+		$index$ or not
+		\State \textbf{return} $z_{,index}$
 		\EndFunction
 		\EndProcedure
 	\end{algorithmic}
-	*Perm($d,k$) is a function that returns all possible permutations 
-	of $k$ values selected from $d$ i.e. $z_{1,}=<1,5,7>$ is a permutation for 
-	$d=10,k=3$.
+	*Comb($|V|,k$) is a function that returns a matrix of all possible 
+	combinations of $k$ values selected from $|V|$ i.e. $z_{,i}=<z_{1,i} = 1, 
+	z_{2,i} = 5, z_{3,i} = 7>$ is a combination for $|V|=10,k=3$.
 \end{algorithm}
 \bodyspacing

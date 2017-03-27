@@ -50,7 +50,7 @@
 \contentsline {subsection}{\numberline {4.3.1}Simulation study}{57}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}Results}{58}{subsection.4.3.2}
 \contentsline {subsubsection}{Extensions}{59}{section*.10}
-\contentsline {chapter}{\numberline {5}Application and results }{61}{chapter.5}
+\contentsline {chapter}{\numberline {5}Financial application }{61}{chapter.5}
 \contentsline {section}{\numberline {5.1}Application of the visualization system}{61}{section.5.1}
 \contentsline {section}{\numberline {5.2}Stock selection methodology}{62}{section.5.2}
 \contentsline {section}{\numberline {5.3}Healthcare stock data}{64}{section.5.3}
