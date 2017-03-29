@@ -20,6 +20,12 @@
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 times each.}}{59}{figure.4.5}
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 and 50 times respectively.}}{60}{figure.4.6}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Queries which were labeled ``interesting''.}}{69}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Queries which were labeled ``not interesting''.}}{69}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Normalized heatmap of the queries and given labels.}}{71}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram of predicted probabilities.}}{72}{figure.5.4}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Visual graph output from the visualization system.}}{73}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Yearly and cumulative performance of the selected portfolios and the S\&P500.}}{76}{figure.5.6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces A line-up test for $n = 5$. }}{71}{figure.6.1}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces A line-up test for $n = 5$. }}{85}{figure.6.1}
 \addvspace {10\p@ }

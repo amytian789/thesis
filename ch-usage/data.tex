@@ -1,21 +1,108 @@
 \section{Healthcare stock data}
 \label{sec:usage:data}
 
-We select 43 stocks from the healthcare industry to apply the system to. There 
-are 4110 observations of the stocks from 1998 to 2014. We have cleaned the data 
-to get rid of the dependency on time so that each observation of a stock may 
-better simulate an independent draw from some distribution. This is done by 
-fitting a regression to the values and using the residuals as the new dataset.
+The dataset contains 4110 observations of 43 stock prices from the healthcare 
+industry observed from 1998 to 2014. The data is cleaned to get rid of the 
+dependency on time and yearly seasonality so that each observation of a stock 
+may better simulate an independent draw from some distribution. This is done 
+with the usage of the \texttt{sstl} function from the \texttt{Rsafd} package; 
+after fitting the seasonal and trend components, the residuals are used as the 
+new dataset. A list of ticker names and the associated firm may be found below
 
-The data has been split into testing and training sets in the middle of 1998 
-and 2014 (As if we are standing there with historical data, uncertain of the 
-future)
+\tablespacing
+\begin{longtable}{p{0.15\linewidth} p{0.5\linewidth}}
+	
+	% First page heading
+	\caption[Healthcare firms and stock tickers.]{Healthcare firms and stock 
+	tickers.} 
+	\label{tab:usage:tickers}\\
+	\toprule
+	\textbf{Ticker} & \textbf{Firm} \\
+	\midrule
+	\endfirsthead
+	
+	% Future page heading
+	\caption[]{(continued)}\\
+	\toprule
+	\textbf{Ticker} & \textbf{Firm} \\
+	\midrule
+	\endhead
+	
+	% Page footer
+	\midrule
+	\multicolumn{2}{r}{(Continued on next page)}\\
+	\endfoot
+	
+	% Last page footer
+	\bottomrule
+	\endlastfoot
+	
+	ABT & ABBOTT LABORATORIES \\
+	ABBV & ABBVIE INC \\
+	ACT & ACTAVIS PLC \\
+	AET & AETNA INC \\
+	A & AGILENT TECHNOLOGIES INC \\
+	ALXN & ALEXION PHARMACEUTICALS INC \\
+	AGN & ALLERGAN INC \\
+	ABC & AMERISOURCEBERGEN CORP \\
+	AMGN & AMGEN INC \\
+	BAX & BAXTER INTERNATIONAL INC \\
+	BDX & BECTON DICKINSON AND CO \\
+	BIIB & BIOGEN IDEC INC \\
+	BSX & BOSTON SCIENTIFIC CORP \\
+	BMY & BRISTOL-MYERS SQUIBB CO \\
+	CAH & CARDINAL HEALTH INC \\
+	CFN & CAREFUSION CORP \\
+	CELG & CELGENE CORP \\
+	CERN & CERNER CORP \\
+	CI & CIGNA CORP \\
+	COV & COVIDIEN PLC \\
+	BCR & CR BARD INC \\
+	DVA & DAVITA HEALTHCARE PARTNERS I \\
+	XRAY & DENTSPLY INTERNATIONAL INC \\
+	EW & EDWARDS LIFESCIENCES CORP \\
+	LLY & ELI LILLY \& CO \\
+	ESRX & EXPRESS SCRIPTS HOLDING CO \\
+	FRX & FOREST LABORATORIES INC \\
+	GILD & GILEAD SCIENCES INC \\
+	HSP & HOSPIRA INC \\
+	HUM & HUMANA INC \\
+	ISRG & INTUITIVE SURGICAL INC \\
+	JNJ & JOHNSON \& JOHNSON \\
+	LH & LABORATORY CRP OF AMER HLDGS \\
+	MCK & MCKESSON CORP \\
+	MDT & MEDTRONIC INC \\
+	MRK & MERCK \& CO. INC. \\
+	MYL & MYLAN INC \\
+	PDCO & PATTERSON COS INC \\
+	PKI & PERKINELMER INC \\
+	PRGO & PERRIGO CO PLC \\
+	PFE & PFIZER INC \\
+	DGX & QUEST DIAGNOSTICS INC \\
+	REGN & REGENERON PHARMACEUTICALS \\
+	STJ & ST JUDE MEDICAL INC \\
+	SYK & STRYKER CORP \\
+	THC & TENET HEALTHCARE CORP \\
+	TMO & THERMO FISHER SCIENTIFIC INC \\
+	UNH & UNITEDHEALTH GROUP INC \\
+	VAR & VARIAN MEDICAL SYSTEMS INC \\
+	VRTX & VERTEX PHARMACEUTICALS INC \\
+	WAT & WATERS CORP \\
+	WLP & WELLPOINT INC \\
+	ZMH & ZIMMER HOLDINGS INC \\
+	ZTS & ZOETIS INC \\
+	
+\end{longtable}
+\bodyspacing
 
-For $i\in\{1,...,4\}$, 
-we employ a ``buy and hold'' tactic to compare the performance of each 
-portfolio $P_i$ selected utilizing the methodology described in 
-Section~\ref{sec:usage:stockselection}), which correspond to correlation graphs 
-$G_i^{\text{num}}=(V,E)$. While a rebalancing method performs better in 
-practice~\cite{liuh2016}, the ``buy and hold'' is better-suited for observing 
-the portfolio performances over time, providing a more concrete basis of 
-comparison for the selected correlation coefficient.
+The data has been split into testing and training sets of equal length (2050 
+observations) between 1998 and 2014. The idea is that we are standing there in 
+the middle (at 3/13/2006 to be precise) and wish to select our portfolio of 
+stocks on that day. Although we are uncertain of the future, we do have the 
+historical price performance of each and may also extract qualities such as 
+drift, volatility, returns, etc. from the data. As such, correlation graphs 
+(see Section~\ref{sec:intro:correlation}) of the data may be computed and used 
+to inform the stock selection. Once the portfolio has been 
+selected and purchased, the ``buy and hold'' model is implemented, and we 
+observe the yearly returns of the same portfolio until 2014. The next section  
+details the stock selection procedure given a correlation graph.

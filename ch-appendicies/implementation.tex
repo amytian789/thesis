@@ -1424,3 +1424,363 @@ plot(g1)
 plot(g2)
 \end{lstlisting}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Stock selection}
+\label{sec:appendicies:usage:stockselection}
+
+Given a correlation graph $G=(V,E)$, the program selects $k$ stocks (nodes) 
+such that they are as uncorrelated with each other as possible. 
+Section~\ref{sec:usage:stockselection} contains the algorithm associated with 
+this code.
+
+{\setstretch{1.0}
+\begin{lstlisting}
+# g_num is the numerical graph as an adjacency matrix
+# k is the number of stocks to select
+# dd is a vector of sample average price differences over time
+# pd is the "drift" threshold ratio
+# vv is a vector of sample average standard deviation
+# pv is the "volatility" threshold ratio
+#
+# Returns a vector of selected stock tickers
+
+stock_selection <- function(g_num, k, dd, pd = 0, vv, pv = 0){
+
+	stopifnot(ncol(g_num) > k, pd >= 0, pv >= 0)
+	
+	# A) Drift
+	rmv <- c()
+	avgret <- sum(dd) / ncol(dd)
+	for (i in 1:ncol(g_num)){
+		if(dd[i] <= avgret * pd){
+			rmv <- c(rmv, i)
+		}
+	}
+	
+	# B) Volatility
+	avgvol <- sum(vv) / ncol(vv)
+	for (i in 1:ncol(g_num)){
+		if(vv[i] <= avgvol * pv){
+			if(!(i %in% rmv)){
+				rmv <- c(rmv, i)
+			}
+		}
+	}
+	g_num <- g_num[-rmv,-rmv]
+	
+	#print(g_num)
+	
+	# C) Main selection
+	z <- combn(ncol(g_num),k)
+	min <- Inf
+	idx <- 0 
+	for (i in 1:ncol(z)){
+		c <- 0 # number of connections
+		for (j in 1:(k-1)){
+			for (l in (j+1):k){
+				c <- c + g_num[z[j,i],z[l,i]]
+			}
+			if (c < min){
+				min <- c
+				idx <- i
+			} else if (c == min){
+				if (runif(1,0,1) > 0.5){
+					min <- c
+					idx <- i
+				}
+			} else{
+				# do nothing
+			}
+		}
+	}
+	idx_s <- c()
+	for (i in 1:length(z[,idx])){
+		idx_s <- c(idx_s,colnames(g_num)[z[i,idx]])
+	}
+	idx_s
+}
+\end{lstlisting}
+}
+
+
+
+
+
+
+
+
+
+
+\section{Application of visualization system}
+\label{sec:appendicies:usage:newanalysis}
+
+Section~\ref{sec:usage:newanalysis} details the application procedure that is 
+implemented below.
+
+{\setstretch{1.0}
+\begin{lstlisting}
+setwd("---application file path---")
+source("stock_selection.R")
+
+library(Rsafd)
+library(timeDate)
+library(energy)
+library(igraph)
+library(clusteval)
+
+
+
+
+################################## Read in data.
+
+rd <- read.csv(file="HealthcareETF_prices.csv",sep=",",header=TRUE)
+date <- as.timeDate(rd[,1])
+data <- rd[,-1]
+
+# avg drift and vol (computed in Excel)
+dd <- read.csv(file="HealthcareETF_drift.csv",sep=",",header=TRUE)
+vv <- read.csv(file="HealthcareETF_vol.csv",sep=",",header=TRUE)
+
+# Remove seasonal and trend components of data
+for (i in 1:ncol(data)){
+	temp.ts <- Rsafd::timeSeries(data=data[,i],positions=date)
+	# 261 is the avg number of workdays in a year
+	temp.stl <- Rsafd::sstl(temp.ts, FREQ=261) 
+	data[,i] <- temp.stl$rem@data
+}
+
+# Split data into testing and training sets
+# Assume we are standing in the middle of the 1998 and 2014
+data_train <- as.matrix(data[1:(nrow(data)/2),])
+data_test <- as.matrix(data[(nrow(data)/2+1):nrow(data),])
+
+
+
+
+################################## Create numerical graphs
+
+# correlation threshold
+t <- 0.15
+
+# Pearson's correlation graph
+m_pear <- matrix(0, ncol(data_train), ncol(data_train))
+for (i in 1:(ncol(data_train)-1)){
+	for (j in (i+1):ncol(data_train)){
+		m_pear[i,j] <- stats::cor.test(data_train[,i],
+			data_train[,j],method="pearson")$estimate
+	}
+}
+g_pear <- igraph::make_empty_graph(n = ncol(data_train), directed = FALSE)
+for (i in 1:(ncol(data_train)-1)){
+	for (j in (i+1):ncol(data_train)){
+		if (abs(m_pear[i,j]) > t){
+			g_pear <- igraph::add_edges(g_pear, c(i,j))
+		}
+	}
+}
+
+# Spearman's correlation graph
+m_spea <- matrix(0, ncol(data_train), ncol(data_train))
+for (i in 1:(ncol(data_train)-1)){
+	for (j in (i+1):ncol(data_train)){
+		m_spea[i,j] <- stats::cor.test(data_train[,i],
+			data_train[,j],method="spearman")$estimate
+	}
+}
+g_spea <- igraph::make_empty_graph(n = ncol(data_train), directed = FALSE)
+for (i in 1:(ncol(data_train)-1)){
+	for (j in (i+1):ncol(data_train)){
+		if (abs(m_spea[i,j]) > t){
+			g_spea <- igraph::add_edges(g_spea, c(i,j))
+		}
+	}
+}
+
+# Kendall's correlation graph
+m_ktau <- matrix(0, ncol(data_train), ncol(data_train))
+for (i in 1:(ncol(data_train)-1)){
+	for (j in (i+1):ncol(data_train)){
+		m_ktau[i,j] <- stats::cor.test(data_train[,i],
+			data_train[,j],method="kendall")$estimate
+	}
+}
+g_ktau <- igraph::make_empty_graph(n = ncol(data_train), directed = FALSE)
+for (i in 1:(ncol(data_train)-1)){
+	for (j in (i+1):ncol(data_train)){
+		if (abs(m_ktau[i,j]) > t){
+			g_ktau <- igraph::add_edges(g_ktau, c(i,j))
+		}
+	}
+}
+
+# Distance correlation graph
+m_dist <- matrix(0, ncol(data_train), ncol(data_train))
+for (i in 1:(ncol(data_train)-1)){
+	for (j in (i+1):ncol(data_train)){
+		m_dist[i,j] <- energy::dcor.ttest(data_train[,i],
+			data_train[,j])$estimate
+	}
+}
+g_dist <- igraph::make_empty_graph(n = ncol(data_train), directed = FALSE)
+for (i in 1:(ncol(data_train)-1)){
+	for (j in (i+1):ncol(data_train)){
+		if (abs(m_dist[i,j]) > t){
+			g_dist <- igraph::add_edges(g_dist, c(i,j))
+		}
+	}
+}
+
+date <- Sys.Date()
+save.image(file = paste0("corrgraphs_", date, ".RData"))
+
+
+
+
+################################## Visualization system
+
+devtools::install_github("linnylin92/graphicalModelEDA", 
+	ref = "kevin",subdir = "graphicalModelEDA", force = T)
+library(graphicalModelEDA)
+
+# Run the VS
+control_obj <- graphicalModelEDA::visualizer_control()
+control_obj$parameter_list$initial_set <- 10 # faster initialization
+res <- graphicalModelEDA::visualizer_system(data_train, trials = 15, 
+	visualizer_control = control_obj, asp = T)
+
+# Visual graph
+g_visg <- graphicalModelEDA:::visual_graph(res, data_train)
+plot(g_visg)
+
+# Heat map
+plot(res$results)
+
+# Association navigator
+plot(res$results, aes.list = aes.buja())
+
+# Evaluate 100 random pairs and their associated plots
+search_res <- graphicalModelEDA::automated_search(res,data_train)
+# Histogram of predicted probabilities of correlation
+plot(search_res) 
+# Ordered predicted probabilities w/ the scatterplot pairs
+cbind(search_res$pairs[order(search_res$values),], sort(search_res$values)) 
+par(mfrow=c(2,3))
+# Plot the top 5 most "interesting" pairs
+graphicalModelEDA::selective_plot(search_res, dat, 
+	selection = function(vec){ifelse(vec >= sort(vec, 
+	decreasing = TRUE)[5], TRUE, FALSE)})
+
+date <- Sys.Date()
+save.image(file = paste0("visgraph_", date, ".RData"))
+
+
+
+
+################################## Graph comparison
+
+setwd("---GC file path---")
+source("GC_engine.R")
+source("dist_engine.R")
+source("GC_selection.R")
+setwd("---application file path---")
+
+# Setting parameters
+gSumm <- c("cen_deg","cen_clo","cen_bet","ast",
+	"com_rw","com_im","com_bet","dis","eco","edh")
+distf <- "l2"
+
+# Compute difference between all graph pairs (g_visg is the "base")
+gc <- vector("list",4)
+gc[[1]] <- GC_engine(g1=g_visg,g2=g_pear,gSumm=gSumm,distf=distf)
+gc[[2]] <- GC_engine(g1=g_visg,g2=g_spea,gSumm=gSumm,distf=distf)
+gc[[3]] <- GC_engine(g1=g_visg,g2=g_ktau,gSumm=gSumm,distf=distf)
+gc[[4]] <- GC_engine(g1=g_visg,g2=g_dist,gSumm=gSumm,distf=distf)
+
+# Select the most similar graph pair
+idx <- GC_selection(gc = gc, base = 3)
+
+if (idx == 1){
+	print("Pearson's")
+} else if (idx == 2){
+	print("Spearman's")
+} else if (idx == 3){
+	print("Kendall's")
+} else{
+	print("Distance")
+}
+
+
+
+
+################################## Stock selection
+
+# Set parameters
+k <- 5 # number of stocks to select
+pd <- 2/3 # drift threshold ratio 
+pv <- 2/3 # vol threshold ratio
+
+# Pearson's
+set.seed(10)
+a_pear <- igraph::as_adjacency_matrix(g_pear)
+colnames(a_pear) <- colnames(data)
+s_pear <- stock_selection(a_pear, k, dd, pd, vv, pv)
+s_pear
+
+# Spearman's
+set.seed(10)
+a_spea <- igraph::as_adjacency_matrix(g_spea)
+colnames(a_spea) <- colnames(data)
+s_spea <- stock_selection(a_spea, k, dd, pd, vv, pv)
+s_spea
+
+# Kendall's
+set.seed(10)
+a_ktau <- igraph::as_adjacency_matrix(g_ktau)
+colnames(a_ktau) <- colnames(data)
+s_ktau <- stock_selection(a_ktau, k, dd, pd, vv, pv)
+s_ktau
+
+# Distance
+set.seed(10)
+a_dist <- igraph::as_adjacency_matrix(g_dist)
+colnames(a_dist) <- colnames(data)
+s_dist <- stock_selection(a_dist, k, dd, pd, vv, pv)
+s_dist
+
+# Visual
+set.seed(10)
+a_visg <- igraph::as_adjacency_matrix(g_visg)
+colnames(a_visg) <- colnames(data)
+s_visg <- stock_selection(a_visg, k, dd, pd, vv, pv)
+s_visg
+
+date <- Sys.Date()
+save.image(file = paste0("portfolios_", date, ".RData"))
+
+
+
+
+################################## Compare future performance 
+
+# ON EXCEL: Use testing set to do this 
+\end{lstlisting}
+}

@@ -48,9 +48,9 @@
 \BOOKMARK [2][-]{subsection.4.3.1}{4.3.1 Simulation study}{section.4.3}% 48
 \BOOKMARK [2][-]{subsection.4.3.2}{4.3.2 Results}{section.4.3}% 49
 \BOOKMARK [0][-]{chapter.5}{5 Financial application }{}% 50
-\BOOKMARK [1][-]{section.5.1}{5.1 Application of the visualization system}{chapter.5}% 51
+\BOOKMARK [1][-]{section.5.1}{5.1 Healthcare stock data}{chapter.5}% 51
 \BOOKMARK [1][-]{section.5.2}{5.2 Stock selection methodology}{chapter.5}% 52
-\BOOKMARK [1][-]{section.5.3}{5.3 Healthcare stock data}{chapter.5}% 53
+\BOOKMARK [1][-]{section.5.3}{5.3 Application of the visualization system}{chapter.5}% 53
 \BOOKMARK [1][-]{section.5.4}{5.4 Results}{chapter.5}% 54
 \BOOKMARK [0][-]{chapter.6}{6 Conclusion}{}% 55
 \BOOKMARK [1][-]{section.6.1}{6.1 Further extensions}{chapter.6}% 56
@@ -80,4 +80,6 @@
 \BOOKMARK [1][-]{section.A.10}{A.10 Graph summarization engine}{appendix.A}% 80
 \BOOKMARK [1][-]{section.A.11}{A.11 Similarity selection}{appendix.A}% 81
 \BOOKMARK [1][-]{section.A.12}{A.12 GC simulation study}{appendix.A}% 82
-\BOOKMARK [0][-]{section*.11}{Bibliography}{}% 83
+\BOOKMARK [1][-]{section.A.13}{A.13 Stock selection}{appendix.A}% 83
+\BOOKMARK [1][-]{section.A.14}{A.14 Application of visualization system}{appendix.A}% 84
+\BOOKMARK [0][-]{section*.11}{Bibliography}{}% 85

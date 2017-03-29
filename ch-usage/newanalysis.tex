@@ -1,14 +1,25 @@
 \section{Application of the visualization system}
 \label{sec:usage:newanalysis}
 
+Now the issue is that there are many correlation graphs which may be 
+computed with different correlation coefficients; given the large dataset, it 
+is unclear which metric might be the best one. This is where the visualization 
+system comes in and ties everything together. By learning the user's interests 
+and automatically labeling correlated vs uncorrelated pairs of variables, the 
+VS outputs a visual correlation graph that may be used as a ``sanity check'' 
+against the various numerical correlation graphs and provide a guide for 
+selecting the most intuitive numerical correlation graph.
+
 Let $X$ be a $n\times d$ data matrix where there are $n$ observations of $d$ 
-variables. The visualization system should be applied as follows:
+variables. The final procedure is as follows:
 
 \tablespacing
 \begin{enumerate}
 	\item Create four different numerical correlation graphs 
-	$G_i^{\text{num}}=(V,E)$ for all $i\in \{1,...,4\}$, one for each 
-	correlation coefficient described in Section~\ref{sec:intro:correlation}.
+	$G^i=(V,E)$ where $|V| = d$ for all $i\in \{1,...,4\}$ with 
+	threshold $t = 0.15$, one for each correlation coefficient described in 
+	Section~\ref{sec:intro:correlation} (Pearson's, Spearman's, Kendall's, and 
+	distance correlation).
 	
 	\item Run the VS on the same dataset. Stage 1 of the system utilizes the 
 	active learning algorithm selected in Chapter~\ref{ch:al} to learn what is 
@@ -26,15 +37,35 @@ variables. The visualization system should be applied as follows:
 
 	\item Utilize the graph comparison methodology explained in 
 	Chapter~\ref{ch:gc} to find the difference of each pair 
-	$(G,G_i^{\text{num}})$ for all $i \in \{1,...,4\}$. Select numerical 
-	graph $G_i^{\text{num}}$ such that $\text{diff}(G,G_i^{\text{num}}) 
-	\leq \text{diff}(G,G_j^{\text{num}})$ for all $j\neq i$. The 
-	numerical correlation graph $G_i^{\text{num}}$ is then the graph which 
+	$(G,G^i)$ for all $i \in \{1,...,4\}$. Select numerical graph $G^*$ such 
+	that $\text{diff}(G,G^*) \leq \text{diff}(G,G^i)$ for all $i\in 
+	\{1,...,4\}$. The numerical correlation graph $G^*$ is then the graph which 
 	best matches the visual interpretation of the relationships among the 
 	dataset's variables.
+	
+	\item Using the stock selection procedure in 
+	Section~\ref{sec:usage:stockselection}, create a portfolio $P^i$ from each 
+	graph $G^i$ (including portfolio $P^*$ from the graph selected as $G^*$). 
+	
+	\item Observe the performance of each portfolio until 2014.
 \end{enumerate}
 \bodyspacing
 
-Because the question we are interested in answering goes beyond simply finding 
-the ``best'' numerical correlation graph, we will go further and use the 
-``best'' resulting numerical graph to select stocks.
+Normally, it would be standard to simply use the selection procedure with $G^*$ 
+as an input to determine the desired ``buy and hold'' portfolio, record the 
+yearly returns, and then be done. However, because the purpose of this chapter 
+is to demonstrate the usage and viability of the VS in aiding with the selectio 
+of an appropriate numerical procedure (given a dataset and some desired 
+purpose), it is necessary to compare the results of all options among one 
+another. 
+It is natural to expect that the portfolio $P^*$ will perform the best 
+as that is the purpose of the visualization system, after all. 
+By comparing the results of $P^*$ against the other numerical options, we may 
+determine just how well the system captured the user's intuition regarding 
+independence (which is not as straightforward as a simple metric).
+It should also be noted that, while a rebalancing method performs better in 
+practice~\cite{liuh2016}, the ``buy and hold'' is better-suited for observing 
+the portfolio performances over time, providing a more concrete basis of 
+comparison for the selected correlation coefficient. The final code for the 
+application procedure may be found in 
+Appendix~\ref{sec:appendicies:usage:newanalysis}.

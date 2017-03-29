@@ -2,27 +2,29 @@
 \label{sec:usage:stockselection}
 
 Given a correlation graph $G=(V,E)$, we wish to select $k$ stocks (represented 
-as vertices) such that each stock is as independent as possible of the other 
+as nodes) such that each stock is as independent as possible of the other 
 stocks. Two random variables $X$ and $Y$ are independent if and only if their 
 joint cumulative distribution function may be written as 
 $F_{X,Y}(x,y)=F_X(x)F_Y(y)$. With this formal definition, Santos \textit{et 
 al.} notes that ``we say two random variables X and Y are dependent if they
-are not independent'' so the problem then becomes one of ``how to measure and 
-detect dependence from the observation of the two random 
-variables''\cite{santos2013}. With the correlation graph $G$, we now have 
-a measure of dependence. However, it was made clear that, in general, 
+are not independent'' so the problem may be transformed into that of ``how to 
+measure and detect dependence from the observation of the two random 
+variables''\cite{santos2013}. With the correlation graph $G$, there is
+a measure of dependence. However, it should be made clear that, in general, 
 it is incorrect to say that ``uncorrelated'' equates ``independence''. 
 Regardless, non-correlation is still a useful tool to inform stock selection 
 for portfolio management (Section~\ref{sec:intro:finance}). So, we select $k$ 
 stocks such that each stock is as \textit{uncorrelated} as possible with the 
 other stocks.
 
-As $V_i$ and $V_j$ have no edge when Corr($i,j$) is below some threshold $p$, 
-we might consider the following stock selection strategy:
+Because the existence of an edge is a proxy for correlation (with a non-edge 
+being a proxy of independence), we might consider the following simple 
+selection strategy that finds the combination(s) with \textit{a minimum number 
+of edges} between all pairs in the grouping:
 
 \tablespacing
 \begin{algorithm}[H]
-	\caption{Naive stock selection strategy}\label{alg:usage:stockselection1}
+	\caption{Simple stock selection strategy}\label{alg:usage:stockselection1}
 	\begin{algorithmic}[1]
 		\Procedure{}{$k$ is the number of stocks to select and 
 			$A$ is the adjacency matrix of $G=(V,E)$}
@@ -31,14 +33,14 @@ we might consider the following stock selection strategy:
 		\State $index \gets 0$
 		\State \textbf{loop from} $i=1$ \textbf{to} $\text{len}(z) = 
 		{|V| \choose k}$:
-		\State \indent $c = 0$ (the number of connections)
+		\State \indent $c \gets 0$ (the number of connections)
 		\State \indent \textbf{loop from} $j = 1$ \textbf{to} $k-1$:
 		\State \indent \indent \textbf{loop from} $l=j+1$ \textbf{to} $k$:
 		\State \indent \indent \indent $c \gets c+A_{z_{j,i},z_{l,i}}$
 		\State \indent \textbf{If} $c < min$ \textbf{then}
 		\State \indent \indent $min \gets c$
 		\State \indent \indent $index \gets i$
-		\State \indent \textbf{Else If} $c = min$ \textbf{then}
+		\State \indent \textbf{Else If} $c == min$ \textbf{then}
 		\State \indent \indent Randomly determine if replacing $min$ and 
 		$index$ or not
 		\State \textbf{return} $z_{,index}$
@@ -50,22 +52,48 @@ we might consider the following stock selection strategy:
 \end{algorithm}
 \bodyspacing
 
-\noindent This becomes computationally difficult as $|V|$ increases and does 
+This algorithm becomes computationally difficult as $|V|$ increases and does 
 not account for average stock returns; as discussed in 
 Section~\ref{sec:intro:finance}, stocks with positive drift and high volatility 
 are shown to improve the performance of the portfolio over time in the ``buy 
 and hold'' model, or improve gains in the case of rebalancing. These two 
 criteria may be used to minimize the space of stocks to select from. Drift over 
 time is simplified as the average price difference between any two consecutive 
-points in time. We let $p_d$ and $p_v$ denote the threshold 
-values (with respect to averages) for drift and volatility respectively. These 
+points in time. We let $p_d$ and $p_v$ denote the threshold ratios
+(with respect to averages) for drift and volatility respectively. These 
 values will be dependent on the size of the dataset as we wish to preselect 
-$p_d$ and $p_v$ such that $k<d<2k$ to reduce the computational burden. The 
-selection strategy then becomes
+$p_d$ and $p_v$ such that the number of viable stocks is reduced to a 
+reasonable amount (such as 20 - 30) to reduce the computational burden but not 
+so much that the portfolios are all the same (which would be the case if the 
+remaining number of stocks was close to $k$). The adjusted selection strategy 
+may be found in Algorithm~\ref{alg:usage:stockselection2}, and the 
+corresponding code may be found in 
+Appendix~\ref{sec:appendicies:usage:stockselection}.
+
+Although this selection procedure is still simplistic, it still fulfills its 
+purpose as the main goal in this section is to demonstrate the viability of the 
+VS when applied in a setting such as finance. The given procedure is certainly 
+better than randomly selecting stocks and actually holds up in performance 
+against a portfolio fully invested in the S\&P500 (This result may be seen in 
+Section~\ref{sec:usage:results}).
+
+It is also important to make a note here about the initialization of the 
+correlation graphs in relation to the eventual purpose of portfolio selection.
+As $V_i$ and $V_j$ have \textit{no edge} when Corr($i,j$) is below some 
+threshold $t$, the idea of sparsity (discussed in 
+Section~\ref{sec:intro:finance}) should be viewed from a different perspective. 
+Because the goal is to find pairs \textit{without} edges, it is more 
+informative to have a graph with \textit{more} edges so that there are less 
+pairs \textit{without} edges; as such, pairs \textit{without} edges may better 
+represent a more ``pure'' idea of non-correlation. Furthermore, the pairs 
+would be simpler to sort through and more informative regarding the 
+relationship between the corresponding stocks. As such, the threshold 
+for creating the numerical correlation graphs has been set as $t = 0.15$.
 
 \tablespacing
 \begin{algorithm}[H]
-	\caption{Adjusted stock selection strategy}\label{alg:usage:stockselection2}
+	\caption{Simple stock selection strategy 
+	(adjusted)}\label{alg:usage:stockselection2}
 	\begin{algorithmic}[1]
 		\Procedure{}{$k$ is the number of stocks to select and 
 			$A$ is the adjacency matrix of $G=(V,E)$. Let $D$ be the vector of 
@@ -76,7 +104,8 @@ selection strategy then becomes
 		\Function{Drift}{}
 		\State $rmv = [\ ]$
 		\State \textbf{loop from} $i = 1$ to $\text{len}(A)$:
-		\State \indent \textbf{If} $D_i \leq \text{Avg}(D) + p_d$ \textbf{then} 
+		\State \indent \textbf{If} $D_i \leq \text{Avg}(D) \times p_d$ 
+		\textbf{then} 
 		$rmv$.append($i$)
 		\State Delete all values in $rmv$ from the rows and columns of $A$
 		\EndFunction
@@ -84,7 +113,8 @@ selection strategy then becomes
 		\Function{Volatility}{}
 		\State $rmv = [\ ]$
 		\State \textbf{loop from} $i = 1$ to $\text{len}(A)$:
-		\State \indent \textbf{If} $V_i \leq \text{Avg}(V) + p_v$ \textbf{then} 
+		\State \indent \textbf{If} $V_i \leq \text{Avg}(V) \times p_v$ 
+		\textbf{then} 
 		$rmv$.append($i$)
 		\State Delete all values in $rmv$ from the rows and columns of $A$
 		\EndFunction
@@ -95,14 +125,14 @@ selection strategy then becomes
 		\State $index \gets 0$
 		\State \textbf{loop from} $i=1$ \textbf{to} $\text{len}(z) = 
 		{|V| \choose k}$:
-		\State \indent $c = 0$ (the number of connections)
+		\State \indent $c \gets 0$ (the number of connections)
 		\State \indent \textbf{loop from} $j = 1$ \textbf{to} $k-1$:
 		\State \indent \indent \textbf{loop from} $l=j+1$ \textbf{to} $k$:
 		\State \indent \indent \indent $c \gets c+A_{z_{j,i},z_{l,i}}$
 		\State \indent \textbf{If} $c < min$ \textbf{then}
 		\State \indent \indent $min \gets c$
 		\State \indent \indent $index \gets i$
-		\State \indent \textbf{Else If} $c = min$ \textbf{then}
+		\State \indent \textbf{Else If} $c == min$ \textbf{then}
 		\State \indent \indent Randomly determine if replacing $min$ and 
 		$index$ or not
 		\State \textbf{return} $z_{,index}$

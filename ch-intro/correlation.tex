@@ -8,12 +8,23 @@ vertices
 $V_{1},...,V_{d}$ (a $d$-dimensional distribution) and edges
 $E_{i,j}\in\{0,1\}$. We set $E_{i,j}=1$ when there is an edge between $V_i$ and
 $V_j$, and 0 otherwise. An edge is drawn between $V_i$ and $V_j$ iff the two
-random variables are correlated. This graph can be drawn from a correlation
-matrix $\sum$ where $\sum_{i,j}=corr(V_1,V_2)$ with the following heuristic:\\
+random variables are significantly correlated. This graph can be drawn from a 
+matrix of p-values (for each correlation) $P$ where $P_{i,j}=p(V_i,V_j)$ 
+with the following heuristic:\\
 
 \begin{algorithm}
-	If $\sum_{i,j}>p$, draw edge $E_{i,j}$ where $p$ is the $p$-value for the
+	If $P_{i,j} \leq p$, draw edge $E_{i,j}$ where $p$ is the $p$-value for the
 	desired confidence level
+\end{algorithm}
+
+Alternatively and more simplistically, this graph can be drawn from a 
+correlation matrix $\sum$ where $\sum_{i,j}=corr(V_i,V_j)$ with the following 
+heuristic. We implement this latter approach when drawing correlation graphs in 
+Chapter~\ref{ch:usage}'s application.\\
+
+\begin{algorithm}
+	If $\sum_{i,j} > t$, draw edge $E_{i,j}$ where $t$ is the desired threshold 
+	value for a ``significant'' correlation (e.g. $t = 0.75$)
 \end{algorithm}
 
 We differentiate between ``visual correlation'' (which can be thought more of as
