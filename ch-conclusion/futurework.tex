@@ -2,9 +2,9 @@
 \label{sec:futurework}
 
 This section details further extensions on improving other aspects of the 
-visualization system. To improve the methods discussed in this paper, see the 
-final ``extensions'' section in the Chapter~\ref{ch:al} for active learning and 
-Chapter~\ref{ch:gc} for graph comparison.
+visualization system. To improve the specific focuses discussed in this paper, 
+see the final ``extensions'' section in the Chapter~\ref{ch:al} for active 
+learning and Chapter~\ref{ch:gc} for graph comparison.
 
 \subsection{Estimator selection}
 \label{sec:futurework:estimatorselection}
@@ -21,9 +21,13 @@ to define, and the value that the visualization system adds is not as concrete.
 
 Outliers are unavoidable in raw data and can skew results quite a bit. This can 
 be seen in the analysis of Dataset 2 in Table~\ref{tab:intro:me} and 
-Figure~\ref{fig:intro:meplot}. 
-
-((When can the system remove outliers? What criteria should it use? ))
+Figure~\ref{fig:intro:meplot}. The question to answer here would be: when can 
+the system remove outliers and what criteria should it use to make this 
+decision? The procedure should be both systematic and transparent so that the 
+analyst and future readers may understand what has(n't) been removed and for 
+what reason. Data given to the VS should be locked so as to prevent analysts 
+from maliciously removing or adding outliers themselves, thereby increasing 
+accountability. 
 
 \subsection{Graphical models and improved stock selection}
 \label{sec:futurework:graphicalmodel}

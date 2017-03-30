@@ -1,46 +1,56 @@
-%The importance of visualization.
-
-***also talk about just how reproducible these results are!
-
 The proliferation of high-dimensional datasets has led analysts to rely on 
-unverifiable numerical estimators. We are interested in visualizing 
-high-dimensional correlation 
-graphs as a way to verify numerical tests of dependence. This is important in 
-asset management as it is desirable to select a portfolio of stocks that are as 
-independent as possible. High-dimensional visualization is problematic because 
+unverifiable numerical estimators. Instead, it would be useful to be able to 
+visualize high-dimensional correlation graphs as a way to verify numerical 
+tests of dependence. Correlation graphs are important in asset management as it 
+is desirable to select a portfolio of stocks that are as independent as 
+possible. However, high-dimensional visualization is problematic because 
 (1) there are too many potential plots to sort through manually (To be 
 specific, there are $d\choose 2$  plots where $d$ is the number of variables 
 e.g. stocks that we are interested in), which also means that (2) it is tedious 
 to verify numerical results with visual results and vice versa 
-(Section~\ref{sec:intro:problem}). In this work, we 
-presented a visualization tool that actively learns user preferences, applies 
+(Section~\ref{sec:intro:problem}). As a general solution to these issues, the 
+visualization system actively learns user preferences, applies 
 the fitted classifier to unlabeled data, provides visualization tools for the 
 active learning output (a visual graph $G=(V,E)$), and outputs the difference 
-among the numerical graph $G^{\text{num}}=(V,E)$ and $G$ 
-(Chapter~\ref{ch:visualizer}).
+among some given numerical graph $G^{\text{num}}=(V,E^{\text{num}})$ and the 
+visual graph $G$ (Chapter~\ref{ch:visualizer}).
 
 As a specific response to the two aforementioned problems, we focused on the 
-active learning and graph comparison components of the visualizer systems. We 
-discussed two main approaches to active learning and provided algorithms for 
-different active learning methods (Chapter~\ref{ch:al}). A simulation study 
-indicated that $----$ would be the best learning algorithm for the 
-financial application of the VS system. Similarly, we discussed various 
-measures of graph distance and performed a simulation study to determine which 
-methodology to implement in the VS system for the financial application 
-(Chapter~\ref{ch:gc}). 
+active learning and graph comparison components of the VS. We reviewed the two 
+main approaches to active learning (efficient search through hypothesis space 
+$\mathcal{H}$ and exploiting clustering in data) and provided algorithms for 
+different active learning methods in Chapter~\ref{ch:al}. These methods include 
+uncertainty sampling, query by committee (for which we proposed a revised 
+framework), query by bagging, and min-max clustering. A simulation study 
+with parameters that mimicked the intended qualities of the VS system
+indicated that uncertainty sampling is the best learning algorithm for usage in 
+the financial application of Chapter~\ref{ch:usage}. Similarly, we discussed 
+various graph summarization difference metrics, proposed a method to compare 
+the specified distance metrics of various graph pairs and select the most 
+similar pair (one of the output functions of the VS), and demonstrated the 
+viability of the proposed procedure in Chapter~\ref{ch:gc}). 
 
-We then ran the VS system with $----$ in stage 1 and 
-used $----$ to compute the graph comparison of the output $G$ with 
-$G_i^{\text{num}}$ for all $i \in \{1,...,4\}$, the correlation graphs for 
-Pearson, Spearman's, Kendall's, and distance correlation coefficient 
-respectively. $----$ most closely matched the visual graph. We then utilized 
-the stock selection methodology described in 
-Section~\ref{sec:usage:stockselection} to select a portfolio of $k = 10$ stocks 
-$P_i$ for all $i \in \{1,...,4\}$ based on $G_i^{\text{num}}$ based on data 
-from year 1. Yearly returns were computed with the remainder of the 
-observations in a simulation of the ``buy and hold'' strategy. As expected, the 
-portfolio corresponding the correlation graph selected with the aid of the VS 
-was one of the top performers (??).
+The financial data contains the daily prices of 43 different healthcare 
+stocks that were treated to get rid of time-dependency. The data is split in 
+half with the first half (1998 to 2006) used as ``training'' input and the 
+second half (2006 to 2014) used as ``testing'' output. Various correlation 
+coefficients were applied to the training set to create $G^i$ for all $i \in 
+\{1,...,4\}$, the correlation graphs for Pearson, Spearman's, Kendall's, and 
+distance correlation coefficient respectively. We then ran the VS system on the 
+training set to determine the visual graph $G$. After finding the difference 
+between each graph pair, the similarity selection procedure presented in 
+Section~\ref{sec:gc:simulations} was used to find $G^*$, the numerical 
+graph which most closely matched the visual graph (this turned out to be the 
+distance correlation graph). We then utilized the stock selection methodology 
+described in Section~\ref{sec:usage:stockselection} to select a portfolio $P^i$ 
+of $k = 5$ stocks for all $i \in \{1,...,4\}$ for each correlation graph $G^i$. 
+Yearly returns for each portfolio were computed with the testing set in a 
+simulation of the ``buy and hold'' strategy. It was determined that the 
+distance correlation portfolio was the consistent top performer. As can be seen 
+in the results in Section~\ref{sec:usage:results}, the entire process is  
+transparent, and results are reproducible given the recorded user responses 
+to the active learning queries of the VS. Transparency and reproducibility are 
+other important purposes of the VS which can certainly be explored further.
 
 The visualization tool presented in this work is an important step in 
 streamlining the future of clean analysis. It provides a systematic way for 
