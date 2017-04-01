@@ -1,71 +1,115 @@
 \section{Correlation graphs}
 \label{sec:intro:correlation}
 
-Correlation graphs are one way to discover the dependency structure among
-different stocks whose returns may be represented as random variables following
-some distribution. Let $G^{\text{num}}=(V,E)$ be an undirected graph with 
-vertices
-$V_{1},...,V_{d}$ (a $d$-dimensional distribution) and edges
-$E_{i,j}\in\{0,1\}$. We set $E_{i,j}=1$ when there is an edge between $V_i$ and
-$V_j$, and 0 otherwise. An edge is drawn between $V_i$ and $V_j$ iff the two
-random variables are significantly correlated. This graph can be drawn from a 
-matrix of p-values (for each correlation) $P$ where $P_{i,j}=p(V_i,V_j)$ 
+Independence graphs are one way to discover the dependency structure among
+different stocks whose prices may be represented as random variables following
+some distribution. The importance of independence among assets is explained 
+later in Section~\ref{sec:intro:finance}.
+
+Let $G=(V,E)$ be an undirected graph formed from the population 
+$X$. Given that there are $d$ observations of $n$ variables in $X$, 
+$G$ has vertices $|V| = n$ and edges $E_{i,j}\in\{0,1\}$. 
+$E_{i,j}=1$ when there is an edge between $V_i$ and $V_j$, and 0 otherwise. 
+Edges are determined with the following heuristic: \\
+
+\begin{algorithm}
+	$E_{i,j} = 0$ for $i\neq j$ if and only if $X_i \perp X_j$ (the two 
+	variables are independent)
+\end{algorithm}
+
+Unfortunately, independence graphs are difficult to implement in practice since 
+independence is determined by the true joint distributions of all $n$ variables 
+in $X$, which is difficult to determine. However, the independence graph 
+$G$ may be estimated by the sample correlation graph 
+$\hat{G}=(V,\hat{E})$. While it is true that non-correlation does 
+not always imply independence, it is a useful estimate for \textit{some} form 
+of independence between the two variables. 
+It is important to be careful about the terminology usage. Here, 
+``correlation'' is used to refer to \textit{any form} of pair-wise dependence. 
+
+There are two main methods to estimate correlation; the first and most common 
+is via \textbf{numerical correlation}. 
+By ``numerical correlation'', we do not mean the traditional mathematical 
+interpretation of ``Pearson's correlation'' but, instead, anything which 
+involves explicitly computing an estimate of the correlation e.g. Pearson's, 
+Spearman's, and various other correlation metrics which are described later in 
+this section. 
+Let $\hat{G}^{\text{num}}$ be the numerical graph. $\hat{G}^{\text{num}}$ can 
+be drawn from a matrix of $p$-values (for each correlation) $P$ where 
+$P_{i,j}=p(V_i,V_j)$ with the following heuristic:\\
+
+\begin{algorithm}
+	$E_{i,j} = 1$ for $i\neq j$ if $P_{i,j} \leq p$ where $p$ is the $p$-value 
+	for the desired confidence level
+\end{algorithm}
+
+Alternatively and more simplistically, this numerical correlation graph can be 
+drawn from a correlation matrix $\hat{\Sigma}$ where 
+$\hat{\Sigma}_{i,j}=\hat{\rho}(V_i,V_j)$ (some sample correlation coefficient) 
 with the following heuristic:\\
 
 \begin{algorithm}
-	If $P_{i,j} \leq p$, draw edge $E_{i,j}$ where $p$ is the $p$-value for the
-	desired confidence level
+	$E_{i,j} = 1$ for $i\neq j$ if $|\hat{\Sigma}_{i,j}| \geq \lambda$ where 
+	$\lambda$ is the desired threshold value for a ``significant'' correlation 
+	(e.g. $\lambda = 0.75$)
 \end{algorithm}
 
-Alternatively and more simplistically, this graph can be drawn from a 
-correlation matrix $\sum$ where $\sum_{i,j}=corr(V_i,V_j)$ with the following 
-heuristic. We implement this latter approach when drawing correlation graphs in 
-Chapter~\ref{ch:usage}'s application.\\
+\noindent We implement this latter approach when drawing correlation 
+graphs in Chapter~\ref{ch:usage}'s application.
+
+The second method is via \textbf{visual correlation}. Visual correlation can be 
+thought of as ``pairs of variables that marginally appear dependent''. 
+Subsequently, the visual graph $\hat{G}^{\text{vis}}$ can be drawn with the 
+following heuristic:\\
 
 \begin{algorithm}
-	If $\sum_{i,j} > t$, draw edge $E_{i,j}$ where $t$ is the desired threshold 
-	value for a ``significant'' correlation (e.g. $t = 0.75$)
+	$E_{i,j} = 1$ for $i\neq j$ if the scatterplot of pair $(X_i, X_j)$ 
+	contains a distinct trend
 \end{algorithm}
 
-We differentiate between ``visual correlation'' (which can be thought more of as
-``pairs of variables that marginally appear dependent'') and the more common
-mathematical interpretation of ``correlation''. More specifically, we would like
-to visually understand what a correlation graph looks like and compare it to
-correlation graphs constructed with the traditional interpretation of
-correlation. Two variables that have a correlation coefficient near 0 may not
-necessarily be uncorrelated. A scatter plot can reveal this by showing
-outliers or patterns in the data that the analyst wasn't expecting; this was 
-seen in Figure~\ref{fig:intro:meplot} (right). But in order to confirm that the 
-coefficient used applies to each potential relationship, the analyst must plot 
-all possible sets of data, which we have already established as computationally 
-infeasible and tedious to sort through in high dimensions. We will present a 
-solution in Section~\ref{sec:intro:summary}. What follows is an overview of 
-common numerical methods to estimate the correlation between two random 
-variables.
+This definition of ``visual correlation'' is, admittedly, subjective by nature 
+and, as a consequence, slightly vague. Traditionally, 
+numerical correlation is used over visual correlation because it's more 
+objective. However, visual correlation is still necessary in conjunction with 
+numerical correlation. Consider if the joint distributions of the variables 
+changed over time or if there were outliers as in the example of 
+Section~\ref{sec:intro:problem}. While the dependency of the variables could 
+not be captured by standard correlation metrics, we have a notion of the visual 
+correlation between them. But because visual interpretations are subjective and 
+dependent on how the data is plotted, numerical correlation is still useful. 
+The two views on estimating the population correlation do not have to be 
+mutually exclusive and actually supplement each other's faults instead.
+What follows is an overview of common numerical methods 
+to estimate the correlation between two random variables. It will become clear 
+that the numerical correlation metrics below are sensitive in some way or 
+another, further emphasizing the need for both methodologies.
 
 \subsection{Pearson's correlation}
 
 Pearson's correlation measures the linear dependence among two random variables
-$X$ and $Y$. In a population, the correlation is given by
+$X$ and $Y$. In a population, the Pearson correlation is given by
 $$\rho_{X,Y}=\frac{\Cov(X,Y)}{\sigma_X \sigma_Y} =
 \frac{\E(XY)-\E(X)\E(Y)}{\sqrt{\E(X^2)-\E(X)^2} \sqrt{\E(Y^2)-\E(Y)^2}}$$ 
 
-The formulation above is not as useful in practice as datasets are regarded as
-samples of a population. Given $n$ observations, the sample expectation is given
-by the formula  $\bar{x}=\frac{1}{n}\sum\limits_{i=1}^{n}x_i$. By substituting
-into the above and multiplying by $n^2/n^2$, we can estimate the Pearson's
-correlation with the following:
-$$\rho_{x,y}=
+The quantity above is typically unknown in practice since the expectation 
+requires knowing the true joint distribution of $X$ and $Y$. Instead, it is 
+typically estimated by the sample Pearson correlation. Given data with $n$ 
+samples, the sample expectation is given by the formula  
+$\E(X)=\frac{1}{n}\sum\limits_{i=1}^{n}x_i$. 
+By substituting into the formulation above and multiplying by $n^2/n^2$, we can 
+estimate the sample Pearson correlation with the following:
+$$\hat{\rho}_{x,y}^\text{Pear}=
 \frac{n \sum\limits_{i=1}^{n} x_i y_i - \sum\limits_{i=1}^{n} x_i
 	\sum\limits_{i=1}^{n} y_i}
 {\sqrt{n\sum\limits_{i=1}^{n} x_i^2-\left(\sum\limits_{i=1}^{n} x_i\right)^2} 
 	\sqrt{n\sum\limits_{i=1}^{n} y_i^2-\left(\sum\limits_{i=1}^{n} y_i\right)^2}}$$ 
 
-\noindent such that $-1 \leq \rho \leq 1$. With perfect positive and negative 
-linear 
-dependence respectively, $\rho=\pm1$.
-It is important to note that $\rho=0$ does not necessarily indicate
-independence, though it is an indication of \textbf{linear} independence.
+\noindent such that $-1 \leq \hat{\rho}_{x,y}^\text{Pear} \leq 1$. With perfect 
+positive and negative linear 
+dependence respectively, $\hat{\rho}_{x,y}^\text{Pear}=\pm1$.
+It is important to note that $\hat{\rho}_{x,y}^\text{Pear}=0$ does not 
+necessarily indicate independence, though it is an indication of 
+\textbf{linear} independence.
 
 \subsection{Spearman's correlation}
 
@@ -78,15 +122,15 @@ computed by computing the Pearson's correlation among ``ranked variables''. Each
 sample observation $x_i$ of $X$ is ranked from 1 to $n$ based on its position
 relative to $x_j, j\in\{1,...,n\}\backslash{i}$. The ranking is also computed
 for all observations of $Y$. We then define the difference of a sample
-$(x_i,y_i)$ as $d_i=x_i-y_i$ and compute Spearman's correlation as
-$$\rho_{x,y}=1-\frac{6 \sum\limits_{i=1}^{n}d_i^2}{n(n^2-1)}$$
+$(x_i,y_i)$ as $d_i=x_i-y_i$ and compute the sample Spearman's correlation as
+$$\hat{\rho}_{x,y}^{\text{Spear}}=
+1-\frac{6 \sum\limits_{i=1}^{n}d_i^2}{n(n^2-1)}$$
 
-\noindent such that $-1 \leq \rho \leq 1$. With perfect increasing and 
-decreasing 
-monotonic dependence respectively,
-$\rho=\pm1$. Again, it is important to note that $\rho=0$ does not necessarily
-indicate independence, though it is an indication of \textbf{monotonic}
-independence.
+\noindent such that $-1 \leq \hat{\rho}_{x,y}^{\text{Spear}} \leq 1$. With 
+perfect increasing and decreasing monotonic dependence respectively,
+$\hat{\rho}_{x,y}^{\text{Spear}} = \pm1$. Again, it is important to note that 
+$\hat{\rho}_{x,y}^{\text{Spear}}=0$ does not necessarily indicate 
+independence, though it is an indication of \textbf{monotonic} independence.
 
 \subsection{Kendall's tau}
 
@@ -100,16 +144,16 @@ y_j$ or $x_i < x_j$ and $y_i < y_j$. Pairs are defined as ``discordant'' if the
 ranks of both elements disagree i.e. $x_i > x_j$ and $y_i < y_j$ or $x_i < x_j$
 and $y_i > y_j$. In the case where ranks of either element are equal, the pair
 is ignored. Let $c=$ the number of concordant pairs and $d=$ the number of
-discordant pairs. Then Kendall's tau is computed as 
-$$\tau_{x,y}=\frac{c-d}{n(n-1)/2}$$
+discordant pairs. Then the sample Kendall's tau is computed as 
+$$\hat{\rho}_{x,y}^{\text{Kend}}=\frac{c-d}{n(n-1)/2}$$
 
-\noindent such that $-1 \leq \tau \leq 1$. Kendall's tau is less sensitive to 
-errors in 
-the data as its correlation is
+\noindent such that $-1 \leq \hat{\rho}_{x,y}^{\text{Kend}} \leq 1$. 
+Kendall's tau is less sensitive to errors in the data as its correlation is
 based on sample pairs rather than deviations within an observation, though the
 resulting values tend to result in the same interpretations. As with Spearman's
-correlation, $\tau=\pm1$ with perfect increasing and decreasing monotonic
-dependence respectively. Furthermore, $\tau=0$ does not necessarily indicate
+correlation, $\hat{\rho}_{x,y}^{\text{Kend}}=\pm1$ with perfect increasing 
+and decreasing monotonic dependence respectively. Furthermore, 
+$\hat{\rho}_{x,y}^{\text{Kend}}=0$ does not necessarily indicate
 independence, though it is an indication of \textbf{monotonic} independence.
 
 \subsection{Distance correlation}
@@ -122,8 +166,8 @@ distance covariance and distance variance of $X$ and $Y$. We define the
 $n\times n$ matrices $a$ and $b$ as the distance matrices of $X$ and $Y$ 
 respectively. The elements $a_{k,l}$ and $b_{k,l}$ are respectively defined as 
 $||X_k-X_l||$ and $||Y_k-Y_l||$ for all $k,l=1,2,...,n$ where $||z||$ is the 
-Euclidean norm $\sqrt{z_1^2+...+z_n^2}$. Then we define the distance covariance 
-and distance variance as 
+Euclidean norm $\sqrt{z_1^2+...+z_n^2}$. Then we define the sample distance 
+covariance and sample distance variance as 
 
 \tablespacing
 \begin{itemize}
@@ -139,19 +183,27 @@ $\bar{a}_{k,}$ is the $k$th row mean of $a$, $\bar{a}_{,l}$ is the $l$th column
 mean of $a$, and $\bar{a}$ is grand mean of $a$. 
 Similarly, $B_{k,l}=b_{k,l}-\bar{b}_{k,}-\bar{b}_{,l}+\bar{b}$ and 
 $\bar{b}_{k,}$ is the $k$th row mean of $b$, $\bar{b}_{,l}$ is the $l$th column 
-mean of $b$, and $\bar{b}$ is grand mean of $b$. The distance correlation is 
-then defined as
-$$\mathcal{R}_{X,Y}=\frac{\mathrm{dCov}(X,Y)}
+mean of $b$, and $\bar{b}$ is grand mean of $b$. The sample distance 
+correlation is then defined as
+$$\hat{\rho}_{x,y}^{\text{Dist}}=\frac{\mathrm{dCov}(X,Y)}
 {\sqrt{\mathrm{dVar}(X)\mathrm{dVar}(Y)}}$$
 
-\noindent such that $0 \leq \mathcal{R} \leq 1$. As before, $\mathcal{R}=1$ 
-indicates perfect dependence. However, the interpretation of $\mathcal{R}=0$ is 
-different, which is one of its two important properties~\cite{szekely2007}: 
+\noindent with the variance and covariance values given earlier such that 
+$0 \leq \hat{\rho}_{x,y}^{\text{(Dist)}} \leq 1$. As before, 
+$\hat{\rho}_{x,y}^{\text{(Dist)}}=1$ indicates perfect dependence. 
+Like the other correlation metrics, $\hat{\rho}_{x,y}^{\text{Dist}}=0$ implies 
+some form of independence. 
+However, the interpretation of $\hat{\rho}_{x,y}^{\text{Dist}}=0$ is
+interesting in the sense that its corresponding population correlation metric
+$\rho_{x,y}^{\text{Dist}}$ has two important properties not seen in the other 
+population metrics~\cite{szekely2007}: 
 
 \tablespacing
 \begin{enumerate}
 	\item $X$ and $Y$ may be of different dimensions.
-	\item $\mathcal{R}=0$ if and only if $X$ and $Y$ are independent.
+	\item$\rho_{x,y}^{\text{Dist}}=0$ if and only if $X$ and $Y$ are 
+	independent.
 \end{enumerate}
 \bodyspacing
+
 

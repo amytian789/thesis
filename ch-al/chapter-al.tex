@@ -14,14 +14,15 @@ error (a measurement of the difference between the predicted labels and the
 ``true'' labels) converges to zero faster. This property is especially 
 desirable when labeled data are difficult, time-consuming, or computationally 
 expensive to obtain. Stage 1 of the VS (Section~\ref{sec:visualizer:al}) is 
-one such classification task where $Y\in\{$interesting, non-interesting$\}$. 
-Classification and filtering tasks are both tedious and redundant, which 
+one such classification task where $Y\in\{$visual correlation, no visual 
+correlation$\}$. 
+Classification tasks are both tedious and redundant, which 
 necessitates intelligent selection of queries~\cite{settles2010}. What follows 
 is an active learning literature review in Section~\ref{sec:al:litreview}, an 
 overview of active learning methods and their algorithms in 
 Section~\ref{sec:al:methods}, and a simulation study in 
 Section~\ref{sec:al:simulations} to determine the method that is best-suited 
-for usage with the VS in Chapter~\ref{ch:usage}'s equity application.
+for usage with the VS in Chapter~\ref{ch:usage}'s financial application.
 
 \input{ch-al/litreview}
 \input{ch-al/methods}

@@ -1,31 +1,31 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Visual analysis in the univariate case.}}{4}{figure.1.1}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Broad overview of the visualization system.}}{13}{figure.2.1}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces A plot of $y$ against $x$ after the CDF is applied in both directions.}}{14}{figure.2.2}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Scatterplots of independent $U(0,1)$ random variables and the pseudo-observation pairs $(U_{t,j},U_{t,j+1}),j\in \{1,2,3\}$.}}{14}{figure.2.3}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Classifiers and classification models}}{17}{figure.2.4}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Mapping the sample space to a decision tree.}}{19}{figure.2.5}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Heatmap versus association navigator}}{21}{figure.2.6}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Broad overview of the visualization system.}}{15}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces A plot of $y$ against $x$ after the CDF is applied in both directions.}}{16}{figure.2.2}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Scatterplots of independent $U(0,1)$ random variables and the pseudo-observation pairs $(U_{t,j},U_{t,j+1}),j\in \{1,2,3\}$.}}{16}{figure.2.3}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Classifiers and classification models}}{19}{figure.2.4}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Mapping the sample space to a decision tree.}}{21}{figure.2.5}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Heatmap versus association navigator}}{23}{figure.2.6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces MNIST data used in the simulations.}}{34}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Active learning simulation results for Query by Committee with varying parameters.}}{39}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Aggregated active learning simulation results.}}{40}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Active learning simulation results with confidence intervals.}}{42}{figure.3.4}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces MNIST data used in the simulations.}}{36}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Active learning simulation results for Query by Committee with varying parameters.}}{41}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Aggregated active learning simulation results.}}{42}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Active learning simulation results with confidence intervals.}}{44}{figure.3.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Difficulties with graph visualization.}}{46}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces A graph pair with rotated edges.}}{50}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces A graph pair with two and three clusters, respectively.}}{53}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces A graph pair with one (no) and two clusters, respectively.}}{55}{figure.4.4}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 times each.}}{59}{figure.4.5}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 and 50 times respectively.}}{60}{figure.4.6}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Difficulties with graph visualization.}}{48}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces A graph pair with rotated edges.}}{52}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces A graph pair with two and three clusters, respectively.}}{55}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces A graph pair with one (no) and two clusters, respectively.}}{57}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 times each.}}{61}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 and 50 times respectively.}}{62}{figure.4.6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Queries which were labeled ``interesting''.}}{69}{figure.5.1}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Queries which were labeled ``not interesting''.}}{69}{figure.5.2}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Normalized heatmap of the queries and given labels.}}{71}{figure.5.3}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram of predicted probabilities.}}{72}{figure.5.4}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Visual graph output from the visualization system.}}{73}{figure.5.5}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Yearly and cumulative performance of the selected portfolios and the S\&P500.}}{76}{figure.5.6}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Queries which were labeled ``interesting''.}}{71}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Queries which were labeled ``not interesting''.}}{71}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Normalized heatmap of the queries and given labels.}}{73}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram of predicted probabilities.}}{74}{figure.5.4}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Visual graph output from the visualization system.}}{75}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Yearly and cumulative performance of the selected portfolios and the S\&P500.}}{78}{figure.5.6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces A line-up test for $n = 5$. }}{85}{figure.6.1}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces A line-up test for $n = 5$. }}{87}{figure.6.1}
 \addvspace {10\p@ }

@@ -1,7 +1,8 @@
 \section{Portfolio management}
 \label{sec:intro:finance}
 
-An important application of correlation graphs is in modeling the dependencies 
+An important application of numerical correlation graphs is in modeling the 
+dependencies 
 among financial equities. Determining the relationship among various stocks is 
 especially useful when managing portfolios. One such methodology is the ``buy 
 and hold'' tactic where an investor selects a portfolio of stocks and never 
@@ -40,20 +41,21 @@ with insignificant coefficients in the resulting model; this ``negative space''
 point of view is partly utilized in the stock selection methodology for 
 correlation graphs proposed in  Section~\ref{sec:usage:stockselection}.
 
-It must be noted that correlation alone cannot capture the full complexity of 
-these financial applications; in fact, cases such as that of 
+Again, it must be noted that numerical correlation alone cannot capture the 
+full complexity of these financial applications; in fact, cases such as that of 
 Figure~\ref{fig:intro:meplot} (right) reflect the limitations of correlation 
 coefficients and reinforce the importance of visualization. An unassuming 
-analyst might select the data as their correlation is not significantly 
-different from zero (Table~\ref{tab:intro:me}, Dataset 2), but it turns out 
-that they have selected a stocks which we can see are highly correlated!
-However, it is still an important component of 
-portfolio management in theory and in practice. Regardless, correlation graphs 
-and their financial applications are not solutions to the two problems proposed 
-in Section~\ref{sec:intro:problem}. Rather, correlation graphs and their 
-financial applications are a concrete application of whatever the proposed 
-solution is (A detailed application may be found in Chapter~\ref{ch:usage}, and 
-a stock selection methodology for correlation graphs is proposed in 
-Section~\ref{sec:usage:stockselection}). What follows is a roadmap of the 
-high-dimensional visualization solution that is developed further in this 
-paper. 
+analyst might select the stocks (variables) from Table~\ref{tab:intro:me}, 
+dataset two, because their numerical correlation is not significantly different 
+from zero. But, it turns out that the stocks are highly correlated, and this is 
+only clear when looking for visual correlation. However, numerical correlation 
+is still an important component of portfolio management in theory and in 
+practice. As such, an important goal of this paper is to not only develop a 
+solution to the two problems proposed in Section~\ref{sec:intro:problem} but to 
+also develop a method that would allow an analyst to quickly double-check the 
+output from numerical methods with their own concepts of visual dependence. 
+A detailed application may be found in Chapter~\ref{ch:usage} where
+a stock selection methodology for correlation graphs is also proposed. 
+What follows is a roadmap of the high-dimensional visualization solution that 
+is developed further in this paper with 
+Chapters~\ref{ch:visualizer},~\ref{ch:al}, and~\ref{ch:gc}.
