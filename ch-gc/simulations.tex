@@ -1,47 +1,45 @@
 \section{Similarity selection}
 \label{sec:gc:simulations}
 
-Given a set $\mathcal{S}$ of various graph pairs, we would like to select 
-$(G^i,G^j) \in \mathcal{S}$ where $(G^i,G^j)$ is the most similar graph pair. 
-To be more specific, we wish to select graph $\hat{G^i}$ where $\hat{G^i}, i 
-\in \{1,...,k\}$ is most similar to the ``base'' graph $\hat{G}$. $\hat{G^i}$ 
-is selected out of $k$ given graphs each associated with a vector 
-$\overrightarrow{d^{i}}$ of their differences (Again, $i \in \{1,...,k\}$). 
-Each element $\overrightarrow{d^{i}_m}$ for $m \in 
-\{1,...,6\}$ corresponds to one of the six summarization methods listed 
-earlier in Section~\ref{sec:gc:methods}. 
+Given a set of $k$ graphs $\hat{G^i}$ for $i \in \{1,...,k\}$, we would like to 
+select the graph $\hat{G^*}$ which is most similar to the ``base'' graph 
+$\hat{G}$. Each of the $k$ given graphs are associated with a vector 
+$d^{i}$ of their difference to $\hat{G}$. Each element $d^{i}_m$ for $m \in 
+\{1,...,10\}$ corresponds to one of the ten summarization methods listed 
+earlier in Section~\ref{sec:gc:methods} (different flavors of 
+centrality and community are included). 
 We propose the following methodology to select the most similar graph pair:
 
 \tablespacing
 \begin{enumerate}
-	\item Compare each difference metric $\overrightarrow{d^{i}_m}$ against 
-	$\overrightarrow{d^{i'}_m}$ for all $m \in \{1,...,6\}$ and $i,i' \in 
+	\item Compare each difference metric $d^{i}_m$ against 
+	$d^{i'}_m$ for all $m \in \{1,...,6\}$ and $i,i' \in 
 	\{1,...,k\}$ where $i \neq i'$. 
 	\item Select the index $i$ which has the most number of smallest 
 	differences. In other words, find
 	$$\max\limits_{i \in \{1,...,k\}} 
-	\sum\limits^{6}_{m=1} \textbf{1}_{\overrightarrow{d^{i}_m} > 
-	\overrightarrow{d^{i'}_m}} \ \text{where} \ i \neq i' \in \{1,...,k\}$$
+	\sum\limits^{10}_{m=1} \textbf{1}_{d^{i}_m > d^{i'}_m} \ \text{where} \ i 
+	\neq i' \in \{1,...,k\}$$
 \end{enumerate}
 \bodyspacing
 
 Aside from returning the most similar graph pair, the proposed similarity 
 selection method further eliminates the need to normalize the resulting 
-difference metrics, which will not be on the same scale within 
-$\overrightarrow{d_{i,j}}$, as it compares each metric to its own metric rather 
-than computing an aggregate ``difference'' between graphs $\hat{G}^i$ and 
-$\hat{G}^j$. In the next Section~\ref{sec:gc:simulations:algorithm}, we 
-demonstrate the viability of this strategy with a simulation study. 
-This method is later applied in Chapter~\ref{ch:usage} to compare the visual 
-graph (output from the VS) and the various correlation graphs (with correlation 
-coefficients explained in Section~\ref{sec:intro:correlation})
+difference metrics (which will not be on the same scale within the vector
+$d^i$), as it compares each metric to its own metric rather 
+than using $d^i$ to compute a scalar ``difference'' between graphs 
+$\hat{G}^i$ and $\hat{G}$. In the next section, we demonstrate the viability of 
+this strategy with a simulation study. This method is later applied in 
+Chapter~\ref{ch:usage} to compare the visual correlation graph (formed from the 
+VS) with the various numerical correlation graphs (formed from the correlation 
+coefficients described in Section~\ref{sec:intro:correlation}).
 The similarity selection method is coded in 
 Appendix~\ref{sec:appendicies:gc:similarity}.
 
 \subsection{Simulation study}
 \label{sec:gc:simulations:algorithm}
 
-We now perform a simulation study to demonstrate the viability of this 
+We now perform a simulation study to demonstrate the viability of the proposed 
 selection strategy. Let $G=(V,E)$ be a base graph with $|V|=20$ nodes and 
 $|E|=50$ edges. The idea is to generate two random graphs $G^1, G^2$ from $G$ 
 such that $\text{diff}(G,G^1) << \text{diff}(G,G^2)$ or vice versa. 
@@ -56,18 +54,19 @@ The random swapping algorithm is as follows:
 	\begin{algorithmic}[1]
 		\Procedure{}{$G=(V,E)$ is the ``base'' graph. Generate a 
 		random graph $G^i=(V,E^i)$ by randomly swapping $e$ edges of $G$.
-		Let $p_k$ be the probability of randomly selecting node $V_k$ with the 
-		given PDF. }
+		Let $p_k$ be the probability of randomly selecting node $V_k$. }
 		\State $G^i \gets G$
 		\State \textbf{loop from} $f=1$ \textbf{to} $e$:
-		\State \indent Select $E_i$ uniformly at random and delete from $G^i$
+		\State \indent Select an edge uniformly at random and delete from $G^i$
 		\State \indent Select $V_i$ uniformly at random
 		\State \indent Select $V_j$ at random where 
-		$p_k = \frac{deg(V_k)}{\sum\limits_{x=1}^{|V|} deg(V_x)} \ \forall \
+		$p_k = \frac{\text{deg}(V_k)}{\sum\limits_{x=1}^{|V|} \text{deg}(V_x)} 
+		\ \forall \
 		k \in \{1,...,|V|\}$
-		\State \indent \textbf{while} ($V_i = V_j$ \textbf{or} $(V_i,V_j)$ 
-		exists):
-		\State \indent \indent Reselect $V_j$ at random with the same PDF $p$*
+		\State \indent \textbf{while} ($V_i == V_j$ \textbf{or} edge 
+		$(V_i,V_j)$ exists):
+		\State \indent \indent Reselect $V_j$ at random with the PDF given 
+		earlier*
 		\State \indent Add edge $(V_i,V_j)$ to $G^i$
 		\State \textbf{return} where($p==\min{(p)}$)
 		\EndProcedure
@@ -77,19 +76,20 @@ The random swapping algorithm is as follows:
 \end{algorithm}
 \bodyspacing
 
-\noindent Naturally, $G^1$ should be more similar to $G$ since less 
+\noindent Naturally, $G^1$ is more similar to $G$ since less 
 edges are being swapped than in $G^2$. The differences between the pair 
-$(G,G^i)$ for $i \in \{1,2\}$ are computed given the summarization 
-methodologies discussed in Section~\ref{sec:gc:methods}, and the most similar 
-graph pair is selected with the similarity selection method described earlier. 
-The results are then recorded for 1000 trials, and an average is taken. 
+$(G,G^i)$ for $i \in \{1,2\}$ are computed with the summarization 
+methods discussed in Section~\ref{sec:gc:methods}, and the most similar 
+graph is selected with the similarity selection method described in 
+Section~\ref{sec:gc:simulations}. 
+The results are recorded for 1000 trials, and an average is computed. 
 The code for the simulation study may be found in 
 Appendix~\ref{sec:appendicies:gc:simulations}. 
 
 \subsection{Results}
 \label{sec:gc:simulations:results}
 
-The results are as follows:
+The results are summarized in Table~\ref{tab:gc:simulations}.
 
 \tablespacing
 \begin{longtable}{p{0.15\linewidth} p{0.25\linewidth} 
@@ -147,22 +147,26 @@ p{0.15\linewidth} p{0.15\linewidth}}
 \end{longtable}
 \bodyspacing
 
-\noindent It is clear, then, that the proposed similarity selection method is 
-likely to properly select the most similar graph pairs on average. To visualize 
-the similarity between 10 vs 10 and 10 vs 50 swaps, please review 
-Figures~\ref{fig:gc:sim10vs10} and~\ref{fig:gc:sim10vs50}, which plot the 
-graphs resulting from the swaps in the final simulation trial. Since the 
-control and the true simulations were run separately and each trial seeded with 
-its trial number, the base graph and $G^1$ (which has 10 swaps in each 
-simulation) are, expectedly, the same. It is $G^2$ that differs.
+\noindent Though the control is slightly skewed towards $G^1$, it is still 
+clear that, on average, the proposed similarity selection method is more likely 
+to properly select $G^1$, the actual ``most similar graph''. To visualize 
+the differences between 10 vs 10 and 10 vs 50 swaps, please review 
+Figures~\ref{fig:gc:sim10vs10} and~\ref{fig:gc:sim10vs50}, which plot $G, G^1,$ 
+and $G^2$ from the final simulation trial. Because the control and the regular
+simulations were run separately and because each trial is seeded with 
+its trial number, $G$ and $G^1$ (which has 10 swaps in each 
+simulation) are the same in Figures~\ref{fig:gc:sim10vs10} 
+and~\ref{fig:gc:sim10vs50}; only $G^2$ differs.
 
 \begin{figure}[htb]
 	\begin{center}
 		\includegraphics[width=1\linewidth]{ch-gc/figures/sim_10vs10}
 		\caption[Random graphs with 20 nodes and 50 edges. Edges have been 
-		swapped 10 times each.]{\textit{Left:} Base graph $G(V,E)$ with $V=20$ 
-		nodes and $E=50$ edges. \textit{Middle and Right:} Two random graphs 
-		built from $G$ by randomly swapping 10 edges. Distance: L2. Seed: 1000}
+		swapped 10 times each.]{\textit{Left:} Base graph $G=(V,E)$ with 
+		$|V|=20$ nodes and $|E|=50$ edges. 
+		\textit{Middle:} Random graph $G^1$ built from $G$ by swapping 
+		10 edges. \textit{Right:} Random graph $G^2$ built from $G$ by 
+		swapping 10 edges. Distance: L2. Seed: 1000}
 		\label{fig:gc:sim10vs10}
 	\end{center}
 \end{figure}
@@ -171,11 +175,11 @@ simulation) are, expectedly, the same. It is $G^2$ that differs.
 	\begin{center}
 		\includegraphics[width=1\linewidth]{ch-gc/figures/sim_10vs50}
 		\caption[Random graphs with 20 nodes and 50 edges. Edges have been 
-		swapped 10 and 50 times respectively.]{\textit{Left:} Base graph 
-		$G(V,E)$ with $V=20$ nodes and $E=50$ edges.\textit{Middle:} Random 
-		graph built from $G$ by randomly swapping 10 edges. \textit{Right:} 
-		Random graph built from $G$ by randomly swapping 50 edges. 
-		Distance: L2. Seed: 1000}
+		swapped 10 and 50 times, respectively.]{\textit{Left:} Base graph 
+		$G=(V,E)$ with $|V|=20$ nodes and $|E|=50$ edges.\textit{Middle:} 
+		Random graph $G^1$ built from $G$ by swapping 10 edges. 
+		\textit{Right:} Random graph $G^2$ built from $G$ by swapping 
+		50 edges. Distance: L2. Seed: 1000}
 		\label{fig:gc:sim10vs50}
 	\end{center}
 \end{figure}
@@ -183,32 +187,46 @@ simulation) are, expectedly, the same. It is $G^2$ that differs.
 \subsubsection{Extensions}
 
 Although the normalization methods proposed in Section~\ref{sec:gc:methods} 
-have bounded the graph summarization metrics between 0 and 1, it does not 
-necessitate that the values are uniformly distributed between 0 and 1. An 
-alternative method of normalization leverages the Erdos-Renyi random graph 
-generation model to normalizes the \textit{overall difference metric} between 
-two existing graphs $G^1=(V,E^1)$ and $G^2=(V,E^2)$. Let $\overrightarrow{d} = 
-\text{dist}(G^1,G^2)$. Then the procedure is as follows:
+have bounded the individual graph summarization metrics between 0 and 1, these 
+metrics are not necessarily uniformly distributed between 0 and 1. An 
+alternative method of normalization utilizes the Erdos-Renyi model (which 
+generates a random graph by creating every edge with the same probability) to 
+normalize the \textit{overall difference metric} between 
+two existing graphs $G^1=(V,E^1)$ and $G^2=(V,E^2)$. While this does not 
+actually yield a scalar difference metric, the result provides insight on 
+the significance of the resulting difference metric.
+Let $d = \text{diff}(G^1,G^2)$. Then the procedure is as follows:
 
 \tablespacing
-\begin{itemize}
-	\item For $i = 1$ to $n$ trials,
-	\item Generate a simulated Erdos-Renyi Graph $\hat{G^1}$ with $|V|$ nodes 
-	and $|E^1|$ edges.
-	\item Generate a simulated Erdos-Renyi Graph $\hat{G^2}$ with $|V|$ nodes 
-	and $|E^2|$ edges.
-	\item Let $\overrightarrow{t_i} = \text{dist}(\hat{G^1},\hat{G^2})$
-	\item Compare $\overrightarrow{d}$ to the empirical distribution 
-	$\{\overrightarrow{t_1},...,\overrightarrow{t_n}\}$ by computing a $p$-value
-	$$\frac{\#\{\overrightarrow{t_i} : \overrightarrow{t_i} \geq 
-	\overrightarrow{d} \}}{n}$$
-	for a right-tail distribution and 
-	$$\frac{\#\{\overrightarrow{t_i} : \overrightarrow{t_i} \leq 
-	\overrightarrow{d} \}}{n}$$
-	for a left-tail distirbution using the similarity selection methodology 
-	presented in Section~\ref{sec:gc:simulations}. Naturally, as a $p$-value 
-	would indicate, a lower number suggests that $\overrightarrow{d}$ is more 
-	significant because it indicates that $\overrightarrow{d}$ has a low 
-	probability of being an ``extreme'' event.
-\end{itemize}
+\begin{algorithm}[H]
+	\caption{Alternative graph difference 
+	normalization procedure}\label{alg:gc:simulations:extension}
+	\begin{algorithmic}[1]
+		\Procedure{}{$G^1=(V,E^1)$ and $G^2=(V,E^2)$. Let $d = 
+		\text{diff}(G^1,G^2)$. $n$ is the desired number 
+		of trials e.g. $n = 1000$. }
+		\State \textbf{loop from} $i=1$ \textbf{to} $n$:
+		\State \indent Generate an Erdos-Renyi graph $\hat{G^1}$ with 
+		$|V|$ nodes and $|E^1|$ edges.
+		\State \indent Generate an Erdos-Renyi graph $\hat{G^2}$ with 
+		$|V|$ nodes and $|E^2|$ edges.
+		\State \indent $t_i \gets \text{dist}(\hat{G^1},\hat{G^2})$
+		\State Compare $d$ to the empirical distribution $\{t_1,...,t_n\}$*
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
 \bodyspacing
+ 
+\noindent *Compare $d$ to the empirical distribution $\{t_1,...,t_n\}$ by 
+computing a $p$-value
+$$\frac{\#\{t_i : t_i\geq d \}}{n}$$
+
+\noindent for an upper tail distribution and a $p$-value
+$$\frac{\#\{t_i : t_i \leq d \}}{n}$$
+
+\noindent for a lower tail distribution. The $p$-values may be computed using 
+the similarity selection methodology 
+presented in Section~\ref{sec:gc:simulations}. A lower $p$-value 
+suggests that $d$ is more significant (i.e. the computed difference metric is 
+reliable) because it indicates that $d$ has a low probability of being an 
+``extreme'' event.

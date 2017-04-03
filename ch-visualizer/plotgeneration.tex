@@ -1,60 +1,69 @@
 \section{Automated plot generation (Stage 2)}
 \label{sec:visualizer:plotgeneration}
 
+As a reminder, in stage 2, the visualization system uses the labeled scatter 
+plots to build a classifier and automatically label the rest of the plots.
+
 \subsection{Decision tree classification of user interests}
 \label{sec:visualizer:plotgeneration:tree}
 
-Given initialization and actively selected labeled data, what classification 
-models can the visualization system use to create a final fitted model of user 
-interests? A \textit{decision tree} is composed of nodes (which correspond to 
+Given labels for the initialized and actively-selected queries, there are 
+several classification models that the visualization system can use to create a 
+final fitted model of user interests. One such model is a \textit{decision 
+tree}. A decision tree is composed of nodes (which correspond to 
 classification labels) and branches (which correspond to decision boundaries). 
 A tree is constructed at each node by sampling all $M$ possible vertical and 
 horizontal splits in the sample space and selecting the split which minimizes 
-the \textit{Gini criterion}. A mapping of the sample space to a tree is shown 
-in Figure~\ref{fig:visualizer:plotgeneration:tree}. The Gini criterion measures 
-the homogeneity of the nodes in each side of the proposed split and is computed 
-as follows (for a vertical split)
-$$G = N_{left} \sum\limits_{k=1}^{K} p_{k,left}(1-p_{k,left}) + N_{right} 
-\sum\limits_{k=1}^{K}  p_{k,right}(1-p_{k,right})$$
+the \textit{Gini criterion}~\cite{cutler2010}. A mapping of the sample space to 
+a tree is shown in Figure~\ref{fig:visualizer:plotgeneration:tree}. The Gini 
+criterion measures the homogeneity of the nodes in each side of the proposed 
+split and is computed as follows (for a vertical split)~\cite{cutler2010}:
+$$G = N_{\text{left}} \sum\limits_{k\in \{0,1\}} p_{k,\text{left}} 
+(1-p_{k,\text{left}}) + N_{\text{right}} 
+\sum\limits_{k \in \{0,1\}}  p_{k,\text{right}}(1-p_{k,\text{right}})$$
 
 \noindent where $N_s$ is the number of nodes in side $s$ of a split ($s = 
-\{left,right\}$ in a vertical split, and $s = \{top,bottom\}$ in a horizontal 
-split) and $p_{k,s}$ is the fraction of class label $k$ on side $s$ of the 
-split. Decision trees are a more sophisticated classification method than 
-simple linear regression and retains interpretability. The root node is, 
-naturally, most important as it corresponds to a split that optimizes the Gini 
-criterion while the terminal nodes can be thought of as the data's homogeneous 
-clusters. However, decision trees are also unstable; perturbing a single 
-data point may change the entire tree. Furthermore, due to the nature of 
-vertical and horizontal splitting, 
+\{\text{left,right}\}$ in a vertical split, and $s = \{\text{top,bottom}\}$ in 
+a horizontal split) and $p_{k,s}$ is the fraction of class label $k$ on side 
+$s$ of the split. Note that $k \in \{0,1\}$ in binary classification, which is 
+used in the VS. Decision trees are a more sophisticated classification method 
+than simple linear regression and retain interpretability. The root node is, 
+naturally, the most important as it corresponds to a split that optimizes the 
+Gini criterion while the terminal nodes can be thought of as the data's 
+homogeneous clusters. However, decision trees are also unstable; perturbing a 
+single data point may change the entire tree. Furthermore, due to the nature of 
+vertical and horizontal splitting, a single tree cannot fully capture diagonal 
+(or non-vertical/horizontal) splits in the decision boundary.
 
 \begin{figure}[htb]
 	\begin{center}
 		\includegraphics[width=1\linewidth]{ch-visualizer/figures/decisiontree}
 		\caption[Mapping the sample space to a decision tree.]{Mapping the 
-		sample space (left) to a decision tree (right). Images from 
-		Cutler~\cite{cutler2010}.}
+		sample space (\textit{left}) to a decision tree (\textit{right}). 
+		Images from Cutler 2010~\cite{cutler2010}.}
 		\label{fig:visualizer:plotgeneration:tree}
 	\end{center}
 \end{figure}
 
 A \textit{random forest} provides solutions to the problems that a single 
-decision tree faces. In a random forest, a forest is composed of many trees 
+decision tree faces. A forest is composed of many decision trees 
 ``grown'' from random partitions of the labeled set (the training set). 
 Furthermore, each decision tree is constructed by finding the best split among 
-$m \in M$ splits. This allows each tree to specialize on a subset of the data, 
+$m \in M$ splits~\cite{cutler2010}. This allows each tree to specialize on a 
+subset of the data, 
 creating a more informative aggregate. A simplistic example of a forest with 2 
-trees may be found in Figure~\ref{fig:visualizer:al:tree}.
-Each tree in the forest has a vote of weight one for each unlabeled data, and 
+trees may be found in Figure~\ref{fig:visualizer:al:tree}. Each tree in the 
+forest has a vote of weight one on the label of each unlabeled data point, and 
 the forest is aggregated by majority vote, which makes the resulting decision 
 boundaries more stable (less variant) on average. On the other hand, a forest 
 with many trees is difficult to visualize. However, there are methods to 
 simplify a forest into a single tree for the purposes of visualization (rather 
 than for usage in classification, as the issue with stability would then 
 remain). One such method for single tree approximate is presented by Zhou and 
-Hooker~\cite{zhou2016}. Utilization of such a methodology aids in user 
-interpretability of the system output while maintaining the robustness of a 
-forest. As such, the VS sets the choice of classification model to random 
+Hooker~\cite{zhou2016}. Utilization of such a method to present the resulting 
+random forest classifier to the user aids in user interpretability of the 
+system output while maintaining the robustness of a forest in practice. 
+As such, the VS sets the choice of classification model to random 
 forest by default but allows the user to specify their preferred classification 
 model if they wish to do so.
 
@@ -63,48 +72,51 @@ model if they wish to do so.
 
 The system has now learned which of the unlabeled plots 
 may be of interest to the user. The final learned classifier is used to fit the 
-rest of the $d \choose 2$ unlabeled scatterplots, and a visual graph $G=(V,E)$ 
-may be built from these labels with the following heuristic where $i,j \in 
-\{1,...,d\}$:
+rest of the $n \choose 2$ unlabeled scatterplots, and a visual graph 
+$\hat{G}=(V,E)$ 
+may be built from these labels with the heuristic presented in 
+Section~\ref{sec:intro:correlation}:
 
 \begin{algorithm}
-	If label($i,j)>0$ (i.e. ``interesting'' instead of ``uninteresting''), draw 
-	edge $E_{i,j}$
+	$E_{i,j} = 1$ (draw an edge) for $i\neq j$ if the pairwise scatter plot 
+	$(X_i,X_j)$ contains a distinct trend
 \end{algorithm}
 
 Furthermore, the VS may provide a visualization of the resulting classifier 
-itself such as the decision tree itself (as discussed earlier). The active 
+boundaries such as the decision tree itself (as discussed earlier). The active 
 learning output may also be visualized as a heat map. A 
-classic heat map represents each pair of variables as colors from a bivariate 
-spectrum. Heat maps are difficult to interpret as it is one-dimensional; each 
-end of the color spectrum represents minimum and maximum values respectively. 
-It is unclear what the max or the min is as it depends on the domain of the 
-whatever the heat map is plotting; as such, the minimum may not necessarily be 
-negative while the maximum may not necessarily be positive. Furthermore, the 
-subtle variations in hue between colors make it difficult to compare relative 
-ranking among different pairs for colors that are similar. Buja \textit{et al.} 
+classic heat map represents the qualities of each pair of variables as colors 
+from a bivariate spectrum. Heat maps are difficult to interpret as they are 
+one-dimensional; each end of the color spectrum represents minimum and maximum 
+values respectively. It is unclear what the maximum or minimum values are 
+because they depend on the domain of the whatever criterion the heat map is 
+plotting; as such, the minimum may not necessarily be negative while the 
+maximum may not necessarily be positive. Furthermore, the subtle variations in 
+hue between colors make it difficult to compare the relative ranking of 
+different variable pairs with similar colors. Buja \textit{et al.} 
 propose an alternate, clearer method of visualizing the heat map, termed the 
 ``association navigator''~\cite{buja2016}. The association navigator is 
-two-dimensional: the size of each color corresponds to its value while the 
-color 
-represents a positive or negative value~\cite{buja2016}. As such, the 
+two-dimensional; the size of each field corresponds to the criterion's value 
+while the color itself indicates if the criterion is positive or 
+negative~\cite{buja2016}. As such, the 
 association navigator only utilizes two colors rather than a spectrum of 
-colors, making it simple to distinguish between the two. By simplifying the 
+colors, making it simpler to distinguish between the two. By simplifying the 
 color scheme and adding the dimension of size, the association navigator makes 
-it much easier to interpret and compare different pairs of data at a glance. 
-The stark difference between a traditional heatmap and the association 
-navigator when applied to the same dataset may be seen in 
-Figure~\ref{fig:visualizer:heatmap}. The VS provides both options, allowing the 
-analyst to select whichever is easier to for them to interpret. 
-With these visualizations of the active learning output, the user should be 
-able to understand his/her own interests. 
+it easier to interpret and compare different pairs of data at a glance. 
+The stark difference between a traditional heat map and the association 
+navigator (applied to the same dataset) may be seen in 
+Figure~\ref{fig:visualizer:heatmap}. The VS accommodates for both options, 
+allowing the analyst method is preferred. 
+With these visualizations of the active learning output, the user may better 
+understand his/her own interests. 
 
 \begin{figure}[htb]
 	\begin{center}
 		\includegraphics[width=1\linewidth]{ch-visualizer/figures/heatmap}
-		\caption[Heatmap versus association navigator]{\textit{Top:} A 
-		traditional heatmap. \textit{Bottom:} The association navigator on the 
-		same set of data.}
+		\caption[Heat map versus association navigator]{\textit{Top:} A 
+		traditional heat map. \textit{Bottom:} The association navigator on the 
+		same set of data. Each row corresponds to a labeled pairwise scatter 
+		plot, and each column corresponds to a different plot characteristic.}
 		\label{fig:visualizer:heatmap}
 	\end{center}
 \end{figure}
@@ -113,32 +125,37 @@ able to understand his/her own interests.
 \label{sec:visualizer:plotgeneration:output}
 
 There are three options at the end of stage 2. Two of them are concrete outputs 
-that may be easily used in an analyst's final report, and the third is a 
-refinement of the active learning component in stage 1.
+that may be easily used in a final report on the data analysis findings, and 
+the third is a refinement of the active learning component in stage 1.
 
 \tablespacing
 \begin{itemize}
 	\item \textbf{Automatic plot generation:} The VS compiles a selection of 
 	the most interesting and non-interesting plots along with their 
 	associated transformation variables.
-	\item \textbf{Graph comparison:} The VS accepts a numeric graph (For 
-	example, a correlation graph $G^{\text{num}}$ generated with numerical 
-	correlation 
-	coefficients as described in Section~\ref{sec:intro:correlation}) and 
-	measures the difference between the numeric graph $G^{\text{num}}$ and 
-	visual graph $G$ (the active learning output). This is especially useful 
+	
+	\item \textbf{Graph comparison:} The VS accepts a numerical graph such as 
+	$\hat{G}^{\text{num}}$, a correlation graph generated from one of the 
+	numerical correlation coefficients described in 
+	Section~\ref{sec:intro:correlation}, and the VS measures the difference 
+	between $\hat{G}^{\text{num}}$ and the visual graph $\hat{G}$ (the active 
+	learning output). This is especially useful 
 	for determining which numerical graph is ``closest'' to the visual graph, 
 	allowing the user to select a more appropriate numerical method for their 
-	analysis. Details on graph comparison methods and a numerical graph 
-	selection strategy may be found in Chapter~\ref{ch:gc}.
+	analysis. Details on graph comparison methods and a similarity 
+	selection strategy can be found in Chapter~\ref{ch:gc}.
+	
 	\item \textbf{Line-up test:} In the event that the classifier is not a 
 	satisfactory representation of the analyst's interests, the VS may utilize 
-	line-up tests to help determine where to query from further. For more 
+	line-up tests to help determine where to query from further. Once the stage 
+	1 component is refined and the classifier has been refit, the concrete 
+	outputs mentioned above may then be generated if desired. For more 
 	details on this methodology, see Section~\ref{sec:futurework:lineup}.
 \end{itemize}
 \bodyspacing
 
-With the focus on various correlation graphs in this work, graph comparison is 
+Because this work focuses on numerical and visual correlation graphs and their 
+financial application, graph comparison is 
 the most useful output from the visualization system. As such, it is one of our 
 primary VS focuses. The next section provides a roadmap for the rest of this 
 work, which goes into detail on two aspects of the VS. 

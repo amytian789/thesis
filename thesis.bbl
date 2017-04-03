@@ -53,6 +53,13 @@ D.~Lewis and W.~Gale.
 \newblock {\em Proceedings of the ACM SIGIR Conference on Research and
   Development in Information Retrieval}, pages 3--12, 1994.
 
+\bibitem{lin2017}
+K.~Lin.
+\newblock Eda for graphical models.
+\newblock \url{https://github.com/linnylin92/graphicalModelEDA/tree/kevin},
+  2017.
+\newblock Github repository.
+
 \bibitem{little2013}
 R.~J. Little.
 \newblock {In Praise of Simplicity not Mathematistry! Ten Simple Powerful Ideas

@@ -1,17 +1,20 @@
 \section{Results}
 \label{sec:usage:results}
 
-The specific queries given by the system and the corresponding oracle labels 
+The specific queries given by the VS and the corresponding oracle labels 
 (the oracle, in this case, is the author of this work) may be seen in 
-Figures~\ref{fig:usage:interesting} and \ref{fig:usage:notinteresting}. The 
-system was given a budget of 15 queries.
+Figures~\ref{fig:usage:interesting} and \ref{fig:usage:notinteresting}. Recall 
+that the active learner in stage 1 was given a budget of 15 queries. The 
+queried plots are not labeled during stage 1 in order to prevent potential bias 
+from clouding the oracle's responses. After stage 2, the user may plot and view 
+the corresponding variable names should he/she wish to do so.
 
+\newpage 
 \begin{figure}[htb]
 	\begin{center}
 		\includegraphics[width=1\linewidth]{ch-usage/figures/y_all}
-		\caption[Queries which were labeled ``interesting''.]{Queries 
-		which were labeled ``interesting'' (that there appears to be a visual 
-		correlation).}
+		\caption[VS queries which were labeled ``visually correlated''.]{VS 
+		queries which were labeled ``visually correlated''.}
 		\label{fig:usage:interesting}
 	\end{center}
 \end{figure}
@@ -19,50 +22,54 @@ system was given a budget of 15 queries.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=1\linewidth]{ch-usage/figures/n_all}
-		\caption[Queries which were labeled ``not interesting''.]{Queries 
-			which were labeled ``not interesting'' (that there appears to be no 
-			visual correlation).}
+		\caption[VS queries which were labeled ``not visually correlated''.]{VS 
+		queries which were labeled ``not visually correlated''.}
 		\label{fig:usage:notinteresting}
 	\end{center}
 \end{figure}
 
-It is also interesting to examine the heatmaps (which are normalized) 
-corresponding to the 15 queries and the resulting decisions, which may be found 
-in Figure~\ref{fig:usage:heatmaps}. A quick glance at the heatmaps reveal that 
-the middle criterions are all zero. It actually turns out that these criterions 
-are associated with various Pearson correlation tests (the list of associated 
-criterion may be found in the comments of Figure~\ref{fig:usage:heatmaps}). 
-The zero-value heatmap entry indicates that the associated $p$-values are all 
+It is also interesting to examine the heat maps (which are normalized) that 
+correspond to the 15 queries; these heat maps may be found 
+in Figure~\ref{fig:usage:heatmaps}, which also contains a list of associated 
+criterion. A quick glance at the heat maps reveal that 
+the middle criteria are all zero. It actually turns out that these criteria 
+are associated with various Pearson correlation tests. 
+The zero-value heat map entries indicate that the associated $p$-values are all 
 extremely low (the correlation is significantly different from zero). In 
-particular, this indicates that the criterion for 9, 10, 11, 12, 13, and 14 are 
-all significant. But consider the actual variable pairs associated with these 
-criterion. Consider the first row, which corresponds to the first 
-non-interesting plot queried (It is the first plot in 
+particular, this indicates that the criterion 9, 10, 11, 12, 13, and 14 are 
+all significant. Consider the actual variable pairs associated with these 
+criteria. The first row corresponds to the first queried plot which received a 
+label of ``not visually interesting'' (It is the top left plot depicted in 
 Figure~\ref{fig:usage:notinteresting}). Specifically, the pair has a Pearson 
-correlation $p$-value of 0.001728 and value of -0.069, which is close to 0 
+correlation coefficient of -0.069 and $p$-value of 0.001728. The Pearson 
+correlation coefficient is actually rather close to 0 
 (uncorrelated) despite the $p$-value suggesting otherwise. When looking at the 
-metric numerically as the heatmap done, the natural response would be to draw 
-an edge as in the heuristic given in Section~\ref{sec:intro:correlation}. 
-However, looking at it visually (and even just looking at the coefficient 
-without the $p$-value), it is clear that the pair is uncorrelated. How did this 
-happen? Because there are 2050 samples, the variance of every pair is low, 
-leading to a lower $p$-value. If the correlation graph was made solely based on 
-the Pearson correlation coefficient without consideration of other factors, the 
-result would have been less than ideal. This is another case demonstrating the 
-usefulness of the VS.
+metric numerically as the heat map does, the natural response would be to draw 
+an edge as in the $p$-value heuristic given in 
+Section~\ref{sec:intro:correlation}. 
+However, visually examining the pair's scatter plot (and even just looking at 
+the correlation coefficient without the $p$-value) makes it clear that the pair 
+is uncorrelated. How did this happen? Because there are 2050 observations of 
+each stock, the variance, and subsequently the $p$-value, is low. 
+If the correlation graph was constructed solely based on 
+the Pearson correlation coefficient $p$-value without consideration of other 
+factors, the result would have been less than ideal. This is another scenario 
+that demonstrates the usefulness of the VS.
 
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.8\linewidth]
 		{ch-usage/figures/heatmaps}
-		\caption[Normalized heatmap of the queries and given labels.] 
-		{\textit{Top:} Standard heatmap of the queries and given labels 
+		\caption[Normalized heat maps of VS queries and user-specified labels.] 
+		{\textit{Top:} Standard heat map of the queries and given labels 
 		(normalized). 
-		\textit{Bottom:} Revised heatmap (the association navigator) as 
+		\textit{Bottom:} Revised heat map (the association navigator) as 
 		proposed by Buja \textit{et al.}~\cite{buja2016} (also normalized). 
-		Each row corresponds to a pair that was labeled, which are ordered by 
-		the oracle responses; red indicates uninteresting pairs and blue 
-		indicates interesting pairs (as given by the oracle). Each column 
+		Each row corresponds to a pairwise scatter plot queried by the VS in 
+		stage 1. Each scatter plot is ordered by 
+		the oracle's responses; red indicates ``not visually correlated'' 
+		and blue indicates ``visually correlated'' (as dictated by the 
+		oracle). Each column 
 		corresponds to a different criterion of the associated pairwise 
 		scatterplot (see Section~\ref{sec:visualizer:scatterplot}). Ordered 
 		criterion list (left to right, up to down): 
@@ -72,71 +79,93 @@ usefulness of the VS.
 \end{figure}
 
 Figure~\ref{fig:usage:hist} is a predicted probability histogram. The 
-probability corresponds to correlation (interesting) or not (uninteresting) for 
-100 random variable pairs. Each probability is computed using the final 
-classification output of the VS. Most of the pairs fall within two bins (low 
-and high probability) as shown by the two upper and lower hills in the figure, 
-indicating that the classification model determined by the VS is quite 
-confident regarding the labeling of most plots.
+probability of being ``visually interesting'' or not is computed for 100 random 
+pairwise scatter plots. Each probability is computed using the final 
+classifier output from stages 1 and 2 of the VS. Most of the pairs fall within 
+two bins (low and high probability). This can be observed as the two upper and 
+lower hills in the histogram, indicating that the final classifier 
+determined by the VS is quite confident in its labeling of most of the scatter 
+plots.
 
 \begin{figure}[htb]
 	\begin{center}
 		\includegraphics[width=1\linewidth]
 		{ch-usage/figures/predicted_probability_histogram}
 		\caption[Histogram of predicted probabilities.]{The histogram shows the 
-		predicted probabilities for each of 100 random variable pairs. The 
+		predicted probabilities for 100 pairwise scatter plots. The 
 		probability corresponds to the probability of a plot being 
-		``interesting'' or ``not interesting''.}
+		``visually correlated'' or ``not visually correlated''.}
 		\label{fig:usage:hist}
 	\end{center}
 \end{figure}
 
 \newpage
-The final resulting visual graph is plotted in Figure~\ref{fig:usage:visg}. 
+The final resulting visual correlation graph is shown in 
+Figure~\ref{fig:usage:visg}. 
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=0.5\linewidth]
+		\includegraphics[width=0.75\linewidth]
 		{ch-usage/figures/visgraph}
-		\caption[Visual graph output from the visualization system.]{Visual 
+		\caption[Visual correlation graph output from the visualization 
+		system.]{Visual correlation
 		graph output from the visualization system.}
 		\label{fig:usage:visg}
 	\end{center}
 \end{figure}
 
-The graph comparison determined that the \textbf{distance correlation graph} is 
-closest to the visual correlation graph. 
-The computed graph difference in Table~\ref{tab:usage:graphdiff}.
-As a sanity check, this 
-matches our intuition as distance correlation is the most nuanced of the four 
-correlation coefficients, and a value of 0 actually indicates independence. The 
-resulting portfolios selected by the procedure in 
-Section~\ref{sec:usage:stockselection} for each correlation graph are 
+The graph comparison procedure determined that the \textbf{distance correlation 
+graph} is closest to the visual correlation graph. 
+The computed graph differences may be found in Table~\ref{tab:usage:graphdiff}.
+The resulting portfolios selected by the procedure in 
+Section~\ref{sec:usage:stockselection} for each numerical correlation graph are 
 summarized in Table~\ref{tab:usage:returns}.
 
 Finally, the the ``buy and hold'' performance (yearly returns) and cumulative 
-sum of returns are plotted for the S\&P 500 (the CONTROL), 
-the portfolios created from the various numerical correlation graphs 
-including  $G^*$ (which corresponds to distance correlation), 
-and the portfolio created from the final visual correlation graph 
-$G^{\text{vis}}$ may be found in Figure~\ref{fig:usage:returns}. The associated 
+sum of returns are plotted for the S\&P 500 (the control) and
+all portfolios $P^i$ for $i \in \{1,...,4\}$ may be found in 
+Figure~\ref{fig:usage:returns}. Each portfolio $P^i$ was created 
+from its corresponding numerical correlation graph $\hat{G}^{i,\text{num}}$ and 
+includes $P^*$, which is created from $\hat{G}^* = \hat{G}^{4,\text{num}}$ 
+(which corresponds to the distance correlation graph). The associated 
 data may be found in Table~\ref{tab:usage:returns}. Note 
-that the ``yearly'' returns for 2006 and 2014 are low because the data begins 
-on 3/14/2006 and ends on 5/13/2004; as such, those returns do not reflect a 
-full year of data. Our focus is mostly diverted to the full years in between 
-and especially the performance during the financial crisis. 
+that the returns for 2006 and 2014 are low because the data begins 
+on 3/14/2006 and ends on 5/13/2004; as such, the returns for 2006 and 2014 do 
+not reflect a full year's worth of data. Our focus is mostly diverted to the 
+full years in between and especially the portfolio performance during the 
+financial crisis. 
 
 The portfolio $P^*$, constructed from the numerical distance correlation graph 
-$G^*$ which was selected due to its similarity to $G$, performs the strongest 
-by far. $P^*$ consistently posts the highest returns year after year. Though it 
-doesn't seem like much in the first plot of yearly returns, the differences 
-really add up as can be seen in the second plot of the cumulative sum. Further 
+$\hat{G}^*$ that is most similar to the visual correlation graph $\hat{G}$, 
+performs the strongest by far. $P^*$ consistently posts the highest returns 
+year after year. Though it doesn't seem to strongly outperform on a yearly 
+basis, the differences really add up as can be seen in cumulative sum of yearly 
+returns. Further 
 consider the financial crisis; $P^*$ has the least negative returns of 2008. 
 This indicates that the visual graph is capturing the independence and 
 dependence among various stocks properly, which translates into the selection 
-of $G^*$ and, subsequently, $P^*$, a portfolio that is well balanced and 
+of $\hat{G}^*$ and, subsequently, $P^*$, a portfolio that is well balanced and 
 captures the spirit of the ``buy and hold'' model described in 
 Section~\ref{sec:intro:finance}.
+As noted earlier in Section~\ref{sec:usage:stockselection}, the proposed stock 
+selection strategy is simple, but every selected portfolio has outperformed the 
+S\&P 500, suggesting that an even more sophisticated selection procedure would 
+yield even more fruitful returns.
+
+\subsubsection{Extensions}
+
+It should also be noted that, while a rebalancing method performs better in 
+practice~\cite{liuh2016}, the ``buy and hold'' strategy is better-suited for 
+observing portfolio performances over time with less external influences, 
+providing a more concrete basis of comparison for $\hat{G}^*$. 
+However, the procedure described in Section~\ref{sec:usage:newanalysis}
+can certainly be repeated yearly (once a year's worth of new data has been 
+collected) to determine the direction in which to 
+rebalance the portfolio. Furthermore, the weights of the stocks in the 
+portfolio can certainly be optimized; currently, each stock holds equal 
+weight within its portfolio. All of these ideas are 
+potential extensions that may improve upon portfolio management techniques that 
+this application does not utilize.
 
 %$P^{\text{vis}}$ catches up after a mediocre beginning, and there are other 
 %interesting things to note about its performance that makes it difficult to 
@@ -150,23 +179,16 @@ Section~\ref{sec:intro:finance}.
 %holding the portfolio ends up paying off returns rapid increase until the 
 %portfolio is the top performer in 2011 and beyond.
 
-As noted earlier in Section~\ref{sec:usage:stockselection}, the proposed stock 
-selection strategy is simple, but every selected portfolio has outperformed the 
-S\&P500, suggesting that an even more sophisticated selection procedure would 
-yield even more fruitful returns.
-
-
 \begin{landscape}
 	\tablespacing
 	\begin{longtable}{p{0.1\linewidth}p{0.15\linewidth}p{0.13\linewidth}
 			p{0.13\linewidth}p{0.13\linewidth}p{0.13\linewidth} }
 		
 		% First page heading
-		\caption[Computed differences between the visual correlation graph and 
-		various numerical correlation graphs.]{Computed differences between the 
-		visual correlation graph and various numerical correlation graphs. See 
-		Section~\ref{sec:gc:methods} for details on each graph summarization 
-		metric.} 
+		\caption[Computed differences between visual and numerical correlation 
+		graphs.]{Computed differences between visual and numerical correlation 
+		graphs. See Section~\ref{sec:gc:methods} for details on each graph 
+		summarization metric.} 
 		\label{tab:usage:graphdiff}\\
 		\toprule
 		\textbf{Graph Type} & \textbf{Centrality \newline (degree)} & 
@@ -219,8 +241,8 @@ yield even more fruitful returns.
 		\includegraphics[width=1\linewidth]
 		{ch-usage/figures/Results_YearlyReturns.pdf}
 		\caption[Yearly and cumulative performance of the selected portfolios 
-		and the S\&P500.]{Yearly and cumulative performance of the selected 
-		portfolios and the S\&P500. Note that the ``yearly'' returns for 2006 
+		and the S\&P 500.]{Yearly and cumulative performance of the selected 
+		portfolios and the S\&P 500. Note that the ``yearly'' returns for 2006 
 		and 2014 are low because the data begins on 3/14/2006 and ends on 
 		5/13/2004; as such, those returns do not reflect a full year of data. 
 		The associated data may be found in Table~\ref{tab:usage:returns}.}
@@ -240,8 +262,9 @@ p{0.05\linewidth}p{0.05\linewidth}p{0.05\linewidth}
 p{0.05\linewidth}}
 	
 	% First page heading
-	\caption[Yearly portfolio returns for each correlation graph.]{Yearly 
-	portfolio returns for each correlation graph (decimal).} 
+	\caption[Yearly returns of the portfolios selected from the numerical 
+	correlation graphs.]{Yearly returns (in decimal) of the portfolios selected 
+	from the numerical correlation graphs.} 
 	\label{tab:usage:returns}\\
 	\toprule
 	\textbf{Graph Type} & \textbf{Portfolio} & \textbf{2006} 
@@ -270,7 +293,7 @@ p{0.05\linewidth}}
 	\bottomrule
 	\endlastfoot
 
-	S\&P500 \newline (CONTROL) & \textbf{Total} & 
+	S\&P 500 \newline (CONTROL) & \textbf{Total} & 
 	0.158&0.055&-0.37&0.265&0.151&0.021&0.16&0.324&0.137\\
 	
 	\cmidrule[0.1pt](l{0.5em}r{0.5em}){1-11}	

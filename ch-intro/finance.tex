@@ -1,8 +1,7 @@
 \section{Portfolio management}
 \label{sec:intro:finance}
 
-An important application of numerical correlation graphs is in modeling the 
-dependencies 
+An important application of correlation graphs is in modeling the dependencies 
 among financial equities. Determining the relationship among various stocks is 
 especially useful when managing portfolios. One such methodology is the ``buy 
 and hold'' tactic where an investor selects a portfolio of stocks and never 
@@ -13,49 +12,43 @@ fees are prohibitive to rebalancing gains.
 
 In a world with low transaction costs, however, there is more to be gained 
 (less to be lost, alternatively) by frequently rebalancing the portfolio rather 
-than holding. The concept for stock picking is similar to that of ``buy and 
-hold'', though there are some key difference. Another component for successful 
+than holding. The concept for rebalancing is similar to that of ``buy and 
+hold'', though there are some key differences. Another component for successful 
 rebalancing gains is for the stock returns to be relatively 
 independent~\cite{liuh2016}. Thus, when one stock goes down, the others do not 
 fall with it; with perfect independence, rebalancing gains become a function of 
-the volatility of the stocks rather than of stock returns. This is further 
-important because frequent asset trading may move the market and lead to 
-unexpected price swings. With independent stocks, the price risk associated 
+the volatility of the stocks rather than of stock returns. Independence is 
+further important because frequent asset trading may move the market and lead 
+to unexpected price swings. With independent stocks, the price risk associated 
 with rebalancing is minimized. In summary, rebalancing gains are best suited to 
 markets with low correlation, independent returns, and high 
-volatility~\cite{liuh2016}.  
+volatility~\cite{liuh2016}. For simplicity, we focus on the former problem of 
+porfolio selection where we buy a portfolio and hold for the remainder of time. 
+A detailed application may be found in Chapter~\ref{ch:usage} where
+a stock selection methodology for correlation graphs is also proposed.
 
-Another financial application is the creation of a predictive stock model. 
-Predictive models are a form of ``model selection'' where dependence rather 
-than independence is important. Model selection addresses the problem of 
-determining which explanatory variables (commonly seen as columns of the matrix 
-$X$) are informative to explain the variation in the response variable 
-(commonly seen as the vector $Y$). This is also related to the concept of 
-``sparsity,'' a statistical term referring to the fact that many coefficients 
-of a fitted model should be 0. Model selection with sparsity aids in the 
-interpretability of the model since there are fewer variables for data analysts 
-to understand. This is another way to view rebalancing; the predictive model, 
-if it is to be believed, can signal price swings to come which open up 
-arbitrage opportunities. Furthermore, stocks which are uncorrelated are those 
-with insignificant coefficients in the resulting model; this ``negative space'' 
-point of view is partly utilized in the stock selection methodology for 
-correlation graphs proposed in  Section~\ref{sec:usage:stockselection}.
-
-Again, it must be noted that numerical correlation alone cannot capture the 
+Again, we acknowledge that while non-correlation 
+does not necessitate independence, it is still a useful proxy for independence.
+It must further be noted that numerical correlation alone cannot capture the 
 full complexity of these financial applications; in fact, cases such as that of 
 Figure~\ref{fig:intro:meplot} (right) reflect the limitations of correlation 
-coefficients and reinforce the importance of visualization. An unassuming 
+coefficients and reinforce the importance of visualization in aiding with the 
+selection of numerical metrics. An unassuming 
 analyst might select the stocks (variables) from Table~\ref{tab:intro:me}, 
-dataset two, because their numerical correlation is not significantly different 
+Dataset 2, because their numerical correlation is not significantly different 
 from zero. But, it turns out that the stocks are highly correlated, and this is 
 only clear when looking for visual correlation. However, numerical correlation 
 is still an important component of portfolio management in theory and in 
-practice. As such, an important goal of this paper is to not only develop a 
-solution to the two problems proposed in Section~\ref{sec:intro:problem} but to 
-also develop a method that would allow an analyst to quickly double-check the 
-output from numerical methods with their own concepts of visual dependence. 
-A detailed application may be found in Chapter~\ref{ch:usage} where
-a stock selection methodology for correlation graphs is also proposed. 
+practice. 
+As such, an important goal of this paper is to not only develop a 
+solution to the problem of high-dimensional visualization described in 
+Section~\ref{sec:intro:problem} but to also consider the reason we are 
+interested in visualization in the first place. As noted earlier, plotting is 
+an incredibly useful tool to check numerical methods. Thus, we will also 
+develop a method to quickly check the output from numerical methods with an 
+analyst's own concepts of visual dependence, allowing the analyst to select the 
+numerical method most suited to their application (numerical correlation graphs 
+and portfolio selection, in this case). 
 What follows is a roadmap of the high-dimensional visualization solution that 
 is developed further in this paper with 
 Chapters~\ref{ch:visualizer},~\ref{ch:al}, and~\ref{ch:gc}.

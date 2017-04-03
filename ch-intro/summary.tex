@@ -3,12 +3,13 @@
 
 %%%
 % copied & pasted from "solution.tex" 
-In this work, we tackle the problem by developing a sophisticated visualization
-system (abbreviated VS) to explore the data and numerical model in a different
-way. Specifically, we focus on two aspects of the VS which address the two
-problems raised in Section~\ref{sec:intro:problem}: (1) the procedure of sorting
-through plots is efficiently automated by learning the user's interests, and (2)
-the procedure of comparing the numerical and visual output is also automated.
+In this work, we tackle the problem of sorting through $n(n-1)/2$ pairwise 
+scatter plots by developing a sophisticated visualization
+system (abbreviated VS) to intelligently and automatically explore the data. 
+Specifically, we focus on two aspects of the VS: 
+(1) efficiently automating the procedure of sorting through plots by learning 
+the user's interests, and (2) the procedure of comparing the numerical and 
+visual output (in the form of correlation graphs).
 This allows the system to find visually interesting relationships that the
 numerical model may have missed and/or toss out relationships which turn out to
 be uninteresting. Furthermore, this allows future analysts to combine visual
@@ -17,16 +18,25 @@ during data analysis and provide clear justification of their decisions.
 %%%
 
 A broad overview of the VS and its framework may be found in
-Chapter~\ref{ch:visualizer}. Chapter~\ref{ch:al} then focuses on the active
-learning stage of the VS, which is part of the first solution to the problems
-raised in Section~\ref{sec:intro:problem}. The chapter details and simulates
-various active learning methods to be used in the financial application in
-Chapter~\ref{ch:usage}. Chapter~\ref{ch:gc} focuses on the second solution to
-the problems raised in Section~\ref{sec:intro:problem}. The chapter is concerned
-with the VS output, which quantifies the differences between numerical and
-visual correlation graphs for the user. Subsequently, the chapter details
-various graph comparison methods and ultimately selects one for usage in the
-financial application in Chapter~\ref{ch:usage}. Finally,
-Chapter~\ref{ch:conclusion} recaps the work and presents future extensions of
-the VS.
+Chapter~\ref{ch:visualizer}. Chapter~\ref{ch:al} focuses on the active
+learning stage of the VS, which answers the problem of high-dimensional 
+visualization raised in Section~\ref{sec:intro:problem}. 
+The chapter details and simulates various active learning methods to be used in 
+the financial application in Chapter~\ref{ch:usage}. 
+Chapter~\ref{ch:gc} focuses on the application of the visual output in relation 
+to the financial application of Chapter~\ref{ch:usage}. Specifically, 
+Chapter~\ref{ch:gc} is concerned with the VS output in the context of graphs, 
+and it discusses methods to 
+quantify the differences between numerical and visual graphs. Furthermore, the 
+chapter proposes a procedure to find the numerical graph most similar to (least 
+different from) the visual graph. Though our  application is concerned with 
+correlation graphs, the methods discussed in Chapter~\ref{ch:gc} may apply to 
+any other sort of graph (e.g. a graphical model). 
+Again, Chapter~\ref{ch:usage} contains the financial application where the 
+visual correlation graph output from the VS is used to aid in the selection of 
+the most suitable numerical correlation graph for portfolio selection with our 
+particular data set. The chapter further proposes a simple but effective 
+portfolio selection procedure given the numerical correlation graph.
+Finally, Chapter~\ref{ch:conclusion} recaps the work and presents further 
+extensions.
 

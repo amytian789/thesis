@@ -2,13 +2,14 @@
 
 Active learning is a subset of machine learning wherein an algorithm is 
 ``trained'' on labeled data instances in order to learn from and make 
-predictions on the data.  Consider a large set of unlabeled data $X$ with a 
+predictions on the unlabeled data.  
+Consider a large set of unlabeled data $X$, each with a 
 hidden label from a finite set $Y$ that can be queried from some human 
 ``oracle''; we would like to learn a good classifier of the data, some mapping 
 $h: X \rightarrow Y$ from the set $\mathcal{H}$ without making too many 
 queries~\cite{dasgupta2011}. Active learning is the process of intelligently 
 selecting the queries (a constrained resource) to learn as much as possible. 
-When a learning algorithm is allowed to choose its next query, it performs 
+When a learning algorithm is allowed to select its next query, it performs 
 better with less training~\cite{settles2010}. To put it more concretely, the 
 error (a measurement of the difference between the predicted labels and the 
 ``true'' labels) converges to zero faster. This property is especially 

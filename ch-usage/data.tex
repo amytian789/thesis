@@ -1,20 +1,21 @@
-\section{Healthcare stock data}
+\section{Data}
 \label{sec:usage:data}
 
-The dataset contains 4110 observations of 43 stock prices from the healthcare 
-industry observed from 1998 to 2014. The data is cleaned to get rid of the 
-dependency on time and yearly seasonality so that each observation of a stock 
-may better simulate an independent draw from some distribution. This is done 
-with the usage of the \texttt{sstl} function from the \texttt{Rsafd} package; 
+The data set contains 4110 price observations of 43 stocks from the healthcare 
+industry from 1998 to 2014. The data is cleaned to get rid of the 
+dependency on time and yearly seasonality so that each observation may better 
+simulate an independent draw from some distribution. This is done 
+with the \texttt{sstl} function from the \texttt{Rsafd} package; 
 after fitting the seasonal and trend components, the residuals are used as the 
-new dataset. A list of ticker names and the associated firm may be found below
+new dataset. A list of tickers and their associated firms may be found in 
+Table~\ref{tab:usage:tickers}.
 
+\newpage
 \tablespacing
 \begin{longtable}{p{0.15\linewidth} p{0.5\linewidth}}
 	
 	% First page heading
-	\caption[Healthcare firms and stock tickers.]{Healthcare firms and stock 
-	tickers.} 
+	\caption[Healthcare firms and tickers.]{Healthcare firms and tickers.} 
 	\label{tab:usage:tickers}\\
 	\toprule
 	\textbf{Ticker} & \textbf{Firm} \\
@@ -96,13 +97,13 @@ new dataset. A list of ticker names and the associated firm may be found below
 \bodyspacing
 
 The data has been split into testing and training sets of equal length (2050 
-observations) between 1998 and 2014. The idea is that we are standing there in 
-the middle (at 3/13/2006 to be precise) and wish to select our portfolio of 
-stocks on that day. Although we are uncertain of the future, we do have the 
-historical price performance of each and may also extract qualities such as 
-drift, volatility, returns, etc. from the data. As such, correlation graphs 
-(see Section~\ref{sec:intro:correlation}) of the data may be computed and used 
-to inform the stock selection. Once the portfolio has been 
-selected and purchased, the ``buy and hold'' model is implemented, and we 
-observe the yearly returns of the same portfolio until 2014. The next section  
-details the stock selection procedure given a correlation graph.
+observations each) between 1998 and 2014. The idea is that we are standing 
+in the middle (at 3/13/2006 to be precise) and wish to select a healthcare 
+portfolio on that day. Although the future is uncertain, we do have the 
+historical price performance of each stock and may also extract qualities such 
+as drift, volatility, returns, etc. from the data. As such, correlation graphs 
+(see Section~\ref{sec:intro:correlation}) may be computed from the data and 
+used to inform the portfolio selection. Once the portfolio has been 
+selected and purchased, the ``buy and hold'' model is implemented (no 
+rebalancing occurs), and we observe the yearly returns until 2014. The next 
+section details the stock selection procedure given a correlation graph.

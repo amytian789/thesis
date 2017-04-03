@@ -4,7 +4,7 @@
 \subsection{Characteristics of a ``good'' plot}
 \label{sec:visualizer:scatterplot:goodplot}
 
-The simplest scatterplot is the response against the observed variables. This,
+The simplest scatter plot is one without any transformations on the data. This,
 however, may not be the best way to ascertain independence for the user. This
 notion is illustrated in Figure~\ref{fig:visualizer:cdf}. The left plot appears
 to be independent as it's a cluster of points near the origin, but it's not
@@ -28,25 +28,27 @@ as the points appear to be uniformly distributed within the box.
 	\end{center}
 \end{figure}
 
-Restricting the plot to a unit box allows analyst's visual systems to focus on
-locations where there is low spatial frequency, which is ideal for detecting
-dependence~\cite{hofert2016}. The effects of this can be progressively observed
-by looking from the left to the right in
+Restricting the scatter plot to a unit box allows analyst's visual systems to 
+focus on locations where there is low spatial frequency, which is ideal for 
+detecting dependence~\cite{hofert2016}. The effects of this concept can be 
+progressively observed from left to right in 
 Figure~\ref{fig:visualizer:hofertoldford} below.
 
 \begin{figure}[htb]
 	\begin{center}
 		\includegraphics[width=1\linewidth]{ch-visualizer/figures/hofertoldford}
-		\caption[Scatterplots of independent $U(0,1)$ random variables and the
-		pseudo-observation pairs $(U_{t,j},U_{t,j+1}),j\in 
-		\{1,2,3\}$.]{Scatterplots of
-			(a) independent $U(0,1)$ random variables and (b,c,d) the 
-			pseudo-observation
-			pairs $(U_{t,j},U_{t,j+1}),j\in \{1,2,3\}$. Ticker abbreviations: 
-			AAP = Advanced
-			Auto Parts, AMZN = Amazon.com Inc, AN = AutoNation Inc., AZO = 
-			AutoZone Inc.
-			Figure from Hofert and Oldford 2016~\cite{hofert2016}}
+		\caption[Transformed scatter plots of independent $U(0,1)$ random 
+		variables and pseudo-observation pairs $(U_{j},U_{j+1}),j\in 
+		\{1,2,3\}$ which are more correlated the larger $j$ is.]{\textit{(a):} 
+		Transformed scatter plots of independent $U(0,1)$ random variables. 
+		\textit{(b,c,d):} Transformed scatter plots of the pseudo-observation 
+		pairs $(U_{j},U_{j+1}),j\in \{1,2,3\}$. The variables are clearly more 
+		correlated as $j$ increases; this trend can easily be observed due to 
+		the nature of the unit box. Ticker abbreviations: 
+		AAP = Advanced Auto Parts ($U_1$), AMZN = Amazon.com Inc. ($U_2$), 
+		AN = AutoNation Inc. ($U_3$), AZO = AutoZone Inc. ($U_4$).
+		Figure from Hofert and Oldford 2016 with slight 
+		modifications~\cite{hofert2016}}
 		\label{fig:visualizer:hofertoldford}
 	\end{center}
 \end{figure}
@@ -55,10 +57,11 @@ Figure~\ref{fig:visualizer:hofertoldford} below.
 \label{sec:visualizer:scatterplot:features}
 
 In order for the active learning classifier to properly understand and classify 
-all $d \choose 2$ plots 
-(Sections~\ref{sec:visualizer:al}~\ref{sec:visualizer:plotgeneration}), the 
-features must be extracted from each plot. The more useful criteria there are, 
-the more sophisticated the classification will be.
+all $n \choose 2$ scatter plots in stage 1 and 2
+(Sections~\ref{sec:visualizer:al} and~\ref{sec:visualizer:plotgeneration}), 
+characteristic features must be extracted from each pairwise scatter plot. The 
+more useful criteria there are, the more sophisticated the classification will 
+be.
 
 \subsubsection{Numerical features}
 
@@ -68,9 +71,10 @@ implemented in the VS:
 
 \tablespacing
 \begin{itemize}
-	\item \textbf{Correlation coefficients and their $p$-values:} See 
+	\item \textbf{Correlation coefficients and their $p$-values:} Examples 
+	include Pearson's, Spearman's, Kendall's, and distance correlation. See 
 	Section~\ref{sec:intro:correlation} for more details on the various types 
-	of quantifiers
+	of coefficients.
 	\item \textbf{Kullback-Leibler divergence criterion:}
 	\item \textbf{Chi-square test of independence and its $p$-value:}
 \end{itemize}
@@ -91,9 +95,12 @@ implemented in the VS:
 	below the linear regression line
 	\item \textbf{Clustering criterion:} The percentage quantile of the ratio 
 	between the largest and next-largest distance
-	\item \textbf{Visual trend criterion:} A higher value suggests a greater 
-	visual trend. This is computed by max(PosTrendCriterion, NegTrendCriterion) 
-	which is computed from the percentage of points in the upper left and 
-	bottom right, and bottome left and upper right, respectively
+	\item \textbf{Visual trend criterion:} This is computed as 
+	max(PosTrendCriterion, NegTrendCriterion). The positive trend criterion 
+	(PosTrendCriterion) is computed from the percentage of points in the bottom 
+	left and upper right while the negative trend criterion (NegTrendCriterion) 
+	is computed from the percentage of points in the upper left and 
+	bottom right. A higher visual trend criterion value suggests a greater 
+	visual trend. 
 \end{itemize}
 \bodyspacing

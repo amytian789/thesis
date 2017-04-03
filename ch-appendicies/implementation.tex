@@ -2,7 +2,7 @@
 
 \lstset{basicstyle=\ttfamily\footnotesize,xleftmargin=0cm,breaklines=true,language=R}
 
-\section{Code for figure~\ref{fig:intro:meplot}, left}
+\section{Code for Figure~\ref{fig:intro:meplot}, left}
 \label{sec:appendicies:me1plot}
 {\setstretch{1.0}
 \begin{lstlisting}
@@ -45,7 +45,7 @@ plot(x, y, pch = 16, cex = 2)
 }
 
 
-\section{Code for figure~\ref{fig:intro:meplot}, right}
+\section{Code for Figure~\ref{fig:intro:meplot}, right}
 \label{sec:appendicies:me2plot}
 {\setstretch{1.0}
 \begin{lstlisting}
@@ -81,7 +81,7 @@ plot(x,y, pch = 16, cex = 2)
 }
 
 
-\section{Code for figure~\ref{fig:visualizer:cdf}}
+\section{Code for Figure~\ref{fig:visualizer:cdf}}
 \label{sec:appendicies:cdf}
 {\setstretch{1.0}
 \begin{lstlisting}
@@ -101,7 +101,7 @@ plot(pnorm(x),pnorm(y),pch = 16, cex = 2)
 
 
 
-\section{Uncertainty sampling implementation}
+\section{Uncertainty sampling}
 \label{sec:appendicies:al:uncertainty}
 
 Refer to Algorithm \ref{alg:al:methods:uncertainty}. 
@@ -161,7 +161,7 @@ uncertainty_sample <- function(X, y, unlabel_index_c, classifier,
 \end{lstlisting}
 }
 
-\section{Query by committee implementation}
+\section{Query by committee}
 \label{sec:appendicies:al:qbc}
 
 Refer to Algorithm \ref{alg:al:methods:qbc2}. 
@@ -281,7 +281,7 @@ qbc_prune <- function(X,y,index,committee_pred,k,pt = 0.5,err,is_prune,...){
 \end{lstlisting}
 }
 
-\section{Vote entropy implementation}
+\section{Vote entropy}
 \label{sec:appendicies:al:entropy}
 
 Refer to Section \ref{sec:al:methods:qbc}.
@@ -305,7 +305,7 @@ vote_entropy <- function(x, type='class', entropy_method='ML'){
 
 
 
-\section{Query by bagging implementation}
+\section{Query by bagging}
 \label{sec:appendicies:al:bagging}
 
 Refer to Algorithm \ref{alg:al:methods:bagging}. 
@@ -361,7 +361,7 @@ qbb_sample <- function(X, y, unlabel_index_c, classifier,
 \end{lstlisting}
 }
 
-\section{Min-max clustering implementation}
+\section{Min-max clustering}
 \label{sec:appendicies:al:clustering}
 
 Refer to Algorithm \ref{alg:al:methods:clustering}. 
@@ -416,7 +416,7 @@ cs_euclidean_distance <- function(a,b) {
 \end{lstlisting}
 }
 
-\section{AL simulation implementation}
+\section{AL simulation study}
 \label{sec:appendicies:al:simulations}
 
 Refer to Section \ref{sec:al:simulations}.
@@ -702,7 +702,7 @@ active_learning <- function(X, y, almethod = "us", n, ...){
 \end{lstlisting}
 }
 
-\subsection{Simulator (Main)}
+\subsection{Simulator (main)}
 \label{sec:appendicies:al:simulations:results}
 
 Finally, the main simulator is what calls the simulation engine 25 times 
@@ -999,8 +999,9 @@ height = 6, width = 10)
 ### Plot all AL performance
 ymax <- max(c(us_vec, random_vec, qbc_vec,cluster_vec))
 graphics::plot(1:iter, qbc_vec, ylim=c(0,ymax), lwd=2, type="l", 
-	main="Various Active Learning Error Ratios with Random Forest Classifier", 
+	main="AL Error Ratios with Random Forest classification model*", 
 	xlab="Iterations", ylab="Error", col = "green")
+mtext("*Query by Committee uses Majority Committee Vote classification model")
 graphics::lines(1:iter, random_vec, lwd = 2, col = "red")
 graphics::lines(1:iter, us_vec, lwd = 2, col = "black")
 graphics::lines(1:iter, qbb_vec, lwd = 2, col = "blue")
@@ -1013,7 +1014,7 @@ graphics::legend(x="bottomleft",lwd=2,cex = 0.75,
 
 ### Plot QBC performance
 graphics::plot(1:iter,qbc_majority_vec,ylim=c(0,ymax),lwd=2,type="l"
-	,main="Query by Committee AL Error Ratio with Various Classifiers", 
+	,main="Query by Committee AL Error Ratio with various parameters", 
 	xlab="Iterations", ylab="Error", col = "red")
 graphics::lines(1:iter, qbc_majority_noprune_vec, lwd = 2, lty = 2, col = "red")
 graphics::lines(1:iter, qbc_rf_vec, lwd = 2, col = "blue")
@@ -1023,30 +1024,6 @@ graphics::legend(x="bottomleft",lwd=2,cex = 0.75,
 	legend=c("Majority Committee Vote | Yes", "Majority Committee Vote | No",
 	"Random Forest | Yes", "Random Forest | No"),
 	col=c("red","red","blue","blue"), lty=c(1,2,1,2))
-
-### Plot 95% confidence intervals
-
-par(mfrow=c(3,2))
-
-# Random Sampling
-graphics::plot()
-graphics::lines()
-
-# Uncertainty Sampling
-graphics::plot()
-graphics::lines()
-
-# Min-Max Clustering
-graphics::plot()
-graphics::lines()
-
-# Query by Bagging
-graphics::plot()
-graphics::lines()
-
-# Query by Committee (best)
-graphics::plot()
-graphics::lines()
 
 graphics.off()
 save.image(file = paste0("results/results_", date, ".RData"))
@@ -1530,7 +1507,7 @@ stock_selection <- function(g_num, k, dd, pd = 0, vv, pv = 0){
 
 
 
-\section{Application of visualization system}
+\section{Final application}
 \label{sec:appendicies:usage:newanalysis}
 
 Section~\ref{sec:usage:newanalysis} details the application procedure that is 

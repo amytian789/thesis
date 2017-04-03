@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  31 MAR 2017 22:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  3 APR 2017 01:02
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -541,20 +541,20 @@ Chapter 1.
 
 
 ] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 111--111
+Underfull \hbox (badness 10000) in paragraph at lines 112--112
 []|\OT1/cmr/m/n/12 Normally-distributed
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--113
+Underfull \hbox (badness 10000) in paragraph at lines 112--114
 []|\OT1/cmr/m/n/12 Normally-distributed
  []
 
-<ch-intro/figures/me.jpeg, id=585, 795.97375pt x 401.5pt>
+<ch-intro/figures/me.jpeg, id=589, 795.97375pt x 401.5pt>
 File: ch-intro/figures/me.jpeg Graphic file (type jpg)
 
 <use ch-intro/figures/me.jpeg>
-Package pdftex.def Info: ch-intro/figures/me.jpeg used on input line 143.
+Package pdftex.def Info: ch-intro/figures/me.jpeg used on input line 144.
 (pdftex.def)             Requested size: 433.62pt x 218.72432pt.
 ) (ch-intro/correlation.tex [3] [4 <./ch-intro/figures/me.jpeg>]
 Underfull \hbox (badness 10000) in paragraph at lines 9--14
@@ -562,28 +562,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--14
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 30--40
+Underfull \hbox (badness 10000) in paragraph at lines 30--41
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 46--50
+Underfull \hbox (badness 10000) in paragraph at lines 47--51
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--64
+Underfull \hbox (badness 10000) in paragraph at lines 61--65
 
  []
 
 [6] [7] [8]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 174.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 180.
 
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 174.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 180.
 
 [9]) (ch-intro/finance.tex [10]) (ch-intro/summary.tex [11] [12])) [13]
 \openout2 = `ch-visualizer/chapter-visualizer.aux'.
@@ -596,454 +596,421 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 7.
 
-<ch-visualizer/figures/vs.jpg, id=675, 698.00775pt x 143.93774pt>
+<ch-visualizer/figures/vs.jpg, id=677, 698.00775pt x 143.93774pt>
 File: ch-visualizer/figures/vs.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/vs.jpg>
-Package pdftex.def Info: ch-visualizer/figures/vs.jpg used on input line 26.
+Package pdftex.def Info: ch-visualizer/figures/vs.jpg used on input line 29.
 (pdftex.def)             Requested size: 433.62pt x 89.41837pt.
  [14
 
 
 
 ] (ch-visualizer/scatterplot.tex
-<ch-visualizer/figures/cdf.jpg, id=687, 489.62926pt x 247.52475pt>
+<ch-visualizer/figures/cdf.jpg, id=688, 489.62926pt x 247.52475pt>
 File: ch-visualizer/figures/cdf.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/cdf.jpg>
 Package pdftex.def Info: ch-visualizer/figures/cdf.jpg used on input line 20.
 (pdftex.def)             Requested size: 325.215pt x 164.40549pt.
-
-<ch-visualizer/figures/hofertoldford.jpg, id=692, 501.67426pt x 164.41425pt>
+ [15 <./ch-visualizer/figures/vs.jpg>]
+<ch-visualizer/figures/hofertoldford.jpg, id=697, 501.67426pt x 164.41425pt>
 File: ch-visualizer/figures/hofertoldford.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/hofertoldford.jpg>
 Package pdftex.def Info: ch-visualizer/figures/hofertoldford.jpg used on input 
 line 39.
 (pdftex.def)             Requested size: 433.62pt x 142.1135pt.
- [15 <./ch-visualizer/figures/vs.jpg>] [16 <./ch-visualizer/figures/cdf.jpg> <.
-/ch-visualizer/figures/hofertoldford.jpg>]) (ch-visualizer/al.tex [17]
-<ch-visualizer/figures/tree.jpg, id=719, 370.88255pt x 137.00264pt>
+ [16 <./ch-visualizer/figures/cdf.jpg> <./ch-visualizer/figures/hofertoldford.j
+pg>]
+Underfull \hbox (badness 1019) in paragraph at lines 98--105
+[]\OT1/cmr/bx/n/12 Visual trend cri-te-rion: \OT1/cmr/m/n/12 This is com-puted 
+as max(PosTrendCriterion,
+ []
+
+[17]) (ch-visualizer/al.tex
+<ch-visualizer/figures/tree.jpg, id=720, 370.88255pt x 137.00264pt>
 File: ch-visualizer/figures/tree.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/tree.jpg>
-Package pdftex.def Info: ch-visualizer/figures/tree.jpg used on input line 47.
+Package pdftex.def Info: ch-visualizer/figures/tree.jpg used on input line 48.
 (pdftex.def)             Requested size: 325.215pt x 120.13412pt.
  [18]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-) (ch-visualizer/plotgeneration.tex
-[19 <./ch-visualizer/figures/tree.jpg>] [20]
-<ch-visualizer/figures/decisiontree.png, id=742, 761.244pt x 255.354pt>
+ [19 <./ch-visualizer/figures/tree.jpg>]) (ch-visualizer/plotgeneration.tex [20
+]
+<ch-visualizer/figures/decisiontree.png, id=746, 761.244pt x 255.354pt>
 File: ch-visualizer/figures/decisiontree.png Graphic file (type png)
 
 <use ch-visualizer/figures/decisiontree.png>
 Package pdftex.def Info: ch-visualizer/figures/decisiontree.png used on input l
-ine 33.
+ine 40.
 (pdftex.def)             Requested size: 433.62pt x 145.45587pt.
- [21 <./ch-visualizer/figures/decisiontree.png>] [22]
-<ch-visualizer/figures/heatmap.jpg, id=760, 698.00775pt x 522.753pt>
+ [21] [22 <./ch-visualizer/figures/decisiontree.png>]
+<ch-visualizer/figures/heatmap.jpg, id=766, 698.00775pt x 522.753pt>
 File: ch-visualizer/figures/heatmap.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/heatmap.jpg>
 Package pdftex.def Info: ch-visualizer/figures/heatmap.jpg used on input line 1
-04.
+15.
 (pdftex.def)             Requested size: 433.62pt x 324.7496pt.
- [23 <./ch-visualizer/figures/heatmap.jpg>]) (ch-visualizer/focus.tex [24])) [2
-5]
+ [23] [24 <./ch-visualizer/figures/heatmap.jpg>]) (ch-visualizer/focus.tex [25]
+)) [26]
 \openout2 = `ch-al/chapter-al.aux'.
 
  (ch-al/chapter-al.tex
 Chapter 3.
-(ch-al/litreview.tex [26
+(ch-al/litreview.tex [27
 
 
 
-]) (ch-al/methods.tex [27] [28]
+] [28]) (ch-al/methods.tex [29]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 41.
- [29] [30] [31]
-Underfull \hbox (badness 1490) in paragraph at lines 208--216
-\OT1/cmr/m/n/12 Since $\OML/cmm/m/it/12 C$ \OT1/cmr/m/n/12 was de-fined as the 
-com-mit-tee, we can in-ter-pret $[][](\OML/cmm/m/it/12 y[]\OMS/cmsy/m/n/12 j\OM
-L/cmm/m/it/12 x\OT1/cmr/m/n/12 ) =
- []
-
-[32] [33]) (ch-al/simulations.tex [34] [35]
-<ch-al/figures/data.pdf, id=903, 596.2275pt x 399.4925pt>
+put line 43.
+ [30] [31] [32] [33]
+[34]) (ch-al/simulations.tex [35] [36]
+<ch-al/figures/data.pdf, id=920, 596.2275pt x 399.4925pt>
 File: ch-al/figures/data.pdf Graphic file (type pdf)
 
 <use ch-al/figures/data.pdf>
-Package pdftex.def Info: ch-al/figures/data.pdf used on input line 69.
+Package pdftex.def Info: ch-al/figures/data.pdf used on input line 80.
 (pdftex.def)             Requested size: 433.62pt x 290.54205pt.
- [36 <./ch-al/figures/data.pdf>] [37]
-Underfull \hbox (badness 10000) in paragraph at lines 154--154
+ [37] [38 <./ch-al/figures/data.pdf>] [39]
+Underfull \hbox (badness 10000) in paragraph at lines 171--171
 []|\OT1/cmr/bx/n/12 AL
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--155
+Underfull \hbox (badness 10000) in paragraph at lines 172--172
 []|\OT1/cmr/bx/n/12 Classification
  []
 
 
-Overfull \hbox (21.9772pt too wide) in alignment at lines 142--157
+Overfull \hbox (21.9772pt too wide) in alignment at lines 158--174
  [] [] [] [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 162--162
+Underfull \hbox (badness 10000) in paragraph at lines 179--179
 []|\OT1/cmr/bx/n/12 AL
  []
 
 
-Overfull \hbox (21.9772pt too wide) in alignment at lines 157--165
+Overfull \hbox (21.9772pt too wide) in alignment at lines 174--182
  [] [] [] [] 
  []
 
 
-Overfull \hbox (21.9772pt too wide) in alignment at lines 165--170
+Overfull \hbox (21.9772pt too wide) in alignment at lines 182--187
  [] [] [] [] 
  []
 
 
-Overfull \hbox (21.9772pt too wide) in alignment at lines 170--174
+Overfull \hbox (21.9772pt too wide) in alignment at lines 187--191
  [] [] [] [] 
  []
 
 
-Overfull \hbox (3.81868pt too wide) in paragraph at lines 176--176
+Overfull \hbox (3.81868pt too wide) in paragraph at lines 193--193
 \OT1/cmr/m/n/12 (CONTROL)| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--183
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
 \OT1/cmr/m/n/12 sampling
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
+Underfull \hbox (badness 10000) in paragraph at lines 207--207
 \OT1/cmr/m/n/12 committee
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 214--214
+Underfull \hbox (badness 10000) in paragraph at lines 231--231
 \OT1/cmr/m/n/12 bagging
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 239--239
 \OT1/cmr/m/n/12 clustering
  []
 
 
-Overfull \hbox (21.9772pt too wide) in alignment at lines 174--227
+Overfull \hbox (21.9772pt too wide) in alignment at lines 191--244
  [] [] [] [] 
  []
 
-[38] [39] <ch-al/figures/results.pdf, id=944, page=2, 722.7pt x 433.62pt>
+[40] [41] <ch-al/figures/results.pdf, id=967, page=2, 722.7pt x 433.62pt>
 File: ch-al/figures/results.pdf Graphic file (type pdf)
 
 <use ch-al/figures/results.pdf, page 2>
-Package pdftex.def Info: ch-al/figures/results.pdf, page2 used on input line 30
-0.
+Package pdftex.def Info: ch-al/figures/results.pdf, page2 used on input line 32
+6.
 (pdftex.def)             Requested size: 433.62pt x 260.17401pt.
- [40] [41 <./ch-al/figures/results.pdf>] <ch-al/figures/results.pdf, id=961, pa
+ [42] [43 <./ch-al/figures/results.pdf>] <ch-al/figures/results.pdf, id=986, pa
 ge=1, 722.7pt x 433.62pt>
 File: ch-al/figures/results.pdf Graphic file (type pdf)
 
 <use ch-al/figures/results.pdf, page 1>
-Package pdftex.def Info: ch-al/figures/results.pdf, page1 used on input line 34
+Package pdftex.def Info: ch-al/figures/results.pdf, page1 used on input line 37
 2.
 (pdftex.def)             Requested size: 433.62pt x 260.17401pt.
- [42 <./ch-al/figures/results.pdf>]
-File: ch-al/figures/results.pdf Graphic file (type pdf)
-
-<use ch-al/figures/results.pdf, page 2>
-Package pdftex.def Info: ch-al/figures/results.pdf, page2 used on input line 40
-4.
-(pdftex.def)             Requested size: 433.62pt x 260.17401pt.
-) [43] [44]) [45]
+ [44 <./ch-al/figures/results.pdf>]
+[45])) [46]
 \openout2 = `ch-gc/chapter-gc.aux'.
 
  (ch-gc/chapter-gc.tex
 Chapter 4.
-(ch-gc/litreview.tex [46
+[47
 
 
 
-] [47]
-<ch-gc/figures/arr_density.jpg, id=1009, 587.19376pt x 259.56975pt>
+] (ch-gc/litreview.tex [48]
+<ch-gc/figures/arr_density.jpg, id=1031, 587.19376pt x 259.56975pt>
 File: ch-gc/figures/arr_density.jpg Graphic file (type jpg)
 
 <use ch-gc/figures/arr_density.jpg>
-Package pdftex.def Info: ch-gc/figures/arr_density.jpg used on input line 56.
+Package pdftex.def Info: ch-gc/figures/arr_density.jpg used on input line 59.
 (pdftex.def)             Requested size: 433.62pt x 191.68253pt.
- [48 <./ch-gc/figures/arr_density.jpg>])
-(ch-gc/methods.tex [49] [50] [51]
-<ch-gc/figures/drawbacks_rotation.jpg, id=1038, 488.42474pt x 259.56975pt>
+ [49 <./ch-gc/figures/arr_density.jpg>])
+(ch-gc/methods.tex [50] [51] [52]
+<ch-gc/figures/drawbacks_rotation.jpg, id=1060, 488.42474pt x 259.56975pt>
 File: ch-gc/figures/drawbacks_rotation.jpg Graphic file (type jpg)
 
 <use ch-gc/figures/drawbacks_rotation.jpg>
 Package pdftex.def Info: ch-gc/figures/drawbacks_rotation.jpg used on input lin
-e 122.
+e 130.
 (pdftex.def)             Requested size: 433.62pt x 230.44995pt.
 
-Underfull \hbox (badness 10000) in alignment at lines 151--151
+Underfull \hbox (badness 10000) in alignment at lines 160--160
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 151--151
+Underfull \hbox (badness 10000) in alignment at lines 160--160
 [][][][]
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 151--151
+Underfull \hbox (badness 10000) in alignment at lines 160--160
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 151--151
+Underfull \hbox (badness 10000) in alignment at lines 160--160
 [][][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--151
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--151
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
 []
  []
 
-[52 <./ch-gc/figures/drawbacks_rotation.jpg>] [53]
-<ch-gc/figures/drawbacks_comm.jpg, id=1051, 488.42474pt x 259.56975pt>
+[53] [54 <./ch-gc/figures/drawbacks_rotation.jpg>]
+<ch-gc/figures/drawbacks_comm.jpg, id=1072, 488.42474pt x 259.56975pt>
 File: ch-gc/figures/drawbacks_comm.jpg Graphic file (type jpg)
 
 <use ch-gc/figures/drawbacks_comm.jpg>
-Package pdftex.def Info: ch-gc/figures/drawbacks_comm.jpg used on input line 24
+Package pdftex.def Info: ch-gc/figures/drawbacks_comm.jpg used on input line 25
 1.
 (pdftex.def)             Requested size: 433.62pt x 230.44995pt.
 
-Underfull \hbox (badness 10000) in alignment at lines 272--272
+Underfull \hbox (badness 10000) in alignment at lines 282--282
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 272--272
+Underfull \hbox (badness 10000) in alignment at lines 282--282
 [][][][]
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 272--272
+Underfull \hbox (badness 10000) in alignment at lines 282--282
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 272--272
+Underfull \hbox (badness 10000) in alignment at lines 282--282
 [][][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--272
+Underfull \hbox (badness 10000) in paragraph at lines 282--282
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--272
+Underfull \hbox (badness 10000) in paragraph at lines 282--282
 []
  []
 
-[54] [55 <./ch-gc/figures/drawbacks_comm.jpg>]
-<ch-gc/figures/drawbacks_cluster.jpg, id=1068, 488.42474pt x 259.56975pt>
+[55] [56 <./ch-gc/figures/drawbacks_comm.jpg>]
+<ch-gc/figures/drawbacks_cluster.jpg, id=1090, 488.42474pt x 259.56975pt>
 File: ch-gc/figures/drawbacks_cluster.jpg Graphic file (type jpg)
 
 <use ch-gc/figures/drawbacks_cluster.jpg>
 Package pdftex.def Info: ch-gc/figures/drawbacks_cluster.jpg used on input line
- 349.
+ 361.
 (pdftex.def)             Requested size: 433.62pt x 230.44995pt.
 
-Underfull \hbox (badness 10000) in alignment at lines 380--380
+Underfull \hbox (badness 10000) in alignment at lines 392--392
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 380--380
+Underfull \hbox (badness 10000) in alignment at lines 392--392
 [][][][]
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 380--380
+Underfull \hbox (badness 10000) in alignment at lines 392--392
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) in alignment at lines 380--380
+Underfull \hbox (badness 10000) in alignment at lines 392--392
 [][][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--380
+Underfull \hbox (badness 10000) in paragraph at lines 392--392
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 380--380
+Underfull \hbox (badness 10000) in paragraph at lines 392--392
 []
  []
 
-[56] [57 <./ch-gc/figures/drawbacks_cluster.jpg>]) (ch-gc/simulations.tex
-[58] [59]
+[57] [58 <./ch-gc/figures/drawbacks_cluster.jpg>]) (ch-gc/simulations.tex
+[59] [60]
 Underfull \hbox (badness 10000) in paragraph at lines 114--114
 []|\OT1/cmr/bx/n/12 Distance
  []
 
-[60] <ch-gc/figures/sim_10vs10.jpeg, id=1108, 1505.625pt x 578.16pt>
+[61] <ch-gc/figures/sim_10vs10.jpeg, id=1134, 1258.7025pt x 437.635pt>
 File: ch-gc/figures/sim_10vs10.jpeg Graphic file (type jpg)
 
 <use ch-gc/figures/sim_10vs10.jpeg>
-Package pdftex.def Info: ch-gc/figures/sim_10vs10.jpeg used on input line 161.
-(pdftex.def)             Requested size: 433.62pt x 166.50642pt.
+Package pdftex.def Info: ch-gc/figures/sim_10vs10.jpeg used on input line 163.
+(pdftex.def)             Requested size: 433.62pt x 150.76387pt.
 
-<ch-gc/figures/sim_10vs50.jpeg, id=1109, 1505.625pt x 578.16pt>
+<ch-gc/figures/sim_10vs50.jpeg, id=1135, 1258.7025pt x 437.635pt>
 File: ch-gc/figures/sim_10vs50.jpeg Graphic file (type jpg)
 
 <use ch-gc/figures/sim_10vs50.jpeg>
-Package pdftex.def Info: ch-gc/figures/sim_10vs50.jpeg used on input line 172.
-(pdftex.def)             Requested size: 433.62pt x 166.50642pt.
- [61 <./ch-gc/figures/sim_10vs10.jpeg>]))
-[62 <./ch-gc/figures/sim_10vs50.jpeg>]
+Package pdftex.def Info: ch-gc/figures/sim_10vs50.jpeg used on input line 176.
+(pdftex.def)             Requested size: 433.62pt x 150.76387pt.
+ [62 <./ch-gc/figures/sim_10vs10.jpeg>]
+[63 <./ch-gc/figures/sim_10vs50.jpeg>])) [64]
 \openout2 = `ch-usage/chapter-usage.aux'.
 
  (ch-usage/chapter-usage.tex
 Chapter 5.
-(ch-usage/data.tex [63
+(ch-usage/data.tex [65
 
 
 
-] [64]) (ch-usage/stockselection.tex [65] [66] [67])
-(ch-usage/newanalysis.tex [68]) (ch-usage/results.tex [69]
-<ch-usage/figures/y_all.jpg, id=1180, 1818.795pt x 909.3975pt>
+] [66]) (ch-usage/stockselection.tex [67] [68] [69])
+(ch-usage/newanalysis.tex [70] [71]) (ch-usage/results.tex [72]
+<ch-usage/figures/y_all.jpg, id=1215, 1818.795pt x 909.3975pt>
 File: ch-usage/figures/y_all.jpg Graphic file (type jpg)
 
 <use ch-usage/figures/y_all.jpg>
-Package pdftex.def Info: ch-usage/figures/y_all.jpg used on input line 11.
+Package pdftex.def Info: ch-usage/figures/y_all.jpg used on input line 15.
 (pdftex.def)             Requested size: 433.62pt x 216.80286pt.
 
-<ch-usage/figures/n_all.jpg, id=1181, 1818.795pt x 909.3975pt>
+<ch-usage/figures/n_all.jpg, id=1216, 1818.795pt x 909.3975pt>
 File: ch-usage/figures/n_all.jpg Graphic file (type jpg)
 
 <use ch-usage/figures/n_all.jpg>
-Package pdftex.def Info: ch-usage/figures/n_all.jpg used on input line 21.
+Package pdftex.def Info: ch-usage/figures/n_all.jpg used on input line 24.
 (pdftex.def)             Requested size: 433.62pt x 216.80286pt.
- [70] [71 <./ch-usage/figures/y_all.jpg> <./ch-usage/figures/n_all.jpg>]
-<ch-usage/figures/heatmaps.jpeg, id=1194, 794.97pt x 761.84625pt>
+ [73 <./ch-usage/figures/y_all.jpg> <./ch-usage/figures/n_all.jpg>]
+<ch-usage/figures/heatmaps.jpeg, id=1225, 794.97pt x 761.84625pt>
 File: ch-usage/figures/heatmaps.jpeg Graphic file (type jpg)
 
 <use ch-usage/figures/heatmaps.jpeg>
-Package pdftex.def Info: ch-usage/figures/heatmaps.jpeg used on input line 57.
+Package pdftex.def Info: ch-usage/figures/heatmaps.jpeg used on input line 62.
 (pdftex.def)             Requested size: 346.89731pt x 332.44667pt.
 
-<ch-usage/figures/criterionlist.jpg, id=1197, 549.252pt x 91.542pt>
+<ch-usage/figures/criterionlist.jpg, id=1228, 549.252pt x 91.542pt>
 File: ch-usage/figures/criterionlist.jpg Graphic file (type jpg)
 
 <use ch-usage/figures/criterionlist.jpg>
 Package pdftex.def Info: ch-usage/figures/criterionlist.jpg used on input line 
-69.
+76.
 (pdftex.def)             Requested size: 433.62pt x 72.2699pt.
 File: ch-usage/figures/criterionlist.jpg Graphic file (type jpg)
 
 <use ch-usage/figures/criterionlist.jpg>
 Package pdftex.def Info: ch-usage/figures/criterionlist.jpg used on input line 
-69.
+76.
 (pdftex.def)             Requested size: 433.62pt x 72.2699pt.
-
-Underfull \hbox (badness 1377) in paragraph at lines 69--69
-\OT1/cmr/m/n/12 plot (see Sec-tion []2.1[]). Or-dered cri-te-rion list (left to
- right, up to down):
- []
-
-[72] [73 <./ch-usage/figures/heatmaps.jpeg> <./ch-usage/figures/criterionlist.j
-pg>]
-<ch-usage/figures/predicted_probability_histogram.jpeg, id=1210, 794.97pt x 455
+ [74] [75 <./ch-usage/figures/heatmaps.jpeg> <./ch-usage/figures/criterionlist.
+jpg>]
+<ch-usage/figures/predicted_probability_histogram.jpeg, id=1240, 794.97pt x 455
 .7025pt>
 File: ch-usage/figures/predicted_probability_histogram.jpeg Graphic file (type 
 jpg)
  <use ch-usage/figures/predicted_probability_histogram.jpeg>
 Package pdftex.def Info: ch-usage/figures/predicted_probability_histogram.jpeg 
-used on input line 85.
+used on input line 93.
 (pdftex.def)             Requested size: 433.62pt x 248.57196pt.
- [74 <./ch-usage/figures/predicted_probability_histogram.jpeg>]
-<ch-usage/figures/visgraph.jpeg, id=1216, 687.56876pt x 514.92375pt>
+ [76 <./ch-usage/figures/predicted_probability_histogram.jpeg>]
+<ch-usage/figures/visgraph.jpeg, id=1246, 687.56876pt x 514.92375pt>
 File: ch-usage/figures/visgraph.jpeg Graphic file (type jpg)
 
 <use ch-usage/figures/visgraph.jpeg>
-Package pdftex.def Info: ch-usage/figures/visgraph.jpeg used on input line 100.
+Package pdftex.def Info: ch-usage/figures/visgraph.jpeg used on input line 109.
 
-(pdftex.def)             Requested size: 216.81pt x 162.36684pt.
- [75 <./ch-usage/figures/visgraph.jpeg>]
-[76]
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+(pdftex.def)             Requested size: 325.215pt x 243.55418pt.
+ [77 <./ch-usage/figures/visgraph.jpeg>]
+[78]
+Underfull \hbox (badness 10000) in paragraph at lines 194--194
 []|\OT1/cmr/bx/n/12 Graph
  []
 
-[77
+[79
 
 ]
-<ch-usage/figures/Results_YearlyReturns.pdf, id=1238, 614.295pt x 794.97pt>
+<ch-usage/figures/Results_YearlyReturns.pdf, id=1272, 614.295pt x 794.97pt>
 File: ch-usage/figures/Results_YearlyReturns.pdf Graphic file (type pdf)
 
 <use ch-usage/figures/Results_YearlyReturns.pdf>
 Package pdftex.def Info: ch-usage/figures/Results_YearlyReturns.pdf used on inp
-ut line 220.
+ut line 242.
 (pdftex.def)             Requested size: 433.62pt x 561.15749pt.
- [78 <./ch-usage/figures/Results_YearlyReturns.pdf>] [79
+ [80 <./ch-usage/figures/Results_YearlyReturns.pdf>] [81
 
 
-] [80]))
+] [82]))
 \openout2 = `ch-conclusion/chapter-conclusion.aux'.
 
  (ch-conclusion/chapter-conclusion.tex
 Chapter 6.
-(ch-conclusion/conclusion.tex [81
+(ch-conclusion/conclusion.tex [83
 
 
 
 
-]) (ch-conclusion/futurework.tex [82]
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
- [83]
-[84] [85]
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no “ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
- [86]
-<ch-conclusion/figures/lineup.jpg, id=1313, 698.00775pt x 143.93774pt>
+] [84]) (ch-conclusion/futurework.tex [85]
+[86] [87] [88]
+<ch-conclusion/figures/lineup.jpg, id=1351, 698.00775pt x 143.93774pt>
 File: ch-conclusion/figures/lineup.jpg Graphic file (type jpg)
 
 <use ch-conclusion/figures/lineup.jpg>
-Package pdftex.def Info: ch-conclusion/figures/lineup.jpg used on input line 14
-3.
+Package pdftex.def Info: ch-conclusion/figures/lineup.jpg used on input line 13
+7.
 (pdftex.def)             Requested size: 433.62pt x 89.41837pt.
- [87 <./ch-conclusion/figures/lineup.jpg>]
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-)) [88]
+ [89 <./ch-conclusion/figures/lineup.jpg>])) [90]
 \openout2 = `ch-appendicies/implementation.aux'.
 
  (ch-appendicies/implementation.tex
@@ -1059,26 +1026,32 @@ File: lstlang3.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 10.
- [89
+ [91
 
 
 
 ]
-[90] [91] [92] [93] [94] [95] [96] [97] [98] [99] [100] [101] [102] [103]
-[104] [105] [106] [107] [108] [109] [110] [111] [112] [113] [114] [115]
-[116] [117] [118] [119] [120] [121] [122]) [123] (thesis.bbl [124
+[92] [93] [94] [95] [96] [97] [98] [99] [100] [101] [102] [103] [104] [105]
+[106] [107] [108] [109] [110] [111] [112] [113] [114] [115] [116] [117]
+[118] [119] [120] [121] [122] [123]) [124] (thesis.bbl
+Underfull \hbox (badness 1226) in paragraph at lines 57--62
+[]\OT1/cmr/m/n/12 K. Lin.  Eda for graph-i-cal mod-els.  []$\OT1/cmtt/m/n/12 ht
+tps : / / github . com / linnylin92 /
+ []
+
+[125
 
 
 
 ]
-Underfull \hbox (badness 4899) in paragraph at lines 88--92
+Underfull \hbox (badness 4899) in paragraph at lines 95--99
 []\OT1/cmr/m/n/12 J. Ramey.  Ac-tive learn-ing in r.  []$\OT1/cmtt/m/n/12 https
  : / / github . com / ramhiser /
  []
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 288.
- [125]
+ [126]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 288.
  (thesis.aux (ch-intro/chapter-intro.aux)
 (ch-visualizer/chapter-visualizer.aux) (ch-al/chapter-al.aux)
@@ -1087,17 +1060,17 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 288.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 288.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 288.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 71296F9B093117F3078F193979F52F09;6444.
+(rerunfilecheck)             Checksum: 5D8D839A7FE750FB1B30F16277CA3833;6387.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 288.
  ) 
 Here is how much of TeX's memory you used:
- 11268 strings out of 493334
- 165206 string characters out of 3136672
- 442933 words of memory out of 3000000
- 12654 multiletter control sequences out of 15000+200000
+ 11253 strings out of 493334
+ 164924 string characters out of 3136672
+ 443059 words of memory out of 3000000
+ 12658 multiletter control sequences out of 15000+200000
  13544 words of font info for 50 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,15n,42p,298b,2414s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,14n,42p,347b,2414s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
@@ -1118,9 +1091,9 @@ X 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2
 /fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (137 pages, 4302059 bytes).
+Output written on thesis.pdf (138 pages, 4635178 bytes).
 PDF statistics:
- 3510 PDF objects out of 3580 (max. 8388607)
- 1859 named destinations out of 2073 (max. 500000)
- 809 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3520 PDF objects out of 3580 (max. 8388607)
+ 1840 named destinations out of 2073 (max. 500000)
+ 817 words of extra memory for PDF output out of 10000 (max. 10000000)
 

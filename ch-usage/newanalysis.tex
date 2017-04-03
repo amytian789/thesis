@@ -1,71 +1,79 @@
-\section{Application of the visualization system}
+\section{Procedure}
 \label{sec:usage:newanalysis}
 
-Now the issue is that there are many correlation graphs which may be 
-computed with different correlation coefficients; given the large dataset, it 
+Now the issue is that there are many numerical correlation graphs which may be 
+computed with different correlation coefficients; given the large data set, it 
 is unclear which metric might be the best one. This is where the visualization 
 system comes in and ties everything together. By learning the user's interests 
-and automatically labeling correlated vs uncorrelated pairs of variables, the 
+and automatically labeling all pairwise scatter plots as ``visually 
+correlated'' or ``not visually correlated'', the 
 VS outputs a visual correlation graph that may be used as a ``sanity check'' 
 against the various numerical correlation graphs and provide a guide for 
-selecting the most intuitive numerical correlation graph.
+selecting the most visually intuitive numerical correlation graph.
 
-Let $X$ be a $n\times d$ data matrix where there are $n$ observations of $d$ 
-variables. The final procedure is as follows:
+Let $X$ be a $n\times d$ data matrix where there are $d$ observations of $n$ 
+variables (Specifically, $n = 43$ and $d = 2050$ in the healthcare data set). 
+Recall that the data used for active learning classification by the 
+VS is actually 
+composed of all observations of characteristic features (as described in 
+Section~\ref{sec:visualizer:scatterplot:features}) for all ${n\choose 2} = 
+n(n-1)/2 = 903$ pairwise scatter plots of the $n$ variables from the actual 
+data set $X$. The final procedure is as follows:
 
 \tablespacing
 \begin{enumerate}
-	\item Create four different numerical correlation graphs 
-	$G^i=(V,E)$ where $|V| = d$ for all $i\in \{1,...,4\}$ with 
-	threshold $t = 0.15$, one for each correlation coefficient described in 
+	\item With threshold $t = 0.15$, create four different numerical 
+	correlation graphs $\hat{G}^{i,\text{num}}=(V,E)$ where $|V| = n$ for all 
+	$i\in \{1,...,4\}$, one for each correlation coefficient described in 
 	Section~\ref{sec:intro:correlation} (Pearson's, Spearman's, Kendall's, and 
 	distance correlation).
 	
-	\item Run the VS on the same dataset. Stage 1 of the system utilizes the 
-	active learning algorithm selected in Chapter~\ref{ch:al} to learn what is 
-	``correlated'' and ``not correlated.'' Stage 2 of the system then iterates 
-	through all possible unlabeled plot pairs and returns a visual graph 
-	$G=(V,E)$ where 
+	\item Run the VS on the same data set. Stage 1 of the system utilizes the 
+	active learning algorithm selected in Chapter~\ref{ch:al} (uncertainty 
+	sampling with a budget of $iter = 15$) to learn what is 
+	``visually correlated'' and ``not visually correlated.'' Stage 2 of the 
+	system uses the resulting classifier (built from a random forest 
+	classification model) to iterate through all unlabeled pairwise scatter 
+	plots and returns a visual graph $\hat{G}=(V,E)$ built from the following 
+	heuristic:
 
 \begin{algorithm}
-	For $i,j\in \{1,...,d\}$, $E_{i,j}$ exists if the plot of $j$ against $i$ 
-	is ``correlated''
+	$E_{i,j} = 1$ for $i\neq j$ if the pairwise scatter plot of $(X_i, X_j)$ 
+	is ``visually correlated'' (as determined by the learned stage 2 labels)
 \end{algorithm}
 
-	As a reminder, correlation is used loosely to refer to a visual 
-	interpretation of the mathematical term.
-
-	\item Utilize the graph comparison methodology explained in 
+	\item Utilize the graph comparison methodology described in 
 	Chapter~\ref{ch:gc} to find the difference of each pair 
-	$(G,G^i)$ for all $i \in \{1,...,4\}$. Select numerical graph $G^*$ such 
-	that $\text{diff}(G,G^*) \leq \text{diff}(G,G^i)$ for all $i\in 
-	\{1,...,4\}$. The numerical correlation graph $G^*$ is then the graph which 
-	best matches the visual interpretation of the relationships among the 
-	dataset's variables.
+	$(\hat{G},\hat{G}^{i,\text{num}})$ for all $i \in \{1,...,4\}$. Select 
+	numerical graph $\hat{G}^*$ such 
+	that $\text{diff}(\hat{G},\hat{G}^*) \leq 
+	\text{diff}(\hat{G},\hat{G}^{i,\text{num}})$ for all $i\in 
+	\{1,...,4\}$. The numerical correlation graph $\hat{G}^*$ is then the graph 
+	which best matches the visual interpretation of the relationships among the 
+	data set's variables.
 	
-	\item Using the stock selection procedure in 
-	Section~\ref{sec:usage:stockselection}, create a portfolio $P^i$ from each 
-	graph $G^i$ (including portfolio $P^*$ from the graph selected as $G^*$). 
+	\item Using the stock selection procedure described in 
+	Section~\ref{sec:usage:stockselection}, create $P^i$, a portfolio of $k = 
+	5$ stocks, from the numerical correlation graph $\hat{G}^{i,\text{num}}$ 
+	for all $i \in \{1,...,4\}$ (including portfolio 
+	$P^*$ from the numerical graph selected as $\hat{G}^*$). Each selected 
+	stock holds equal weight in the portfolio.
 	
-	\item Observe the performance of each portfolio until 2014.
+	\item Observe the ``buy and hold'' performance of each portfolio until 2014.
 \end{enumerate}
 \bodyspacing
 
-Normally, it would be standard to simply use the selection procedure with $G^*$ 
-as an input to determine the desired ``buy and hold'' portfolio, record the 
+It might also be sufficient to simply select $P^*$ from $\hat{G}^*$, record the 
 yearly returns, and then be done. However, because the purpose of this chapter 
-is to demonstrate the usage and viability of the VS in aiding with the selectio 
-of an appropriate numerical procedure (given a dataset and some desired 
-purpose), it is necessary to compare the results of all options among one 
-another. 
+is to demonstrate the usage and viability of the VS in aiding with the 
+selection of an appropriate numerical model (given a data set and some 
+application), it is necessary to compare the results of all options to each 
+other. 
 It is natural to expect that the portfolio $P^*$ will perform the best 
 as that is the purpose of the visualization system, after all. 
-By comparing the results of $P^*$ against the other numerical options, we may 
-determine just how well the system captured the user's intuition regarding 
-independence (which is not as straightforward as a simple metric).
-It should also be noted that, while a rebalancing method performs better in 
-practice~\cite{liuh2016}, the ``buy and hold'' is better-suited for observing 
-the portfolio performances over time, providing a more concrete basis of 
-comparison for the selected correlation coefficient. The final code for the 
-application procedure may be found in 
+By comparing the results of $P^*$ against the results of the portfolios created 
+from the other numerical correlation graphs, we may determine just how well the 
+system captures the user's intuition of visual dependence (which is likely to 
+be far more complex than a single metric can capture).
+The final code for the application procedure may be found in 
 Appendix~\ref{sec:appendicies:usage:newanalysis}.

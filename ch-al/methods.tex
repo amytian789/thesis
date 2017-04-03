@@ -2,11 +2,11 @@
 \label{sec:al:methods}
 
 In this section, we present algorithms for specific active learning methods and 
-a reference to the implementation code, which can be found in the appendix. The 
+a reference to its implementation in the appendix. The 
 \texttt{activelearning} package by \texttt{ramhiser}~\cite{ramhiser2015} has 
 adapted much of the methods reviewed in Settles' work~\cite{settles2010}. As 
-such, most of the implementation code has been adapted and reworked (with the 
-inclusion of substantial parts written from scratch) from the 
+such, most of the implementation code has been adapted and reworked (with 
+substantial components written from scratch) from the 
 \texttt{activelearning} package, which is too general for our purposes.
 
 \subsection{Uncertainty sampling}
@@ -15,22 +15,24 @@ inclusion of substantial parts written from scratch) from the
 In uncertainty sampling, the active learner selects the query $q$ that it is 
 most uncertain on how to label; in other words, the algorithm queries the label 
 that has the highest posterior probability~\cite{lewis1994}. With binary 
-classification labels such as the VS system (either ``interesting'' or 
-``non-interesting''), this reduces to the case of querying the instance whose 
-posterior probability of being ``interesting'' is closest to 
-0.5~\cite{lewis1994}. While the algorithm presented later follows this 
+classification as is the case with the VS (either ``visually correlated'' or 
+``not visually correlated''), this reduces to the case of querying the instance 
+whose posterior probability of being ``visually correlated'' is closest to 
+0.5~\cite{lewis1994}. While the uncertainty sampling algorithm presented in 
+Algorithm~\ref{alg:al:methods:uncertainty} follows this 
 methodology and may subsequently only be used with classification models that 
 are able to encompass posterior probability computations, there has been much 
 work done to expand uncertainty sampling to non-probabilistic classifiers such 
 as decision trees and nearest-neighbor~\cite{settles2010}.
 
-Uncertainty sampling is simple but not without problem. Given that the 
-number of possible classification labels is $k > 2$, uncertainty sampling only 
+Uncertainty sampling is simple but not without problem. Given a multi-label 
+classification problem (labels $k > 2$), uncertainty sampling only 
 considers the information about the most probable label $i$ and ignores the 
 other possible labels $j \in \{1,...,k\}\backslash i$. ``Margin sampling'' and 
 ``entropy'' are variants that try to solve for these problems, but 
-both reduce to the scheme above (selecting $q$ with a posterior probability 
-closest to 0.5) when $k=2$~\cite{settles2010}.
+both reduce to the scheme of querying from the sample with a posterior 
+probability closest to 0.5 when $k=2$ (binary 
+classification)~\cite{settles2010}.
 
 We have developed an algorithm for uncertainty sampling based on the literature 
 review (see Appendix~\ref{sec:appendicies:al:uncertainty} for code):
@@ -44,10 +46,11 @@ review (see Appendix~\ref{sec:appendicies:al:uncertainty} for code):
 		variables, $y$ is an $n$-length vector of labels for each variable in 
 		$X$ ($y_i$=N/A when $X_{i,}$ has no label)}
 		\State $\textit{tout} \gets 
-		\text{train}(X^{labeled},y^{labeled},\text{classifier})$
+		\text{train}(X^{\text{labeled}},y^{\text{labeled}},\text{classification 
+		model})$
 		\State $p \gets 
-		\text{predict}(\textit{tout},X^{unlabeled},
-		\text{posterior prob.} = TRUE)$
+		\text{predict}(\textit{tout},X^{\text{unlabeled}},
+		\text{posterior prob. = TRUE})$
 		\State \textbf{loop from} $i=1$ \textbf{to} len($p$):
 		\State \indent $p_i \gets |p_i-0.5|$
 %		\If {$\textit{string}(i) = \textit{path}(j)$}
@@ -64,9 +67,9 @@ review (see Appendix~\ref{sec:appendicies:al:uncertainty} for code):
 
 \noindent By searching for the most ``uncertain'' point, uncertainty sampling 
 is able to further refine the classifier as the oracle must label the point 
-either ``interesting'' or ``non-interesting''. This can be viewed as a search 
-within the hypothesis space $\mathcal{H}$ that contains multiple classifiers, 
-instances of a single classification model.
+either ``visually correlated'' or ``not visually correlated''. This can be 
+viewed as a search within the hypothesis space $\mathcal{H}$ that contains 
+multiple classifiers, instances of a single classification model.
 
 
 
@@ -81,14 +84,15 @@ instances of a single classification model.
 Query by committee is a clearer case of efficient search through the hypothesis 
 space. In query by committee, a ``committee'' of classification models are 
 trained on the  current labeled instances.  Each model represents a competing 
-hypotheses, and its prediction for an unlabeled query candidate $q$ is a 
+hypothesis, and its prediction for an unlabeled query candidate $q$ is a 
 ``vote'' of weight one on $q$; the most disagreeable candidate is then 
-selected~\cite{settles2010}. Settles reviews various methods for committee 
-selection for both probabilistic and non-probabilistic models, though the 
-implementation of the algorithm (Appendix~\ref{sec:appendicies:al:qbc}) allows 
-the user to specify the committee members~\cite{settles2010}. 
+queried~\cite{settles2010}. Settles reviews various methods for initial 
+committee selection by the active learner (for both probabilistic and 
+non-probabilistic models), though our implementation of QBC 
+(Appendix~\ref{sec:appendicies:al:qbc}) allows the user to specify the 
+committee members~\cite{settles2010}. 
 
-We may write the basic algorithm as follows:
+The basic algorithm is as follows:
 
 \tablespacing
 \begin{algorithm}[H]
@@ -98,12 +102,12 @@ We may write the basic algorithm as follows:
 		\Procedure{}{$X$ is a $n\times d$ matrix of $d$ observations 
 		of all $n$ variables, $y$ is an $n$-length vector of labels for each 
 		variable in $X$ ($y_i$=N/A when $X_{i,}$ has no label). Let $C$ be the 
-		vector of all committee members}
+		vector of all committee members i.e. classification models}
 		\State \textbf{loop from} $i=1$ \textbf{to} len($C$):
 		\State \indent $\textit{tout}_{i} \gets 
-		\text{train}(X^{labeled},y^{labeled},C_i)$
+		\text{train}(X^{\text{labeled}},y^{\text{labeled}},C_i)$
 		\State \indent $p_{i,} \gets 
-		\text{predict}(\textit{tout}_i,X^{unlabeled})$
+		\text{predict}(\textit{tout}_i,X^{\text{unlabeled}})$
 		\State $d \gets \text{disagreement}(p)$
 		\State \textbf{return} where($d==\max{(d)}$)
 		\EndProcedure
@@ -111,31 +115,34 @@ We may write the basic algorithm as follows:
 \end{algorithm}
 \bodyspacing
 
-\noindent While it is simpler to constantly maintain the same committee 
+\noindent While it is simpler to maintain the same committee 
 throughout, it would be more informative to prune the committee as the 
 algorithm proceeds; it may simply be the case that a model is ill-suited for 
 the problem at hand and consistently returns predictions that skew the voting 
-procedure. Subsequently, a model is removed from the committee if it is 
-consistently out-of-line with whatever the ``true'' label of $q_t$ (the next 
-query point decided and then queried at time $t$) turns out to be. It is 
-important to note that the ``true'' label is not known until \textit{after} the 
-algorithm has return the index of $q_t$. Subsequently, the committee from $t$ 
-is pruned at time $t+1$ at the start of the algorithm using the retrieved 
-label from time $t$. It should be noted that the pruning function should only 
+procedure. Subsequently, a model is removed from the committee if its 
+predictions are consistently out-of-line with whatever the ``true'' label of 
+$q_t$ (the next query point decided and then queried at time $t$) turns out to 
+be. It is important to note that the ``true'' label is not known until 
+\textit{after} the algorithm has returned the index of $q_t$. In the VS, this 
+index corresponds to the next pairwise scatter plot to show the 
+user and query. Subsequently, the committee from $t$ 
+is pruned at time $t+1$ at the start of the algorithm using the label retrieved 
+from time $t$. The pruning function should only 
 be run after a good number of iterations (where each iteration results in a 
 query) have passed to allow the error ratios to converge (Otherwise, there is 
-no room for learning). In our implementation, we implement the pruning 
-algorithm after $iter/2$ queries where $iter$ is the maximum number of queries 
-allowed.
-Furthermore, the query by committee methodology described by Settles is only 
-focused on selection of $q$ independent of the final classification model 
-once the rest of the training data is selected~\cite{settles2010}. However, 
-there is merit in maintaining the final pruned committee as its own 
-classification model after the querying is complete and the training data is 
-selected. This may be achieved by selecting labels on unlabeled instances via 
-majority vote. Further details on implementation and performance may be seen in 
-the simulation study (Section~\ref{sec:al:simulations}). The revised selection 
-algorithm is as follows (see Appendix~\ref{sec:appendicies:al:qbc} for code):
+no room for learning). In our implementation, we begin using the pruning 
+algorithm after $iter/2$ queries where $iter$ is the query budget (the maximum 
+number of queries allowed).
+Furthermore, the query by committee methodology described by Settles only uses 
+the committee to select $q$; thus, the committee is independent of the final 
+classification model (in the VS, this is a random forest) once the budget has 
+been used up~\cite{settles2010}. However, there may be merit in maintaining the 
+final pruned committee as its own classification model after the budget has 
+been used up. As a classification model, the pruned committee may label 
+unlabeled instances via majority vote. Further details on implementation and a 
+performance comparison may be found in the simulation study 
+(Section~\ref{sec:al:simulations}). The revised algorithm is as follows (see 
+Appendix~\ref{sec:appendicies:al:qbc} for code):
 
 \tablespacing
 \begin{algorithm}[H]
@@ -144,17 +151,19 @@ algorithm is as follows (see Appendix~\ref{sec:appendicies:al:qbc} for code):
 		\Procedure{}{$X$ is a $n\times d$ matrix of $d$ observations of all $n$ 
 		variables, $y$ is an $n$-length vector of labels for each variable in 
 		$X$ ($y_i$=N/A when $X_{i,}$ has no label). Let $C$ be the vector of 
-		all committee members, $E$ be the error ratio of the respective 
+		all committee members i.e. classification models, $E$ be the average 
+		error ratio of the respective 
 		committee members (initialized to 0), $0<\epsilon<1$ be some threshold 
-		for the error ratio, and $t$ be the current iteration of QBC starting 
+		for the error ratio, \textit{iter} be the total active learning 
+		budget, and $t$ be the current iteration of QBC starting 
 		at $t=1$}
 		
 		\Function{QBC}{}
 		\State \textbf{loop from} $i=1$ \textbf{to} len($C$):
 		\State \indent $\textit{tout}_i \gets 
-		\text{train}(X^{labeled},y^{labeled},C_i)$
+		\text{train}(X^{\text{labeled}},y^{\text{labeled}},C_i)$
 		\State \indent $p_{i,} \gets 
-		\text{predict}(\textit{tout}_i,X^{unlabeled})$
+		\text{predict}(\textit{tout}_i,X^{\text{unlabeled}})$
 		\State $d \gets \text{disagreement}(p)$
 		\State \textbf{return} $j =$ where($d==\max{(d)}$)
 		\EndFunction
@@ -165,9 +174,8 @@ algorithm is as follows (see Appendix~\ref{sec:appendicies:al:qbc} for code):
 		
 		\State $y_j \gets l$
 		
-		\Function{Prune }{Let \textit{iter} be the total active learning 
-		budget. When iteration $i \in [1,iter] > iter/2$, run 
-		\textsc{Prune} }	
+		\Function{Prune }{When iteration $i \in [1,iter] > iter/2$, run 
+		\textsc{Prune}}	
 		\State $prune = [\ ]$ (empty vector)	
 		\State \textbf{loop from} $i=1$ \textbf{to} len($C$):
 		\State \indent \textbf{If} ($p_{i,j}==y_j$) \textbf{then} $iv = 0$ 
@@ -188,31 +196,36 @@ algorithm is as follows (see Appendix~\ref{sec:appendicies:al:qbc} for code):
 \end{algorithm}
 \bodyspacing
 
-The algorithm contains a generic disagreement function, so it is important to 
-note that there are different measures of disagreement among the committee 
-members. There are two main methods of disagreement 
-measurement described by Settles~\cite{settles2010}:
+Note that both Algorithm~\ref{alg:al:methods:qbc1} 
+and~\ref{alg:al:methods:qbc2} contain a generic disagreement function, which 
+measures the disagreement among the committee members. Let $Y$ be the set of 
+all possible labels. There are two main methods of measuring disagreement 
+described by Settles~\cite{settles2010}:
 
 \tablespacing
 \begin{enumerate}
-	\item \textbf{Vote entropy}: The disagreement for variable $d$ is computed  
-	$$x^*_{VE}=\arg\max_x{-\sum\limits_{j \in \text{all possible labels}} 
-	\frac{V(y_j)}{\text{len}(C)} \log \frac{V(y_j)}{\text{len}(C)}}$$
-	\noindent where $V(y_j)$ is the number of votes each possible label $y_i$ 
-	for $d$ received. The interested reader may refer to ~\cite{dagan1995} 
-	for further details on this methodology.
-	\item \textbf{Kullback-Leibler divergence}: The disagreement is computed
-	$$x^*_{KL}=\arg\max_x{\frac{1}{\text{len}(C)} \sum\limits_{i \in 
-	1}^{\text{len}(C)} \sum\limits_{j \in \text{all possible labels}} 
-	\text{P}_{C_i}(y_j|x) \log \frac{\text{P}_{C_i}(y_j|x)}
-	{\text{P}_{C}(y_j|x)}}$$
-	\noindent Since	$C$ was defined as the committee, we can interpret 
-	$\text{P}_{C}(y_j|x) = \frac{1}{\text{len}(C)} 
-	\sum\limits_{k=1}^{\text{len}(C)} \text{P}_{C_k}(y_j|x)$ as the probability 
-	that the label with the most votes will be $y_j$ where 
-	$\text{P}_{C_k}(y_j|x)$ is the probability that committee member $k$ votes 
-	$y_j$ for variable $d$.The interested reader may refer to 
-	~\cite{mccallum1998} for further details on this methodology.
+	\item \textbf{Vote entropy}: The disagreement for query candidate $q$ is 
+	computed
+	$$d_{\text{VE}}(q) =-\sum\limits_{y \in Y} 
+	\frac{V(y|q)}{\text{len}(C)} \log \frac{V(y|q)}{\text{len}(C)}$$
+	\noindent where $0 \leq V(y|q) \leq \text{len}(C)$ is the number of votes 
+	that label $y$ received for query candidate $q$. 
+	The interested reader may refer to Dagan and 
+	Engelson~\cite{dagan1995} for further details.
+	
+	\item \textbf{Kullback-Leibler divergence}: The disagreement for query 
+	candidate $q$ is computed
+	$$d_{\text{KL}}(q) = \frac{1}{\text{len}(C)} \sum\limits_{i =
+	1}^{\text{len}(C)} \sum\limits_{y \in Y} 
+	\text{P}_{C_i}(y|q) \log \frac{\text{P}_{C_i}(y|q)}
+	{\text{P}_{C}(y|q)}$$
+	\noindent Recall that $C$ is the vector of committee members. We can 
+	interpret $\text{P}_{C}(y|q) = \frac{1}{\text{len}(C)} 
+	\sum\limits_{k=1}^{\text{len}(C)} \text{P}_{C_k}(y|q)$ as the probability 
+	that label $y$ will have the most votes for $q$, and 
+	$\text{P}_{C_k}(y|q)$ as the probability that committee member $k$ votes 
+	$y$ for $q$. The interested reader may refer to McCallum and 
+	Nigam~\cite{mccallum1998} for further details.
 \end{enumerate}
 \bodyspacing
 
@@ -233,36 +246,37 @@ package in \texttt{R}.
 \subsection{Query by bagging}
 \label{sec:al:methods:bagging}
 
-Query by Bagging and Boosting was proposed
-as a way to improve the performance of a single classifier by forming of 
+Query by bagging and boosting was proposed
+as a way to improve the performance of a single classifier by forming a 
 committee of classifiers trained on random (weighted, in the case of Boosting) 
-samples of the labeled data~\cite{abe1998}. 
-Bagging, quite simply, uniformly samples $k$ training sets from the labeled 
-data to form a committee of $k$ classifiers trained on the same classification 
-model~\cite{abe1998}. The unlabeled data with the most disagreement among the 
-committee members is then selected as the next oracle query (see 
-Section~\ref{sec:al:methods:qbc} for details on disagreement measures).
-Thus, the algorithm is as follows (see 
+subsets of the labeled data~\cite{abe1998}. 
+Bagging uniformly samples $k$ subsets from the labeled data to form a committee 
+of $k$ different classifiers, which are trained with the same classification 
+model (e.g. random forest)~\cite{abe1998}. The unlabeled data with the most 
+disagreement among the committee members is then selected as the next oracle 
+query (see Section~\ref{sec:al:methods:qbc} for details on disagreement 
+measures). The algorithm is as follows (see 
 Appendix~\ref{sec:appendicies:al:bagging} for code):
 
 \tablespacing
 \begin{algorithm}[H]
-	\caption{Query by bagging (as described by Abe and Mamitsuka 
-	~\cite{abe1998})}\label{alg:al:methods:bagging}
+	\caption{Query by bagging (as described by Abe and 
+	Mamitsuka~\cite{abe1998})}\label{alg:al:methods:bagging}
 	\begin{algorithmic}[1]
 		\Procedure{}{$X$ is a $n\times d$ matrix of $d$ observations 
 			of all $n$ variables, $y$ is an $n$-length vector of labels for 
 			each variable in $X$ ($y_i$=N/A when $X_{i,}$ has no label). 
-			$num\_class$ is the desired number of committee members. Let 
-			$r \in (0,1)$ such that $r*\text{len}(X^{labeled})$ rounded is the 
-			number of points to randomly sample from the labeled set.}
+			$num\_class$ is the desired number of committee members (subsets to 
+			sample). Let $r \in (0,1)$ such that 
+			$r*\text{len}(X^{\text{labeled}})$ is the number of points to 
+			randomly sample for each subset of the labeled set.}
 		\State \textbf{loop from} $i=1$ \textbf{to} $num\_class$:
-		\State \indent $idx \gets \text{unif\_sample}(labeled, 
-		r*\text{len}(X^{labeled}) )$
+		\State \indent $idx \gets \text{unif\_sample}(\text{labeled}, 
+		r*\text{len}(X^{\text{labeled}}) )$
 		\State \indent $\textit{tout}_{i} \gets 
-		\text{train}(X_{idx, },y_{idx},\text{classifier})$
+		\text{train}(X_{idx, },y_{idx},\text{classification model})$
 		\State \indent $p_{i,} \gets 
-		\text{predict}(\textit{tout}_i,X^{unlabeled})$
+		\text{predict}(\textit{tout}_i,X^{\text{unlabeled}})$
 		\State $d \gets \text{disagreement}(p)$
 		\State \textbf{return} where($d==\max{(d)}$)
 		\EndProcedure
@@ -270,11 +284,12 @@ Appendix~\ref{sec:appendicies:al:bagging} for code):
 \end{algorithm}
 \bodyspacing
 
-\noindent Since each iteration of the active learner is a new process of random 
-committee 
-training and selection, there is no need to (1) maintain error ratios to prune 
-the starting committee or to (2) use majority vote for the final 
-fitted model over a random forest, which the VS utilizes for stage 
+\noindent Since each iteration of the query selection is a new process of 
+random committee training, there is no starting committee. Instead, what the 
+user specifies is the classification model that each subset will be trained on. 
+Subsequently, there is no need to (1) maintain error ratios to prune a starting 
+committee or to (2) use majority vote with a pruned committee for the final 
+fitted model over a random forest, which is the classification model for stage 
 2 (Section~\ref{sec:visualizer:plotgeneration}).
 
 
@@ -290,40 +305,44 @@ fitted model over a random forest, which the VS utilizes for stage
 \label{sec:al:methods:clustering}
 
 The goal of the Min-Max Approach is to query points that are far from each 
-other~\cite{vu2010}. This can be done by selecting query that maximizes the 
+other~\cite{vu2010}. This can be done by selecting a query that maximizes the 
 minimal distance of each unlabeled query from the labeled set~\cite{vu2010}. 
 In other words, 
-$$\max\limits_{q \in X^{unlabeled}} \bigg( \min\limits_{k \in X^{labeled}} 
-\bigg( \text{distance}(q,k) \bigg) \bigg)$$
+$$\max\limits_{q \in X^{\text{unlabeled}}} \bigg( \min\limits_{k \in 
+X^{\text{labeled}}} \bigg( \text{distance}(q,k) \bigg) \bigg)$$
 
-Given natural clustering in the data, the active learned would be able to 
-select a healthy sample from each cluster with this methodology with the hope 
-that each cluster is fairly homogeneous (Section~\ref{sec:al:litreview}). As 
-such, the methodology is able to exploit the clustering structure of data but 
+Given natural clustering in the data, the active learner would be able to 
+sample from each cluster with this methodology. If each cluster is fairly 
+homogeneous, the final fitted classifier will be a good representation of the 
+data set's ``true'' labels (Section~\ref{sec:al:litreview}). As such, min-max 
+clustering is able to exploit the clustering structure of data but 
 may perform more poorly (converge more slowly i.e. require more queries to get 
-to a reasonable error level) in datasets that do not naturally form clusters. 
+to a reasonable error level) in data sets that do not naturally form clusters. 
 Naturally, there are two important considerations:
 
 \tablespacing
 \begin{itemize}
 	\item \textbf{Initialization:} How does the active learner find the 
-	clusters in the first place? This is important because selecting points 
-	near the centers of the clusters, the densest regions, allows the algorithm 
+	clusters in the first place? Selecting points near the centers of the 
+	clusters, which are the densest regions, allows the algorithm 
 	to converge faster~\cite{vu2010}.
+	
 	\item \textbf{Query selection:} How does the active learner quantify the 
 	distance between data points? Euclidean distance is a common metric of the 
 	straight-line distance between points in the Euclidean space.
 \end{itemize}
 \bodyspacing
 
-Vu \textit{et al.} has proposed the creation of a $k$-nearest neighbors graph 
+Vu \textit{et al.} proposed the creation of a $k$-nearest neighbors graph 
 to measure the local density of each data point; the most dense points may be 
-selected to initialize the active learner. Since the VS will be initialized 
-randomly, we do not concern ourselves too much with min-max clustering 
-initialization; the interested reader may refer to ~\cite{vu2010} for more of 
-the mathematical details and a demonstration of viability. Instead, we present 
-the simple algorithm for the actual active learning (querying) process (see 
-Appendix~\ref{sec:appendicies:al:clustering} for code):
+selected to initialize the active learner~\cite{vu2010}. Since the VS will be 
+initialized randomly for reasons described in 
+Section~\ref{sec:visualizer:al:initialization}, we do not concern ourselves too 
+much with min-max clustering initialization; 
+the interested reader may refer to~\cite{vu2010} for 
+more of the mathematical details and a demonstration of viability. 
+Instead, we present the simple algorithm for the actual active learning 
+(querying) process (see Appendix~\ref{sec:appendicies:al:clustering} for code):
 
 \tablespacing
 \begin{algorithm}[H]
@@ -333,11 +352,12 @@ Appendix~\ref{sec:appendicies:al:clustering} for code):
 		\Procedure{}{$X$ is a $n\times d$ matrix of $d$ observations of all $n$ 
 			variables, $y$ is an $n$-length vector of labels for each variable 
 			in $X$ ($y_i$=N/A when $X_{i,}$ has no label)}
-		\State \textbf{loop from} $i=1$ \textbf{to} len($y^{unlabeled}$):
+		\State \textbf{loop from} $i=1$ \textbf{to} len($y^{\text{unlabeled}}$):
 		\State \indent $\min \gets \infty$
-		\State \indent \textbf{loop from} $j=1$ \textbf{to} len($y^{labeled}$):
-		\State \indent \indent  $d \gets \text{distance}(X_{i,}^{unlabeled}, 
-		X_{j,}^{labeled})$
+		\State \indent \textbf{loop from} $j=1$ \textbf{to} 
+		len($y^{\text{labeled}}$):
+		\State \indent \indent  $d \gets 
+		\text{distance}(X_{i,}^{\text{unlabeled}},X_{j,}^{\text{labeled}})$
 		\State \indent \indent \textbf{If} $(\min >d): \min \gets d$
 		\State \indent $q_i \gets \text{min}$
 		\State \textbf{return} where($q==\max{(q)}$)

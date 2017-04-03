@@ -1,31 +1,30 @@
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Visual analysis in the univariate case.}}{4}{figure.1.1}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Simple visual analysis in the bivariate case.}}{4}{figure.1.1}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Broad overview of the visualization system.}}{15}{figure.2.1}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces A plot of $y$ against $x$ after the CDF is applied in both directions.}}{16}{figure.2.2}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Scatterplots of independent $U(0,1)$ random variables and the pseudo-observation pairs $(U_{t,j},U_{t,j+1}),j\in \{1,2,3\}$.}}{16}{figure.2.3}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Transformed scatter plots of independent $U(0,1)$ random variables and pseudo-observation pairs $(U_{j},U_{j+1}),j\in \{1,2,3\}$ which are more correlated the larger $j$ is.}}{16}{figure.2.3}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Classifiers and classification models}}{19}{figure.2.4}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Mapping the sample space to a decision tree.}}{21}{figure.2.5}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Heatmap versus association navigator}}{23}{figure.2.6}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Mapping the sample space to a decision tree.}}{22}{figure.2.5}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Heat map versus association navigator}}{24}{figure.2.6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces MNIST data used in the simulations.}}{36}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Active learning simulation results for Query by Committee with varying parameters.}}{41}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Aggregated active learning simulation results.}}{42}{figure.3.3}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Active learning simulation results with confidence intervals.}}{44}{figure.3.4}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces MNIST data used in the active learning simulations.}}{38}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Active learning simulation results for query by committee with varying parameters.}}{43}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Aggregated active learning simulation results.}}{44}{figure.3.3}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Difficulties with graph visualization.}}{48}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces A graph pair with rotated edges.}}{52}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces A graph pair with two and three clusters, respectively.}}{55}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces A graph pair with one (no) and two clusters, respectively.}}{57}{figure.4.4}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 times each.}}{61}{figure.4.5}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 and 50 times respectively.}}{62}{figure.4.6}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Difficulties with graph visualization.}}{49}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces A graph pair with rotated edges.}}{54}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces A graph pair with two and three clusters, respectively.}}{56}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces A graph pair with one and two clusters, respectively.}}{58}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 times each.}}{62}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 and 50 times, respectively.}}{63}{figure.4.6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Queries which were labeled ``interesting''.}}{71}{figure.5.1}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Queries which were labeled ``not interesting''.}}{71}{figure.5.2}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Normalized heatmap of the queries and given labels.}}{73}{figure.5.3}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram of predicted probabilities.}}{74}{figure.5.4}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Visual graph output from the visualization system.}}{75}{figure.5.5}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Yearly and cumulative performance of the selected portfolios and the S\&P500.}}{78}{figure.5.6}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces VS queries which were labeled ``visually correlated''.}}{73}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces VS queries which were labeled ``not visually correlated''.}}{73}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Normalized heat maps of VS queries and user-specified labels.}}{75}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram of predicted probabilities.}}{76}{figure.5.4}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Visual correlation graph output from the visualization system.}}{77}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Yearly and cumulative performance of the selected portfolios and the S\&P 500.}}{80}{figure.5.6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces A line-up test for $n = 5$. }}{87}{figure.6.1}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces A line-up test for $k = 5$. }}{89}{figure.6.1}
 \addvspace {10\p@ }

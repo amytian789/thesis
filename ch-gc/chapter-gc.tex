@@ -4,12 +4,12 @@ Graph comparison may be reduced to a problem of measuring the difference
 between two graphs. 
 A primary goal of the visualization system is to allow the user to better 
 verify their numerical results with visual intuition. As such, there are two 
-main goals for graph comparison output: (1) allow the user to gain some 
+main goals for the graph comparison output: (1) allow the user to gain some 
 intuition about the qualities of the visual graph in order to better understand 
 their perceptions of a ``visual trend'' in the data, and (2) provide a metric 
 that quantifies the difference between the visual graph and numeric graph 
 (supplied by the user). With the knowledge of both in hand, the user may 
-reevaluate their numerical methods by selecting the numerical method which is 
+select the numerical method which is 
 ``closest'' to their visual intuition and utilize the results in alternate 
 applications (as in the stock selection in Chapter~\ref{ch:usage}). 
 It should be noted that we operate under 
@@ -17,14 +17,17 @@ the assumption that the graphs are labeled. This avoids the sticky issue of
 isomorphism and more naturally lends itself to the visualization system's 
 goals. As the VS is concerned with practical application in data 
 analytics, each variable in a dataset should already correspond to some label 
-(e.g. various stocks).
+(e.g. a stock).
 What follows is broad overview of two graph comparison methods in 
 Section~\ref{sec:gc:litreview} with more details on the graph summarization 
 comparison method in Section~\ref{sec:gc:methods}. Finally, we propose a method 
-to select the graph $\hat{G^i}, i \in \{1,...,k\}$ out of $k$ given graphs 
-where $\hat{G^i}$ is most similar to the ``base'' graph $\hat{G}$ and perform 
-a simulation study to demonstrate the method's viability in 
-Section~\ref{sec:gc:simulations}.
+to select the graph $\hat{G}^{i}, i \in \{1,...,k\}$ out of $k$ 
+given graphs where $\hat{G}^{i}$ is most similar to the ``base'' 
+graph $\hat{G}$ and perform a simulation study to demonstrate the method's 
+viability in Section~\ref{sec:gc:simulations}. Note that we do not use the 
+notation $\hat{G}^{i,\text{num}}$ for the $k$ graphs which we wish to compare 
+to $\hat{G}$ because the methods discussed in this section may be 
+applied to any graphs, not just numerical and visual correlation graphs.
 
 \input{ch-gc/litreview}
 \input{ch-gc/methods}

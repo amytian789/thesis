@@ -1,64 +1,72 @@
-The proliferation of high-dimensional datasets has led analysts to rely on 
-unverifiable numerical estimators. Instead, it would be useful to be able to 
-visualize high-dimensional correlation graphs as a way to verify numerical 
-tests of dependence. Correlation graphs are important in asset management as it 
-is desirable to select a portfolio of stocks that are as independent as 
-possible. However, high-dimensional visualization is problematic because 
-(1) there are too many potential plots to sort through manually (To be 
-specific, there are $d\choose 2$  plots where $d$ is the number of variables 
-e.g. stocks that we are interested in), which also means that (2) it is tedious 
-to verify numerical results with visual results and vice versa 
-(Section~\ref{sec:intro:problem}). As a general solution to these issues, the 
-visualization system actively learns user preferences, applies 
-the fitted classifier to unlabeled data, provides visualization tools for the 
-active learning output (a visual graph $G=(V,E)$), and outputs the difference 
-among some given numerical graph $G^{\text{num}}=(V,E^{\text{num}})$ and the 
-visual graph $G$ (Chapter~\ref{ch:visualizer}).
+\section{Conclusion}
+\label{sec:conclusion}
 
-As a specific response to the two aforementioned problems, we focused on the 
-active learning and graph comparison components of the VS. We reviewed the two 
-main approaches to active learning (efficient search through hypothesis space 
-$\mathcal{H}$ and exploiting clustering in data) and provided algorithms for 
+The proliferation of high-dimensional datasets has led analysts to rely on 
+unverifiable numerical estimators. It would be useful to be able to construct 
+high-dimensional visual correlation graphs as a way to verify numerical 
+tests of dependence. Correlation graphs are important in portfolio selection as 
+it is desirable to select stocks that are as uncorrelated as 
+possible. However, high-dimensional visualization is problematic because there 
+are too many potential plots to sort through manually; to be 
+specific, there are ${n\choose 2} = n(n-1)/2$  plots where $n$ is the number of 
+variables e.g. stocks that we are interested in. As a general solution to these 
+issues, the visualization system actively learns user preferences regarding 
+their notion of visual correlation, applies 
+the fitted classifier to unlabeled data, provides visualization tools for the 
+active learning output, and outputs the difference among the visual graph $G$ 
+and some given numerical graph $G^{\text{num}}$ (Chapter~\ref{ch:visualizer}).
+
+In this work, we focused specifically on the active learning and graph 
+comparison components of the VS. We reviewed the two main approaches to active 
+learning (efficient search through hypothesis space $\mathcal{H}$ and 
+exploiting clustering tendencies in data) and provided algorithms for 
 different active learning methods in Chapter~\ref{ch:al}. These methods include 
 uncertainty sampling, query by committee (for which we proposed a revised 
 framework), query by bagging, and min-max clustering. A simulation study 
-with parameters that mimicked the intended qualities of the VS system
-indicated that uncertainty sampling is the best learning algorithm for usage in 
+with parameters that mimicked the intended qualities of the VS indicated that 
+uncertainty sampling would be the ideal active learning method to be 
+implemented in stage 1 of the VC for usage in 
 the financial application of Chapter~\ref{ch:usage}. Similarly, we discussed 
 various graph summarization difference metrics, proposed a method to compare 
-the specified distance metrics of various graph pairs and select the most 
-similar pair (one of the output functions of the VS), and demonstrated the 
-viability of the proposed procedure in Chapter~\ref{ch:gc}). 
+the distance metrics of various graph pairs in order to select the most 
+similar pair, and demonstrated the viability of the proposed procedure in 
+Chapter~\ref{ch:gc}). The graph summarization difference and similarity 
+selection are output functions of the VS that may be applied to any graphs and, 
+subsequently, find a use in various other applications.
 
-The financial data contains the daily prices of 43 different healthcare 
+Our financial data contains the daily prices of 43 different healthcare 
 stocks that were treated to get rid of time-dependency. The data is split in 
 half with the first half (1998 to 2006) used as ``training'' input and the 
 second half (2006 to 2014) used as ``testing'' output. Various correlation 
-coefficients were applied to the training set to create $G^i$ for all $i \in 
-\{1,...,4\}$, the correlation graphs for Pearson, Spearman's, Kendall's, and 
-distance correlation coefficient respectively. We then ran the VS system on the 
-training set to determine the visual graph $G$. After finding the difference 
-between each graph pair, the similarity selection procedure presented in 
+coefficients were applied to the training set to create $G^{i,\text{num}}$ for 
+all $i \in \{1,...,4\}$, the numerical correlation graphs for Pearson's, 
+Spearman's, Kendall's, and distance correlation coefficient respectively. We 
+then ran the VS on the training set to determine the visual graph $G$. After 
+computing the difference between each graph pair $(G^{i,\text{num}},G)$, the 
+similarity selection procedure presented in 
 Section~\ref{sec:gc:simulations} was used to find $G^*$, the numerical 
-graph which most closely matched the visual graph (this turned out to be the 
-distance correlation graph). We then utilized the stock selection methodology 
-described in Section~\ref{sec:usage:stockselection} to select a portfolio $P^i$ 
-of $k = 5$ stocks for all $i \in \{1,...,4\}$ for each correlation graph $G^i$. 
-Yearly returns for each portfolio were computed with the testing set in a 
-simulation of the ``buy and hold'' strategy. It was determined that the 
-distance correlation portfolio was the consistent top performer. As can be seen 
+graph $G^{i,\text{num}}$ that most closely matches the visual graph $G$. The 
+algorithm selected $G^{4,\text{num}}$, the distance correlation graph, as 
+$G^*$. Then the stock selection methodology described in 
+Section~\ref{sec:usage:stockselection} was used to select a portfolio $P^i$ 
+of $k = 5$ stocks for each corresponding correlation graph $G^{i,\text{num}}$. 
+The testing set was used to compute yearly returns for each portfolio in a 
+simulation of the ``buy and hold'' strategy. $P^* = P^4$, the 
+distance correlation portfolio, is the consistent top performer, demonstrating 
+the reliability and usefulness of the VS in a concrete application. 
+Furthermore, as can be seen 
 in the results in Section~\ref{sec:usage:results}, the entire process is  
 transparent, and results are reproducible given the recorded user responses 
-to the active learning queries of the VS. Transparency and reproducibility are 
+to the VS queries. Transparency and reproducibility are 
 other important purposes of the VS which can certainly be explored further.
 
-The visualization tool presented in this work is an important step in 
+The visualization system presented in this work is an important step towards
 streamlining the future of clean analysis. It provides a systematic way for 
-confirming and/or suggesting dependencies among variables that match our visual 
-concept of a dependence and produces an explicit decision tree that allow 
-others to understand and replicate the data analysis process. This alleviates 
-the problems associated with high-dimensional datasets and allows the 
-user to quickly see ways in which the numerical model may have fallen short of 
-the ``true'' relationship between variables. Nevertheless, there are several 
-places to develop further work in order to refine the system and improve our 
-concept of ``clean analysis.''
+confirming and/or suggesting dependencies among variables that match the user's 
+concept of visual dependence and produces an explicit decision tree that allow 
+others to understand and replicate the data analysis process. The VS both 
+alleviates the problems associated with high-dimensional data analysis and 
+allows the user to quickly identify where the numerical model may have fallen 
+short of the ``true'' relationship between variables. Nevertheless, there are 
+several places to develop further work in order to refine the system and 
+improve our concept of ``clean analysis.''
