@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  3 APR 2017 01:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  3 APR 2017 22:10
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1064,13 +1064,13 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 288.
  ) 
 Here is how much of TeX's memory you used:
- 11253 strings out of 493334
- 164924 string characters out of 3136672
- 443059 words of memory out of 3000000
+ 11260 strings out of 493334
+ 165039 string characters out of 3136672
+ 441059 words of memory out of 3000000
  12658 multiletter control sequences out of 15000+200000
  13544 words of font info for 50 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 30i,14n,42p,347b,2414s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,7n,42p,347b,2414s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb>
 <C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
@@ -1091,9 +1091,9 @@ X 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2
 /fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (138 pages, 4635178 bytes).
+Output written on thesis.pdf (138 pages, 4636507 bytes).
 PDF statistics:
- 3520 PDF objects out of 3580 (max. 8388607)
- 1840 named destinations out of 2073 (max. 500000)
+ 3529 PDF objects out of 3580 (max. 8388607)
+ 1847 named destinations out of 2073 (max. 500000)
  817 words of extra memory for PDF output out of 10000 (max. 10000000)
 

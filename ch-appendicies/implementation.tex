@@ -170,6 +170,7 @@ These functions are called by the main simulation engine (Appendix
 ~\ref{sec:appendicies:al:simulations:simengine}) for the QBC method. 
 The simulation engine is coded in such as way that it acts as the skeleton 
 of the entire algorithm in Section~\ref{sec:al:methods:qbc}.
+
 \subsection{Query selection}
 {\setstretch{1.0}
 \begin{lstlisting}
@@ -667,6 +668,7 @@ classifier_method, return_method, iter, n, ...){
 \label{sec:appendicies:al:simulations:alengine}
 {\setstretch{1.0}
 \begin{lstlisting}
+
 #' Main active learning engine
 #'
 #' The missing labels in y are denoted by NA.
@@ -711,6 +713,7 @@ Table~\ref{tab:al:simulations} and collects the results.
 
 {\setstretch{1.0}
 \begin{lstlisting}
+
 setwd("---simulation file path---")
 # NOTE: AL_header.R loads the simulation R package
 # External installation via devtools::install_github("amytian789/thesis-al")
@@ -1049,17 +1052,18 @@ save.image(file = paste0("results/results_", date, ".RData"))
 \label{sec:appendicies:gc:engine}
 
 Given graphs $\hat{G^1}=(V^1,E^1)$ and $\hat{G^2}=(V^2,E^2)$, the graph 
-summarization engine computes the vector $\overrightarrow{d^{1,2}}$ which 
+summarization engine computes the vector $d^{1,2}$ which 
 contains the difference between $\hat{G^1}$ and $\hat{G^2}$ with the various 
 summarization metrics described in Section~\ref{sec:gc:methods}. After the 
 graph summarization engine code, the distance engine function is also included. 
 The distance engine is called by the graph comparison engine in order to 
-compute the distance between the two results (one from each graph) foro a 
+compute the distance between the two results (one from each graph) for a 
 summarization method. Distance methods available are Euclidean distance, L1, 
 L2, and Jaccard distance (for use with community only).
 
 {\setstretch{1.0}
 \begin{lstlisting}
+
 # g1 and g2 are igraphs
 # gSumm is a vector of strings corresponding to graph summarization methods
 	### cen_deg = Centrality (degree)
@@ -1249,12 +1253,14 @@ dist_jac <- function(a,b){
 \section{Similarity selection}
 \label{sec:appendicies:gc:similarity}
 
-Given a set $\mathcal{S}$ of various graph pairs, the similarity selection 
-method selects the most similar pair $(G^i,G^j) \in \mathcal{S}$. The method is 
+Given a base graph $\hat{G}$ and a set of graphs, the similarity selection 
+method selects the graph $\hat{G}^*$ that is most similar to $\hat{G}$. The 
+method is 
 described in Section~\ref{sec:gc:simulations}.
 
 {\setstretch{1.0}
 \begin{lstlisting}
+
 # Search for the "most similar" graph pair
 # (characterized by having the lowest differences across the board)
 #
@@ -1298,12 +1304,14 @@ best_c <- function(gc, cand){
 \section{GC simulation study}
 \label{sec:appendicies:gc:simulations}
 
-The simulation study, which is used to demonstrate the viability of the 
+The graph comparison simulation study, which is used to demonstrate the 
+viability of the 
 proposed similarity selection model, is described in 
 Section~\ref{sec:gc:simulations:algorithm}.
 
 {\setstretch{1.0}
 \begin{lstlisting}
+
 setwd("---simulation file path---")
 source("GC_engine.R")
 source("dist_engine.R")
@@ -1424,13 +1432,15 @@ plot(g2)
 \section{Stock selection}
 \label{sec:appendicies:usage:stockselection}
 
-Given a correlation graph $G=(V,E)$, the program selects $k$ stocks (nodes) 
+Given a correlation graph $G=(V,E)$, the program selects $k < |V|$ stocks 
+(nodes) 
 such that they are as uncorrelated with each other as possible. 
-Section~\ref{sec:usage:stockselection} contains the algorithm associated with 
-this code.
+See Section~\ref{sec:usage:stockselection} and 
+Algorithm~\ref{alg:usage:stockselection2}.
 
 {\setstretch{1.0}
 \begin{lstlisting}
+
 # g_num is the numerical graph as an adjacency matrix
 # k is the number of stocks to select
 # dd is a vector of sample average price differences over time
@@ -1515,6 +1525,7 @@ implemented below.
 
 {\setstretch{1.0}
 \begin{lstlisting}
+
 setwd("---application file path---")
 source("stock_selection.R")
 
