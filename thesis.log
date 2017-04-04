@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  3 APR 2017 22:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.26)  4 APR 2017 02:12
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -550,12 +550,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 112--114
 []|\OT1/cmr/m/n/12 Normally-distributed
  []
 
-<ch-intro/figures/me.jpeg, id=589, 795.97375pt x 401.5pt>
+<ch-intro/figures/me.jpeg, id=589, 795.9336pt x 363.759pt>
 File: ch-intro/figures/me.jpeg Graphic file (type jpg)
 
 <use ch-intro/figures/me.jpeg>
 Package pdftex.def Info: ch-intro/figures/me.jpeg used on input line 144.
-(pdftex.def)             Requested size: 433.62pt x 218.72432pt.
+(pdftex.def)             Requested size: 433.62pt x 198.17534pt.
 ) (ch-intro/correlation.tex [3] [4 <./ch-intro/figures/me.jpeg>]
 Underfull \hbox (badness 10000) in paragraph at lines 9--14
 
@@ -596,31 +596,31 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 7.
 
-<ch-visualizer/figures/vs.jpg, id=677, 698.00775pt x 143.93774pt>
+<ch-visualizer/figures/vs.jpg, id=677, 697.8873pt x 144.0582pt>
 File: ch-visualizer/figures/vs.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/vs.jpg>
 Package pdftex.def Info: ch-visualizer/figures/vs.jpg used on input line 29.
-(pdftex.def)             Requested size: 433.62pt x 89.41837pt.
+(pdftex.def)             Requested size: 433.62pt x 89.50858pt.
  [14
 
 
 
 ] (ch-visualizer/scatterplot.tex
-<ch-visualizer/figures/cdf.jpg, id=688, 489.62926pt x 247.52475pt>
+<ch-visualizer/figures/cdf.jpg, id=688, 489.7497pt x 247.6452pt>
 File: ch-visualizer/figures/cdf.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/cdf.jpg>
 Package pdftex.def Info: ch-visualizer/figures/cdf.jpg used on input line 20.
-(pdftex.def)             Requested size: 325.215pt x 164.40549pt.
+(pdftex.def)             Requested size: 325.215pt x 164.45525pt.
  [15 <./ch-visualizer/figures/vs.jpg>]
-<ch-visualizer/figures/hofertoldford.jpg, id=697, 501.67426pt x 164.41425pt>
+<ch-visualizer/figures/hofertoldford.jpg, id=697, 501.7947pt x 164.5347pt>
 File: ch-visualizer/figures/hofertoldford.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/hofertoldford.jpg>
 Package pdftex.def Info: ch-visualizer/figures/hofertoldford.jpg used on input 
 line 39.
-(pdftex.def)             Requested size: 433.62pt x 142.1135pt.
+(pdftex.def)             Requested size: 433.62pt x 142.18245pt.
  [16 <./ch-visualizer/figures/cdf.jpg> <./ch-visualizer/figures/hofertoldford.j
 pg>]
 Underfull \hbox (badness 1019) in paragraph at lines 98--105
@@ -629,12 +629,12 @@ as max(PosTrendCriterion,
  []
 
 [17]) (ch-visualizer/al.tex
-<ch-visualizer/figures/tree.jpg, id=720, 370.88255pt x 137.00264pt>
+<ch-visualizer/figures/tree.jpg, id=720, 370.986pt x 137.0721pt>
 File: ch-visualizer/figures/tree.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/tree.jpg>
 Package pdftex.def Info: ch-visualizer/figures/tree.jpg used on input line 48.
-(pdftex.def)             Requested size: 325.215pt x 120.13412pt.
+(pdftex.def)             Requested size: 325.215pt x 120.16576pt.
  [18]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
@@ -649,13 +649,13 @@ Package pdftex.def Info: ch-visualizer/figures/decisiontree.png used on input l
 ine 40.
 (pdftex.def)             Requested size: 433.62pt x 145.45587pt.
  [21] [22 <./ch-visualizer/figures/decisiontree.png>]
-<ch-visualizer/figures/heatmap.jpg, id=766, 698.00775pt x 522.753pt>
+<ch-visualizer/figures/heatmap.jpg, id=766, 697.8873pt x 522.753pt>
 File: ch-visualizer/figures/heatmap.jpg Graphic file (type jpg)
 
 <use ch-visualizer/figures/heatmap.jpg>
 Package pdftex.def Info: ch-visualizer/figures/heatmap.jpg used on input line 1
 15.
-(pdftex.def)             Requested size: 433.62pt x 324.7496pt.
+(pdftex.def)             Requested size: 433.62pt x 324.80545pt.
  [23] [24 <./ch-visualizer/figures/heatmap.jpg>]) (ch-visualizer/focus.tex [25]
 )) [26]
 \openout2 = `ch-al/chapter-al.aux'.
@@ -768,21 +768,21 @@ Chapter 4.
 
 
 ] (ch-gc/litreview.tex [48]
-<ch-gc/figures/arr_density.jpg, id=1031, 587.19376pt x 259.56975pt>
+<ch-gc/figures/arr_density.jpg, id=1031, 587.3142pt x 259.6902pt>
 File: ch-gc/figures/arr_density.jpg Graphic file (type jpg)
 
 <use ch-gc/figures/arr_density.jpg>
 Package pdftex.def Info: ch-gc/figures/arr_density.jpg used on input line 59.
-(pdftex.def)             Requested size: 433.62pt x 191.68253pt.
+(pdftex.def)             Requested size: 433.62pt x 191.73184pt.
  [49 <./ch-gc/figures/arr_density.jpg>])
 (ch-gc/methods.tex [50] [51] [52]
-<ch-gc/figures/drawbacks_rotation.jpg, id=1060, 488.42474pt x 259.56975pt>
+<ch-gc/figures/drawbacks_rotation.jpg, id=1060, 488.3043pt x 259.6902pt>
 File: ch-gc/figures/drawbacks_rotation.jpg Graphic file (type jpg)
 
 <use ch-gc/figures/drawbacks_rotation.jpg>
 Package pdftex.def Info: ch-gc/figures/drawbacks_rotation.jpg used on input lin
 e 130.
-(pdftex.def)             Requested size: 433.62pt x 230.44995pt.
+(pdftex.def)             Requested size: 433.62pt x 230.61632pt.
 
 Underfull \hbox (badness 10000) in alignment at lines 160--160
 [][][]
@@ -814,13 +814,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 160--160
  []
 
 [53] [54 <./ch-gc/figures/drawbacks_rotation.jpg>]
-<ch-gc/figures/drawbacks_comm.jpg, id=1072, 488.42474pt x 259.56975pt>
+<ch-gc/figures/drawbacks_comm.jpg, id=1072, 488.3043pt x 259.6902pt>
 File: ch-gc/figures/drawbacks_comm.jpg Graphic file (type jpg)
 
 <use ch-gc/figures/drawbacks_comm.jpg>
 Package pdftex.def Info: ch-gc/figures/drawbacks_comm.jpg used on input line 25
 1.
-(pdftex.def)             Requested size: 433.62pt x 230.44995pt.
+(pdftex.def)             Requested size: 433.62pt x 230.61632pt.
 
 Underfull \hbox (badness 10000) in alignment at lines 282--282
 [][][]
@@ -852,13 +852,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 282--282
  []
 
 [55] [56 <./ch-gc/figures/drawbacks_comm.jpg>]
-<ch-gc/figures/drawbacks_cluster.jpg, id=1090, 488.42474pt x 259.56975pt>
+<ch-gc/figures/drawbacks_cluster.jpg, id=1090, 488.3043pt x 259.6902pt>
 File: ch-gc/figures/drawbacks_cluster.jpg Graphic file (type jpg)
 
 <use ch-gc/figures/drawbacks_cluster.jpg>
 Package pdftex.def Info: ch-gc/figures/drawbacks_cluster.jpg used on input line
  361.
-(pdftex.def)             Requested size: 433.62pt x 230.44995pt.
+(pdftex.def)             Requested size: 433.62pt x 230.61632pt.
 
 Underfull \hbox (badness 10000) in alignment at lines 392--392
 [][][]
@@ -895,19 +895,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--114
 []|\OT1/cmr/bx/n/12 Distance
  []
 
-[61] <ch-gc/figures/sim_10vs10.jpeg, id=1134, 1258.7025pt x 437.635pt>
+[61] <ch-gc/figures/sim_10vs10.jpeg, id=1134, 361.35pt x 125.7498pt>
 File: ch-gc/figures/sim_10vs10.jpeg Graphic file (type jpg)
 
 <use ch-gc/figures/sim_10vs10.jpeg>
 Package pdftex.def Info: ch-gc/figures/sim_10vs10.jpeg used on input line 163.
-(pdftex.def)             Requested size: 433.62pt x 150.76387pt.
+(pdftex.def)             Requested size: 433.62pt x 150.90091pt.
 
-<ch-gc/figures/sim_10vs50.jpeg, id=1135, 1258.7025pt x 437.635pt>
+<ch-gc/figures/sim_10vs50.jpeg, id=1135, 361.35pt x 125.7498pt>
 File: ch-gc/figures/sim_10vs50.jpeg Graphic file (type jpg)
 
 <use ch-gc/figures/sim_10vs50.jpeg>
 Package pdftex.def Info: ch-gc/figures/sim_10vs50.jpeg used on input line 176.
-(pdftex.def)             Requested size: 433.62pt x 150.76387pt.
+(pdftex.def)             Requested size: 433.62pt x 150.90091pt.
  [62 <./ch-gc/figures/sim_10vs10.jpeg>]
 [63 <./ch-gc/figures/sim_10vs50.jpeg>])) [64]
 \openout2 = `ch-usage/chapter-usage.aux'.
@@ -934,12 +934,12 @@ File: ch-usage/figures/n_all.jpg Graphic file (type jpg)
 Package pdftex.def Info: ch-usage/figures/n_all.jpg used on input line 24.
 (pdftex.def)             Requested size: 433.62pt x 216.80286pt.
  [73 <./ch-usage/figures/y_all.jpg> <./ch-usage/figures/n_all.jpg>]
-<ch-usage/figures/heatmaps.jpeg, id=1225, 794.97pt x 761.84625pt>
+<ch-usage/figures/heatmaps.jpeg, id=1225, 794.97pt x 761.9667pt>
 File: ch-usage/figures/heatmaps.jpeg Graphic file (type jpg)
 
 <use ch-usage/figures/heatmaps.jpeg>
 Package pdftex.def Info: ch-usage/figures/heatmaps.jpeg used on input line 62.
-(pdftex.def)             Requested size: 346.89731pt x 332.44667pt.
+(pdftex.def)             Requested size: 346.89731pt x 332.49924pt.
 
 <ch-usage/figures/criterionlist.jpg, id=1228, 549.252pt x 91.542pt>
 File: ch-usage/figures/criterionlist.jpg Graphic file (type jpg)
@@ -957,21 +957,21 @@ Package pdftex.def Info: ch-usage/figures/criterionlist.jpg used on input line
  [74] [75 <./ch-usage/figures/heatmaps.jpeg> <./ch-usage/figures/criterionlist.
 jpg>]
 <ch-usage/figures/predicted_probability_histogram.jpeg, id=1240, 794.97pt x 455
-.7025pt>
+.7828pt>
 File: ch-usage/figures/predicted_probability_histogram.jpeg Graphic file (type 
 jpg)
  <use ch-usage/figures/predicted_probability_histogram.jpeg>
 Package pdftex.def Info: ch-usage/figures/predicted_probability_histogram.jpeg 
 used on input line 93.
-(pdftex.def)             Requested size: 433.62pt x 248.57196pt.
+(pdftex.def)             Requested size: 433.62pt x 248.61577pt.
  [76 <./ch-usage/figures/predicted_probability_histogram.jpeg>]
-<ch-usage/figures/visgraph.jpeg, id=1246, 687.56876pt x 514.92375pt>
+<ch-usage/figures/visgraph.jpeg, id=1246, 481.8pt x 360.8682pt>
 File: ch-usage/figures/visgraph.jpeg Graphic file (type jpg)
 
 <use ch-usage/figures/visgraph.jpeg>
 Package pdftex.def Info: ch-usage/figures/visgraph.jpeg used on input line 109.
 
-(pdftex.def)             Requested size: 325.215pt x 243.55418pt.
+(pdftex.def)             Requested size: 325.215pt x 243.59204pt.
  [77 <./ch-usage/figures/visgraph.jpeg>]
 [78]
 Underfull \hbox (badness 10000) in paragraph at lines 194--194
@@ -1003,13 +1003,13 @@ Chapter 6.
 
 ] [84]) (ch-conclusion/futurework.tex [85]
 [86] [87] [88]
-<ch-conclusion/figures/lineup.jpg, id=1351, 698.00775pt x 143.93774pt>
+<ch-conclusion/figures/lineup.jpg, id=1351, 583.4598pt x 120.45pt>
 File: ch-conclusion/figures/lineup.jpg Graphic file (type jpg)
 
 <use ch-conclusion/figures/lineup.jpg>
 Package pdftex.def Info: ch-conclusion/figures/lineup.jpg used on input line 13
 7.
-(pdftex.def)             Requested size: 433.62pt x 89.41837pt.
+(pdftex.def)             Requested size: 433.62pt x 89.5194pt.
  [89 <./ch-conclusion/figures/lineup.jpg>])) [90]
 \openout2 = `ch-appendicies/implementation.aux'.
 
@@ -1066,7 +1066,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 288.
 Here is how much of TeX's memory you used:
  11260 strings out of 493334
  165039 string characters out of 3136672
- 441059 words of memory out of 3000000
+ 441028 words of memory out of 3000000
  12658 multiletter control sequences out of 15000+200000
  13544 words of font info for 50 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1091,7 +1091,7 @@ X 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2
 /fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (138 pages, 4636507 bytes).
+Output written on thesis.pdf (138 pages, 14337252 bytes).
 PDF statistics:
  3529 PDF objects out of 3580 (max. 8388607)
  1847 named destinations out of 2073 (max. 500000)
