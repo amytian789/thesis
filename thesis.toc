@@ -12,19 +12,19 @@
 \contentsline {section}{\numberline {1.3}Portfolio management}{10}{section.1.3}
 \contentsline {section}{\numberline {1.4}Summary}{12}{section.1.4}
 \contentsline {chapter}{\numberline {2}Visualization System }{14}{chapter.2}
-\contentsline {section}{\numberline {2.1}Scatterplot characterization}{15}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Characteristics of a ``good'' plot}{15}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.1}Scatterplot characterization}{16}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Characteristics of a ``good'' plot}{16}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}Feature extraction from plot}{17}{subsection.2.1.2}
 \contentsline {subsubsection}{Numerical features}{17}{section*.8}
-\contentsline {subsubsection}{Visual features}{17}{section*.9}
+\contentsline {subsubsection}{Visual features}{18}{section*.9}
 \contentsline {section}{\numberline {2.2}Active learning (stage 1)}{18}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Initialization of active learner}{19}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Query selection}{20}{subsection.2.2.2}
-\contentsline {section}{\numberline {2.3}Automated plot generation (Stage 2)}{20}{section.2.3}
+\contentsline {section}{\numberline {2.3}Automated plot generation (Stage 2)}{21}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Decision tree classification of user interests}{21}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}User interaction with active learning output}{22}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.2}User interaction with active learning output}{23}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}System output}{24}{subsection.2.3.3}
-\contentsline {section}{\numberline {2.4}Specific focus: active learning and graph comparison}{25}{section.2.4}
+\contentsline {section}{\numberline {2.4}Specific focus: active learning and graph comparison}{26}{section.2.4}
 \contentsline {chapter}{\numberline {3}Active learning }{27}{chapter.3}
 \contentsline {section}{\numberline {3.1}Literature review}{28}{section.3.1}
 \contentsline {section}{\numberline {3.2}Overview of active learning methods}{29}{section.3.2}
@@ -56,36 +56,36 @@
 \contentsline {section}{\numberline {5.2}Stock selection methodology}{67}{section.5.2}
 \contentsline {section}{\numberline {5.3}Procedure}{71}{section.5.3}
 \contentsline {section}{\numberline {5.4}Results}{72}{section.5.4}
-\contentsline {subsubsection}{Extensions}{78}{section*.12}
-\contentsline {chapter}{\numberline {6}Conclusion and extensions}{83}{chapter.6}
-\contentsline {section}{\numberline {6.1}Conclusion}{83}{section.6.1}
-\contentsline {section}{\numberline {6.2}Further extensions}{85}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Estimator selection}{85}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Outlier removal}{86}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Graphical models and improved stock selection}{86}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}Ordering of queried plots}{88}{subsection.6.2.4}
-\contentsline {subsection}{\numberline {6.2.5}Line-up tests}{88}{subsection.6.2.5}
-\contentsline {subsection}{\numberline {6.2.6}Edge-weighted graphs}{89}{subsection.6.2.6}
-\contentsline {subsection}{\numberline {6.2.7}Rejection classification}{90}{subsection.6.2.7}
-\contentsline {chapter}{\numberline {A}Implementation}{91}{appendix.A}
-\contentsline {section}{\numberline {A.1}Code for Figure\nobreakspace {}\ref {fig:intro:meplot}, left}{91}{section.A.1}
-\contentsline {section}{\numberline {A.2}Code for Figure\nobreakspace {}\ref {fig:intro:meplot}, right}{92}{section.A.2}
-\contentsline {section}{\numberline {A.3}Code for Figure\nobreakspace {}\ref {fig:visualizer:cdf}}{92}{section.A.3}
-\contentsline {section}{\numberline {A.4}Uncertainty sampling}{93}{section.A.4}
-\contentsline {section}{\numberline {A.5}Query by committee}{94}{section.A.5}
-\contentsline {subsection}{\numberline {A.5.1}Query selection}{94}{subsection.A.5.1}
-\contentsline {subsection}{\numberline {A.5.2}Committee pruning}{95}{subsection.A.5.2}
-\contentsline {section}{\numberline {A.6}Vote entropy}{96}{section.A.6}
-\contentsline {section}{\numberline {A.7}Query by bagging}{97}{section.A.7}
-\contentsline {section}{\numberline {A.8}Min-max clustering}{98}{section.A.8}
-\contentsline {section}{\numberline {A.9}AL simulation study}{99}{section.A.9}
-\contentsline {subsection}{\numberline {A.9.1}MNIST data}{99}{subsection.A.9.1}
-\contentsline {subsection}{\numberline {A.9.2}Simulation engine}{100}{subsection.A.9.2}
-\contentsline {subsection}{\numberline {A.9.3}AL algorithm engine}{104}{subsection.A.9.3}
-\contentsline {subsection}{\numberline {A.9.4}Simulator (main)}{105}{subsection.A.9.4}
-\contentsline {section}{\numberline {A.10}Graph summarization engine}{111}{section.A.10}
-\contentsline {section}{\numberline {A.11}Similarity selection}{115}{section.A.11}
-\contentsline {section}{\numberline {A.12}GC simulation study}{116}{section.A.12}
-\contentsline {section}{\numberline {A.13}Stock selection}{118}{section.A.13}
-\contentsline {section}{\numberline {A.14}Final application}{120}{section.A.14}
-\contentsline {chapter}{Bibliography}{125}{section*.13}
+\contentsline {subsubsection}{Extensions}{79}{section*.12}
+\contentsline {chapter}{\numberline {6}Conclusion and extensions}{84}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusion}{84}{section.6.1}
+\contentsline {section}{\numberline {6.2}Further extensions}{86}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Estimator selection}{86}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Outlier removal}{87}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Graphical models and improved stock selection}{87}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Ordering of queried plots}{89}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Line-up tests}{89}{subsection.6.2.5}
+\contentsline {subsection}{\numberline {6.2.6}Edge-weighted graphs}{90}{subsection.6.2.6}
+\contentsline {subsection}{\numberline {6.2.7}Rejection classification}{91}{subsection.6.2.7}
+\contentsline {chapter}{\numberline {A}Implementation}{92}{appendix.A}
+\contentsline {section}{\numberline {A.1}Code for Figure\nobreakspace {}\ref {fig:intro:meplot}, left}{92}{section.A.1}
+\contentsline {section}{\numberline {A.2}Code for Figure\nobreakspace {}\ref {fig:intro:meplot}, right}{93}{section.A.2}
+\contentsline {section}{\numberline {A.3}Code for Figure\nobreakspace {}\ref {fig:visualizer:cdf}}{93}{section.A.3}
+\contentsline {section}{\numberline {A.4}Uncertainty sampling}{94}{section.A.4}
+\contentsline {section}{\numberline {A.5}Query by committee}{95}{section.A.5}
+\contentsline {subsection}{\numberline {A.5.1}Query selection}{95}{subsection.A.5.1}
+\contentsline {subsection}{\numberline {A.5.2}Committee pruning}{96}{subsection.A.5.2}
+\contentsline {section}{\numberline {A.6}Vote entropy}{97}{section.A.6}
+\contentsline {section}{\numberline {A.7}Query by bagging}{98}{section.A.7}
+\contentsline {section}{\numberline {A.8}Min-max clustering}{99}{section.A.8}
+\contentsline {section}{\numberline {A.9}AL simulation study}{100}{section.A.9}
+\contentsline {subsection}{\numberline {A.9.1}MNIST data}{100}{subsection.A.9.1}
+\contentsline {subsection}{\numberline {A.9.2}Simulation engine}{101}{subsection.A.9.2}
+\contentsline {subsection}{\numberline {A.9.3}AL algorithm engine}{105}{subsection.A.9.3}
+\contentsline {subsection}{\numberline {A.9.4}Simulator (main)}{106}{subsection.A.9.4}
+\contentsline {section}{\numberline {A.10}Graph summarization engine}{112}{section.A.10}
+\contentsline {section}{\numberline {A.11}Similarity selection}{116}{section.A.11}
+\contentsline {section}{\numberline {A.12}GC simulation study}{117}{section.A.12}
+\contentsline {section}{\numberline {A.13}Stock selection}{119}{section.A.13}
+\contentsline {section}{\numberline {A.14}Final application}{121}{section.A.14}
+\contentsline {chapter}{Bibliography}{126}{section*.13}

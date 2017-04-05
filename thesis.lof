@@ -3,10 +3,10 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Broad overview of the visualization system.}}{15}{figure.2.1}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces A plot of $y$ against $x$ after the CDF is applied in both directions.}}{16}{figure.2.2}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Transformed scatter plots of independent $U(0,1)$ random variables and pseudo-observation pairs $(U_{j},U_{j+1}),j\in \{1,2,3\}$ which are more correlated the larger $j$ is.}}{16}{figure.2.3}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Transformed scatter plots of independent $U(0,1)$ random variables and pseudo-observation pairs $(U_{j},U_{j+1}),j\in \{1,2,3\}$ which are more correlated the larger $j$ is.}}{17}{figure.2.3}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Classifiers and classification models}}{19}{figure.2.4}
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Mapping the sample space to a decision tree.}}{22}{figure.2.5}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Heat map versus association navigator}}{24}{figure.2.6}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Heat map versus association navigator}}{25}{figure.2.6}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces MNIST data used in the active learning simulations.}}{38}{figure.3.1}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Active learning simulation results for query by committee with varying parameters.}}{43}{figure.3.2}
@@ -23,8 +23,9 @@
 \contentsline {figure}{\numberline {5.2}{\ignorespaces VS queries which were labeled ``not visually correlated''.}}{73}{figure.5.2}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Normalized heat maps of VS queries and user-specified labels.}}{75}{figure.5.3}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram of predicted probabilities.}}{76}{figure.5.4}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Visual correlation graph output from the visualization system.}}{77}{figure.5.5}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Yearly and cumulative performance of the selected portfolios and the S\&P 500.}}{80}{figure.5.6}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Top six most ``visually correlated'' pairwise scatter plots selected by the VS.}}{77}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Visual correlation graph output from the visualization system.}}{78}{figure.5.6}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Yearly and cumulative performance of the selected portfolios and the S\&P 500.}}{81}{figure.5.7}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces A line-up test for $k = 5$. }}{89}{figure.6.1}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces A line-up test for $k = 5$. }}{90}{figure.6.1}
 \addvspace {10\p@ }

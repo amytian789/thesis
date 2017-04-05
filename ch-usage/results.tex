@@ -99,9 +99,27 @@ plots.
 	\end{center}
 \end{figure}
 
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth]
+		{ch-usage/figures/topinterestingplots}
+		\caption[Top six most ``visually correlated'' pairwise scatter plots	
+		selected by the VS.]{Top six most ``visually correlated'' pairwise 
+		scatter plots selected by the VS.}
+		\label{fig:usage:interestingplots}
+	\end{center}
+\end{figure}
+
 \newpage
+Figure~\ref{fig:usage:interestingplots} contains the most interesting plots 
+selected by the VS in the automatic plot generation output of the VS. 
+Interestingly, none of the variables (stocks) which are involved in these plots 
+ever show up twice. Most of these plots exhibit a strong positive trend.
 The final resulting visual correlation graph is shown in 
-Figure~\ref{fig:usage:visg}. 
+Figure~\ref{fig:usage:visg}. Interestingly, only stock 39 (which corresponds to 
+ticker TMO) is in its own cluster; in fact, its degree is zero! This indicates 
+that TMO is one of the best stocks to select because it is ``visually not 
+correlated'' and, by proxy, independent of all other stocks.
 
 \begin{figure}[H]
 	\begin{center}
@@ -119,7 +137,9 @@ graph} is closest to the visual correlation graph.
 The computed graph differences may be found in Table~\ref{tab:usage:graphdiff}.
 The resulting portfolios selected by the procedure in 
 Section~\ref{sec:usage:stockselection} for each numerical correlation graph are 
-summarized in Table~\ref{tab:usage:returns}.
+summarized in Table~\ref{tab:usage:returns}. Only the Pearson's correlation 
+graph and distance correlation graph include TMO, the most ``visually not 
+correlated'' stock, in their portfolios. 
 
 Finally, the the ``buy and hold'' performance (yearly returns) and cumulative 
 sum of returns are plotted for the S\&P 500 (the control) and
@@ -147,6 +167,9 @@ dependence among various stocks properly, which translates into the selection
 of $\hat{G}^*$ and, subsequently, $P^*$, a portfolio that is well balanced and 
 captures the spirit of the ``buy and hold'' model described in 
 Section~\ref{sec:intro:finance}.
+Although the Pearson's correlation portfolio also included TMO, it 
+performed rather average; it seems that linearity was not enough to 
+capture the relationships among the other stocks.
 As noted earlier in Section~\ref{sec:usage:stockselection}, the proposed stock 
 selection strategy is simple, but every selected portfolio has outperformed the 
 S\&P 500, suggesting that an even more sophisticated selection procedure would 

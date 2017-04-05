@@ -1673,7 +1673,7 @@ plot(search_res)
 cbind(search_res$pairs[order(search_res$values),], sort(search_res$values)) 
 par(mfrow=c(2,3))
 # Plot the top 5 most "interesting" pairs
-graphicalModelEDA::selective_plot(search_res, dat, 
+graphicalModelEDA::selective_plot(search_res, data_train, 
 	selection = function(vec){ifelse(vec >= sort(vec, 
 	decreasing = TRUE)[5], TRUE, FALSE)})
 
