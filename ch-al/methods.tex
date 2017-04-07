@@ -4,7 +4,7 @@
 In this section, we present algorithms for specific active learning methods and 
 a reference to its implementation in the appendix. The 
 \texttt{activelearning} package by \texttt{ramhiser}~\cite{ramhiser2015} has 
-adapted much of the methods reviewed in Settles' work~\cite{settles2010}. As 
+adapted much of the methods reviewed in Settles' paper~\cite{settles2010}. As 
 such, most of the implementation code has been adapted and reworked (with 
 substantial components written from scratch) from the 
 \texttt{activelearning} package, which is too general for our purposes.
@@ -81,7 +81,7 @@ multiple classifiers, instances of a single classification model.
 \subsection{Query by committee}
 \label{sec:al:methods:qbc}
 
-Query by committee is a clearer case of efficient search through the hypothesis 
+Query by committee is another case of efficient search through the hypothesis 
 space. In query by committee, a ``committee'' of classification models are 
 trained on the  current labeled instances.  Each model represents a competing 
 hypothesis, and its prediction for an unlabeled query candidate $q$ is a 

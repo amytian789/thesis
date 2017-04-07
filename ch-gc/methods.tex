@@ -14,8 +14,8 @@ similar graph pair given a vector of differences where each difference
 corresponding to one of the six summarization methods listed below.
 
 Most methods listed below are implemented in the \texttt{igraph} package in 
-\texttt{R}. As such, we do not implement most methods ourselves as we did in 
-Chapter~\ref{ch:al}. The code for 
+\texttt{R}~\cite{igraph}. As such, we do not implement most methods ourselves 
+as we did in Chapter~\ref{ch:al}. The code for 
 all methods may be found in Appendix~\ref{sec:appendicies:gc:engine}. It should 
 be noted that there are various distance functions that may be used. 
 Euclidean distance, L1, and L2 are currently implemented (The code for the 
@@ -29,7 +29,7 @@ For all methods below, let $\hat{G}=(V,E)$ be some labeled graph.
 The centrality of a graph $\hat{G}$ measures the importance of its 
 nodes. Let $c$ be a vector of length $|V|$ where each element 
 $c_i$ is the ``importance'' of node $i$. Then the centrality of $\hat{G}$ is 
-given by:
+given by~\cite{igraph}:
 $$\mathcal{C} = \sum\limits^{|V|}_{i=1} \max_{\forall j \in \{1,...,|V|\}} 
 c_j - c_i$$
 
@@ -38,16 +38,19 @@ as:
 
 \tablespacing
 \begin{itemize}
-	\item \textbf{Degree:} The degree of a node is the number of edges the node 
+	\item \textbf{Degree~\cite{igraph}:} 
+	The degree of a node is the number of edges the node 
 	is part of. In other words, it is the number of direct paths from the node 
 	to all other nodes. The higher the degree, the more important the node 
 	is.
-	\item \textbf{Closeness:} The closeness of a node is the average 
+	\item \textbf{Closeness~\cite{igraph}:} 
+	The closeness of a node is the average 
 	shortest path length (the path which traverses the smallest number of 
 	edges) between the node and all other nodes. The higher the closeness, 
 	the closer the node is to all other nodes (in terms of path length), the 
 	more important the node is.
-	\item \textbf{Betweenness:} The betweenness of a node is the number of 
+	\item \textbf{Betweenness~\cite{igraph}:} 
+	The betweenness of a node is the number of 
 	times the node is part of the shortest path between two other nodes. Direct 
 	paths are excluded. The higher the betweenness, the more important the node 
 	is as it provides a critical cost-saving link (path length) for the path 
@@ -56,7 +59,8 @@ as:
 \bodyspacing
 
 The normalized centrality of a graph $\hat{G}$ may be computed as 	
-$\frac{Cen(\hat{G})}{\max Cen(\hat{G})}$ where $\max Cen(\hat{G})$ is the 
+$\frac{\text{Cen}(\hat{G})}{\max \text{Cen}(\hat{G})}$ where 
+$\max \text{Cen}(\hat{G})$ is the 
 maximum centrality that graph $\hat{G}$ may have (for whatever metric is 
 specified). Taking the difference between two normalized scalars will also 
 yield a normalized scalar.
@@ -78,7 +82,7 @@ nodes change, the graph ``looks'' exactly the same.
 Should centrality be examined at node-level and not at a graph-level, 
 this issue would be accounted for, though normalization is not as trivial. It 
 is more difficult to efficiently parse node-level metrics 
-especially in high dimensions, so this paper does not detail or implement this 
+especially in high dimensions, so this thesis does not detail or implement this 
 metric.
 
 \subsection{Assortativity}
@@ -87,12 +91,13 @@ Assortativity measures the level of resemblance among the connected nodes of a
 graph $\hat{G}$ based on vertex category labels. For graphs with uncategorized 
 nodes (as in the examples of this chapter and the 
 application in Chapter~\ref{ch:usage}), it is common to use $\text{deg}(V_i)-1$
-as the category label for node $V_i$ instead. For all edges $E_{i,j}$ that 
+as the category label for node $V_i$ instead~\cite{igraph}. 
+For all edges $E_{i,j}$ that 
 exist in $\hat{G}$, the degree of all associated nodes $V_i$ and $V_j$ are 
 collected in two distinct vectors $v^1, v^2$. For instance, if $|V| = 4$ and 
 $\hat{G}$ contained the set of edges $\{(1,2), (1,3), (2,4)\}$, then $v^1 = 
 <2,2,2>$ and $v^2 = <2,1,1>$. Then the assortativity metric of a graph 
-$\hat{G}$ is computed:
+$\hat{G}$ is computed~\cite{newman2002}:
 $$\mathcal{A} = \hat{\rho}^\text{Pear}(v^1,v^2)$$
 
 \noindent where $\hat{\rho}^\text{Pear}$ is the Pearson 
@@ -173,7 +178,8 @@ dense subgraphs. Subgraphs may be detected with any of the following algorithms:
 
 \tablespacing
 \begin{itemize}
-	\item \textbf{Random walks:} By implementing a random walk within a graph 
+	\item \textbf{Random walks~\cite{igraph}:} 
+	By implementing a random walk within a graph 
 	to determine the various subgraphs (or, in other words, to ``describe'' the 
 	community), this procedure leverages the natural idea 
 	that random walks within a graph will tend to stay in the same subgraph. 
@@ -183,13 +189,15 @@ dense subgraphs. Subgraphs may be detected with any of the following algorithms:
 	This approach to building a community is called with the 
 	\texttt{cluster\_walktrap} function from the \texttt{igraph} package.	
 	
-	\item \textbf{Infomap:} An infomap utilizes random walks to build a 
+	\item \textbf{Infomap~\cite{igraph}:} 
+	An infomap utilizes random walks to build a 
 	community by minimizing the expected length that it takes a random walk 
 	to ``describe'' the community.
 	This approach to building a community is called with the 
 	\texttt{cluster\_infomap} function from the \texttt{igraph} package.
 	
-	\item \textbf{Betweenness:} As described earlier, the betweenness of a node 
+	\item \textbf{Betweenness~\cite{igraph}:} 
+	As described earlier, the betweenness of a node 
 	is the number of times the node is part of the shortest path between two 
 	other nodes (where direct paths are excluded). The algorithm sequentially 
 	removes the node with the highest betweenness and places it on a tree, 
@@ -296,9 +304,10 @@ Jaccard difference of 0.3870968.
 
 The distance matrix $M$ of a graph $\hat{G}$ is a square matrix that 
 contains the shortest path length 
-between all variable pairs. Each element $M_{i,j}$ 
-contains the shortest path distance between node $i$ to node $j$. If no path 
-exists, it is conventional to set the value to infinity. However, since our 
+between all variable pairs; each element $M_{i,j}$ 
+contains the shortest path distance between node $i$ to node $j$~\cite{igraph}. 
+If no path exists, it is conventional to set the value to 
+infinity~\cite{igraph}. However, since our 
 purpose is to compare two matrices, setting a value of infinity doesn't 
 make sense. Alternatively, the value may be set to zero since we define the 
 shortest path distance in Section~\ref{sec:gc:methods:centrality} to be 
@@ -307,21 +316,24 @@ the path which traverses the smallest number of edges; thus, a
 shortest path length can never be 0, which allows the 
 existence of a ``non-existent path'' to be distinguished from the ``length of 
 an existing path''. It is important to note that the matrix itself is repeated; 
-the upper and lower triangles are the same. Furthermore, the entries across the 
-diagonal must be 0. Thus, the matrix can be unfurled into a vector 
+the upper and lower triangles are the same. Furthermore, the diagonals are 0 by 
+construction. Note that the matrix can be unfurled into a vector 
 $m$ with the values of all $\binom{|V|}{2}$ unique pairs.
-It is less trivial to normalize the distance matrix difference metric. It would 
-be incorrect, for instance, to normalize by dividing the raw distance 
-by $z = \text{dist}\big(|V|-1,0\big) * \text{len}(m)$ because it is 
-impossible for a graph to be constructed such that every node's 
-\textit{shortest path} to all other nodes is exactly length $|V|-1$ (the 
-maximum possible degree) or for a graph to be constructed such that the value 
-is even close to $z$. 
-The simplest method would be to treat the difference between an empty graph (a 
-graph with no edges) and a graph with a single Hamiltonian path (a path that 
-visits each vertex once) as the upper bound. This yields a bound that is 
-actually slightly above 1, but it is close enough for the purposes of 
-interpretation. 
+It is more difficult to normalize the distance matrix difference metric because 
+it is hard to say what the upper bound on this difference is. For instance, one 
+might think that the upper bound occurs when the distance matrix for one graph 
+is of all 0's (i.e. an empty graph), and the distance matrix for the other 
+graph is of all $|V|-1$ in the upper and lower triangles (the longest possible 
+path length). However, it is actually impossible to construct a graph such that 
+every node's \textit{shortest path} to all other nodes is exactly length 
+$|V|-1$ (which is also the maximum possible degree).
+Instead, it would be simplest to use the difference between the distance matrix 
+of an empty graph and the distance matrix of a graph with a single Hamiltonian 
+path (a path that visits each vertex exactly once) as the upper bound. This 
+yields a bound that is actually slightly above 1 (i.e. the
+difference is close to, but not exactly, the maximum possible distance matrix 
+difference), but it is close enough for the purposes 
+of interpretation. 
 The distance matrix method is called with the \texttt{distances} function from 
 the \texttt{igraph} package. \texttt{distances} returns infinity when a path 
 doesn't exist, so the output is adjusted accordingly.
@@ -408,14 +420,14 @@ Figure~\ref{fig:gc:drawbacks_cluster}.
 The edge connectivity of a graph $\hat{G}$ is given by $\mathcal{E}$, the 
 number of edges that need to be deleted in order to disconnect 
 $\hat{G}$ such that there exists two nodes $V_i,V_j$ in $\hat{G}$ which do not 
-have a path between them.
+have a path between them~\cite{igraph}.
 %More specifically, it is the number of edges that need to be 
 %deleted so that $\hat{G}$ is partitioned into $k$ distinct subgraphs and is
 %no longer ``strongly'' connected. 
 As the metric is upper bounded by the minimum 
 degree of any node within a graph, the metric may be normalized by computing 
-$\frac{\mathcal{E}}{\min_i \text{deg}(V_i)}$ for all possible nodes $i \in 
-\{1,...,|V|\}$. Then, the difference normalization will naturally follow.
+$\frac{\mathcal{E}}{\min\limits_{i \in \{1,...,|V|\}} \text{deg}(V_i)}$. Then, 
+the difference normalization will naturally follow.
 The edge connectivity of a graph is computed 
 with the \texttt{edge\_connectivity} function from the \texttt{igraph} package. 
 
@@ -430,8 +442,10 @@ which suggests they are the exact same.
 
 \subsection{Edge density histogram}
 
-The edge density histogram captures the number of nodes in a graph $\hat{G}$ 
-that have a 
+The edge density histogram is not implemented in the \texttt{igraph} package; 
+it is a simple summarization metric which we have derived from the notion of a 
+standard/traditional histogram that may be useful. 
+This metric captures the number of nodes in a graph $\hat{G}$ that have a 
 specified number of degrees. Naturally, a larger number of high-degree nodes 
 signals that $\hat{G}$ is dense, and a larger number of low-degree nodes 
 signals that $\hat{G}$ is sparse. For 
@@ -443,7 +457,6 @@ metric may be normalized by computing $\frac{v_i}{|V|}$ for
 all $i \in \{1,...,b\}$ since there are a total of $|V|$ nodes; thus, each bin 
 is upper bounded by $|V|$. Normalizing the graph-specific metric $v$ then
 allows the difference computation to be normalized. 
-This summarization method is not implemented in the \texttt{igraph} package. 
 
 The edge density histogram difference metric is also susceptible to rotated 
 edges as illustrated in Figure~\ref{fig:gc:drawbacks_rotation} because it 

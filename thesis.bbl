@@ -1,10 +1,20 @@
 \begin{thebibliography}{10}
 
+\bibitem{igraph}
+{R igraph manual pages}.
+\newblock \url{http://igraph.org/r/doc/}, Last updated 2015.
+
 \bibitem{abe1998}
 N.~Abe and H.~Mamitsuka.
 \newblock {Query learning strategies using boosting and bagging}.
 \newblock {\em Proceedings of the International Conference on Machine Learning
   (ICML)}, pages 1--9, 1998.
+
+\bibitem{boulesteix2006}
+A.~Boulesteix and K.~Strimmer.
+\newblock {Partial least squares: a versatile tool for the analysis of
+  high-dimensional genomic data}.
+\newblock {\em Briefings in Bioinformatics}, pages 32--44, May 2006.
 
 \bibitem{buja2016}
 A.~Buja, A.~Krieger, and E.~George.
@@ -13,6 +23,12 @@ A.~Buja, A.~Krieger, and E.~George.
 \newblock
   \url{http://stat.wharton.upenn.edu/~buja/PAPERS/Buja-et-al-Association-Navigator.pdf},
   2016.
+
+\bibitem{chai2004}
+X.~Chai, L.~Deng, Q.~Yang, and C.~X. Ling.
+\newblock {Test-cost sentistive naive Bayes classification}.
+\newblock {\em Proceedings of the IEEE Conference on Data Mining}, pages
+  51--55, 2004.
 
 \bibitem{cutler2010}
 A.~Cutler.
@@ -32,7 +48,7 @@ I.~Dagan and S.~Engelson.
 
 \bibitem{efron1986}
 B.~Efron.
-\newblock {Why Isn't' Everyone a Bayesian?}
+\newblock {Why Isn't Everyone a Bayesian?}
 \newblock {\em The American Statistician}, pages 1--5, February 1986.
 
 \bibitem{federico2016}
@@ -85,6 +101,11 @@ A.~McCallum and K.~Nigam.
 \newblock {\em Proceedings of the International Conference on Machine
   Learning}, pages 359--367, 1998.
 
+\bibitem{newman2002}
+M.~E.~J. Newman.
+\newblock {Assortative mixing in networks}.
+\newblock {\em Physical Review Letters}, pages 1--5, October 2002.
+
 \bibitem{oconnor2008}
 B.~O'Connor.
 \newblock {load the MNIST data set in R}.
@@ -119,6 +140,19 @@ G.~Szekely, M.~Rizzo, and N.~Bakirov.
 \newblock
   \url{https://terrytao.wordpress.com/2014/06/05/when-is-correlation-transitive/},
   2014.
+
+\bibitem{tong2001}
+S.~Tong and D.~Koller.
+\newblock {Support Vector Machine Active Learning with Applications to Text
+  Classification}.
+\newblock {\em Journal of Machine Learning Research}, pages 45--66, November
+  2001.
+
+\bibitem{vishwanathan2010}
+S.~V.~N. Vishwanathan, N.~N. Schraudolph, R.~Kondor, and K.~M. Borgwardt.
+\newblock {Graph Kernels}.
+\newblock {\em Journal of Machine Learning Research}, pages 1201--1242, April
+  2010.
 
 \bibitem{vu2010}
 V.~Vu, N.~Labroche, and B.~Bouchon-Meunier.

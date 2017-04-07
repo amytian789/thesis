@@ -14,7 +14,7 @@ interests. The user's interests are encoded in a classifier (some instance of
 the classification model) that is applied to automatically label the rest of 
 the data. Here again, it is important to be careful about the terminology 
 usage. For more on the semantic differences between ``classification model'' 
-and ``classifier'' in this body of work, see 
+and ``classifier'' in this thesis, see 
 Figure~\ref{fig:visualizer:al:tree}. This is 
 \textbf{stage 2} (Section~\ref{sec:visualizer:plotgeneration}). 
 It is important to make the stage 1 process as efficient as possible to avoid 
@@ -63,15 +63,15 @@ active learning methodologies.
 It is problematic to start from scratch; how does the system determine
 the best first point of ambiguity when it knows nothing (the hypothesis space is
 everything)? A classic method is to simply select $k$ random data instances for 
-the user to label. As initialization is not the focus of this work, the VS 
+the user to label. As initialization is not the focus of this thesis, the VS 
 currently utilizes this methodology. To compensate for a potentially poor 
 initialization, we allow the stage 1 algorithm to have a larger budget of user 
 queries in the application of Chapter~\ref{ch:usage}.
 
 Alternatively, suppose the user has a numerical graph that they believe to be a 
 good representation of the data, and they would like the visualization system to
-provide a visual check (as opposed to selecting from multiple numerical graphs 
-as in our application in this work). An edge drawn in the numerical graph may 
+provide a visual check (as opposed to our application, which seeks to select 
+from multiple numerical graphs). An edge drawn in the numerical graph may 
 be considered a starting point for an edge drawn in the visual graph; the 
 system may exploit this idea and initialize stage 1 by fitting a classifier 
 that agrees with the given numerical graph as much as possible. 

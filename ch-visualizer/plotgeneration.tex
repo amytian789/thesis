@@ -84,9 +84,35 @@ Section~\ref{sec:intro:correlation}:
 
 Furthermore, the VS may provide a visualization of the resulting classifier 
 boundaries such as the decision tree itself (as discussed earlier). The active 
-learning output may also be visualized as a heat map. A 
-classic heat map represents the qualities of each pair of variables as colors 
-from a bivariate spectrum. Heat maps are difficult to interpret as they are 
+learning output may also be visualized as a heat map or an ``association 
+navigator'' (see 
+Figure~\ref{fig:visualizer:heatmap} to compare the two). 
+
+\tablespacing
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=1\linewidth]{ch-visualizer/figures/heatmap}
+		\caption[Heat map versus association navigator]{\textit{Top:} A 
+		traditional heat map. \textit{Bottom:} The association navigator on the 
+		same set of data. 
+		Each row corresponds to a pairwise scatter plot that was queried by the 
+		VS and labeled by the user in 
+		stage 1. The first column (to the left of the vertical black line) 
+		denotes the user's label; as such, there is no size associated with the 
+		characteristic. Red indicates ``not visually correlated'' 
+		and blue indicates ``visually correlated''. The rest of the columns 
+		corresponds to a different criterion of the associated pairwise 
+		scatter plot (see Section~\ref{sec:visualizer:scatterplot}). Red 
+		indicates a negative value while blue indicate a positive value. 		
+		}
+		\label{fig:visualizer:heatmap}
+	\end{center}
+\end{figure}
+\bodyspacing
+
+\noindent A classic heat map represents the qualities of each pair of variables 
+as colors from a bivariate spectrum. 
+Heat maps are difficult to interpret as they are 
 one-dimensional; each end of the color spectrum represents minimum and maximum 
 values respectively. It is unclear what the maximum or minimum values are 
 because they depend on the domain of the whatever criterion the heat map is 
@@ -103,23 +129,10 @@ association navigator only utilizes two colors rather than a spectrum of
 colors, making it simpler to distinguish between the two. By simplifying the 
 color scheme and adding the dimension of size, the association navigator makes 
 it easier to interpret and compare different pairs of data at a glance. 
-The stark difference between a traditional heat map and the association 
-navigator (applied to the same dataset) may be seen in 
-Figure~\ref{fig:visualizer:heatmap}. The VS accommodates for both options, 
+The VS accommodates for both options, 
 allowing the analyst method is preferred. 
 With these visualizations of the active learning output, the user may better 
 understand his/her own interests. 
-
-\begin{figure}[htb]
-	\begin{center}
-		\includegraphics[width=1\linewidth]{ch-visualizer/figures/heatmap}
-		\caption[Heat map versus association navigator]{\textit{Top:} A 
-		traditional heat map. \textit{Bottom:} The association navigator on the 
-		same set of data. Each row corresponds to a labeled pairwise scatter 
-		plot, and each column corresponds to a different plot characteristic.}
-		\label{fig:visualizer:heatmap}
-	\end{center}
-\end{figure}
 
 \subsection{System output}
 \label{sec:visualizer:plotgeneration:output}
@@ -154,8 +167,8 @@ the third is a refinement of the active learning component in stage 1.
 \end{itemize}
 \bodyspacing
 
-Because this work focuses on numerical and visual correlation graphs and their 
-financial application, graph comparison is 
+Because this thesis focuses on numerical and visual correlation graphs and 
+their financial application, graph comparison is 
 the most useful output from the visualization system. As such, it is one of our 
-primary VS focuses. The next section provides a roadmap for the rest of this 
-work, which goes into detail on two aspects of the VS. 
+primary VS focuses. The next section provides a road map for the rest of this 
+thesis, which focuses on two aspects of the VS. 

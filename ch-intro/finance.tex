@@ -7,8 +7,9 @@ especially useful when managing portfolios. One such methodology is the ``buy
 and hold'' tactic where an investor selects a portfolio of stocks and never 
 rebalances. The idea is to select diversified stocks with low correlation and 
 positive drift such that losses are offset by gains, and the portfolio gains on 
-average. This strategy is especially useful when transaction costs are high as 
-fees are prohibitive to rebalancing gains. 
+average. As such, portfolio selection is the main decision-making component of 
+the ``buy and hold'' method. This strategy is especially useful when 
+transaction costs are high as fees are prohibitive to rebalancing gains. 
 
 In a world with low transaction costs, however, there is more to be gained 
 (less to be lost, alternatively) by frequently rebalancing the portfolio rather 
@@ -22,8 +23,13 @@ further important because frequent asset trading may move the market and lead
 to unexpected price swings. With independent stocks, the price risk associated 
 with rebalancing is minimized. In summary, rebalancing gains are best suited to 
 markets with low correlation, independent returns, and high 
-volatility~\cite{liuh2016}. For simplicity, we focus on the former problem of 
-porfolio selection where we buy a portfolio and hold for the remainder of time. 
+volatility~\cite{liuh2016}. 
+
+In this thesis, we focus on the problem of portfolio selection and, 
+specifically, its application to the ``buy and hold'' strategy. However, 
+portfolio selection is still a component of the rebalancing strategy, so our 
+findings and proposed procedures may be further extended to portfolio 
+management techniques.
 A detailed application may be found in Chapter~\ref{ch:usage} where
 a stock selection methodology for correlation graphs is also proposed.
 
@@ -40,7 +46,7 @@ from zero. But, it turns out that the stocks are highly correlated, and this is
 only clear when looking for visual correlation. However, numerical correlation 
 is still an important component of portfolio management in theory and in 
 practice. 
-As such, an important goal of this paper is to not only develop a 
+As such, an important goal of this thesis is to not only develop a 
 solution to the problem of high-dimensional visualization described in 
 Section~\ref{sec:intro:problem} but to also consider the reason we are 
 interested in visualization in the first place. As noted earlier, plotting is 
@@ -49,6 +55,6 @@ develop a method to quickly check the output from numerical methods with an
 analyst's own concepts of visual dependence, allowing the analyst to select the 
 numerical method most suited to their application (numerical correlation graphs 
 and portfolio selection, in this case). 
-What follows is a roadmap of the high-dimensional visualization solution that 
-is developed further in this paper with 
+What follows is a road map of the high-dimensional visualization solution that 
+is developed further in this thesis with 
 Chapters~\ref{ch:visualizer},~\ref{ch:al}, and~\ref{ch:gc}.

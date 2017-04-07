@@ -42,7 +42,7 @@ Appendix~\ref{sec:appendicies:gc:similarity}.
 We now perform a simulation study to demonstrate the viability of the proposed 
 selection strategy. Let $G=(V,E)$ be a base graph with $|V|=20$ nodes and 
 $|E|=50$ edges. The idea is to generate two random graphs $G^1, G^2$ from $G$ 
-such that $\text{diff}(G,G^1) << \text{diff}(G,G^2)$ or vice versa. 
+such that $\text{diff}(G,G^1) \ll \text{diff}(G,G^2)$ or vice versa. 
 In other words, one graph should clearly be similar to $G$ while the other is 
 very dissimilar to $G$. This is achieved by randomly swapping $\frac{|E|}{5} = 
 10$ and $|E| = 50$ edges from $G$ to build $G^1$ and $G^2$, respectively. 
@@ -184,7 +184,8 @@ and~\ref{fig:gc:sim10vs50}; only $G^2$ differs.
 	\end{center}
 \end{figure}
 
-\subsubsection{Extensions}
+\subsection{Extensions}
+\label{sec:gc:extensions}
 
 Although the normalization methods proposed in Section~\ref{sec:gc:methods} 
 have bounded the individual graph summarization metrics between 0 and 1, these 

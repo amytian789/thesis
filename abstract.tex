@@ -1,16 +1,15 @@
 Often in modern multivariate analysis, data analysts rely solely on statistical
 estimators to explore the data. We are interested in using the notion of visual 
 dependence to verify numerical tests of dependence (specifically, we 
-focus on correlation metrics) and applying the results in portfolio selection, 
+focus on correlation metrics) and applying the results to portfolio selection, 
 a setting that involves high-dimensional data sets. High-dimensional 
 visualization is problematic because the number of pairwise plots to sort 
 through increases quadratically as the number of variables increase.
 We present a visualization system that actively learns the user's concept of
-visual correlation in the data, applies the fitted classifier to unlabeled data 
-to form the visual graph $\hat{G}=(V,E)$, and outputs the difference between 
-$\hat{G}$ and some given numerical graph 
-$\hat{G}^{\text{num}}=(V,E^{\text{num}})$.
-%As a specific response to the aforementioned problems, 
+``visual correlation'', applies the resulting fitted classifier to unlabeled 
+data to form a visual correlation graph $\hat{G}=(V,E)$, and outputs the 
+difference between $\hat{G}$ and some given numerical correlation graph 
+$\hat{G}^{\text{num}}$.
 Specifically, we focus on the active learning and graph comparison components 
 of the visualization system. We perform a simulation study with parameters that 
 mimic the intended qualities of the system in order to select the best active 
@@ -18,19 +17,18 @@ learning method to use in the visualization system for the financial
 application. We compile various graph summarization metrics to compute the 
 difference between two graphs (e.g. $\hat{G}$ and $\hat{G}^{\text{num}}$), and 
 propose and verify a procedure for selecting $\hat{G}^*$, the numerical 
-correlation graph most 
-similar to some base graph (the visual graph $\hat{G}$ in this case), given the 
-differences. Furthermore, we propose a simple but effective stock selection 
+correlation graph most similar to the base graph $\hat{G}$. Furthermore, we 
+propose a simple but effective stock selection 
 procedure that, given a correlation graph,  selects a ``buy and hold'' 
 portfolio of $k$ stocks which are as uncorrelated with each other as possible, 
 a proxy for independence. 
-Numerical correlation graphs $\hat{G}^{i, \text{num}}$ are formed from stock 
-price 
-data with correlation metric $i \in I$ (the set of all correlation metrics), 
-the data is fed into the visualization 
-system to create $\hat{G}$, stocks are selected for portfolios, and yearly 
-returns 
-are compiled. The results indicate that the portfolio corresponding to 
-$\hat{G}^*$, 
-the numerical correlation graph which most resembles the visual correlation 
-graph $\hat{G}$, is the top performer. 
+Numerical correlation graphs $\hat{G}^{i, \text{num}}$ are formed from 
+healthcare stock price data where $i \in I$ (the set of all correlation 
+metrics), the data is fed into the visualization system to create $\hat{G}$, 
+portfolios $P^i$ are selected from $\hat{G}^{i, \text{num}}$, and yearly 
+returns are compiled. The results indicate that the portfolio $P^*$, which 
+is selected from $\hat{G}^*$, is the top performer. Furthermore, all portfolios 
+$P^i, i \in \{1,...,4\}$ outperform the S\&P 500, indicating that 
+a more sophisticated selection strategy would yield even more fruitful returns. 
+The VS may be further applied to improve upon other portfolio management 
+techniques.

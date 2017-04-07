@@ -44,6 +44,8 @@ computed from the variables $X_i$ and $X_j$) with the following heuristic:\\
 	for the desired confidence level
 \end{algorithm}
 
+\noindent because a low $p$-value indicates that the correlation is 
+significantly different from zero (i.e. the two variables are dependent). 
 Alternatively and more simplistically, the numerical correlation graph can be 
 drawn from a correlation matrix $\hat{\Sigma}$ where 
 $\hat{\Sigma}_{i,j}=\hat{\rho}(X_i,X_j)$ (some sample correlation coefficient 
@@ -92,13 +94,23 @@ another, further emphasizing the need for both methodologies.
 
 Pearson's correlation measures the linear dependence among two random variables
 $X$ and $Y$. In a population, the Pearson correlation is given by:
-$$\rho_{X,Y}=\frac{\Cov(X,Y)}{\sigma_X \sigma_Y} =
+$$\rho_{X,Y}^{\text{Pear}}=\frac{\Cov(X,Y)}{\sigma_X \sigma_Y} =
 \frac{\E(XY)-\E(X)\E(Y)}{\sqrt{\E(X^2)-\E(X)^2} \sqrt{\E(Y^2)-\E(Y)^2}}$$ 
 
-As alluded earlier, the quantity above is typically unknown in practice since 
+\noindent such that $-1 \leq \rho_{X,Y}^{\text{Pear}} \leq 1$. With perfect 
+positive and negative linear 
+dependence respectively, $\rho_{X,Y}^{\text{Pear}}=\pm1$.
+It is important to note that $\rho_{X,Y}^{\text{Pear}}=0$ does not 
+necessarily indicate independence, though it is an indication of 
+\textit{linear} independence.
+
+Unfortunately, as alluded earlier, the population metric above is typically 
+unknown in practice since 
 the expectation requires knowing the true joint distribution of $X$ and $Y$. 
-Instead, the population correlation is typically estimated by the sample 
-correlation. Given $n$ observations of $X$ and $Y$, the sample expectation is 
+This is true for all correlation metrics.
+Instead, the population correlation $\rho_{X,Y}$ is estimated by the sample 
+correlation $\hat{\rho}_{X,Y}$. Given $n$ observations of $X$ and $Y$, the 
+sample expectation is 
 given by the formula  
 $\E(X)=\frac{1}{n}\sum\limits_{i=1}^{n}x_i$. 
 By substituting into the formulation above and multiplying by $n^2/n^2$, we can 
@@ -109,12 +121,11 @@ $$\hat{\rho}_{x,y}^\text{Pear}=
 {\sqrt{n\sum\limits_{i=1}^{n} x_i^2-\left(\sum\limits_{i=1}^{n} x_i\right)^2} 
 	\sqrt{n\sum\limits_{i=1}^{n} y_i^2-\left(\sum\limits_{i=1}^{n} y_i\right)^2}}$$ 
 
-\noindent such that $-1 \leq \hat{\rho}_{x,y}^\text{Pear} \leq 1$. With perfect 
-positive and negative linear 
-dependence respectively, $\hat{\rho}_{x,y}^\text{Pear}=\pm1$.
-It is important to note that $\hat{\rho}_{x,y}^\text{Pear}=0$ does not 
-necessarily indicate independence, though it is an indication of 
-\textit{linear} independence.
+\noindent such that $-1 \leq \hat{\rho}_{x,y}^\text{Pear} \leq 1$. Although it 
+is common to discuss properties of the sample (e.g. when $\hat{\rho}_{x,y} = 0$ 
+or 1) as if they were the population metric, it is always important to keep in 
+mind that $\hat{\rho}_{x,y}$ is an estimator and may not always be the same as 
+the true population parameter.
 
 \subsection{Spearman's correlation}
 
@@ -122,7 +133,16 @@ Spearman's correlation is more broad than Pearson's; it measures monotonic
 dependence among two random variables $X$ and $Y$. Monotonic functions are
 either strictly increasing or decreasing; while linear functions are monotonic,
 monotonic functions are not necessarily linear. Subsequently, Spearman's
-correlation may also capture non-linear dependencies. Spearman's correlation is
+correlation may also capture non-linear dependencies. 
+Similarly to Pearson's correlation, the population metric is $-1 \leq 
+\rho_{X,Y}^{\text{Spear}} \leq 1$. With 
+perfect increasing and decreasing monotonic dependence respectively,
+$\rho_{X,Y}^{\text{Spear}} = \pm1$. Again, it is important to note that 
+$\rho_{X,Y}^{\text{Spear}}=0$ does not necessarily indicate 
+independence, though it is an indication of \textit{monotonic} independence.
+
+The sample estimate is given by $\hat{\rho}_{x,y}^{\text{Spear}}$. 
+Spearman's correlation is
 computed by calculating the Pearson's correlation among ``ranked variables''. 
 Each sample observation $x_i$ of $X$ is ranked from 1 to $n$ based on its 
 position relative to $x_j, j\in\{1,...,n\}\backslash{i}$. The ranking is also 
@@ -132,11 +152,7 @@ is computed as:
 $$\hat{\rho}_{x,y}^{\text{Spear}}=
 1-\frac{6 \sum\limits_{i=1}^{n}d_i^2}{n(n^2-1)}$$
 
-\noindent such that $-1 \leq \hat{\rho}_{x,y}^{\text{Spear}} \leq 1$. With 
-perfect increasing and decreasing monotonic dependence respectively,
-$\hat{\rho}_{x,y}^{\text{Spear}} = \pm1$. Again, it is important to note that 
-$\hat{\rho}_{x,y}^{\text{Spear}}=0$ does not necessarily indicate 
-independence, though it is an indication of \textit{monotonic} independence.
+\noindent such that $-1 \leq \hat{\rho}_{x,y}^{\text{Spear}} \leq 1$.
 
 \subsection{Kendall's tau}
 
@@ -156,18 +172,39 @@ $$\hat{\rho}_{x,y}^{\text{Kend}}=\frac{c-d}{n(n-1)/2}$$
 \noindent such that $-1 \leq \hat{\rho}_{x,y}^{\text{Kend}} \leq 1$. 
 Kendall's tau is less sensitive to errors in the data as its correlation is
 based on pairs of samples rather than deviations within a single sample, though 
-the resulting coefficients have the same interpretations. As with Spearman's
-correlation, $\hat{\rho}_{x,y}^{\text{Kend}}=\pm1$ with perfect increasing 
-and decreasing monotonic dependence respectively. Furthermore, 
-$\hat{\rho}_{x,y}^{\text{Kend}}=0$ does not necessarily indicate
+the resulting coefficients have the same interpretations. As with Pearson's and 
+Spearman's
+population correlation coefficient, Kendall's population correlation 
+coefficient is $-1 \leq \rho_{X,Y}^{\text{Kend}} \leq 1$. Again, 
+$\rho_{X,Y}^{\text{Kend}}=\pm1$ with perfect increasing 
+and decreasing monotonic dependence respectively. Finally, 
+$\rho_{X,Y}^{\text{Kend}}=0$ does not necessarily indicate
 independence, though it is an indication of \textit{monotonic} independence.
 
 \subsection{Distance correlation}
 
 While the aforementioned correlation metrics are well-known and commonly used, 
-they are constrained to monotonic functions. Distance correlation was first 
+they are constrained to monotonic functions. Distance correlation (also known 
+as energy correlation) was first 
 proposed in 2007 as a way to further test for non-monotonic dependence between 
-$X$ and $Y$~\cite{szekely2007}. The distance correlation is a function of the 
+$X$ and $Y$~\cite{szekely2007}. For distance correlation, the 
+population correlation coefficient is $0 \leq \rho_{X,Y}^{\text{Dist}} \leq 1$. 
+On one hand, 
+$\rho_{X,Y}^{\text{Dist}} =1$ indicates perfect dependence. This is in parallel
+with the other qualities that were discussed earlier.
+On the other hand, the interpretation of 
+$\rho_{X,Y}^{\text{Dist}}$ is rather interesting because it has two important 
+properties not seen in the other population metrics~\cite{szekely2007}: 
+
+\tablespacing
+\begin{enumerate}
+	\item $X$ and $Y$ may be of different dimensions.
+	\item$\rho_{X,Y}^{\text{Dist}}=0$ if and only if $X$ and $Y$ are 
+	independent i.e. $F_{X,Y}(x,y)=F_X(x)F_Y(y)$
+\end{enumerate}
+\bodyspacing 
+
+The distance correlation is a function of the 
 distance covariance and distance variance of $X$ and $Y$. The $n\times n$ 
 matrices $a$ and $b$ denote the distance matrices of $X$ and $Y$, 
 respectively. The elements $a_{k,l}$ and $b_{k,l}$ are respectively defined as 
@@ -195,21 +232,4 @@ $$\hat{\rho}_{x,y}^{\text{Dist}}=\frac{\mathrm{dCov}(X,Y)}
 {\sqrt{\mathrm{dVar}(X)\mathrm{dVar}(Y)}}$$
 
 \noindent 
-such that $0 \leq \hat{\rho}_{x,y}^{\text{(Dist)}} \leq 1$. As before, 
-$\hat{\rho}_{x,y}^{\text{(Dist)}}=1$ indicates perfect dependence. 
-Like the other correlation metrics, $\hat{\rho}_{x,y}^{\text{Dist}}=0$ implies 
-\textit{some} form of independence. 
-However, the interpretation of $\hat{\rho}_{x,y}^{\text{Dist}}=0$ is
-interesting in the sense that its corresponding population correlation metric
-$\rho_{x,y}^{\text{Dist}}$ has two important properties not seen in the other 
-population metrics~\cite{szekely2007}: 
-
-\tablespacing
-\begin{enumerate}
-	\item $X$ and $Y$ may be of different dimensions.
-	\item$\rho_{x,y}^{\text{Dist}}=0$ if and only if $X$ and $Y$ are 
-	independent.
-\end{enumerate}
-\bodyspacing
-
-
+such that $0 \leq \hat{\rho}_{x,y}^{\text{Dist}} \leq 1$. 

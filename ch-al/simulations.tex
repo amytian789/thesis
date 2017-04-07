@@ -75,6 +75,7 @@ The functions for working with the MNIST data are adapted from file
 \texttt{gist:39760}~\cite{oconnor2008} and may be found in 
 Appendix~\ref{sec:appendicies:al:simulations:data}.
 
+\tablespacing
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=1\linewidth]{ch-al/figures/data.pdf}
@@ -87,6 +88,7 @@ Appendix~\ref{sec:appendicies:al:simulations:data}.
 		\label{fig:al:simulations:data}
 	\end{center}
 \end{figure}
+\bodyspacing
 
 \subsection{Evaluation}
 \label{sec:al:simulation:evaluation}
@@ -116,9 +118,7 @@ $E$ where the average error ratio of iteration $j$ is given by:
 $$E_{j} = \frac{1}{s} \bigg( \sum\limits_{i=1}^{s} \epsilon_{i,j} \bigg)$$
 
 The final algorithm for computing $\epsilon_{i,}$, a single trial $i$'s vector 
-of error ratios, is summarized as follows (This procedure is encapsulated by 
-the simulation engine code in 
-Appendix~\ref{sec:appendicies:al:simulations:simengine}):
+of error ratios, is summarized as follows:
 
 \tablespacing
 \begin{algorithm}[H]
@@ -144,6 +144,10 @@ Appendix~\ref{sec:appendicies:al:simulations:simengine}):
 	\end{algorithmic}
 \end{algorithm}
 \bodyspacing
+
+\noindent This procedure is encapsulated by 
+the simulation engine code in 
+Appendix~\ref{sec:appendicies:al:simulations:simengine}.
 
 \subsection{Summary of methods}
 \label{sec:al:simulation:methods}
@@ -272,22 +276,24 @@ for QBC implementation is as follows:
 	detailed description can be found in 
 	Section~\ref{sec:visualizer:plotgeneration:tree}.
 	
-	\item \textbf{Naive Bayes:} The naive Bayes classification model applies 
-	Bayes' Theorem $\big(P(y|x) = \frac{P(x|y)P(y)}{P(x)}\big)$ to compute the 
-	posterior probability of label $y$ given characteristic feature $x$ in 
-	order to classify the data. It is important to note that the algorithm 
+	\item \textbf{Naive Bayes~\cite{chai2004}:} 
+	The naive Bayes classification model applies 
+	Bayes' rule $P(y|x) = \frac{P(x|y)P(y)}{P(x)}$ to compute the posterior 
+	probability $P(y|x)$ of sample $x$ belonging to label $y$ and uses the 
+	results to classify the data. It is important to note that the algorithm 
 	assumes independence among the features that characterize each label, which 
 	may not necessarily be the case.
 	
-	\item \textbf{Support vector machine:} In the support vector machine 
-	classification model, each data point in $X$ is 
-	mapped to a space in $\mathbb{R}^2$ where the various labels are split by a 
-	line that makes sure they are as far apart as possible from one another. 
-	As new labeled points are queried, the mapping 
-	updates. SVMs can also perform nonbinary and nonlinear classification 
-	through the usage of a kernel.
+	\item \textbf{Support vector machine~\cite{tong2001}:} 
+	In the support vector machine classification model, the data in $X$ is 
+	mapped to a space in $\mathbb{R}^2$, which is split by a hyperplane that 
+	separates the data as much as possible. Data is labeled according to its 
+	side. As an active learner, the SVM queries from the point closest 
+	to the linear decision boundary. SVMs can also perform nonbinary and 
+	nonlinear classification through the usage of a kernel.
 	
-	\item \textbf{Partial least squares:} In partial least squares, 
+	\item \textbf{Partial least squares~\cite{boulesteix2006}:} 
+	In partial least squares, 
 	a \textit{principle component analysis} is first performed on the data set 
 	$X$. Principle component analysis 
 	takes the $n$-length set of variables in $X$ (which may or may not be 
@@ -422,21 +428,28 @@ Section~\ref{sec:visualizer:al:initialization} that we would like to compensate
 for the randomness in the initialization by providing a larger query budget. As 
 such, the VS stage 1 budget is set to $iter = 15$ for the financial application.
 
-%Figure~\ref{fig:al:simulations:resultsci}, which shows performance plots with 
-%confidence intervals for each active learrning method, may also be of interest 
-%to the reader.
-%
-%\textsc{\begin{figure}[htb]
-%	\begin{center}
-%		\includegraphics[width=1\linewidth,page=2]{ch-al/figures/results.pdf}
-%		\caption[Active learning simulation results with confidence 
-%		intervals.]{Active learning simulation results with confidence 
-%		intervals.}
-%		\label{fig:al:simulations:resultsci}
-%	\end{center}
-%\end{figure}}
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=1\linewidth]{ch-al/figures/results_ci.pdf}
+		\caption[Active learning simulation results with confidence 
+		intervals.]{Active learning simulation results with confidence 
+		intervals.}
+		\label{fig:al:simulations:resultsci}
+	\end{center}
+\end{figure}
 
-\subsubsection{Extensions}
+Figure~\ref{fig:al:simulations:resultsci}, which plots the performance of each 
+active learning method with confidence intervals, is also of interest. In 
+general, as the number of queries (iterations) increases, the confidence 
+interval shrinks, indicating that the data classification is less variant and 
+more accurate. This is not the case for min-max clustering, however, as we 
+noted earlier that our initialization method is less than ideal. We may also 
+observe that the confidence interval is rather small at $iter = 1$. 
+This may be attributed to the simulation being seeded at each trial before each
+trial's first iteration, thereby causing less variance at the start.
+
+\subsection{Extensions}
+\label{sec:al:extensions}
 
 Naturally, there are many other parameters that could have been tested but were 
 not in the interest of time. For 

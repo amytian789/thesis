@@ -6,26 +6,28 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Transformed scatter plots of independent $U(0,1)$ random variables and pseudo-observation pairs $(U_{j},U_{j+1}),j\in \{1,2,3\}$ which are more correlated the larger $j$ is.}}{17}{figure.2.3}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Classifiers and classification models}}{19}{figure.2.4}
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Mapping the sample space to a decision tree.}}{22}{figure.2.5}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Heat map versus association navigator}}{25}{figure.2.6}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Heat map versus association navigator}}{24}{figure.2.6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces MNIST data used in the active learning simulations.}}{38}{figure.3.1}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Active learning simulation results for query by committee with varying parameters.}}{43}{figure.3.2}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Aggregated active learning simulation results.}}{44}{figure.3.3}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces MNIST data used in the active learning simulations.}}{39}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Active learning simulation results for query by committee with varying parameters.}}{44}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Aggregated active learning simulation results.}}{45}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Active learning simulation results with confidence intervals.}}{47}{figure.3.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Difficulties with graph visualization.}}{49}{figure.4.1}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces A graph pair with rotated edges.}}{54}{figure.4.2}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces A graph pair with two and three clusters, respectively.}}{56}{figure.4.3}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces A graph pair with one and two clusters, respectively.}}{58}{figure.4.4}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 times each.}}{62}{figure.4.5}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 and 50 times, respectively.}}{63}{figure.4.6}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Difficulties with graph visualization.}}{51}{figure.4.1}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces A graph pair with rotated edges.}}{56}{figure.4.2}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces A graph pair with two and three clusters, respectively.}}{58}{figure.4.3}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces A graph pair with one and two clusters, respectively.}}{60}{figure.4.4}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 times each.}}{65}{figure.4.5}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Random graphs with 20 nodes and 50 edges. Edges have been swapped 10 and 50 times, respectively.}}{65}{figure.4.6}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces VS queries which were labeled ``visually correlated''.}}{73}{figure.5.1}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces VS queries which were labeled ``not visually correlated''.}}{73}{figure.5.2}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Normalized heat maps of VS queries and user-specified labels.}}{75}{figure.5.3}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram of predicted probabilities.}}{76}{figure.5.4}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Top six most ``visually correlated'' pairwise scatter plots selected by the VS.}}{77}{figure.5.5}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Visual correlation graph output from the visualization system.}}{78}{figure.5.6}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Yearly and cumulative performance of the selected portfolios and the S\&P 500.}}{81}{figure.5.7}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces VS queries which were labeled ``visually correlated''.}}{75}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces VS queries which were labeled ``not visually correlated''.}}{75}{figure.5.2}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Normalized heat maps of VS queries and user-specified labels.}}{77}{figure.5.3}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Histogram of predicted probabilities.}}{78}{figure.5.4}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Top six ``visually correlated'' pairwise scatter plots.}}{79}{figure.5.5}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Visual correlation graph output from the visualization system.}}{79}{figure.5.6}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Numerical correlation graphs (sparse).}}{81}{figure.5.7}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Yearly and cumulative performance of the selected portfolios and the S\&P 500.}}{85}{figure.5.8}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces A line-up test for $k = 5$. }}{90}{figure.6.1}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces A line-up test for $k = 5$. }}{94}{figure.6.1}
 \addvspace {10\p@ }

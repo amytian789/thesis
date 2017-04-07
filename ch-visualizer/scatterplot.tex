@@ -75,8 +75,18 @@ implemented in the VS:
 	include Pearson's, Spearman's, Kendall's, and distance correlation. See 
 	Section~\ref{sec:intro:correlation} for more details on the various types 
 	of coefficients.
-	\item \textbf{Kullback-Leibler divergence criterion:}
-	\item \textbf{Chi-square test of independence and its $p$-value:}
+	\item \textbf{Kullback-Leibler divergence criterion:} KL divergence 
+	measures the difference between the probability distributions (which we 
+	estimate to be Gaussian) of each pairwise set of variables. This feature is 
+	non-symmetric, however, and reversing the order of the arguments 
+	may yield a different result.
+	\item \textbf{Chi-square test of independence and its $p$-value:} This 
+	feature tests for independence among each pairwise set of variables 
+	by comparing the frequency of categorical labels within each variable's 
+	observations. As stock price data is not categorized by default, labels may 
+	be generated given each observation's relative value (e.g. average, above 
+	average, etc.). As with correlation, a low $p$-value indicates that 
+	the two variables are dependent.
 \end{itemize}
 \bodyspacing 
 
