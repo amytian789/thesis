@@ -20,7 +20,7 @@ Settles~\cite{settles2010}:
 \noindent While the methods above may apply to many different active learning 
 environments, the specific situation for the VS is \textit{pool-based selective 
 sampling}. Because it is computationally expensive to extract features from 
-every single $n\choose2$ plot (see 
+every single pairwise scatter plot (see 
 Section~\ref{sec:visualizer:scatterplot:features}), membership query synthesis 
 is not an option. While stream-based selective sampling may work, it has a 
 similar problem because there are no constraints
@@ -51,6 +51,6 @@ fundamental to the process of query selection~\cite{dasgupta2011}:
 active learning algorithms that are a form of the aforementioned efficient 
 search through the hypothesis space. These algorithms may be found in 
 Sections~\ref{sec:al:methods:uncertainty} to~\ref{sec:al:methods:bagging} 
-respectively. We also present a clustering partitioning algorithm in 
+respectively. We also present a min-max clustering algorithm in 
 Section~\ref{sec:al:methods:clustering} that seeks to exploit the clustering  
 structure in the data.

@@ -18,7 +18,7 @@ We propose the following methodology to select the most similar graph pair:
 	\item Select the index $i$ which has the most number of smallest 
 	differences. In other words, find
 	$$\max\limits_{i \in \{1,...,k\}} 
-	\sum\limits^{10}_{m=1} \textbf{1}_{d^{i}_m > d^{i'}_m} \ \text{where} \ i 
+	\sum\limits^{10}_{m=1} \textbf{1}_{d^{i}_m < d^{i'}_m} \ \text{where} \ i 
 	\neq i' \in \{1,...,k\}$$
 \end{enumerate}
 \bodyspacing
@@ -211,7 +211,7 @@ Let $d = \text{diff}(G^1,G^2)$. Then the procedure is as follows:
 		$|V|$ nodes and $|E^1|$ edges.
 		\State \indent Generate an Erdos-Renyi graph $\hat{G^2}$ with 
 		$|V|$ nodes and $|E^2|$ edges.
-		\State \indent $t_i \gets \text{dist}(\hat{G^1},\hat{G^2})$
+		\State \indent $t_i \gets \text{diff}(\hat{G^1},\hat{G^2})$
 		\State Compare $d$ to the empirical distribution $\{t_1,...,t_n\}$*
 		\EndProcedure
 	\end{algorithmic}
@@ -225,9 +225,10 @@ $$\frac{\#\{t_i : t_i\geq d \}}{n}$$
 \noindent for an upper tail distribution and a $p$-value
 $$\frac{\#\{t_i : t_i \leq d \}}{n}$$
 
-\noindent for a lower tail distribution. The $p$-values may be computed using 
-the similarity selection methodology 
-presented in Section~\ref{sec:gc:simulations}. A lower $p$-value 
+\noindent for a lower tail distribution. The indicator variables for $t_i\geq 
+d$ and $t \leq d$ may be computed using ideas presented in
+the similarity selection methodology described in 
+Section~\ref{sec:gc:simulations}. A lower $p$-value 
 suggests that $d$ is more significant (i.e. the computed difference metric is 
 reliable) because it indicates that $d$ has a low probability of being an 
 ``extreme'' event.

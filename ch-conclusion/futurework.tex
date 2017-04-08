@@ -34,7 +34,7 @@ as to prevent analysts from maliciously removing or adding outliers themselves
 to favorably skew the results if the output is not to their liking, thereby 
 increasing accountability. 
 
-\subsection{Graphical models and improved stock selection}
+\subsection{Graphical models in finance}
 \label{sec:futurework:graphicalmodel}
 
 A single numerical correlation coefficient can be 
@@ -54,18 +54,17 @@ Apple stock moves with Silicone stock as they
 depend on them for their chips. Similarly, Google stock (unbeknownst to the
 analyst) also moves with Silicone stock but not with Apple stock. Without 
 considering the way the stocks are connected to the other observed variable 
-(Silicone stock), the correlation between observed prices of Google and Apple 
-stock will be erroneously positive .
+(Silicone stock), it is simple to see how the correlation between observed 
+prices of Google and Apple stock will be erroneously positive.
 
 On the other hand, a single link in a graphical model can be thought of as a 
 regression of the response variable against all variables in the space. The 
 general idea is that a graphical model has a ``global'' property because it 
-takes all of the other variables into account. Let $G=(V,E)$ be an
-undirected graph formed from the data set $X$ with $|V| =  n$ and edges 
-$E_{i,j}\in\{0,1\}$. $E_{i,j}=1$ when there is an edge between $V_i$ and $V_j$, 
-and 0 otherwise. $E_{i,j}=0$ if and only if $X_i \perp X_j$ given $X_k$ where
-$k\in\{1,...,d\}$ \textbackslash $\{i,j\}$. In other words, do not draw an edge
-if
+takes all other variables into account. Let $G=(V,E)$ be an undirected graph 
+formed from the data set $X$ with $|V| =  n$ and edges $E_{i,j}\in\{0,1\}$. 
+$E_{i,j}=1$ when there is an edge between $V_i$ and $V_j$, and 0 otherwise. 
+$E_{i,j}=0$ if and only if $X_i \perp X_j$ given $X_k$ where $k\in\{1,...,d\}$ 
+\textbackslash $\{i,j\}$. In other words, do not draw an edge if
 $$\text{P}(X_i,X_j|X_k)=\text{P}(X_i|X_k)\text{P}(X_j|X_k)$$
 
 The resulting graph is known as a graphical model. The drawback is the 
@@ -85,8 +84,8 @@ It is important, therefore, for the VS to
 support both models. The system would need to be modified to allow for plotting 
 $X_i$ against $X_j$ conditional on $X_k$ for all $k\in\{1,...,d\} \backslash 
 \{i,j\}$. One method to consider would be to control for the behavior of all 
-the other explanatory variables while making the scatter plot of $(X_i,X_j)$ in 
-a procedure similar to that of regression.
+the other explanatory variables while making the pairwise scatter plot of 
+$(X_i,X_j)$ in a procedure similar to that of regression.
 
 \subsection{Ordering of queried plots}
 \label{sec:futurework:ordering}
@@ -97,9 +96,11 @@ have labeled~\cite{federico2016}. The importance of the mental map in
 influencing user perception of the data depends on
 various factors such as the user preferences and tasks that they must
 complete~\cite{federico2016}. Suppose that several active learning queries 
-(scatter plots) are selected at once. Given a gradation of graphs (consecutive
+(pairwise scatter plots) are selected at once. Given a gradation of graphs 
+(consecutive
 graphs that are similar to one another), users are less able to 
-distinguish differences than if given consecutive graphs from different 
+distinguish differences than if they were given consecutive graphs from 
+different 
 ends of the spectrum~\cite{federico2016}. To put it 
 concisely, the scatter plot display itself (discussed in 
 Section~\ref{sec:visualizer:scatterplot:goodplot}) is not the only thing that 
@@ -118,20 +119,23 @@ One of the pitfalls of data visualization is ``apophenia,'' a phenomenon where
 the user sees patterns in random noise. Part of the reason this happens is due 
 to the vagueness of defining ``independence'' on a non-uniform domain and range
 (see Section~\ref{sec:visualizer:scatterplot:goodplot}). Wickham \textit{et 
-al.} propose a line-up protocol that is similar to the Rorscach test in which 
-subjects are asked to interpret abstract blots of ink~\cite{wickham2010}. 
+al.} propose a line-up protocol that is similar to the Rorscach test (in which 
+subjects are asked to interpret abstract blots of ink)~\cite{wickham2010}. 
 In the line-up test, users are asked to identify the real data from a set of 
 $k$ plots where $k-1$ plots are synthetically generated~\cite{wickham2010}.
 Identification of the raw data against the synthetic data is an indicator 
 that the current fitted model is a poor fit of the user's preferences. Suppose 
 that $k = 5$ as in Figure~\ref{fig:visualizer:lineup}.
 In the context of the classification problem, the line-up test may generate
-four ``not visually correlated'' plots (following the proposed decision tree) 
-and one ``visually correlated'' plot before asking the user if he/she can 
+four plots that are ``visually not correlated'' (following the proposed 
+decision tree) 
+and one plot that is ``visually correlated'' before asking the user if he/she 
+can 
 identify the ``visually correlated'' plot. If the user is able to consistently 
 identify the ``visually correlated'' plot, it is an indication that the current 
 decision tree is a close fit of the user's preferences.
 
+\tablespacing
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=1\linewidth]{ch-conclusion/figures/lineup}
@@ -143,6 +147,7 @@ decision tree is a close fit of the user's preferences.
 		\label{fig:visualizer:lineup}
 	\end{center}
 \end{figure}
+\bodyspacing
 
 \subsection{Edge-weighted graphs}
 \label{sec:futurework:edgeweighted}
@@ -151,10 +156,10 @@ Edge-weighted graphs stray from the binary classification of
 correlation graphs (described in Section~\ref{sec:intro:correlation}) and 
 graphical models (described in Section~\ref{sec:futurework:graphicalmodel}). In 
 an edge-weighted graph, edges are weighted depending
-on the type of conditional dependence or correlation. Negative and positive 
+on the type of conditional dependence (e.g. correlation). Negative and positive 
 values are assigned 1 and -1, respectively. As before, a value of 0 (no edge) 
 implies that variables are uncorrelated (for correlation graphs) or 
-conditionally independent (for graphical models). The active learning becomes 
+conditionally independent (for graphical models). Active learning becomes 
 more difficult as the number of classification labels changes from two to 
 three. Subsequently, active learning methods may need to be more generalized as 
 in the case of uncertainty sampling (Section~\ref{sec:al:methods:uncertainty}). 
@@ -184,9 +189,10 @@ ways to take this into consideration.
 	Chapter~\ref{ch:al}) is to have the user provide labels on plots the 
 	learner is uncertain about in order to 
 	better understand user preferences. By allowing for this option, the active
-	learner may require more queries and/or return a poorly-defined tree. 
+	learner may require more queries and/or return a poorly-defined forest. 
 	
-	\item Aside from the current responses of ``yes'' and ``no'', the VS could 
+	\item Aside from the current responses of ``yes, visually correlated'' and 
+	``no, visually not correlated'', the VS could 
 	include a third option that permits the user to ``recycle'' the plot. This 
 	method allows the user to return to the plot later after learning more 
 	about what the rest of the data looks like and understanding his/her own 

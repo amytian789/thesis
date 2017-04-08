@@ -22,8 +22,8 @@
 \BOOKMARK [1][-]{section.2.3}{2.3 Automated plot generation \(Stage 2\)}{chapter.2}% 22
 \BOOKMARK [2][-]{subsection.2.3.1}{2.3.1 Decision tree classification of user interests}{section.2.3}% 23
 \BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 User interaction with active learning output}{section.2.3}% 24
-\BOOKMARK [2][-]{subsection.2.3.3}{2.3.3 System output}{section.2.3}% 25
-\BOOKMARK [1][-]{section.2.4}{2.4 Specific focus: active learning and graph comparison}{chapter.2}% 26
+\BOOKMARK [1][-]{section.2.4}{2.4 System output}{chapter.2}% 25
+\BOOKMARK [1][-]{section.2.5}{2.5 Specific focus: active learning and graph comparison}{chapter.2}% 26
 \BOOKMARK [0][-]{chapter.3}{3 Active learning }{}% 27
 \BOOKMARK [1][-]{section.3.1}{3.1 Literature review}{chapter.3}% 28
 \BOOKMARK [1][-]{section.3.2}{3.2 Overview of active learning methods}{chapter.3}% 29
@@ -61,7 +61,7 @@
 \BOOKMARK [1][-]{section.6.2}{6.2 Further extensions}{chapter.6}% 61
 \BOOKMARK [2][-]{subsection.6.2.1}{6.2.1 Estimator selection}{section.6.2}% 62
 \BOOKMARK [2][-]{subsection.6.2.2}{6.2.2 Outlier removal}{section.6.2}% 63
-\BOOKMARK [2][-]{subsection.6.2.3}{6.2.3 Graphical models and improved stock selection}{section.6.2}% 64
+\BOOKMARK [2][-]{subsection.6.2.3}{6.2.3 Graphical models in finance}{section.6.2}% 64
 \BOOKMARK [2][-]{subsection.6.2.4}{6.2.4 Ordering of queried plots}{section.6.2}% 65
 \BOOKMARK [2][-]{subsection.6.2.5}{6.2.5 Line-up tests}{section.6.2}% 66
 \BOOKMARK [2][-]{subsection.6.2.6}{6.2.6 Edge-weighted graphs}{section.6.2}% 67

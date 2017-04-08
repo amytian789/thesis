@@ -7,7 +7,7 @@ verify their numerical results with visual intuition. As such, there are two
 main goals for the graph comparison output: (1) allow the user to gain some 
 intuition about the qualities of the visual graph in order to better understand 
 their perceptions of a ``visual trend'' in the data, and (2) provide a metric 
-that quantifies the difference between the visual graph and numeric graph 
+that quantifies the difference between the visual graph and numerical graph 
 (supplied by the user). With the knowledge of both in hand, the user may 
 select the numerical method which is 
 ``closest'' to their visual intuition and utilize the results in alternate 
@@ -18,16 +18,17 @@ isomorphism and more naturally lends itself to the visualization system's
 goals. As the VS is concerned with practical application in data 
 analytics, each variable in a dataset should already correspond to some label 
 (e.g. a stock).
-What follows is broad overview of two graph comparison methods in 
-Section~\ref{sec:gc:litreview} with more details on the graph summarization 
-comparison method in Section~\ref{sec:gc:methods}. Finally, we propose a method 
+What follows is broad overview of two different ways to think about graph 
+comparison in Section~\ref{sec:gc:litreview} with more details on the graph 
+summarization comparison method in Section~\ref{sec:gc:methods}. Finally, we 
+propose a method 
 to select the graph $\hat{G}^{i}, i \in \{1,...,k\}$ out of $k$ 
 given graphs where $\hat{G}^{i}$ is most similar to the ``base'' 
-graph $\hat{G}$ and perform a simulation study to demonstrate the method's 
+graph $\hat{G}$, and we perform a simulation study to demonstrate the method's 
 viability in Section~\ref{sec:gc:simulations}. Note that we do not use the 
 notation $\hat{G}^{i,\text{num}}$ for the $k$ graphs which we wish to compare 
 to $\hat{G}$ because the methods discussed in this section may be 
-applied to any graphs, not just numerical and visual correlation graphs.
+applied to any graphs, not just numerical/visual correlation graphs.
 
 \input{ch-gc/litreview}
 \input{ch-gc/methods}

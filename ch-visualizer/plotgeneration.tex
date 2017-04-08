@@ -1,8 +1,9 @@
 \section{Automated plot generation (Stage 2)}
 \label{sec:visualizer:plotgeneration}
 
-As a reminder, in stage 2, the visualization system uses the labeled scatter 
-plots to build a classifier and automatically label the rest of the plots.
+As a reminder, in stage 2, the visualization system uses the labeled pairwise 
+scatter plots to build a classifier and automatically label the rest of the 
+plots.
 
 \subsection{Decision tree classification of user interests}
 \label{sec:visualizer:plotgeneration:tree}
@@ -26,7 +27,7 @@ $$G = N_{\text{left}} \sum\limits_{k\in \{0,1\}} p_{k,\text{left}}
 \{\text{left,right}\}$ in a vertical split, and $s = \{\text{top,bottom}\}$ in 
 a horizontal split) and $p_{k,s}$ is the fraction of class label $k$ on side 
 $s$ of the split. Note that $k \in \{0,1\}$ in binary classification, which is 
-used in the VS. Decision trees are a more sophisticated classification method 
+used in the VS. Decision trees are a more sophisticated classification model 
 than simple linear regression and retain interpretability. The root node is, 
 naturally, the most important as it corresponds to a split that optimizes the 
 Gini criterion while the terminal nodes can be thought of as the data's 
@@ -63,8 +64,8 @@ remain). One such method for single tree approximate is presented by Zhou and
 Hooker~\cite{zhou2016}. Utilization of such a method to present the resulting 
 random forest classifier to the user aids in user interpretability of the 
 system output while maintaining the robustness of a forest in practice. 
-As such, the VS sets the choice of classification model to random 
-forest by default but allows the user to specify their preferred classification 
+As such, the main stage 2 classification model is random 
+forest by default, but the user may specify their preferred classification 
 model if they wish to do so.
 
 \subsection{User interaction with active learning output}
@@ -72,19 +73,20 @@ model if they wish to do so.
 
 The system has now learned which of the unlabeled plots 
 may be of interest to the user. The final learned classifier is used to fit the 
-rest of the $n \choose 2$ unlabeled scatterplots, and a visual graph 
+rest of the unlabeled scatter plots, and a visual graph 
 $\hat{G}=(V,E)$ 
 may be built from these labels with the heuristic presented in 
 Section~\ref{sec:intro:correlation}:
 
 \begin{algorithm}
 	$E_{i,j} = 1$ (draw an edge) for $i\neq j$ if the pairwise scatter plot 
-	$(X_i,X_j)$ contains a distinct trend
+	$(X_i,X_j)$ contains a distinct trend (i.e. has a label of 1 = ``visually 
+	correlated'')
 \end{algorithm}
 
 Furthermore, the VS may provide a visualization of the resulting classifier 
-boundaries such as the decision tree itself (as discussed earlier). The active 
-learning output may also be visualized as a heat map or an ``association 
+boundaries such as the simplified forest itself (as discussed earlier). The 
+active learning output may also be visualized as a heat map or an ``association 
 navigator'' (see 
 Figure~\ref{fig:visualizer:heatmap} to compare the two). 
 
@@ -134,10 +136,11 @@ allowing the analyst method is preferred.
 With these visualizations of the active learning output, the user may better 
 understand his/her own interests. 
 
-\subsection{System output}
+\section{System output}
 \label{sec:visualizer:plotgeneration:output}
 
-There are three options at the end of stage 2. Two of them are concrete outputs 
+After stage 2 is complete, there are three options for the system output. 
+Two of them are concrete outputs 
 that may be easily used in a final report on the data analysis findings, and 
 the third is a refinement of the active learning component in stage 1.
 
@@ -150,7 +153,7 @@ the third is a refinement of the active learning component in stage 1.
 	\item \textbf{Graph comparison:} The VS accepts a numerical graph such as 
 	$\hat{G}^{\text{num}}$, a correlation graph generated from one of the 
 	numerical correlation coefficients described in 
-	Section~\ref{sec:intro:correlation}, and the VS measures the difference 
+	Section~\ref{sec:intro:correlation}, and measures the difference 
 	between $\hat{G}^{\text{num}}$ and the visual graph $\hat{G}$ (the active 
 	learning output). This is especially useful 
 	for determining which numerical graph is ``closest'' to the visual graph, 
@@ -169,6 +172,7 @@ the third is a refinement of the active learning component in stage 1.
 
 Because this thesis focuses on numerical and visual correlation graphs and 
 their financial application, graph comparison is 
-the most useful output from the visualization system. As such, it is one of our 
+the most useful outputs from the visualization system. As such, it is one of 
+our 
 primary VS focuses. The next section provides a road map for the rest of this 
 thesis, which focuses on two aspects of the VS. 

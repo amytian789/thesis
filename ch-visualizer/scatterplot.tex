@@ -28,7 +28,8 @@ as the points appear to be uniformly distributed within the box.
 	\end{center}
 \end{figure}
 
-Restricting the scatter plot to a unit box allows analyst's visual systems to 
+Restricting the scatter plot to a unit box allows an analyst's visual systems 
+to 
 focus on locations where there is low spatial frequency, which is ideal for 
 detecting dependence~\cite{hofert2016}. The effects of this concept can be 
 progressively observed from left to right in 
@@ -39,7 +40,7 @@ Figure~\ref{fig:visualizer:hofertoldford} below.
 		\includegraphics[width=1\linewidth]{ch-visualizer/figures/hofertoldford}
 		\caption[Transformed scatter plots of independent $U(0,1)$ random 
 		variables and pseudo-observation pairs $(U_{j},U_{j+1}),j\in 
-		\{1,2,3\}$ which are more correlated the larger $j$ is.]{\textit{(a):} 
+		\{1,2,3\}$.]{\textit{(a):} 
 		Transformed scatter plots of independent $U(0,1)$ random variables. 
 		\textit{(b,c,d):} Transformed scatter plots of the pseudo-observation 
 		pairs $(U_{j},U_{j+1}),j\in \{1,2,3\}$. The variables are clearly more 
@@ -75,7 +76,8 @@ implemented in the VS:
 	include Pearson's, Spearman's, Kendall's, and distance correlation. See 
 	Section~\ref{sec:intro:correlation} for more details on the various types 
 	of coefficients.
-	\item \textbf{Kullback-Leibler divergence criterion:} KL divergence 
+	\item \textbf{Kullback-Leibler divergence criterion~\cite{seghouane2007}:} 
+	KL divergence 
 	measures the difference between the probability distributions (which we 
 	estimate to be Gaussian) of each pairwise set of variables. This feature is 
 	non-symmetric, however, and reversing the order of the arguments 

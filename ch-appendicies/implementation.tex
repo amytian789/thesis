@@ -491,7 +491,8 @@ plotTable <- function(numRow,numCol,vec.labels,mat.images){
 
 Although the function name is \texttt{AL\_engine}, this code corresponds to the 
 simulation engine (all the \texttt{main} simulation file names are preceded by 
-a \texttt{AL\_}). The actual active learning engine may be found in 
+a \texttt{AL\_}). The actual active learning algorithm engine, which is called 
+by the simulation engine, may be found in 
 Appendix~\ref{sec:appendicies:al:simulations:alengine}.
 
 {\setstretch{1,0}
@@ -666,6 +667,11 @@ classifier_method, return_method, iter, n, ...){
 
 \subsection{AL algorithm engine}
 \label{sec:appendicies:al:simulations:alengine}
+
+The active learning algorithm engine is called by the simulation engine 
+(Section~\ref{sec:appendicies:al:simulations:simengine}). It calls the various 
+active learning methods described in Section~\ref{sec:al:methods}.
+
 {\setstretch{1.0}
 \begin{lstlisting}
 
@@ -1111,8 +1117,8 @@ save.image(file = paste0("results/results_", date, ".RData"))
 \label{sec:appendicies:gc:engine}
 
 Given graphs $\hat{G^1}=(V^1,E^1)$ and $\hat{G^2}=(V^2,E^2)$, the graph 
-summarization engine computes the vector $d^{1,2}$ which 
-contains the difference between $\hat{G^1}$ and $\hat{G^2}$ with the various 
+summarization engine computes the vector $d = \text{diff}(\hat{G}^1,\hat{G}^2)$ 
+by utilizing the various 
 summarization metrics described in Section~\ref{sec:gc:methods}. After the 
 graph summarization engine code, the distance engine function is also included. 
 The distance engine is called by the graph comparison engine in order to 
@@ -1579,8 +1585,7 @@ stock_selection <- function(g_num, k, dd, pd = 0, vv, pv = 0){
 \section{Final application}
 \label{sec:appendicies:usage:newanalysis}
 
-Section~\ref{sec:usage:newanalysis} details the application procedure that is 
-implemented below.
+Refer to Section~\ref{sec:usage:newanalysis}.
 
 {\setstretch{1.0}
 \begin{lstlisting}

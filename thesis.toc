@@ -23,8 +23,8 @@
 \contentsline {section}{\numberline {2.3}Automated plot generation (Stage 2)}{21}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Decision tree classification of user interests}{21}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}User interaction with active learning output}{23}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}System output}{25}{subsection.2.3.3}
-\contentsline {section}{\numberline {2.4}Specific focus: active learning and graph comparison}{26}{section.2.4}
+\contentsline {section}{\numberline {2.4}System output}{25}{section.2.4}
+\contentsline {section}{\numberline {2.5}Specific focus: active learning and graph comparison}{26}{section.2.5}
 \contentsline {chapter}{\numberline {3}Active learning }{28}{chapter.3}
 \contentsline {section}{\numberline {3.1}Literature review}{29}{section.3.1}
 \contentsline {section}{\numberline {3.2}Overview of active learning methods}{30}{section.3.2}
@@ -62,7 +62,7 @@
 \contentsline {section}{\numberline {6.2}Further extensions}{90}{section.6.2}
 \contentsline {subsection}{\numberline {6.2.1}Estimator selection}{90}{subsection.6.2.1}
 \contentsline {subsection}{\numberline {6.2.2}Outlier removal}{91}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Graphical models and improved stock selection}{91}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.3}Graphical models in finance}{91}{subsection.6.2.3}
 \contentsline {subsection}{\numberline {6.2.4}Ordering of queried plots}{93}{subsection.6.2.4}
 \contentsline {subsection}{\numberline {6.2.5}Line-up tests}{93}{subsection.6.2.5}
 \contentsline {subsection}{\numberline {6.2.6}Edge-weighted graphs}{94}{subsection.6.2.6}

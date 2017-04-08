@@ -2,11 +2,12 @@
 \label{sec:al:simulations}
 
 We utilize a simulation study in order to determine the method that is 
-best-suited for usage with the VS in Chapter~\ref{ch:usage}'s equity 
+best-suited for usage with the VS in Chapter~\ref{ch:usage}'s financial 
 application. Recall that the VS data is composed of all observations of 
 characteristic features (as described in 
 Section~\ref{sec:visualizer:scatterplot:features}) 
-for all $n\choose 2$ pairwise scatter plots of the \textit{actual} data set. To 
+for all $n\choose 2$ pairwise scatter plots of the \textit{actual} data set 
+(where $n$ is the number of variables). To 
 recap, these are key features of the visualization system that 
 should be (and are) captured in the simulations:
 
@@ -27,8 +28,8 @@ should be (and are) captured in the simulations:
 	\item \textbf{Random forest 
 	(Section~\ref{sec:visualizer:plotgeneration:tree}):} The VS's overall 
 	classification model (for use in stage 2 when stage 1 initialization and 
-	querying are complete) is a random forest. Each active learning method in 
-	the simulations optimize for the 
+	querying are complete) is a random forest. Each active learning method 
+	optimizes for the 
 	final random forest classification model by utilizing random forests in 
 	their selection process (excluding QBC due to the nature of the 
 	algorithm). Instead, the QBC simulations have been run with a committee of 
@@ -39,9 +40,9 @@ should be (and are) captured in the simulations:
 	(1) with pruning and (2) without pruning.
 	
 	\item \textbf{Binary classification:} The classification of user 
-	interests have two possible labels/levels: ``visually correlated'' and 
-	``not visually correlated''. The simulations also use data with two levels 
-	of classification (Section~\ref{sec:al:simulation:data}).
+	interests have two possible labels/levels: ``visually correlated'' (1) and 
+	``not visually correlated'' (0). The simulations also use data with two 
+	levels of classification (Section~\ref{sec:al:simulation:data}).
 \end{itemize}
 \bodyspacing
 
@@ -71,7 +72,7 @@ while the testing set contains 10,000 total data points. For the sake of
 computational efficiency, the simulator selects 250 random samples (125 of each 
 digit) from the training set to compose the final data set. 
 The final data set may be visualized in Figure~\ref{fig:al:simulations:data}. 
-The functions for working with the MNIST data are adapted from file 
+The R functions for working with the MNIST data are adapted from file 
 \texttt{gist:39760}~\cite{oconnor2008} and may be found in 
 Appendix~\ref{sec:appendicies:al:simulations:data}.
 
@@ -93,7 +94,8 @@ Appendix~\ref{sec:appendicies:al:simulations:data}.
 \subsection{Evaluation}
 \label{sec:al:simulation:evaluation}
 The performance of a learner at iteration (query) $j$ of trial $i$ is 
-encapsulated in its error ratio $\epsilon_{i, j}$. Since there are 25 trials 
+encapsulated in its error ratio $\epsilon_{i, j}$. Since there are $s=25$ 
+trials 
 for each active learning method, $i \in \{1,...,25\}$, and since there are 50 
 iterations per trial, $j \in \{1,...,50\}$. 
 Given the current labeled set, the 
@@ -108,13 +110,14 @@ $$\epsilon_{i,j} = \frac{1}{n} \bigg( \sum\limits_{z=1}^{n}
 \textbf{1}_{p^{i,j}_z \neq y'_z} \bigg)$$
 
 \noindent where $\textbf{1}_{p^{i,j}_z \neq y'_z}$ is an indicator variable 
-that returns 1 if $p_z \neq y'_z$ and 0 otherwise. Together, these error ratios 
+that returns 1 if $p^{i,j}_z \neq y'_z$ and 0 otherwise. Together, these error 
+ratios 
 form $\epsilon$, a $25\times 50$ matrix of error ratios. Each active learning
 algorithm's error ratios $\epsilon$ are averaged \textit{over each iteration} 
 so that the performance of the algorithms may be compared across each 
 iteration. This helps offset the randomness of the initialization and pooling 
-scheme. The final, averaged error ratios are contained in a 50-length vector 
-$E$ where the average error ratio of iteration $j$ is given by:
+scheme. The final, averaged error ratios are contained in a vector 
+$E$ of length 50 where the average error ratio of iteration $j$ is given by:
 $$E_{j} = \frac{1}{s} \bigg( \sum\limits_{i=1}^{s} \epsilon_{i,j} \bigg)$$
 
 The final algorithm for computing $\epsilon_{i,}$, a single trial $i$'s vector 
@@ -256,7 +259,7 @@ addendums proposed in Section~\ref{sec:al:methods:qbc}
 ultimately, select the best QBC method in terms of \textit{algorithm structure} 
 for comparison with the other methods. Naturally, the control for comparing the 
 QBC methods is the method with a random forest classification model and no 
-committee pruning (This turns into the QBC methodology as detailed in 
+committee pruning (this turns into the QBC methodology as detailed in 
 Algorithm~\ref{alg:al:methods:qbc1}). An initial committee was selected from 
 classification models that worked with the data. 
 For example, consider discriminant analysis, which utilizes matrix inversion. 
@@ -349,7 +352,8 @@ iteration 25 onwards is that the error ratio for majority committee vote (with
 committee pruning) spikes up \textit{after pruning has occurred}. 
 This is interesting since the idea was to prune committee who performed poorly; 
 this indicates that the insight of \textit{all} committee members, 
-despite performance (or with more room for error than 0.5), are valuable. 
+despite performance (or with more room for error than $\epsilon = 0.5$), are 
+valuable. 
 Naturally, this phenomenon cannot be observed in the random forest (with 
 committee pruning) results because the classification model is a random forest; 
 since committee members are not weighing in on the final predicted labels, the 
@@ -397,7 +401,7 @@ sampling performs better than min-max clustering for the longest time, but
 min-max clustering converges more rapidly and eventually overtakes random 
 sampling. This may be attributed to the nature of the active learner's 
 initialization. With clustering algorithms, initialization is extremely 
-important; by starting within a clusters, the min-max methodology 
+important; by starting within a cluster, the min-max methodology 
 allows the learner to sample more informative labels 
 without having to search through the entire space for clusters. 
 In the simulator, recall that each active learning method is initialized 
@@ -415,7 +419,7 @@ classification model.
 
 There appears to be another ``tie'' between query by committee and uncertainty 
 sampling. QBC starts off better, but the faster convergence in uncertainty 
-sampling eventually outperforms QBC around $iter = 10$. Unlike the case of QBC 
+sampling eventually outperforms QBC around iteration 10. Unlike the case of QBC 
 with a random forest versus majority committee vote classification model 
 (Figure~\ref{fig:al:simulations:resultsqbc}), uncertaintly sampling overtakes 
 QBC much earlier. Thus, out of all methods described in 
@@ -442,34 +446,34 @@ Figure~\ref{fig:al:simulations:resultsci}, which plots the performance of each
 active learning method with confidence intervals, is also of interest. In 
 general, as the number of queries (iterations) increases, the confidence 
 interval shrinks, indicating that the data classification is less variant and 
-more accurate. This is not the case for min-max clustering, however, as we 
-noted earlier that our initialization method is less than ideal. We may also 
-observe that the confidence interval is rather small at $iter = 1$. 
-This may be attributed to the simulation being seeded at each trial before each
-trial's first iteration, thereby causing less variance at the start.
+more accurate. This is not the case for min-max clustering, however; both the 
+error and the confidence interval converge more slowly, underscoring the 
+importance of initialization in clustering methods. 
+We may also observe that the confidence interval is rather small at iteration 
+1. This may be attributed to the simulation being seeded at each trial before 
+each trial's first iteration, thereby causing less variance at the start.
 
 \subsection{Extensions}
 \label{sec:al:extensions}
 
-Naturally, there are many other parameters that could have been tested but were 
+There are many other parameters that could have been tested but were 
 not in the interest of time. For 
 example, the classification model used in the active learning method to aid in 
 query selection does not have to be a random forest 
-(This applies to uncertainty sampling and query by bagging); perhaps another 
+(this applies to uncertainty sampling and query by bagging); perhaps another 
 would have worked better despite 
 the intuition that, if the active learning methods optimize over the same 
 classification model that the main program (the VS, in this case) will use, the 
 learner will perform better. As noted earlier, initialization is important for 
-min-max clustering, and the performance of the learner could also be tested 
-with different initialization 
+efficient min-max clustering, so the performance of the 
+learner could also be tested with different initialization 
 schemes. Furthermore, there are other disagreement methods 
 that could be implemented aside from vote entropy, one of which was described 
-earlier in Section~\ref{sec:al:methods:qbc} (This applies to query by committee 
+earlier in Section~\ref{sec:al:methods:qbc} (this applies to query by committee 
 and query by bagging). The tuning parameters of $\epsilon$ in QBC and $r$ in 
 QBB could also be perturbed to see the effect on the error ratio. Perturbing 
 $\epsilon$ may also provide insight into why QBC suddenly performs worse the 
 moment a committee is pruned. Finally, 
 different initial committees could be fed into the QBC method, and different 
 starting points for committee pruning (e.g. $iter/3$ or $iter/4$ instead of 
-$iter/2$) could also 
-be tested.
+$iter/2$) could also be tested.

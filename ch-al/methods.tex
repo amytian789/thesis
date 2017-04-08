@@ -3,7 +3,7 @@
 
 In this section, we present algorithms for specific active learning methods and 
 a reference to its implementation in the appendix. The 
-\texttt{activelearning} package by \texttt{ramhiser}~\cite{ramhiser2015} has 
+\texttt{activelearning} R package by \texttt{ramhiser}~\cite{ramhiser2015} has 
 adapted much of the methods reviewed in Settles' paper~\cite{settles2010}. As 
 such, most of the implementation code has been adapted and reworked (with 
 substantial components written from scratch) from the 
@@ -88,7 +88,7 @@ hypothesis, and its prediction for an unlabeled query candidate $q$ is a
 ``vote'' of weight one on $q$; the most disagreeable candidate is then 
 queried~\cite{settles2010}. Settles reviews various methods for initial 
 committee selection by the active learner (for both probabilistic and 
-non-probabilistic models), though our implementation of QBC 
+non-probabilistic models), though our own implementation of QBC 
 (Appendix~\ref{sec:appendicies:al:qbc}) allows the user to specify the 
 committee members~\cite{settles2010}. 
 
@@ -124,18 +124,20 @@ predictions are consistently out-of-line with whatever the ``true'' label of
 $q_t$ (the next query point decided and then queried at time $t$) turns out to 
 be. It is important to note that the ``true'' label is not known until 
 \textit{after} the algorithm has returned the index of $q_t$. In the VS, this 
-index corresponds to the next pairwise scatter plot to show the 
-user and query. Subsequently, the committee from $t$ 
-is pruned at time $t+1$ at the start of the algorithm using the label retrieved 
-from time $t$. The pruning function should only 
+index corresponds to the next pairwise scatter plot to query/show the 
+user. Subsequently, the committee from the start of time $t$ is pruned at the 
+start of time $t+1$ using the label retrieved from the end of time $t$. The 
+pruning function should only 
 be run after a good number of iterations (where each iteration results in a 
 query) have passed to allow the error ratios to converge (Otherwise, there is 
 no room for learning). In our implementation, we begin using the pruning 
 algorithm after $iter/2$ queries where $iter$ is the query budget (the maximum 
 number of queries allowed).
+
 Furthermore, the query by committee methodology described by Settles only uses 
 the committee to select $q$; thus, the committee is independent of the final 
-classification model (in the VS, this is a random forest) once the budget has 
+classification model (in the VS, this defaults to a random forest) once the 
+budget has 
 been used up~\cite{settles2010}. However, there may be merit in maintaining the 
 final pruned committee as its own classification model after the budget has 
 been used up. As a classification model, the pruned committee may label 
@@ -231,9 +233,8 @@ described by Settles~\cite{settles2010}:
 
 \noindent An implementation of vote entropy disagreement can be found in 
 Appendix~\ref{sec:appendicies:al:entropy}. This function was imported from the 
-\texttt{activelearning} package developed by 
-\texttt{ramhiser}~\cite{ramhiser2015} and simply calls the \texttt{entropy} 
-package in \texttt{R}.
+\texttt{activelearning} package and simply calls the \texttt{entropy} 
+package in R.
 
 
 
@@ -248,7 +249,7 @@ package in \texttt{R}.
 
 Query by bagging and boosting was proposed
 as a way to improve the performance of a single classifier by forming a 
-committee of classifiers trained on random (weighted, in the case of Boosting) 
+committee of classifiers trained on random (weighted, in the case of boosting) 
 subsets of the labeled data~\cite{abe1998}. 
 Bagging uniformly samples $k$ subsets from the labeled data to form a committee 
 of $k$ different classifiers, which are trained with the same classification 
@@ -289,8 +290,8 @@ random committee training, there is no starting committee. Instead, what the
 user specifies is the classification model that each subset will be trained on. 
 Subsequently, there is no need to (1) maintain error ratios to prune a starting 
 committee or to (2) use majority vote with a pruned committee for the final 
-fitted model over a random forest, which is the classification model for stage 
-2 (Section~\ref{sec:visualizer:plotgeneration}).
+fitted model over a random forest, which is the default classification model 
+for stage 2 (Section~\ref{sec:visualizer:plotgeneration}).
 
 
 
@@ -304,7 +305,7 @@ fitted model over a random forest, which is the classification model for stage
 \subsection{Min-max clustering}
 \label{sec:al:methods:clustering}
 
-The goal of the Min-Max Approach is to query points that are far from each 
+The goal of the min-max approach is to query points that are far from each 
 other~\cite{vu2010}. This can be done by selecting a query that maximizes the 
 minimal distance of each unlabeled query from the labeled set~\cite{vu2010}. 
 In other words, 
@@ -314,7 +315,7 @@ X^{\text{labeled}}} \bigg( \text{distance}(q,k) \bigg) \bigg)$$
 Given natural clustering in the data, the active learner would be able to 
 sample from each cluster with this methodology. If each cluster is fairly 
 homogeneous, the final fitted classifier will be a good representation of the 
-data set's ``true'' labels (Section~\ref{sec:al:litreview}). As such, min-max 
+data set's ``true'' labels. As such, min-max 
 clustering is able to exploit the clustering structure of data but 
 may perform more poorly (converge more slowly i.e. require more queries to get 
 to a reasonable error level) in data sets that do not naturally form clusters. 
@@ -339,7 +340,7 @@ selected to initialize the active learner~\cite{vu2010}. Since the VS will be
 initialized randomly for reasons described in 
 Section~\ref{sec:visualizer:al:initialization}, we do not concern ourselves too 
 much with min-max clustering initialization; 
-the interested reader may refer to~\cite{vu2010} for 
+the interested reader may refer to Vu \textit{et al.}~\cite{vu2010} for 
 more of the mathematical details and a demonstration of viability. 
 Instead, we present the simple algorithm for the actual active learning 
 (querying) process (see Appendix~\ref{sec:appendicies:al:clustering} for code):

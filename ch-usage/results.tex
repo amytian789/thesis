@@ -4,7 +4,7 @@
 The specific queries given by the VS and the corresponding oracle labels 
 (the oracle, in this case, is the author of this thesis) may be seen in 
 Figures~\ref{fig:usage:interesting} and \ref{fig:usage:notinteresting}. Recall 
-that the active learner in stage 1 was given a budget of 15 queries. The 
+that the active learner in stage 1 was given a budget of $iter=15$ queries. The 
 queried plots are not labeled during stage 1 in order to prevent potential bias 
 from clouding the user's responses. After stage 2, the user may plot and view 
 the corresponding variable names should he/she wish to do so.
@@ -40,9 +40,9 @@ extremely low (the correlation is significantly different from zero). In
 particular, this indicates that the criterion 9, 10, 11, 12, 13, and 14 are 
 all significant. Consider the actual variable pairs associated with these 
 criteria. The first row corresponds to the first queried plot that received a 
-label of ``not visually interesting'' (top left plot of 
+label of ``not visually correlated'' (top left plot of 
 Figure~\ref{fig:usage:notinteresting}). Specifically, the pair has a Pearson 
-correlation coefficient of -0.069 and $p$-value of 0.001728. The Pearson 
+correlation coefficient of -0.069 and a $p$-value of 0.001728. The Pearson 
 correlation coefficient is actually rather close to 0 
 (uncorrelated) despite the $p$-value suggesting otherwise. When looking at the 
 metric numerically as the heat map and association navigator does, the natural 
@@ -85,9 +85,9 @@ that demonstrates the usefulness of the VS.
 
 \newpage
 Figure~\ref{fig:usage:hist} is a predicted probability histogram. The 
-probability of being ``visually interesting'' or not is computed for 100 random 
-pairwise scatter plots. Each probability is computed using the final 
-classifier output from stages 1 and 2 of the VS. Most pairs fall within two 
+probability of being ``visually correlated'' or not is computed for 100 random 
+pairwise scatter plots. Each probability is computed using the fitted 
+classifier from stage 2 of the VS. Most pairs fall within two 
 bins (low and high probability). This can be observed as the two hills centered 
 near 0.25 and 0.85 in the histogram, indicating that the final classifier is 
 quite confident in its labeling of most of the scatter plots.
@@ -124,9 +124,8 @@ variables (stocks) involved in these six plots ever show up more than once.
 	\begin{center}
 		\includegraphics[width=0.6\linewidth]
 		{ch-usage/figures/visgraph}
-		\caption[Visual correlation graph output from the visualization 
-		system.]{Visual correlation
-			graph output from the visualization system.}
+		\caption[Visual correlation graph output from the VS.]{Visual 
+		correlation graph output from the VS.}
 		\label{fig:usage:visg}
 	\end{center}
 \end{figure}
@@ -135,8 +134,8 @@ variables (stocks) involved in these six plots ever show up more than once.
 The final resulting visual correlation graph $\hat{G}$ is shown in 
 Figure~\ref{fig:usage:visg}. Interestingly, only stock 39 (which corresponds to 
 ticker TMO) has a degree of zero. This indicates 
-that TMO is one of the best stocks to select because it is ``visually not 
-correlated'' with any other stock and, by proxy, independent of all other 
+that TMO is one of the best stocks to select because it is ``not visually
+correlated'' with any other stock and, by proxy, ``independent'' of all other 
 stocks. Unsurprisingly, 
 TMO does not show up in any of the top six ``visually correlated'' scatter 
 plots depicted in Figure~\ref{fig:usage:interestingplots}. Stock 32 (which 
@@ -154,8 +153,8 @@ more dense than $\hat{G}$.
 In order to more directly compare the visual and numerical graphs, we adjust 
 the threshold value $t$ for each correlation metric such that each graph has 
 about 250 edges. To be clear, these adjusted graphs are not used in the rest of 
-the application; adjustment is for the purposes of examining the differences 
-between $\hat{G}$ and $\hat{G}^{i,\text{num}}$ visually and better 
+the application; adjustment is solely for the purposes of examining the 
+differences between $\hat{G}$ and $\hat{G}^{i,\text{num}}$ visually and better 
 understanding the data. 
 The adjusted Pearson's correlation graph uses a value of $t = 0.5$, the 
 adjusted Spearman's correlation graph uses a value of $t = 0.49$, the adjusted 
@@ -167,8 +166,10 @@ threshold values alone, it is clear which graphs might be over-fitting the
 dependencies and, as such, require a higher threshold value in order to yield a 
 sparser, more interpretable graph; thus, we can conjecture that the distance 
 correlation graph is closest to the visual correlation graph. Interestingly, 
-however, each adjusted numerical graph is able to capture the ``independence'' 
-of TMO and PRGO. This suggests that the ``independence'' of these two stocks 
+however, each adjusted numerical graph is able to capture the idea that TMO and 
+PRGO are ``not visually correlated'' with most other stocks (excluding 
+Kendall's, which only captures that of TMO). This 
+suggests that the ``independence'' of these two stocks 
 are truly robust; as such, we should expect the best-performing portfolios to 
 include both TMO and PRGO.
 
@@ -176,8 +177,9 @@ include both TMO and PRGO.
 	\begin{center}
 		\includegraphics[width=1\linewidth]
 		{ch-usage/figures/numgraphs}
-		\caption[Numerical correlation graphs (sparse).]{Numerical correlation 
-		graphs (sparse). \textit{Upper left:} Pearson's correlation graph with 
+		\caption[Numerical correlation graphs (adjusted).]{Numerical 
+		correlation graphs (adjusted). 
+		\textit{Upper left:} Pearson's correlation graph with 
 		threshold $t = 0.5$. \textit{Upper right:} Spearman's correlation graph 
 		with threshold $t = 0.49$. \textit{Bottom left:} Kendall's correlation 
 		graph with threshold $t = 0.32$. \textit{Bottom right:} Distance 
@@ -204,10 +206,11 @@ correlation portfolio and distance correlation portfolio include
 PRGO, the second-most ``visually not correlated'' stock. This suggests that the 
 distance correlation portfolio, which includes both, will perform the strongest.
 The portfolio compositions reinforce the idea that the distance correlation 
-graph is most similar to the visual correlation graph in this application, and 
+graph is most similar to the visual correlation graph, and 
 the compositions also suggest that the other correlation coefficient metrics 
 can still capture some component of the most ``visually not correlated'' stocks 
-even as their density increases.
+even as their density increases (excluding Kendall's, which captured neither 
+stock). 
 
 Finally, the ``buy and hold'' performance of yearly returns and cumulative 
 sum of returns are plotted for the S\&P 500 (the control) and
@@ -221,8 +224,8 @@ full years between 2006 and 2014, giving special attention to the portfolios'
 performance during the financial crisis. 
 
 In line with expectations, the portfolio $P^*$, which was constructed from the 
-numerical correlation graph $\hat{G}^* = \hat{G}^{4,\text{num}}$ (distance 
-correlation) most similar to the visual correlation graph $\hat{G}$, 
+numerical correlation graph $\hat{G}^* = \hat{G}^{4,\text{num}}$ most similar 
+to the visual correlation graph $\hat{G}$, 
 performs the strongest by far. $P^*$ consistently posts the highest returns 
 year after year. Though it doesn't seem to strongly outperform on a yearly 
 basis, the differences really add up; this can clearly be seen in the 
@@ -234,37 +237,39 @@ visual graph $\hat{G}$, the selection of $\hat{G}^*$, and the subsequent
 selection of $P^*$, 
 a portfolio that is well-balanced and captures the spirit of the ``buy and 
 hold'' model described in Section~\ref{sec:intro:finance}.
-Both the Pearson's correlation portfolio (which included TMO but not PRGO) and 
-the Spearman's correlation portfolio (which included PRGO but not TMO) 
-performed rather average. What is interesting to observe, however, is their 
-relative performance. Although TMO is supposedly more 
-``visually not correlated'' and should thereby be a better pick than PRGO, the 
-Pearson's correlation portfolio underperforms Spearman's until around 2012. It 
-is difficult to make any concrete conclusions about which is better, however, 
-since each portfolio contains 4 other stocks that we have not examined 
-in-depth up to this point; a cursory examination of the corresponding 
-portfolios yields the fact that they both contain SYK and VAR.
 As noted earlier in Section~\ref{sec:usage:stockselection}, the proposed stock 
 selection strategy is simple, but every selected portfolio has outperformed the 
 S\&P 500, suggesting that a more sophisticated selection procedure would 
 yield even more fruitful returns.
+Both the Pearson's correlation portfolio (which includes TMO but not PRGO) and 
+the Spearman's correlation portfolio (which includes PRGO but not TMO) 
+performed rather average. What is interesting to observe, however, is their 
+relative performance. Although TMO is supposedly ``not visually correlated'' 
+with all other stocks and should thereby be a better pick than PRGO, the 
+Pearson's correlation portfolio under-performs Spearman's until around 2012. 
+Even more surprisingly, Kendall's correlation portfolio (with neither TMO nor 
+PRGO) overtakes both Pearson's and Spearman's portfolios
+around the same time! This may indicate that the distribution of stock prices 
+is evolving over time, highlighting the importance of frequent  portfolio 
+rebalancing.
 
 \subsection{Extensions}
 \label{sec:usage:extensions}
 
-It should also be noted that, while a rebalancing method performs better in 
-practice~\cite{liuh2016}, the ``buy and hold'' strategy is better-suited for 
-observing portfolio performances over time with less external influences, 
-providing a more concrete basis of comparison for the performance of 
-$\hat{G}^*$. 
-Actually, the procedure described in Section~\ref{sec:usage:newanalysis}
-can certainly be repeated yearly (once a year's worth of new data has been 
-collected) to determine the direction in which to 
-rebalance the portfolio. However, the procedure should be modified to take 
-transaction costs into account. Another extension stems from the idea that the 
+While the ``buy and hold'' strategy is better-suited for 
+observing portfolio performances over time with less external influences 
+(thereby providing a more concrete basis of comparison for the performance of 
+$\hat{G}^*$), a rebalancing method performs better in practice~\cite{liuh2016}.
+The procedure described in Section~\ref{sec:usage:newanalysis} could be 
+repeated yearly (once new data has been collected) to determine the direction 
+in which to rebalance the portfolio. However, the procedure should be modified 
+to take transaction costs into account. Furthermore, a stronger measure of 
+independence would be useful; see the note on graphical models in 
+Section~\ref{sec:futurework:graphicalmodel}. Another extension stems from the 
+idea that the 
 portfolio weights of each stock can certainly be optimized; currently, each 
 stock holds equal weight within its portfolio. These extensions may improve 
-upon portfolio management techniques that this application does not utilize.
+upon portfolio management techniques which our application does not utilize.
 
 %$P^{\text{vis}}$ catches up after a mediocre beginning, and there are other 
 %interesting things to note about its performance that makes it difficult to 
@@ -284,9 +289,10 @@ upon portfolio management techniques that this application does not utilize.
 			p{0.13\linewidth}p{0.13\linewidth}p{0.13\linewidth} }
 		
 		% First page heading
-		\caption[Computed differences between visual and numerical correlation 
-		graphs.]{Computed differences between visual and numerical correlation 
-		graphs. See Section~\ref{sec:gc:methods} for details on each graph 
+		\caption[Computed differences between the visual correlation graph and 
+		various numerical correlation graphs.]{Computed differences between the 
+		visual correlation graph and various numerical correlation graphs. See 
+		Section~\ref{sec:gc:methods} for details on each graph 
 		summarization metric. (*) indicates the numerical correlation graph 
 		most similar to visual correlation graph.} 
 		\label{tab:usage:graphdiff}\\

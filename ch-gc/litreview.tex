@@ -33,10 +33,10 @@ qualities of existing graph summarization methods and their associated
 advantages and disadvantages. 
 Understanding these metrics is important due to the complex nature of graphs.
 It is natural to ask why we cannot just plot the graphs instead (which are 
-typically in the form of either an adjacency matrix of list of edges) and 
+typically in the form of either an adjacency matrix or a list of edges) and 
 examine the result for visual patterns in order to understand the qualities 
-of the graph. This is unfeasible for several reasons (see 
-Figure~\ref{fig:gc:arr_density}). 
+of the graph. This is unfeasible for two reasons (see 
+Figure~\ref{fig:gc:arr_density}):
 
 \tablespacing
 \begin{itemize}
@@ -69,9 +69,10 @@ Figure~\ref{fig:gc:arr_density}).
 		density of the cluster $C^2$ makes it almost impossible to see that of 
 		$C^1$.
 		\textit{Right:} The nodes have been rearranged in a manner that clearly 
-		distinguishes between $C^1$ and $C^2$. At a glance, it is evident that 
-		$C^1$ is missing $E_{3,6}$. It is difficult to tell, however, that 
-		$C^2$ is even missing an edge $(E_{13,17})$ in the first place!
+		distinguishes between $C^1$ and $C^2$. Now it is evident 
+		that $C^1$ is missing $E_{3,6}$. It is still difficult to tell, 
+		however, that 
+		$C^2$ is even missing an edge $(E_{13,17})$ in the first place.
 		$C^1$ is more sparse, which makes it easier to visually perceive 
 		anomalies in the graph.}
 		\label{fig:gc:arr_density}
@@ -83,7 +84,7 @@ itself. Each metric, which is associated with a different characteristic of the
 graph, can be parsed and later combined to 
 ``reconstruct'' or better understand the qualities of each graph, subsequently 
 allowing the user to better understand \textit{exactly where} the visual and 
-numeric graphs differ (should the final graph comparison metric suggest that 
+numerical graphs differ (should the final graph comparison metric suggest that 
 the two graphs are highly different). Graph distance functions skip that 
 critical step by going through 
 the graphs directly.
@@ -100,11 +101,12 @@ the visual qualities of a graph.
 With an understanding of the properties of various graph summarization methods, 
 the graph summarization difference metric may be more informative. In the VS, 
 the graph summarization difference computes a list of graph summarization 
-metrics $(m^\text{num},m^\text{vis})$ for each graph in order to provide a 
+metrics $m^i$ for $\hat{G}^i$ and $m$ for the base graph $\hat{G}$ 
+in order to compute a 
 single vector $d$ that quantifies the difference between them with 
 some difference function (e.g. Euclidean distance, L2, etc.). 
-As such, a natural byproduct of the computation is 
-$(m^\text{num},m^\text{vis})$, which (armed 
+As such, a natural byproduct of the computation is the pair
+$(m^i,m)$, which (armed 
 with an understanding of the values) provides insight on the qualities of the 
 visual graph and numerical graph \textit{on an individual level} and where 
 exactly their differences and similarities lie.

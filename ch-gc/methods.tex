@@ -14,11 +14,11 @@ similar graph pair given a vector of differences where each difference
 corresponding to one of the six summarization methods listed below.
 
 Most methods listed below are implemented in the \texttt{igraph} package in 
-\texttt{R}~\cite{igraph}. As such, we do not implement most methods ourselves 
+R~\cite{igraph}. As such, we do not implement most methods ourselves 
 as we did in Chapter~\ref{ch:al}. The code for 
 all methods may be found in Appendix~\ref{sec:appendicies:gc:engine}. It should 
 be noted that there are various distance functions that may be used. 
-Euclidean distance, L1, and L2 are currently implemented (The code for the 
+Euclidean distance, L1, and L2 are currently implemented (code for the 
 distance functions may also found in Appendix~\ref{sec:appendicies:gc:engine}). 
 
 For all methods below, let $\hat{G}=(V,E)$ be some labeled graph.
@@ -34,22 +34,22 @@ $$\mathcal{C} = \sum\limits^{|V|}_{i=1} \max_{\forall j \in \{1,...,|V|\}}
 c_j - c_i$$
 
 \noindent The importance of each node may be measured by utilizing metrics such 
-as:
+as~\cite{igraph}:
 
 \tablespacing
 \begin{itemize}
-	\item \textbf{Degree~\cite{igraph}:} 
+	\item \textbf{Degree:} 
 	The degree of a node is the number of edges the node 
 	is part of. In other words, it is the number of direct paths from the node 
 	to all other nodes. The higher the degree, the more important the node 
 	is.
-	\item \textbf{Closeness~\cite{igraph}:} 
+	\item \textbf{Closeness:} 
 	The closeness of a node is the average 
 	shortest path length (the path which traverses the smallest number of 
 	edges) between the node and all other nodes. The higher the closeness, 
 	the closer the node is to all other nodes (in terms of path length), the 
 	more important the node is.
-	\item \textbf{Betweenness~\cite{igraph}:} 
+	\item \textbf{Betweenness:} 
 	The betweenness of a node is the number of 
 	times the node is part of the shortest path between two other nodes. Direct 
 	paths are excluded. The higher the betweenness, the more important the node 
@@ -174,11 +174,12 @@ very similar when they are (visually) different.
 \subsection{Community}
 
 The community of a graph $\hat{G}$ is given by $\mathcal{S}$, a set of its 
-dense subgraphs. Subgraphs may be detected with any of the following algorithms:
+dense subgraphs. Subgraphs may be detected with any of the following 
+algorithms~\cite{igraph}:
 
 \tablespacing
 \begin{itemize}
-	\item \textbf{Random walks~\cite{igraph}:} 
+	\item \textbf{Random walks:} 
 	By implementing a random walk within a graph 
 	to determine the various subgraphs (or, in other words, to ``describe'' the 
 	community), this procedure leverages the natural idea 
@@ -189,14 +190,14 @@ dense subgraphs. Subgraphs may be detected with any of the following algorithms:
 	This approach to building a community is called with the 
 	\texttt{cluster\_walktrap} function from the \texttt{igraph} package.	
 	
-	\item \textbf{Infomap~\cite{igraph}:} 
+	\item \textbf{Infomap:} 
 	An infomap utilizes random walks to build a 
 	community by minimizing the expected length that it takes a random walk 
 	to ``describe'' the community.
 	This approach to building a community is called with the 
 	\texttt{cluster\_infomap} function from the \texttt{igraph} package.
 	
-	\item \textbf{Betweenness~\cite{igraph}:} 
+	\item \textbf{Betweenness:} 
 	As described earlier, the betweenness of a node 
 	is the number of times the node is part of the shortest path between two 
 	other nodes (where direct paths are excluded). The algorithm sequentially 
@@ -444,7 +445,7 @@ which suggests they are the exact same.
 
 The edge density histogram is not implemented in the \texttt{igraph} package; 
 it is a simple summarization metric which we have derived from the notion of a 
-standard/traditional histogram that may be useful. 
+standard/traditional histogram. 
 This metric captures the number of nodes in a graph $\hat{G}$ that have a 
 specified number of degrees. Naturally, a larger number of high-degree nodes 
 signals that $\hat{G}$ is dense, and a larger number of low-degree nodes 

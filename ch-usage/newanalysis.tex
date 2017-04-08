@@ -12,13 +12,13 @@ against the various numerical correlation graphs and provide a guide for
 selecting the most visually intuitive numerical correlation graph.
 
 Let $X$ be a $n\times d$ data matrix where there are $d$ observations of $n$ 
-variables (Specifically, $n = 43$ and $d = 2050$ in the healthcare data set). 
+variables. Specifically, $n = 43$ and $d = 2050$ in the healthcare data set. 
 Recall that the data used for active learning classification by the 
 VS is actually 
 composed of all observations of characteristic features (as described in 
 Section~\ref{sec:visualizer:scatterplot:features}) for all ${n\choose 2} = 
-n(n-1)/2 = 903$ pairwise scatter plots of the $n$ variables from the actual 
-data set $X$. The final procedure is as follows:
+n(n-1)/2 = 903$ pairwise scatter plots of the $n=43$ variables from the actual 
+healthcare data set $X$. The final procedure is as follows:
 
 \tablespacing
 \begin{enumerate}
@@ -63,7 +63,8 @@ data set $X$. The final procedure is as follows:
 \end{enumerate}
 \bodyspacing
 
-It might also be sufficient to simply select $P^*$ from $\hat{G}^*$, record the 
+In a standard application, it might be sufficient to simply select $P^*$ from 
+$\hat{G}^*$, record the 
 yearly returns, and then be done. However, because the purpose of this chapter 
 is to demonstrate the usage and viability of the VS in aiding with the 
 selection of an appropriate numerical model (given a data set and some 

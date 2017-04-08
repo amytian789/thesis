@@ -124,6 +124,13 @@ S.~Santos, D.~Y. Takahashi, A.~Nakata, and A.~Fujita.
   dependencies between gene expression signals}.
 \newblock {\em Briefings in Bioinformatics}, pages 1--13, August 2013.
 
+\bibitem{seghouane2007}
+A.~Seghouane and S.~Amari.
+\newblock {The AIC Criterion and Symmetrizing the Kullback–Leibler
+  Divergence}.
+\newblock {\em IEEE Transactions on Neural Networks}, pages 97--106, January
+  2007.
+
 \bibitem{settles2010}
 {Settles, B.}
 \newblock {Active Learning Literature Survey}.

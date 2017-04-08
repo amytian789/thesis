@@ -57,7 +57,7 @@ computed from $X_i$ and $X_j$) with the following heuristic:\\
 	``significant'' correlation (e.g. $\lambda = 0.75$)
 \end{algorithm}
 
-\noindent We implement this latter approach when drawing correlation 
+\noindent We implement this latter approach when drawing numerical correlation 
 graphs for the financial application in Chapter~\ref{ch:usage}.
 
 The second method is \textbf{visual correlation}. By ``visual correlation'', we 
@@ -81,7 +81,7 @@ not be captured by standard correlation metrics, we have a notion of the visual
 correlation between them. But because visual interpretations are subjective and 
 dependent on how the data is plotted, numerical correlation is still useful. 
 The two views on estimating the population correlation do not have to be 
-mutually exclusive and actually supplement each other's faults instead.
+mutually exclusive; instead, they supplement each other's faults.
 To capture both qualities, a visual correlation graph may be utilized to check 
 the suitability of various numerical correlation metrics that can be applied to 
 the data.
@@ -109,7 +109,7 @@ unknown in practice since
 the expectation requires knowing the true joint distribution of $X$ and $Y$. 
 This is true for all correlation metrics.
 Instead, the population correlation $\rho_{X,Y}$ is estimated by the sample 
-correlation $\hat{\rho}_{X,Y}$. Given $n$ observations of $X$ and $Y$, the 
+correlation $\hat{\rho}_{x,y}$. Given $n$ observations of $X$ and $Y$, the 
 sample expectation is 
 given by the formula  
 $\E(X)=\frac{1}{n}\sum\limits_{i=1}^{n}x_i$. 

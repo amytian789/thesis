@@ -10,15 +10,14 @@ $F_{X,Y}(x,y)=F_X(x)F_Y(y)$. With this formal definition, Santos \textit{et
 al.} notes that ``we say two random variables X and Y are dependent if they
 are not independent'' so the problem may be transformed into that of ``how to 
 measure and detect dependence from the observation of the two random 
-variables''\cite{santos2013}. In 
-general, it is incorrect to say that ``uncorrelated'' equates ``independence'', 
+variables''\cite{santos2013}. As noted in Section~\ref{sec:intro:finance},
+it is incorrect to say that ``non-correlation'' equates independence, 
 but correlation is still a useful tool to inform a portfolio stock selection 
-procedure (see Section~\ref{sec:intro:finance}). Thus, the procedure must 
-select $k$ stocks such that each stock is as \textit{uncorrelated} as 
-possible with all other stocks in the set.
+procedure. Thus, the procedure must select a set of $k$ stocks such that each 
+stock is as \textit{uncorrelated} as possible with all other stocks in the set.
 
-In a correlation graph, an existent edge indicates some form of correlation 
-(visual or numerical) while a non-existent edge indicates an uncorrelated 
+In a correlation graph, an existent edge (1) indicates some form of correlation 
+(visual or numerical) while a non-existent edge (0) indicates an uncorrelated 
 relationship and is a proxy for independence 
 (see Section~\ref{sec:intro:correlation}). Subsequently, we might consider the 
 following simple 
@@ -66,7 +65,8 @@ points in time. We let $p_d$ and $p_v$ denote the threshold ratios
 (with respect to averages) for drift and volatility respectively. These 
 values will be dependent on the size of the data set as we wish to 
 retroactively select $p_d$ and $p_v$ such that the number of viable stocks is 
-reduced to a reasonable amount (such as 20 - 30) to reduce the computational 
+reduced to a reasonable amount (such as 20 to 30) to alleviate the 
+computational 
 burden but not reduced so much that the portfolios all end up being the same 
 (which would be the case if the 
 remaining number of stocks was close to $k$). The adjusted selection strategy 
@@ -76,7 +76,7 @@ Appendix~\ref{sec:appendicies:usage:stockselection}.
 
 Although the revised selection procedure is still simplistic, it is certainly 
 better than randomly selecting stocks and actually holds up in performance 
-against a portfolio fully invested in the S\&P 500 (This result may be seen in 
+against a portfolio fully invested in the S\&P 500 (this result may be seen in 
 Section~\ref{sec:usage:results}). Furthermore, we will see that this procedure 
 also fulfills the purpose of demonstrating the viability of the VS when applied 
 in a setting such as finance.
